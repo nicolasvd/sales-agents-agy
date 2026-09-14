@@ -1,6 +1,8 @@
 # Generated reports (outputs created in reports/{slug}/)
 reports/*/*.md
+reports/*/*.html
 reports/*.md
+reports/*.html
 !reports/.gitkeep
 
 # IDE & OS

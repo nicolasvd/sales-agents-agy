@@ -1,8 +1,8 @@
-# Règle : Format des Sorties & Génération d'Artifacts
+# Règle : Format des Sorties & Double Livrable (Markdown + HTML)
 
-## Bloc Résumé Terminal (Obligatoire en début de toute réponse)
+## Bloc Résumé Terminal (Obligatoire en début de réponse)
 
-Ce bloc apparaît EN PREMIER dans la réponse, avant tout développement :
+Ce bloc apparaît EN PREMIER dans la réponse textuelle, avant tout développement :
 
 ```
 === [NOM DU SKILL EN MAJUSCULES] : [NOM ENTREPRISE] ===
@@ -20,56 +20,45 @@ Red Flags :
   2. [Point de vigilance secondaire si pertinent]
 
 Action recommandée : [Phrase d'action concrète, une seule ligne]
-
-Rapport Markdown → reports/{slug}/[NOM-DU-FICHIER.md]
-Artifact HTML    → reports/{slug}/PROSPECT-ANALYSIS.html (si prospect)
 ```
 
-## Organisation du Stockage & Conventions de Nommage
+## Règle du Double Livrable (Dual Output MD + HTML)
 
-Tous les livrables sont archivés dans le répertoire `reports/` :
-- **Par prospect :** `reports/{slug}/` où `{slug}` est le nom de domaine ou d'entreprise normalisé en minuscules (ex. `reports/socialsky/`).
-- **Global / Pipeline :** direct sous `reports/` (ex. `reports/PIPELINE-SUMMARY.md`).
+Tout skill produisant un livrable dans `reports/{slug}/` ou `reports/` doit **OBLIGATOIREMENT** générer simultanément deux versions du livrable :
+1. **La version Markdown brute :** `reports/{slug}/{LIVRABLE}.md` (pour indexation, grep et historique VCS).
+2. **La version HTML autonome :** `reports/{slug}/{LIVRABLE}.html` (CSS inline moderne, typographie système, composants visuels, @media print A4 sans dépendance externe).
 
-| Skill | Type | Fichiers output |
-|---|---|---|
-| `sales-qualify` | Prospect | `reports/{slug}/LEAD-QUALIFICATION.md` |
-| `sales-research` | Prospect | `reports/{slug}/COMPANY-RESEARCH.md` |
-| `sales-contacts` | Prospect | `reports/{slug}/DECISION-MAKERS.md` |
-| `sales-prospect` | Prospect | `reports/{slug}/PROSPECT-ANALYSIS.md` **ET** `reports/{slug}/PROSPECT-ANALYSIS.html` |
-| `sales-outreach` | Prospect | `reports/{slug}/OUTREACH-SEQUENCE.md` |
-| `sales-followup` | Prospect | `reports/{slug}/FOLLOWUP-SEQUENCE.md` |
-| `sales-prep` | Prospect | `reports/{slug}/MEETING-PREP.md` |
-| `sales-proposal` | Prospect | `reports/{slug}/CLIENT-PROPOSAL.md` |
-| `sales-competitors` | Prospect | `reports/{slug}/COMPETITIVE-INTEL.md` |
-| `sales-icp` | Stratégie | `reports/IDEAL-CUSTOMER-PROFILE.md` |
-| `sales-objections` | Stratégie | `reports/OBJECTION-PLAYBOOK.md` |
-| `sales-report` | Pipeline | `reports/PIPELINE-SUMMARY.md` |
+### Répertoire des Livrables & Templates Associés
 
-### Double Génération d'Artifacts pour `prospect <url>`
-À l'issue de chaque audit `prospect <url>`, l'orchestrateur `sales-prospect` génère simultanément :
-1. **Rapport Markdown :** `reports/{slug}/PROSPECT-ANALYSIS.md` (pour lecture rapide, grep et versioning).
-2. **Artifact HTML autonome :** `reports/{slug}/PROSPECT-ANALYSIS.html`
-   - Instancié à partir du template `.agents/rules/references/report-template.html`.
-   - Inclut le CSS inline, les jauges SVG circulaires/barres, les badges de statut et les styles `@media print` A4.
+| Skill | Livrable Markdown | Livrable HTML Autonome | Template de Référence |
+|---|---|---|---|
+| `sales-prospect` | `PROSPECT-ANALYSIS.md` | `PROSPECT-ANALYSIS.html` | `.agents/rules/references/report-template.html` |
+| `sales-outreach` | `OUTREACH-SEQUENCE.md` | `OUTREACH-SEQUENCE.html` | `.agents/rules/references/outreach-template.html` |
+| `sales-prep` | `MEETING-PREP.md` | `MEETING-PREP.html` | `.agents/rules/references/meeting-prep-template.html` |
+| `sales-proposal` | `CLIENT-PROPOSAL.md` | `CLIENT-PROPOSAL.html` | `.agents/rules/references/proposal-template.html` |
+| `sales-qualify` | `LEAD-QUALIFICATION.md` | `LEAD-QUALIFICATION.html` | `.agents/rules/references/report-template.html` |
+| `sales-research` | `COMPANY-RESEARCH.md` | `COMPANY-RESEARCH.html` | `.agents/rules/references/report-template.html` |
+| `sales-contacts` | `DECISION-MAKERS.md` | `DECISION-MAKERS.html` | `.agents/rules/references/report-template.html` |
+| `sales-competitors` | `COMPETITIVE-INTEL.md` | `COMPETITIVE-INTEL.html` | `.agents/rules/references/report-template.html` |
+| `sales-followup` | `FOLLOWUP-SEQUENCE.md` | `FOLLOWUP-SEQUENCE.html` | `.agents/rules/references/outreach-template.html` |
+| `sales-report` | `PIPELINE-SUMMARY.md` | `PIPELINE-SUMMARY.html` | `.agents/rules/references/report-template.html` |
+| `sales-icp` | `IDEAL-CUSTOMER-PROFILE.md` | `IDEAL-CUSTOMER-PROFILE.html` | `.agents/rules/references/report-template.html` |
+| `sales-objections` | `OBJECTION-PLAYBOOK.md` | `OBJECTION-PLAYBOOK.html` | `.agents/rules/references/report-template.html` |
 
-### Opération de fichier
-- Si le fichier n'existe pas → `create_file` (crée automatiquement les dossiers parents)
-- Si le fichier existe déjà → `edit_file` (écraser la version précédente)
+## Standard du Bloc de Clôture (Liens Cliquables Obligatoires)
 
-### Structure Standard du Rapport Markdown
+Chaque réponse d'un skill doit **IMPÉRATIVEMENT se terminer** par un bloc de clôture clair contenant les liens absolus directs cliquables vers les deux fichiers générés :
+
 ```markdown
-# [Titre] : [Nom de l'entreprise]
-**Date :** [YYYY-MM-DD]  **URL :** [url analysée]
 ---
-## Résumé Exécutif & Score
-[Table des scores avec formule]
----
-## [Sections analytiques — données tabulaires, sourcées]
----
-## Recommandations & Actions
-[Plan priorisé]
----
-*Généré par AI Sales Team Antigravity — [date]*
-*Sources : [liste des URLs et requêtes utilisées]*
+### 📁 Livrables Générés
+- 📄 **Markdown :** [NOM-DU-FICHIER.md](file://{ABSOLUTE_WORKSPACE_PATH}/reports/{slug}/NOM-DU-FICHIER.md)
+- 🌐 **Version Web / Print :** [NOM-DU-FICHIER.html](file://{ABSOLUTE_WORKSPACE_PATH}/reports/{slug}/NOM-DU-FICHIER.html)
 ```
+
+*(Remplacer `{ABSOLUTE_WORKSPACE_PATH}` par le chemin absolu du workspace actif, par exemple `/Users/nicolasvd/antigravity/sales-agents-agy`)*.
+
+## Règles de Mise en Forme HTML & Print
+- **CSS Inline & Autonomie :** Zéro dépendance à des CDN externes (Google Fonts, Tailwind CDN, FontAwesome). Tout le style réside dans la balise `<style>` du document.
+- **Typographie Système :** `-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif`.
+- **Export PDF / Impression A4 :** `@page { margin: 12mm 15mm; size: A4; }`, `print-color-adjust: exact;`, cartes protégées contre les coupures (`break-inside: avoid;`).

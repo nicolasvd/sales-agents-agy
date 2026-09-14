@@ -38,9 +38,12 @@ Invoqué par la commande `outreach <nom_prospect>`. Lire d'abord :
 - ❌ Aucun envoi réel — output = brouillons uniquement.
 - ✅ Chaque email < 100 mots, CTA = 1 question ouverte.
 
-## Output
+## Output (Double Livrable Obligatoire)
 
-Créer `OUTREACH-SEQUENCE.md` selon le template dans :
-`view_file(".agents/skills/sales-outreach/references/output-template.md")`
+Créer simultanément dans `reports/{slug}/` :
+1. **Markdown :** `reports/{slug}/OUTREACH-SEQUENCE.md` selon le template :
+   `view_file(".agents/skills/sales-outreach/references/output-template.md")`
+2. **HTML Autonome :** `reports/{slug}/OUTREACH-SEQUENCE.html` selon le template :
+   `view_file(".agents/skills/sales-outreach/references/outreach-template.html")`
 
-Afficher le bloc résumé terminal (format `output-formatting.md`) avant de créer le fichier.
+Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).

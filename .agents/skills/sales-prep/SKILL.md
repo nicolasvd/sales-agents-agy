@@ -43,7 +43,12 @@ Invoqué par la commande `prep <url>`. Lire tous les rapports disponibles dans l
 - Produit présenté = strictement `product-context.md` (fonctionnalités + prix confirmés).
 - Brief ≤ 2 pages (concis pour une lecture rapide avant la réunion).
 
-## Output
+## Output (Double Livrable Obligatoire)
 
-Créer `MEETING-PREP.md` selon le template :
-`view_file(".agents/skills/sales-prep/references/output-template.md")`
+Créer simultanément dans `reports/{slug}/` :
+1. **Markdown :** `reports/{slug}/MEETING-PREP.md` selon le template :
+   `view_file(".agents/skills/sales-prep/references/output-template.md")`
+2. **HTML Autonome :** `reports/{slug}/MEETING-PREP.html` selon le template :
+   `view_file(".agents/skills/sales-prep/references/meeting-prep-template.html")`
+
+Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).

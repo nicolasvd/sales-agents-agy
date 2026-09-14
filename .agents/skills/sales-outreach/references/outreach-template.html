@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séquence d'Outreach — {{COMPANY_NAME}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-muted: #64748b;
+      --border: #e2e8f0; --primary: #2563eb; --primary-light: #eff6ff;
+      --accent: #0ea5e9; --linkedin: #0077b5; --linkedin-light: #e0f2fe;
+      --email: #4f46e5; --email-light: #eef2ff;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
+    .header h1 { font-size: 1.75rem; font-weight: 700; }
+    .header p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .triggers-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
+    .triggers-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text); }
+    .trigger-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .trigger-tag { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8125rem; font-weight: 600; }
+    
+    /* Foldable Email / LinkedIn Cards */
+    details.touch-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 1rem; box-shadow: var(--card-shadow); overflow: hidden; }
+    summary.touch-summary { padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 0.9375rem; background: var(--surface); list-style: none; user-select: none; border-bottom: 1px solid transparent; }
+    details[open] summary.touch-summary { border-bottom-color: var(--border); background: #f8fafc; }
+    summary::-webkit-details-marker { display: none; }
+    .touch-left { display: flex; align-items: center; gap: 0.75rem; }
+    .step-pill { background: #f1f5f9; color: #475569; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+    .channel-tag-email { background: var(--email-light); color: var(--email); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+    .channel-tag-linkedin { background: var(--linkedin-light); color: var(--linkedin); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+    .touch-body { padding: 1.25rem 1.5rem; }
+    .subject-line { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dashed var(--border); }
+    .subject-line strong { color: var(--text); }
+    .message-content { background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 8px; padding: 1.25rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.875rem; white-space: pre-wrap; line-height: 1.6; color: #1e293b; }
+    .anchor-note { margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted); font-style: italic; }
+
+    @media print {
+      @page { margin: 12mm 15mm; size: A4; }
+      body { background: #fff; padding: 0; }
+      details.touch-card { break-inside: avoid; border: 1px solid #cbd5e1; margin-bottom: 1.5rem; }
+      details.touch-card[open] { display: block; }
+      details:not([open]) { display: block; }
+      details:not([open]) .touch-body { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Séquence d'Outreach — {{COMPANY_NAME}}</h1>
+      <p>Prospect : {{CONTACT_NAME}} ({{CONTACT_TITLE}}) | Contact Access : {{CONTACT_SCORE}}/100</p>
+    </header>
+
+    <section class="triggers-card">
+      <h3>🎯 Déclencheurs & Ancrages de Personnalisation</h3>
+      <div class="trigger-tags">
+        {{TRIGGER_TAGS_HTML}}
+      </div>
+    </section>
+
+    <!-- 5-Touch Omnichannel Sequence -->
+    <div class="touches-list">
+      {{TOUCHES_HTML}}
+    </div>
+  </div>
+</body>
+</html>

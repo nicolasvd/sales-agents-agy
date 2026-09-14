@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief de Réunion — {{COMPANY_NAME}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-muted: #64748b;
+      --border: #e2e8f0; --primary: #2563eb; --primary-light: #eff6ff;
+      --danger: #ef4444; --danger-light: #fef2f2; --warning: #f59e0b; --warning-light: #fffbeb;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
+    .header h1 { font-size: 1.75rem; font-weight: 700; }
+    .header p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
+    .card h2 { font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; }
+
+    /* Personas Grid */
+    .personas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .persona-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; }
+    .persona-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .persona-title { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .persona-detail { font-size: 0.8125rem; line-height: 1.4; margin-bottom: 0.25rem; }
+    .persona-detail strong { color: #334155; }
+
+    /* Discovery Questions Box */
+    .questions-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .question-box { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 0.85rem 1.25rem; border-radius: 0 6px 6px 0; font-size: 0.875rem; }
+    .question-category { font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.25rem; }
+
+    /* Landmines Alert */
+    .landmine-box { background: var(--danger-light); border-left: 4px solid var(--danger); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .landmine-box strong { color: var(--danger); }
+
+    @media print {
+      @page { margin: 12mm 15mm; size: A4; }
+      body { background: #fff; padding: 0; }
+      .card { break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Brief de Réunion — {{COMPANY_NAME}}</h1>
+      <p>Objectif : {{MEETING_GOAL}} | Durée : {{MEETING_DURATION}}</p>
+    </header>
+
+    <!-- Personas -->
+    <section class="card">
+      <h2>👥 Profils des Participants & Personas</h2>
+      <div class="personas-grid">
+        {{PERSONAS_HTML}}
+      </div>
+    </section>
+
+    <!-- Questions de Découverte -->
+    <section class="card">
+      <h2>💡 Questions de Découverte Stratégiques</h2>
+      <div class="questions-list">
+        {{DISCOVERY_QUESTIONS_HTML}}
+      </div>
+    </section>
+
+    <!-- Landmines & Alertes -->
+    <section class="card">
+      <h2>⚠️ Pièges & Sujets Sensibles (Landmines)</h2>
+      {{LANDMINES_HTML}}
+    </section>
+
+    <!-- Prochaines Étapes -->
+    <section class="card">
+      <h2>🚀 Prochaines Étapes à Conclure</h2>
+      <ul style="padding-left: 1.25rem; font-size: 0.875rem; line-height: 1.6;">
+        {{NEXT_STEPS_HTML}}
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

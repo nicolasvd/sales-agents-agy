@@ -40,9 +40,12 @@ Invoqué par la commande `qualify <url>`. Lire si disponible :
 - Zéro estimation non étiquetée. Information absente → `Non disponible publiquement`.
 - Un prospect médiocre reçoit un score médiocre — pas d'optimisme commercial.
 
-## Output
+## Output (Double Livrable Obligatoire)
 
-Créer `LEAD-QUALIFICATION.md` selon le template :
-`view_file(".agents/skills/sales-qualify/references/output-template.md")`
+Créer simultanément dans `reports/{slug}/` :
+1. **Markdown :** `reports/{slug}/LEAD-QUALIFICATION.md` selon le template :
+   `view_file(".agents/skills/sales-qualify/references/output-template.md")`
+2. **HTML Autonome :** `reports/{slug}/LEAD-QUALIFICATION.html` selon le template :
+   `view_file(".agents/rules/references/report-template.html")`
 
-Afficher le bloc résumé terminal (format `output-formatting.md`) avant de créer le fichier.
+Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).

@@ -46,7 +46,12 @@ Invoqué par la commande `proposal <nom_client>`. Lire :
 - ✅ ROI = conservateur. Toujours signaler les hypothèses.
 - ✅ Résumé exécutif rédigé pour le C-level : chiffres d'abord, contexte ensuite.
 
-## Output
+## Output (Double Livrable Obligatoire)
 
-Créer `CLIENT-PROPOSAL.md` (structure selon le template de référence).
-Afficher le bloc résumé terminal (format `output-formatting.md`) avant de créer le fichier.
+Créer simultanément dans `reports/{slug}/` :
+1. **Markdown :** `reports/{slug}/CLIENT-PROPOSAL.md` selon le template :
+   `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`
+2. **HTML Autonome :** `reports/{slug}/CLIENT-PROPOSAL.html` selon le template :
+   `view_file(".agents/skills/sales-proposal/references/proposal-template.html")`
+
+Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).

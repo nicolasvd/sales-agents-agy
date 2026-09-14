@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposition Commerciale — {{CLIENT_NAME}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-muted: #64748b;
+      --border: #e2e8f0; --primary: #2563eb; --primary-light: #eff6ff;
+      --success: #10b981; --success-light: #ecfdf5;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: flex-start; }
+    .header h1 { font-size: 1.75rem; font-weight: 700; color: var(--text); }
+    .header p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .meta-box { text-align: right; font-size: 0.8125rem; color: var(--text-muted); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
+    .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin-top: 0.5rem; }
+    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+    td { padding: 0.875rem 1rem; border-bottom: 1px solid #f1f5f9; }
+    tr:last-child td { border-bottom: none; }
+    .price-col { text-align: right; font-weight: 700; color: var(--primary); }
+
+    /* ROI Calculation Highlight */
+    .roi-card { background: var(--success-light); border: 1px solid #a7f3d0; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .roi-card h3 { color: #065f46; font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
+    .roi-stat { background: #ffffff; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5; }
+    .roi-number { font-size: 1.5rem; font-weight: 800; color: var(--success); }
+    .roi-label { font-size: 0.75rem; font-weight: 600; color: #047857; text-transform: uppercase; margin-top: 0.25rem; }
+
+    @media print {
+      @page { margin: 12mm 15mm; size: A4; }
+      body { background: #fff; padding: 0; }
+      .card, .roi-card { break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <h1>Proposition d'Accompagnement</h1>
+        <p>Préparé pour : <strong>{{CLIENT_NAME}}</strong> | Destinataire : {{RECIPIENT_NAME}}</p>
+      </div>
+      <div class="meta-box">
+        <p>Date : {{PROPOSAL_DATE}}</p>
+        <p>Validité : {{VALIDITY_DAYS}} jours</p>
+      </div>
+    </header>
+
+    <!-- Résumé Exécutif & Solution -->
+    <section class="card">
+      <h2>🎯 Diagnostic & Objectifs Stratégiques</h2>
+      <p style="font-size: 0.9375rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
+        {{EXECUTIVE_SUMMARY}}
+      </p>
+    </section>
+
+    <!-- Grille Tarifaire & Forfaits -->
+    <section class="card">
+      <h2>💳 Forfait d'Intervention & Modalités</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Prestation / Livrable</th>
+            <th>Périmètre & Durée</th>
+            <th style="text-align: right;">Investissement HT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{PRICING_ROWS}}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Projection ROI -->
+    <section class="roi-card">
+      <h3>📈 Estimation du Retour sur Investissement (ROI)</h3>
+      <div class="roi-grid">
+        <div class="roi-stat">
+          <div class="roi-number">{{TIME_SAVED_HOURS}}h</div>
+          <div class="roi-label">Temps Équipe Économisé / Mois</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-number">{{BREAKEVEN_MONTHS}} mois</div>
+          <div class="roi-label">Délai de Rentabilisation</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-number">{{ROI_MULTIPLIER}}x</div>
+          <div class="roi-label">Multiplicateur de Valeur Annuel</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
