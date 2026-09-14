@@ -14,9 +14,47 @@ Ce workspace ne requiert **aucun runtime Python, aucune installation `pip`, aucu
 L'orchestration repose exclusivement sur les capacités natives du modèle Gemini 3 et les outils intégrés d'Antigravity :
 - `read_url_content` : Navigation et scraping de pages statiques (sites officiels, mentions légales, blogs, pages tarifs).
 - `search_web` : Intelligence externe en temps réel (actualités, levées de fonds, recrutements, avis clients, signaux LinkedIn).
-- `create_file` & `edit_file` : Génération des livrables Markdown et persistance de données de session.
+- `create_file` & `edit_file` : Génération des livrables Markdown/HTML et persistance de données de session.
 - `start_subagent` : Délégation asynchrone aux sous-agents d'audit spécialisés.
 - `view_file` : Chargement à la demande des contextes et références.
+
+---
+
+## 📦 Guide d'Installation & Démarrage (Pour les Profils Non-Tech)
+
+Ce projet est immédiatement opérationnel. Vous n'avez pas besoin de savoir coder, ni d'ouvrir un terminal technique.
+
+### Étape 1 : Installer Google Antigravity
+1. Rendez-vous sur le site officiel de [Google Antigravity](https://antigravity.google) (ou téléchargez l'application **Antigravity 2.0** pour macOS / Windows / Linux).
+2. Installez l'application et connectez-vous avec votre compte Google.
+
+### Étape 2 : Récupérer le Projet
+Deux manières simples selon vos préférences :
+- **Option A (Via l'interface Antigravity) :**
+  Ouvrez Antigravity, cliquez sur **"Open Folder"** (ou **"Clone Repository"**) et sélectionnez le dossier `sales-agents-agy`.
+- **Option B (En ligne de commande classique si vous utilisez Git) :**
+  ```bash
+  git clone https://github.com/votre-compte/sales-agents-agy.git
+  cd sales-agents-agy
+  agy
+  ```
+
+> [!TIP]
+> **Rappel Zéro-Tech :** Aucun `npm install`, aucun `pip install`, aucun script d'installation à lancer. Dès que le dossier est ouvert dans Antigravity, tous les agents sont prêts.
+
+### Étape 3 : Configurer votre Offre Commerciale (2 minutes)
+Pour que les agents vendent *votre* solution et pas des offres imaginaires :
+1. Ouvrez le fichier [`.agents/rules/product-context.md`](.agents/rules/product-context.md) directement dans Antigravity.
+2. Renseignez vos forfaits, tarifs officiels et cibles.
+3. *Astuce :* Vous pouvez simplement demander à l'agent dans le chat :
+   > *"Voici mon offre : [copier votre texte de vente]. Mets à jour le fichier product-context.md pour moi."*
+
+### Étape 4 : Lancer votre Premier Audit !
+Dans le chat Antigravity, tapez simplement :
+```text
+prospect https://nom-du-prospect.com
+```
+L'équipe d'agents s'active automatiquement, réalise l'audit en coulisses et vous délivre vos deux rapports (Markdown + Web interactif).
 
 ---
 
@@ -25,7 +63,7 @@ L'orchestration repose exclusivement sur les capacités natives du modèle Gemin
 Le comportement du système est encadré de façon déterministe par des règles Markdown strictes découvertes automatiquement par le runtime Antigravity :
 
 ```
-Sales-agents/
+sales-agents-agy/
 ├── AGENTS.md                    ← Point d'entrée session (principes cardinaux, routing, dépendances)
 └── .agents/
     ├── skills.json              ← Registre de découverte des 18 compétences actives
@@ -34,7 +72,7 @@ Sales-agents/
         ├── product-context.md   ← Source de vérité de l'offre vendue (prix, fonctionnalités, limites)
         ├── fact-checking.md     ← Protocole web strict (zéro hallucination, fraîcheur, sources citées)
         ├── scoring.md           ← Barèmes déterministes BANT (0-100) + MEDDIC (%) + Prospect Score
-        └── output-formatting.md ← Structure des blocs de synthèse et convention reports/{slug}/
+        └── output-formatting.md ← Double livrable (MD + HTML) et convention reports/{slug}/
 ```
 
 ### Principes Non-Négociables
@@ -65,7 +103,7 @@ Le registre regroupe **18 compétences actives**, optimisées sous un budget str
 - **`sales-report`** : Consolidation du statut global du pipeline commercial.
 
 ### Sous-Agents Internes (`sales-sub-*`)
-Utilisés exclusivement par l'orchestrateur `sales-prospect` :
+Composants spécialisés exécutés exclusivement par l'orchestrateur `sales-prospect` :
 - `sales-sub-company` : Firmographics, signaux financiers et tech stack.
 - `sales-sub-contacts` : Identification des décideurs et patterns d'e-mails.
 - `sales-sub-competitive` : Analyse de l'écosystème d'outils et opportunités de déplacement.
@@ -103,61 +141,56 @@ L'audit complet d'un prospect s'exécute en **2 vagues séquentielles** coordonn
                 [status = "wave2_complete"]
                               │
                               ▼
-           reports/{slug}/PROSPECT-ANALYSIS.md
+            reports/{slug}/PROSPECT-ANALYSIS.md
+            reports/{slug}/PROSPECT-ANALYSIS.html
 ```
 
 Ce pattern prévient la saturation du contexte mémoire (*attention dilution*) tout en assurant une traçabilité complète des données intermédiaires.
 
 ---
 
-## 📁 Stockage des Livrables (`reports/`)
+## 📁 Stockage des Livrables & Double Rendu (MD + HTML)
 
-Tous les rapports générés sont automatiquement isolés et organisés sous le dossier `reports/` :
+Chaque analyse produit systématiquement **deux formats de livrables** sous le dossier `reports/` :
+1. **Markdown (`.md`) :** Format texte brut pour lecture console, versioning Git et recherche plein texte.
+2. **HTML autonome (`.html`) :** Rendu visuel soigné avec cartes, jauges de scores en SVG inline et mise en page optimisée pour l'impression A4 / export PDF.
 
 ```text
 reports/
 ├── .gitkeep
-├── PIPELINE-SUMMARY.md                 ← Rapport consolidé multi-prospects
-├── IDEAL-CUSTOMER-PROFILE.md           ← Livrable stratégique d'ICP
-├── OBJECTION-PLAYBOOK.md               ← Playbook général de vente
+├── PIPELINE-SUMMARY.md / .html         ← Rapport consolidé multi-prospects
+├── IDEAL-CUSTOMER-PROFILE.md / .html   ← Livrable stratégique d'ICP
+├── OBJECTION-PLAYBOOK.md / .html       ← Playbook général de vente
 └── {slug}/                             ← Dossier dédié par entreprise analysée
-    ├── PROSPECT-ANALYSIS.md
-    ├── LEAD-QUALIFICATION.md
-    ├── COMPANY-RESEARCH.md
-    ├── DECISION-MAKERS.md
-    ├── OUTREACH-SEQUENCE.md
-    ├── FOLLOWUP-SEQUENCE.md
-    ├── MEETING-PREP.md
-    ├── CLIENT-PROPOSAL.md
-    └── COMPETITIVE-INTEL.md
+    ├── PROSPECT-ANALYSIS.md & .html
+    ├── LEAD-QUALIFICATION.md & .html
+    ├── COMPANY-RESEARCH.md & .html
+    ├── DECISION-MAKERS.md & .html
+    ├── OUTREACH-SEQUENCE.md & .html
+    ├── FOLLOWUP-SEQUENCE.md & .html
+    ├── MEETING-PREP.md & .html
+    ├── CLIENT-PROPOSAL.md & .html
+    └── COMPETITIVE-INTEL.md & .html
 ```
 
 ---
 
-## 🚀 Guide d'Usage
+## 🚀 Répertoire des Commandes
 
-### 1. Configuration initiale du Produit
-Renseigne `.agents/rules/product-context.md` avec tes données d'entreprise :
-- Nom commercial, catégorie, proposition de valeur
-- Grille tarifaire officielle et limites d'offres
-- Personas cibles et différenciateurs concurrentiels
-
-### 2. Lancement des Commandes
-
-| Commande | Action | Livrable généré |
+| Commande | Action | Livrables générés (Markdown + HTML) |
 |---|---|---|
-| `prospect <url>` | Audit 360° complet en 2 vagues | `reports/{slug}/PROSPECT-ANALYSIS.md` |
-| `qualify <url>` | Qualification BANT/MEDDIC rapide | `reports/{slug}/LEAD-QUALIFICATION.md` |
-| `research <url>` | Analyse firmographique détaillée | `reports/{slug}/COMPANY-RESEARCH.md` |
-| `contacts <url>` | Cartographie du comité d'achat | `reports/{slug}/DECISION-MAKERS.md` |
-| `outreach <prospect>` | Séquence de prospection 5 touches | `reports/{slug}/OUTREACH-SEQUENCE.md` |
-| `followup <prospect>` | Séquence de relance ciblée | `reports/{slug}/FOLLOWUP-SEQUENCE.md` |
-| `prep <url>` | Brief de préparation de réunion | `reports/{slug}/MEETING-PREP.md` |
-| `proposal <client>` | Proposition commerciale complète | `reports/{slug}/CLIENT-PROPOSAL.md` |
-| `competitors <url>` | Détection de stack & Battle Cards | `reports/{slug}/COMPETITIVE-INTEL.md` |
-| `icp <description>` | Construction du persona & scoring ICP | `reports/IDEAL-CUSTOMER-PROFILE.md` |
-| `objections <topic>` | Playbook de réponses aux objections | `reports/OBJECTION-PLAYBOOK.md` |
-| `report` | Synthèse globale du pipeline | `reports/PIPELINE-SUMMARY.md` |
+| `prospect <url>` | Audit 360° complet en 2 vagues | `reports/{slug}/PROSPECT-ANALYSIS.md` & `.html` |
+| `qualify <url>` | Qualification BANT/MEDDIC rapide | `reports/{slug}/LEAD-QUALIFICATION.md` & `.html` |
+| `research <url>` | Analyse firmographique détaillée | `reports/{slug}/COMPANY-RESEARCH.md` & `.html` |
+| `contacts <url>` | Cartographie du comité d'achat | `reports/{slug}/DECISION-MAKERS.md` & `.html` |
+| `outreach <prospect>` | Séquence de prospection 5 touches | `reports/{slug}/OUTREACH-SEQUENCE.md` & `.html` |
+| `followup <prospect>` | Séquence de relance ciblée | `reports/{slug}/FOLLOWUP-SEQUENCE.md` & `.html` |
+| `prep <url>` | Brief de préparation de réunion | `reports/{slug}/MEETING-PREP.md` & `.html` |
+| `proposal <client>` | Proposition commerciale complète | `reports/{slug}/CLIENT-PROPOSAL.md` & `.html` |
+| `competitors <url>` | Détection de stack & Battle Cards | `reports/{slug}/COMPETITIVE-INTEL.md` & `.html` |
+| `icp <description>` | Construction du persona & scoring ICP | `reports/IDEAL-CUSTOMER-PROFILE.md` & `.html` |
+| `objections <topic>` | Playbook de réponses aux objections | `reports/OBJECTION-PLAYBOOK.md` & `.html` |
+| `report` | Synthèse globale du pipeline | `reports/PIPELINE-SUMMARY.md` & `.html` |
 
 ---
 
