@@ -71,14 +71,17 @@ start_subagent("sales-sub-strategy")    → écrit wave2.strategy_data
 ```
 Vérifier `meta.status == "wave2_complete"`.
 
-### 4. Rapport Final & Restitution
+### 4. Rapports Finaux & Restitution (Double Génération MD + HTML)
 1. Lire `.agents/.scratchpad/prospect_{slug}.json` via `view_file`.
 2. Calculer le Prospect Score composite selon `scoring.md` :
    `Prospect Score = (BANT × 0,50) + (MEDDIC% × 0,30) + (Urgency × 0,20)`
-3. Créer `reports/{slug}/PROSPECT-ANALYSIS.md` via `create_file` selon le template :
+3. **Générer le rapport Markdown :** `create_file("reports/{slug}/PROSPECT-ANALYSIS.md")` selon le template :
    `view_file(".agents/skills/sales-prospect/references/output-template.md")`.
-4. Afficher le bloc résumé terminal conforme à `output-formatting.md`.
+4. **Générer l'Artifact HTML autonome :** `create_file("reports/{slug}/PROSPECT-ANALYSIS.html")` en instanciant le template :
+   `view_file(".agents/rules/references/report-template.html")` (remplacer les variables avec les données réelles et les jauges SVG).
+5. Afficher le bloc résumé terminal conforme à `output-formatting.md`.
 
 ## Contraintes
 - Zéro recherche directe : toute information provient exclusivement du scratchpad rempli par les sous-agents.
 - Les sous-agents `sales-sub-*` sont des modules internes : ne pas les exposer dans le rapport final.
+- Les deux livrables MD et HTML doivent être créés systématiquement sous `reports/{slug}/`.

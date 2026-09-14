@@ -21,7 +21,8 @@ Red Flags :
 
 Action recommandée : [Phrase d'action concrète, une seule ligne]
 
-Rapport complet → reports/{slug}/[NOM-DU-FICHIER.md]
+Rapport Markdown → reports/{slug}/[NOM-DU-FICHIER.md]
+Artifact HTML    → reports/{slug}/PROSPECT-ANALYSIS.html (si prospect)
 ```
 
 ## Organisation du Stockage & Conventions de Nommage
@@ -30,12 +31,12 @@ Tous les livrables sont archivés dans le répertoire `reports/` :
 - **Par prospect :** `reports/{slug}/` où `{slug}` est le nom de domaine ou d'entreprise normalisé en minuscules (ex. `reports/socialsky/`).
 - **Global / Pipeline :** direct sous `reports/` (ex. `reports/PIPELINE-SUMMARY.md`).
 
-| Skill | Type | Fichier output |
+| Skill | Type | Fichiers output |
 |---|---|---|
 | `sales-qualify` | Prospect | `reports/{slug}/LEAD-QUALIFICATION.md` |
 | `sales-research` | Prospect | `reports/{slug}/COMPANY-RESEARCH.md` |
 | `sales-contacts` | Prospect | `reports/{slug}/DECISION-MAKERS.md` |
-| `sales-prospect` | Prospect | `reports/{slug}/PROSPECT-ANALYSIS.md` |
+| `sales-prospect` | Prospect | `reports/{slug}/PROSPECT-ANALYSIS.md` **ET** `reports/{slug}/PROSPECT-ANALYSIS.html` |
 | `sales-outreach` | Prospect | `reports/{slug}/OUTREACH-SEQUENCE.md` |
 | `sales-followup` | Prospect | `reports/{slug}/FOLLOWUP-SEQUENCE.md` |
 | `sales-prep` | Prospect | `reports/{slug}/MEETING-PREP.md` |
@@ -45,11 +46,18 @@ Tous les livrables sont archivés dans le répertoire `reports/` :
 | `sales-objections` | Stratégie | `reports/OBJECTION-PLAYBOOK.md` |
 | `sales-report` | Pipeline | `reports/PIPELINE-SUMMARY.md` |
 
+### Double Génération d'Artifacts pour `prospect <url>`
+À l'issue de chaque audit `prospect <url>`, l'orchestrateur `sales-prospect` génère simultanément :
+1. **Rapport Markdown :** `reports/{slug}/PROSPECT-ANALYSIS.md` (pour lecture rapide, grep et versioning).
+2. **Artifact HTML autonome :** `reports/{slug}/PROSPECT-ANALYSIS.html`
+   - Instancié à partir du template `.agents/rules/references/report-template.html`.
+   - Inclut le CSS inline, les jauges SVG circulaires/barres, les badges de statut et les styles `@media print` A4.
+
 ### Opération de fichier
 - Si le fichier n'existe pas → `create_file` (crée automatiquement les dossiers parents)
 - Si le fichier existe déjà → `edit_file` (écraser la version précédente)
 
-### Structure Standard du Rapport
+### Structure Standard du Rapport Markdown
 ```markdown
 # [Titre] : [Nom de l'entreprise]
 **Date :** [YYYY-MM-DD]  **URL :** [url analysée]
@@ -65,10 +73,3 @@ Tous les livrables sont archivés dans le répertoire `reports/` :
 *Généré par AI Sales Team Antigravity — [date]*
 *Sources : [liste des URLs et requêtes utilisées]*
 ```
-
-### Règles de Mise en Forme
-- Tableaux pour toutes les données comparatives
-- Formules mathématiques pour les calculs de scoring
-- Alerts GitHub (`> [!NOTE]`, `> [!CAUTION]`) pour les informations critiques
-- Chaque donnée factuelle = source entre parenthèses
-- Emojis autorisés dans les titres de section uniquement

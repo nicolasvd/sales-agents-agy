@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prospect Analysis — {{COMPANY_NAME}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header-info h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-info p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    .badge-grade-a { background: var(--success-bg); color: var(--success); border: 1px solid #a7f3d0; }
+    .badge-grade-b { background: var(--warning-bg); color: var(--warning); border: 1px solid #fde68a; }
+    .badge-grade-c { background: var(--danger-bg); color: var(--danger); border: 1px solid #fecaca; }
+
+    /* Score Overview Grid */
+    .score-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .score-grid { grid-template-columns: 1fr; }
+    }
+
+    .gauge-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-svg {
+      width: 150px;
+      height: 150px;
+      transform: rotate(-90deg);
+    }
+
+    .gauge-bg {
+      fill: none;
+      stroke: #e2e8f0;
+      stroke-width: 12;
+    }
+
+    .gauge-fill {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 408;
+      stroke-dashoffset: calc(408 - (408 * {{PROSPECT_SCORE}}) / 100);
+      transition: stroke-dashoffset 0.8s ease;
+    }
+
+    .gauge-text {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: -105px;
+      margin-bottom: 45px;
+    }
+
+    .gauge-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Sub-scores breakdown */
+    .metrics-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .metrics-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .progress-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .progress-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: var(--primary);
+    }
+
+    /* Standard Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.75rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Decision Maker Table Pills */
+    .role-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .role-buyer { background: #dbeafe; color: #1e40af; }
+    .role-champion { background: #dcfce7; color: #166534; }
+    .role-influencer { background: #fef3c7; color: #92400e; }
+
+    /* Highlights & Actions */
+    .highlight-box {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1rem;
+      font-size: 0.9375rem;
+    }
+
+    .trigger-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #f8fafc;
+      font-size: 0.875rem;
+    }
+
+    .trigger-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Print Optimization */
+    @media print {
+      @page {
+        margin: 12mm 15mm;
+        size: A4;
+      }
+
+      body {
+        background: #ffffff;
+        padding: 0;
+        color: #000000;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      .header, .card, .gauge-card, .metrics-card {
+        box-shadow: none;
+        border: 1px solid #cbd5e1;
+        break-inside: avoid;
+      }
+
+      .card {
+        margin-bottom: 1.25rem;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-info">
+        <h1>{{COMPANY_NAME}}</h1>
+        <p>URL : <a href="{{URL}}" target="_blank">{{URL}}</a> | Analysé le {{DATE}}</p>
+      </div>
+      <div>
+        <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
+      </div>
+    </header>
+
+    <!-- Score Overview -->
+    <div class="score-grid">
+      <!-- Circular SVG Gauge -->
+      <div class="gauge-card">
+        <svg class="gauge-svg" viewBox="0 0 150 150">
+          <circle class="gauge-bg" cx="75" cy="75" r="65"></circle>
+          <circle class="gauge-fill" cx="75" cy="75" r="65"></circle>
+        </svg>
+        <div class="gauge-text">{{PROSPECT_SCORE}}</div>
+        <div class="gauge-label">Prospect Score / 100</div>
+      </div>
+
+      <!-- Breakdown Bars -->
+      <div class="metrics-card">
+        <h3>Décomposition des Composantes</h3>
+        <div class="progress-group">
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>BANT Qualification</span>
+              <span>{{BANT_SCORE}} / 100 (50%)</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: {{BANT_SCORE}}%;"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>MEDDIC Completeness</span>
+              <span>{{MEDDIC_PERCENT}}% (30%)</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: {{MEDDIC_PERCENT}}%; background: #0ea5e9;"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>Urgency Modifier</span>
+              <span>{{URGENCY_SCORE}} / 100 (20%)</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: {{URGENCY_SCORE}}%; background: #10b981;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Profile & Firmographics -->
+    <section class="card">
+      <h2>🏢 Profil de l'Entreprise & Firmographics</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th style="width: 25%;">Localisation</th>
+            <td>{{HQ_LOCATION}}</td>
+            <th style="width: 25%;">Effectifs</th>
+            <td>{{EMPLOYEE_COUNT}}</td>
+          </tr>
+          <tr>
+            <th>Modèle & Secteur</th>
+            <td>{{BUSINESS_MODEL}}</td>
+            <th>Fondation</th>
+            <td>{{FOUNDED_YEAR}}</td>
+          </tr>
+          <tr>
+            <th>Financement & ARR</th>
+            <td>{{FUNDING_SIGNALS}}</td>
+            <th>Tech Stack Détectée</th>
+            <td>{{TECH_STACK_LIST}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Buying Committee -->
+    <section class="card">
+      <h2>👥 Comité d'Achat & Décideurs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom & Prénom</th>
+            <th>Titre</th>
+            <th>Rôle Comité</th>
+            <th>Coordonnées</th>
+            <th>Ancrage Clé</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{DECISION_MAKERS_ROWS}}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Competitive Landscape & Gaps -->
+    <section class="card">
+      <h2>⚔️ Concurrence & Lacunes Détectées</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th style="width: 30%;">Outils Existants</th>
+            <td>{{CURRENT_TOOLS}}</td>
+          </tr>
+          <tr>
+            <th>Switching Cost</th>
+            <td><strong>{{SWITCHING_COST}}</strong> — {{SWITCHING_COST_RATIONALE}}</td>
+          </tr>
+          <tr>
+            <th>Gaps Exploitables</th>
+            <td>{{COMPETITIVE_GAPS_LIST}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Outreach Strategy -->
+    <section class="card">
+      <h2>🎯 Stratégie d'Outreach Recommandée</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">CANAL PRIORITAIRE</p>
+          <p style="font-size: 1.125rem; font-weight: 700; color: var(--primary);">{{PRIMARY_CHANNEL}}</p>
+        </div>
+        <div>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">CONTACT CIBLE</p>
+          <p style="font-size: 1.125rem; font-weight: 700;">{{PRIMARY_CONTACT}}</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem;">DÉCLENCHEURS RÉCENTS</p>
+        {{TRIGGERS_LIST}}
+      </div>
+
+      <div class="highlight-box">
+        <strong style="display: block; margin-bottom: 0.35rem; color: var(--text);">Angle d'Accroche Proposé :</strong>
+        {{MESSAGE_HOOK}}
+      </div>
+    </section>
+  </div>
+</body>
+</html>
