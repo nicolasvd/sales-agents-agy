@@ -1,62 +1,63 @@
 ---
 name: sales-sub-competitive
 description: >-
-  Sous-agent interne de sales-prospect. Identifie les outils actuels du prospect, les coûts de migration et les angles concurrentiels exploitables. Invoqué par start_subagent en Vague 1.
+  Sous-agent interne de sales-prospect (Vague 1). Analyse concurrentielle pure : outils actuels, switching costs et gaps fonctionnels. Opère en update strict sur wave1.competitive_data.
 ---
 
-# Sous-Agent : Competitive Positioning (`sales-sub-competitive`)
+# Sous-Agent : Competitive Intelligence (`sales-sub-competitive`)
 
-**Rôle :** Outils actuels, coûts de migration, gaps exploitables, angles concurrentiels.
-**Poids dans le Prospect Score :** Competitive Position = 15%.
+**Rôle :** Détection factuelle des outils existants du prospect, évaluation des coûts de migration et identification des lacunes fonctionnelles.
+**Périmètre :** Vague 1 de l'audit `sales-prospect`.
 **Règles requises :** `fact-checking.md`, `output-formatting.md`.
-**Invocateur :** `sales-prospect` (Vague 1).
+**Invocateur :** `sales-prospect` via `start_subagent`.
 
-## Input Reçu (Pattern Scratchpad)
+## ⛔ Règle Bloquante (Zéro Scoring / Zéro Stratégie)
 
-**Avant toute action**, lire le scratchpad :
-```
-view_file(".agents/.scratchpad/prospect_{slug}.json")
-```
-Extraire : `meta.url`, `meta.company_name`, `wave1.company_data.tech_stack`.
-Si absent, continuer avec le snapshot homepage.
+> **INTERDICTION FORMELLE de calculer un score concurrentiel ou de rédiger des angles d'outreach.**
+> Ta mission est STRICTEMENT FACTUELLE. L'évaluation et la stratégie sont réservées à la Vague 2.
+
+### Outils Autorisés
+- `read_url_content` (pages partenaires, intégrations, offres d'emploi)
+- `search_web` (recherche BuiltWith, StackShare, avis d'utilisateurs G2/Capterra)
+- `view_file` (lecture du scratchpad)
+- `edit_file` (écriture stricte sur la clé `wave1.competitive_data`)
+- ❌ **INTERDITS :** `start_subagent`, `run_command`
 
 ## Protocole d'Exécution
 
-### Étape 1 — Détection des Outils Actuels (read_url_content)
-1. `{url}/integrations` ou `/partners` → Stack explicite
-2. `{url}/careers` → Outils requis dans les JDs (ex: "Salesforce experience required")
-3. `{url}/blog` → Mentions d'outils dans les articles techniques
+### 1. Lecture du Contexte Scratchpad
+Lire le scratchpad de session :
+```
+view_file(".agents/.scratchpad/prospect_{slug}.json")
+```
+Extraire `meta.url`, `meta.slug`, et la tech stack préliminaire (`wave1.company_data.tech_stack` si disponible).
 
-### Étape 2 — Intelligence Externe (search_web)
-1. `"[NOM]" site:stackshare.io OR site:builtwith.com`
-2. `"[NOM]" uses OR "powered by" OR "built with"`
-3. `"[NOM]" "[CATÉGORIE PRODUIT]" review OR alternative`
-4. `"[OUTIL CONCURRENT PRINCIPAL]" vs "[NOTRE PRODUIT]"` (signaux de comparaison)
+### 2. Collecte Factuelle
+1. **Pages internes (`read_url_content`) :**
+   - `{url}/integrations` ou `/partners` (outils officiellement supportés/utilisés)
+   - `{url}/careers` (outils exigés dans les descriptions de poste)
 
-### Étape 3 — Évaluation du Switching Cost
+2. **Recherche externe (`search_web`) :**
+   - `"[NOM]" site:stackshare.io OR site:builtwith.com`
+   - `"[NOM]" uses OR "powered by" OR "built with"`
+   - `"[NOM]" review OR reviews site:g2.com OR site:capterra.com`
 
-| Facteur | Impact |
-|---|---|
-| Outil actuel < 12 mois → faible adoption | Switching cost : Faible |
-| Outil actuel > 2 ans + intégrations multiples | Switching cost : Élevé |
-| Avis négatifs récents sur l'outil actuel | Switching cost : Réduit |
-| Aucun outil actuel détecté (greenfield) | Opportunité : Forte |
+### 3. Analyse Factualisée des Outils & Gaps
+- Outils actuels en place (avec niveau de confiance : Confirmé / Estimé)
+- Estimation du coût de changement (Switching Cost : Faible / Moyen / Élevé basé sur l'ancienneté et la profondeur d'intégration)
+- Gaps fonctionnels observés (problèmes mentionnés par les utilisateurs ou fonctionnalités manquantes)
 
-### Étape 4 — Scoring Competitive Position (0–15 pts)
-Évaluer sur la base du switching cost et des gaps détectés.
-
-## Output — Écriture dans le Scratchpad
-
-Écrire via `edit_file` dans `.agents/.scratchpad/prospect_{slug}.json` :
-Champ : `wave1.competitive_data` + mettre à jour `meta.status` → `"wave1_complete"`
+### 4. Écriture Stricte (Contrat d'Interface)
+Mettre à jour `.agents/.scratchpad/prospect_{slug}.json` via `edit_file` :
+- **Clé cible exclusive :** `wave1.competitive_data`
+- **Mise à jour statut :** Si `wave1.company_data` et `wave1.contacts_data` sont déjà remplis, passer `meta.status` à `"wave1_complete"`. Sinon, `"competitive_done"`.
 
 ```json
 {
   "current_tools": ["Outil A (Confirmé)", "Outil B (Estimé)"],
-  "switching_cost": "Faible|Moyen|Élevé",
-  "competitive_gaps": ["Gap 1 exploitable", "Gap 2"],
-  "positioning_angle": "...",
-  "competitive_score": 0,
-  "sources": ["url1", "query1"]
+  "switching_cost": "Faible | Moyen | Élevé",
+  "switching_cost_rationale": "Justification factuelle (ex. stack récente peu intégrée)",
+  "competitive_gaps": ["Lacune 1 observée", "Lacune 2 observée"],
+  "sources": ["URL1", "Recherche 1"]
 }
 ```
