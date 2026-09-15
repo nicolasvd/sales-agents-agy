@@ -1,11 +1,22 @@
+<p align="center">
+  <img src="banner.svg" alt="AI Sales Team - Antigravity Native" width="100%" />
+</p>
+
 # AI Sales Team — Antigravity Native
 
 Système d'intelligence commerciale B2B déclaratif pour **Google Antigravity (Standalone / v2.0)**.
 Conçu pour analyser des prospects, cartographier des comités d'achat, qualifier des opportunités et générer des stratégies d'outreach hyper-personnalisées sans aucune intervention manuelle de prospection réelle.
 
-> **Inspiration :** Ce projet est un portage 100 % Antigravity-native déclaratif inspiré de [ai-sales-team-claude](https://github.com/zubair-trabzada/ai-sales-team-claude) par Zubair Trabzada.
-
 ---
+
+## 💡 Origine & Inspiration
+
+Ce projet s'inspire du concept novateur développé par [Zubair Trabzada](https://github.com/zubair-trabzada) dans son projet [ai-sales-team-claude](https://github.com/zubair-trabzada/ai-sales-team-claude), initialement pensé pour l'écosystème Claude Code (Anthropic).
+
+> [!NOTE]
+> **Ré-architecture intégrale (ce projet n'est pas un fork de code) :**
+> Ce dépôt est une refonte déclarative native complète pour **Google Antigravity (Standalone / v2.0)** orchestrée par **Gemini 3**.
+> Il élimine l'ensemble des scripts Python, runtimes et dépendances externes au profit des compétences déclaratives (`skills.json`), d'une mémoire de session structurée (`.agents/.scratchpad/`), et d'une restitution en double livrable (Markdown brut pour les IA + HTML autonome stylisé pour les humains).
 
 ## ⚡ Zéro Dépendance (100 % Déclaratif)
 

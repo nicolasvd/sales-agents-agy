@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="40%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="badgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.15" />
+    </linearGradient>
+
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+    </linearGradient>
+
+    <radialGradient id="glowG" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glowPurple" cx="80%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" stroke-opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="1200" height="420" fill="url(#bgGradient)" rx="16" />
+
+  <!-- Ambient Glows -->
+  <circle cx="250" cy="140" r="300" fill="url(#glowG)" />
+  <circle cx="950" cy="300" r="350" fill="url(#glowPurple)" />
+
+  <!-- Grid overlay -->
+  <rect width="1200" height="420" fill="url(#grid)" rx="16" />
+
+  <!-- Outer Border -->
+  <rect x="1" y="1" width="1198" height="418" rx="15" fill="none" stroke="#475569" stroke-width="1.5" stroke-opacity="0.4" />
+
+  <!-- Content Container -->
+  <g transform="translate(80, 0)">
+    <!-- Top Badges -->
+    <g transform="translate(0, 55)">
+      <!-- Badge 1: Antigravity -->
+      <rect x="0" y="0" width="220" height="34" rx="17" fill="url(#badgeGradient)" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.4" />
+      <circle cx="18" cy="17" r="5" fill="#38bdf8" />
+      <text x="32" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="0.5">GOOGLE ANTIGRAVITY 2.0</text>
+
+      <!-- Badge 2: 100% Declarative -->
+      <rect x="235" y="0" width="195" height="34" rx="17" fill="url(#badgeGradient)" stroke="#818cf8" stroke-width="1" stroke-opacity="0.4" />
+      <circle cx="253" cy="17" r="5" fill="#818cf8" />
+      <text x="267" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#c7d2fe" letter-spacing="0.5">100% DÉCLARATIF (ZÉRO PYTHON)</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" fill="url(#textGradient)" letter-spacing="-1.5">
+      AI Sales Team
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" letter-spacing="-0.2">
+      Système d'Intelligence Commerciale B2B, Qualification BANT/MEDDIC &amp; Stratégie d'Outreach
+    </text>
+
+    <!-- Decorative Divider -->
+    <line x1="0" y1="245" x2="1040" y2="245" stroke="#334155" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Feature Cards at the bottom -->
+    <g transform="translate(0, 275)">
+      <!-- Feature 1 -->
+      <rect x="0" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
+      <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">⚡ Zéro Dépendance</text>
+      <text x="20" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Aucun pip, venv ou binaire</text>
+      <text x="20" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Outils natifs &amp; Gemini 3</text>
+
+      <!-- Feature 2 -->
+      <rect x="265" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
+      <text x="285" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">👥 13 Skills + 5 Agents</text>
+      <text x="285" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Orchestration en 2 vagues</text>
+      <text x="285" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Mémoire tampon scratchpad</text>
+
+      <!-- Feature 3 -->
+      <rect x="530" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
+      <text x="550" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🌐 Double Livrable</text>
+      <text x="550" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">HTML visuel pour humains</text>
+      <text x="550" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Markdown brut pour IA</text>
+
+      <!-- Feature 4 -->
+      <rect x="795" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
+      <text x="815" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🛡️ Zéro Hallucination</text>
+      <text x="815" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Règles &amp; citations strictes</text>
+      <text x="815" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Fallback Google Chrome</text>
+    </g>
+  </g>
+</svg>
