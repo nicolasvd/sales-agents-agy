@@ -62,9 +62,9 @@
       <text x="32" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="0.5">GOOGLE ANTIGRAVITY 2.0</text>
 
       <!-- Badge 2: 100% Declarative -->
-      <rect x="235" y="0" width="195" height="34" rx="17" fill="url(#badgeGradient)" stroke="#818cf8" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="235" y="0" width="220" height="34" rx="17" fill="url(#badgeGradient)" stroke="#818cf8" stroke-width="1" stroke-opacity="0.4" />
       <circle cx="253" cy="17" r="5" fill="#818cf8" />
-      <text x="267" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#c7d2fe" letter-spacing="0.5">100% DÉCLARATIF (ZÉRO PYTHON)</text>
+      <text x="267" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#c7d2fe" letter-spacing="0.5">100% DECLARATIVE (GEMINI 3)</text>
     </g>
 
     <!-- Main Title -->
@@ -73,8 +73,8 @@
     </text>
 
     <!-- Subtitle -->
-    <text x="0" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" letter-spacing="-0.2">
-      Système d'Intelligence Commerciale B2B, Qualification BANT/MEDDIC &amp; Stratégie d'Outreach
+    <text x="0" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" letter-spacing="-0.2">
+      Autonomous B2B Sales Intelligence, BANT/MEDDIC Qualification &amp; Outreach Engine
     </text>
 
     <!-- Decorative Divider -->
@@ -84,27 +84,27 @@
     <g transform="translate(0, 275)">
       <!-- Feature 1 -->
       <rect x="0" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
-      <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">⚡ Zéro Dépendance</text>
-      <text x="20" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Aucun pip, venv ou binaire</text>
-      <text x="20" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Outils natifs &amp; Gemini 3</text>
+      <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">⚡ Zero Dependency</text>
+      <text x="20" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">No pip, venv or binaries</text>
+      <text x="20" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Native tools &amp; Gemini 3</text>
 
       <!-- Feature 2 -->
       <rect x="265" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
-      <text x="285" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">👥 13 Skills + 5 Agents</text>
-      <text x="285" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Orchestration en 2 vagues</text>
-      <text x="285" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Mémoire tampon scratchpad</text>
+      <text x="285" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">👥 Multi-Agent Setup</text>
+      <text x="285" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">2-Wave orchestration</text>
+      <text x="285" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Ephemeral disk scratchpad</text>
 
       <!-- Feature 3 -->
       <rect x="530" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
-      <text x="550" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🌐 Double Livrable</text>
-      <text x="550" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">HTML visuel pour humains</text>
-      <text x="550" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Markdown brut pour IA</text>
+      <text x="550" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🌐 Dual Output</text>
+      <text x="550" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Visual HTML for humans</text>
+      <text x="550" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Raw Markdown for AI</text>
 
       <!-- Feature 4 -->
       <rect x="795" y="0" width="245" height="85" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
-      <text x="815" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🛡️ Zéro Hallucination</text>
-      <text x="815" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Règles &amp; citations strictes</text>
-      <text x="815" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Fallback Google Chrome</text>
+      <text x="815" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="700" fill="#f8fafc">🛡️ Zero Hallucination</text>
+      <text x="815" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8">Strict source citations</text>
+      <text x="815" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="400" fill="#64748b">Deterministic scorecards</text>
     </g>
   </g>
 </svg>
