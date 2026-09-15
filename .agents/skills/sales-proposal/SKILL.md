@@ -54,12 +54,13 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/rules/references/proposal-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/CLIENT-PROPOSAL.md` using `view_file(".agents/skills/sales-proposal/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [CLIENT-PROPOSAL.html](reports/{slug}/CLIENT-PROPOSAL.html)
-- 📄 **Raw Machine Data (AI):** [CLIENT-PROPOSAL.md](reports/{slug}/markdown/CLIENT-PROPOSAL.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/CLIENT-PROPOSAL.html
+🤖 Données IA  : reports/{slug}/markdown/CLIENT-PROPOSAL.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/CLIENT-PROPOSAL.html
 ```

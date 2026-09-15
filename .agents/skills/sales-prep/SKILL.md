@@ -53,12 +53,13 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [MEETING-PREP.html](reports/{slug}/MEETING-PREP.html)
-- 📄 **Raw Machine Data (AI):** [MEETING-PREP.md](reports/{slug}/markdown/MEETING-PREP.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/MEETING-PREP.html
+🤖 Données IA  : reports/{slug}/markdown/MEETING-PREP.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/MEETING-PREP.html
 ```

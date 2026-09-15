@@ -47,12 +47,13 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/OUTREACH-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` using `view_file(".agents/skills/sales-outreach/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [OUTREACH-SEQUENCE.html](reports/{slug}/OUTREACH-SEQUENCE.html)
-- 📄 **Raw Machine Data (AI):** [OUTREACH-SEQUENCE.md](reports/{slug}/markdown/OUTREACH-SEQUENCE.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/OUTREACH-SEQUENCE.html
+🤖 Données IA  : reports/{slug}/markdown/OUTREACH-SEQUENCE.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/OUTREACH-SEQUENCE.html
 ```

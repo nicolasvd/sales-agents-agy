@@ -54,12 +54,13 @@ Save both deliverables simultaneously:
 1. **Web HTML (Humans):** Using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** Using `view_file(".agents/skills/sales-objections/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [OBJECTION-PLAYBOOK.html](reports/OBJECTION-PLAYBOOK.html)
-- 📄 **Raw Machine Data (AI):** [OBJECTION-PLAYBOOK.md](reports/markdown/OBJECTION-PLAYBOOK.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/OBJECTION-PLAYBOOK.html
+🤖 Données IA  : reports/markdown/OBJECTION-PLAYBOOK.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/OBJECTION-PLAYBOOK.html
 ```

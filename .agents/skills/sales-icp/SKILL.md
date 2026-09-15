@@ -53,12 +53,13 @@ Save both deliverables simultaneously within `reports/`:
 1. **Web HTML (Humans):** `reports/IDEAL-CUSTOMER-PROFILE.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` using `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [IDEAL-CUSTOMER-PROFILE.html](reports/IDEAL-CUSTOMER-PROFILE.html)
-- 📄 **Raw Machine Data (AI):** [IDEAL-CUSTOMER-PROFILE.md](reports/markdown/IDEAL-CUSTOMER-PROFILE.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/IDEAL-CUSTOMER-PROFILE.html
+🤖 Données IA  : reports/markdown/IDEAL-CUSTOMER-PROFILE.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/IDEAL-CUSTOMER-PROFILE.html
 ```

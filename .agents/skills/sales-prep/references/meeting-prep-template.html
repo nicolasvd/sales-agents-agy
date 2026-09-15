@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{LANG}}">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,34 +50,34 @@
   <div class="container">
     <header class="header">
       <h1>{{TITLE}} — {{COMPANY_NAME}}</h1>
-      <p>{{GOAL_LABEL}} : {{MEETING_GOAL}} | {{DURATION_LABEL}} : {{MEETING_DURATION}}</p>
+      <p>Goal: {{MEETING_GOAL}} | Duration: {{MEETING_DURATION}}</p>
     </header>
 
-    <!-- Personas -->
+    <!-- Participants & Key Profiles -->
     <section class="card">
-      <h2>👥 {{PARTICIPANTS_HEADING}}</h2>
+      <h2>👥 Participants & Key Profiles</h2>
       <div class="personas-grid">
         {{PERSONAS_HTML}}
       </div>
     </section>
 
-    <!-- Questions de Découverte -->
+    <!-- Strategic Discovery Questions -->
     <section class="card">
-      <h2>💡 {{QUESTIONS_HEADING}}</h2>
+      <h2>💡 Strategic Discovery Questions</h2>
       <div class="questions-list">
         {{DISCOVERY_QUESTIONS_HTML}}
       </div>
     </section>
 
-    <!-- Landmines & Alertes -->
+    <!-- Landmines & Sensitive Topics -->
     <section class="card">
-      <h2>⚠️ {{LANDMINES_HEADING}}</h2>
+      <h2>⚠️ Landmines & Sensitive Topics</h2>
       {{LANDMINES_HTML}}
     </section>
 
-    <!-- Prochaines Étapes -->
+    <!-- Proposed Next Steps -->
     <section class="card">
-      <h2>🚀 {{NEXT_STEPS_HEADING}}</h2>
+      <h2>🚀 Proposed Next Steps</h2>
       <ul style="padding-left: 1.25rem; font-size: 0.875rem; line-height: 1.6;">
         {{NEXT_STEPS_HTML}}
       </ul>

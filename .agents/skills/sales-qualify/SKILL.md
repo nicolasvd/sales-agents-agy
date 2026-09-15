@@ -49,12 +49,13 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/LEAD-QUALIFICATION.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/LEAD-QUALIFICATION.md` using `view_file(".agents/skills/sales-qualify/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [LEAD-QUALIFICATION.html](reports/{slug}/LEAD-QUALIFICATION.html)
-- 📄 **Raw Machine Data (AI):** [LEAD-QUALIFICATION.md](reports/{slug}/markdown/LEAD-QUALIFICATION.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/LEAD-QUALIFICATION.html
+🤖 Données IA  : reports/{slug}/markdown/LEAD-QUALIFICATION.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/LEAD-QUALIFICATION.html
 ```

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -333,7 +333,7 @@
     <header class="header">
       <div class="header-info">
         <h1>{{COMPANY_NAME}}</h1>
-        <p>URL : <a href="{{URL}}" target="_blank">{{URL}}</a> | Analysé le {{DATE}}</p>
+        <p>URL: <a href="{{URL}}" target="_blank">{{URL}}</a> | Analyzed on {{DATE}}</p>
       </div>
       <div>
         <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
@@ -354,7 +354,7 @@
 
       <!-- Breakdown Bars -->
       <div class="metrics-card">
-        <h3>Décomposition des Composantes</h3>
+        <h3>Component Breakdown</h3>
         <div class="progress-group">
           <div class="progress-item">
             <div class="progress-header">
@@ -391,25 +391,25 @@
 
     <!-- Company Profile & Firmographics -->
     <section class="card">
-      <h2>🏢 Profil de l'Entreprise & Firmographics</h2>
+      <h2>🏢 Company Profile & Firmographics</h2>
       <table>
         <tbody>
           <tr>
-            <th style="width: 25%;">Localisation</th>
+            <th style="width: 25%;">Headquarters</th>
             <td>{{HQ_LOCATION}}</td>
-            <th style="width: 25%;">Effectifs</th>
+            <th style="width: 25%;">Headcount</th>
             <td>{{EMPLOYEE_COUNT}}</td>
           </tr>
           <tr>
-            <th>Modèle & Secteur</th>
+            <th>Business Model & Industry</th>
             <td>{{BUSINESS_MODEL}}</td>
-            <th>Fondation</th>
+            <th>Founded</th>
             <td>{{FOUNDED_YEAR}}</td>
           </tr>
           <tr>
-            <th>Financement & ARR</th>
+            <th>Funding & ARR</th>
             <td>{{FUNDING_SIGNALS}}</td>
-            <th>Tech Stack Détectée</th>
+            <th>Detected Tech Stack</th>
             <td>{{TECH_STACK_LIST}}</td>
           </tr>
         </tbody>
@@ -418,15 +418,15 @@
 
     <!-- Buying Committee -->
     <section class="card">
-      <h2>👥 Comité d'Achat & Décideurs</h2>
+      <h2>👥 Buying Committee & Decision-Makers</h2>
       <table>
         <thead>
           <tr>
-            <th>Nom & Prénom</th>
-            <th>Titre</th>
-            <th>Rôle Comité</th>
-            <th>Coordonnées</th>
-            <th>Ancrage Clé</th>
+            <th>Full Name</th>
+            <th>Title</th>
+            <th>Committee Role</th>
+            <th>Contact Info</th>
+            <th>Key Anchor</th>
           </tr>
         </thead>
         <tbody>
@@ -437,11 +437,11 @@
 
     <!-- Competitive Landscape & Gaps -->
     <section class="card">
-      <h2>⚔️ Concurrence & Lacunes Détectées</h2>
+      <h2>⚔️ Competitive Landscape & Detected Gaps</h2>
       <table>
         <tbody>
           <tr>
-            <th style="width: 30%;">Outils Existants</th>
+            <th style="width: 30%;">Current Tools</th>
             <td>{{CURRENT_TOOLS}}</td>
           </tr>
           <tr>
@@ -449,7 +449,7 @@
             <td><strong>{{SWITCHING_COST}}</strong> — {{SWITCHING_COST_RATIONALE}}</td>
           </tr>
           <tr>
-            <th>Gaps Exploitables</th>
+            <th>Actionable Gaps</th>
             <td>{{COMPETITIVE_GAPS_LIST}}</td>
           </tr>
         </tbody>
@@ -458,25 +458,25 @@
 
     <!-- Outreach Strategy -->
     <section class="card">
-      <h2>🎯 Stratégie d'Outreach Recommandée</h2>
+      <h2>🎯 Recommended Outreach Strategy</h2>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
         <div>
-          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">CANAL PRIORITAIRE</p>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">PRIMARY CHANNEL</p>
           <p style="font-size: 1.125rem; font-weight: 700; color: var(--primary);">{{PRIMARY_CHANNEL}}</p>
         </div>
         <div>
-          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">CONTACT CIBLE</p>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600;">TARGET CONTACT</p>
           <p style="font-size: 1.125rem; font-weight: 700;">{{PRIMARY_CONTACT}}</p>
         </div>
       </div>
 
       <div style="margin-bottom: 1rem;">
-        <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem;">DÉCLENCHEURS RÉCENTS</p>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem;">RECENT TRIGGERS</p>
         {{TRIGGERS_LIST}}
       </div>
 
       <div class="highlight-box">
-        <strong style="display: block; margin-bottom: 0.35rem; color: var(--text);">Angle d'Accroche Proposé :</strong>
+        <strong style="display: block; margin-bottom: 0.35rem; color: var(--text);">Proposed Outreach Hook:</strong>
         {{MESSAGE_HOOK}}
       </div>
     </section>

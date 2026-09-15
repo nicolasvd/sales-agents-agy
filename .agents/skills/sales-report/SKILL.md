@@ -51,12 +51,13 @@ Save all deliverables simultaneously within `reports/`:
 1. **Web HTML (Humans):** `reports/pipeline/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
 2. **Raw Markdown (AI Memory):** `reports/pipeline/markdown/PIPELINE-SUMMARY.md`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [PIPELINE-SUMMARY.html](reports/pipeline/PIPELINE-SUMMARY.html)
-- 📄 **Raw Machine Data (AI):** [PIPELINE-SUMMARY.md](reports/pipeline/markdown/PIPELINE-SUMMARY.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/pipeline/PIPELINE-SUMMARY.html
+🤖 Données IA  : reports/pipeline/markdown/PIPELINE-SUMMARY.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/pipeline/PIPELINE-SUMMARY.html
 ```

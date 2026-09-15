@@ -1,7 +1,10 @@
 # Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
 
 > [!IMPORTANT]
-> **Language Directive:** Internal reasoning, subagent delegation, logs, and scratchpad schema operate strictly in English. Deliverable content automatically adapts to the primary language of the audited company.
+> **Linguistic Precedence (Strict Hierarchy):**
+> 1. **HTML Shell & UI Structure:** Always 100% in English (headers, navigation, labels, table headers, gauges, metric names, accordions).
+> 2. **Generated Analysis & Copy:** Strictly adapts to the language of the user prompt (e.g., French prompt = content drafted in French inside the English UI shell; English prompt = 100% English).
+> 3. **Internal Reasoning & Logs:** Scratchpad schemas, internal deliberation, subagent delegation, and tool arguments operate strictly in English.
 
 ## Terminal Summary Block (Mandatory at Start of Chat Response)
 
@@ -42,16 +45,18 @@ For each prospect analysis, two distinct deliverables are created under `reports
 | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` | `reports/{slug}/markdown/COMPANY-RESEARCH.md` | `report-template.html` |
 | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` | `reports/{slug}/markdown/DECISION-MAKERS.md` | `report-template.html` |
 | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
-| `sales-report` | `reports/PIPELINE-SUMMARY.html` | `reports/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
+| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
 
-## Mandatory Completion Block Standard (Workspace-Relative Links)
+## Completion Block Standard (Browser First)
 
-Every skill response MUST conclude with this exact summary block using strictly workspace-relative links for universal portability:
+Every skill response MUST conclude with this standardized closing block. Execute the command `open reports/{slug}/{REPORT_NAME}.html` via the shell if context allows, or display the block below:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [FILE-NAME.html](reports/{slug}/FILE-NAME.html)
-- 📄 **Raw Machine Data (AI):** [FILE-NAME.md](reports/{slug}/markdown/FILE-NAME.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/{REPORT_NAME}.html
+🤖 Données IA  : reports/{slug}/markdown/{REPORT_NAME}.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/{REPORT_NAME}.html
 ```
+

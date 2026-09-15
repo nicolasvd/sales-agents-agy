@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{LANG}}">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,15 +49,22 @@
     .grade-c { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
 
     /* Deliverables list */
-    .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
-    .doc-link { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.6rem 0.85rem; border-radius: 8px; background: #f8fafc; border: 1px solid #f1f5f9; text-decoration: none; color: var(--text); font-size: 0.875rem; font-weight: 600; transition: background 0.15s, border-color 0.15s; }
+    .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .doc-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.85rem; border-radius: 8px; background: #f8fafc; border: 1px solid #f1f5f9; text-decoration: none; color: var(--text); font-size: 0.875rem; font-weight: 600; transition: background 0.15s, border-color 0.15s; }
     .doc-link > span:first-child { flex: 1; min-width: 0; }
-    .doc-link > span:last-child:not(:first-child) { flex-shrink: 0; margin-left: auto; }
     .doc-link:hover { background: var(--primary-light); border-color: #bfdbfe; color: var(--primary); }
     .doc-icon { font-size: 1.1rem; margin-right: 0.5rem; }
 
-    .ai-folder-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; padding-top: 0.5rem; border-top: 1px dashed var(--border); }
-    .ai-folder-link:hover { color: var(--primary); }
+    /* Markdown accordion */
+    details.markdown-accordion { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--border); font-size: 0.8125rem; }
+    details.markdown-accordion summary { cursor: pointer; color: var(--text-muted); font-weight: 600; user-select: none; list-style: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
+    details.markdown-accordion summary::-webkit-details-marker { display: none; }
+    details.markdown-accordion summary::before { content: '▸'; display: inline-block; transition: transform 0.15s; }
+    details.markdown-accordion[open] summary::before { transform: rotate(90deg); }
+    details.markdown-accordion summary:hover { color: var(--primary); }
+    .markdown-links { display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.5rem; padding-left: 1rem; }
+    .markdown-links a { color: var(--text-muted); text-decoration: none; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.75rem; transition: color 0.15s; }
+    .markdown-links a:hover { color: var(--primary); text-decoration: underline; }
 
     /* Print */
     @media print {
@@ -76,7 +83,7 @@
       </div>
       <div>
         <a href="pipeline/PIPELINE-SUMMARY.html" class="doc-link" style="background: var(--primary-light); color: var(--primary); border-color: #bfdbfe;">
-          <span>📊 Bilan Pipeline Global</span>
+          <span>📊 Global Pipeline Summary</span>
         </a>
       </div>
     </header>

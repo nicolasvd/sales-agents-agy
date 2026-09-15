@@ -54,12 +54,13 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/DECISION-MAKERS.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/DECISION-MAKERS.md` using `view_file(".agents/skills/sales-contacts/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
 
-```markdown
----
-### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [DECISION-MAKERS.html](reports/{slug}/DECISION-MAKERS.html)
-- 📄 **Raw Machine Data (AI):** [DECISION-MAKERS.md](reports/{slug}/markdown/DECISION-MAKERS.md)
-- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```text
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/{slug}/DECISION-MAKERS.html
+🤖 Données IA  : reports/{slug}/markdown/DECISION-MAKERS.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/{slug}/DECISION-MAKERS.html
 ```

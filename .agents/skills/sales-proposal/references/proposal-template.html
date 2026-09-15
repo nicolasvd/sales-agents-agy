@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{LANG}}">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,31 +50,31 @@
     <header class="header">
       <div>
         <h1>{{TITLE}}</h1>
-        <p>{{PREPARED_FOR_LABEL}} : <strong>{{CLIENT_NAME}}</strong> | {{RECIPIENT_LABEL}} : {{RECIPIENT_NAME}}</p>
+        <p>Prepared for: <strong>{{CLIENT_NAME}}</strong> | Recipient: {{RECIPIENT_NAME}}</p>
       </div>
       <div class="meta-box">
-        <p>{{DATE_LABEL}} : {{PROPOSAL_DATE}}</p>
-        <p>{{VALIDITY_LABEL}} : {{VALIDITY_DAYS}} {{DAYS_LABEL}}</p>
+        <p>Date: {{PROPOSAL_DATE}}</p>
+        <p>Validity: {{VALIDITY_DAYS}} days</p>
       </div>
     </header>
 
-    <!-- Résumé Exécutif & Solution -->
+    <!-- Executive Summary & Architecture -->
     <section class="card">
-      <h2>🎯 {{EXECUTIVE_SUMMARY_HEADING}}</h2>
+      <h2>🎯 Executive Summary & Architecture</h2>
       <p style="font-size: 0.9375rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
         {{EXECUTIVE_SUMMARY}}
       </p>
     </section>
 
-    <!-- Grille Tarifaire & Forfaits -->
+    <!-- Commercial Packages & Pricing -->
     <section class="card">
-      <h2>💳 {{PRICING_HEADING}}</h2>
+      <h2>💳 Commercial Packages & Pricing</h2>
       <table>
         <thead>
           <tr>
-            <th>{{TABLE_HEADER_SERVICE}}</th>
-            <th>{{TABLE_HEADER_SCOPE}}</th>
-            <th style="text-align: right;">{{TABLE_HEADER_INVESTMENT}}</th>
+            <th>Service / Offering</th>
+            <th>Scope & Inclusions</th>
+            <th style="text-align: right;">Investment</th>
           </tr>
         </thead>
         <tbody>
@@ -83,9 +83,9 @@
       </table>
     </section>
 
-    <!-- Projection ROI -->
+    <!-- Projected ROI & Value Realization -->
     <section class="roi-card">
-      <h3>📈 {{ROI_HEADING}}</h3>
+      <h3>📈 Projected ROI & Value Realization</h3>
       <div class="roi-grid">
         <div class="roi-stat">
           <div class="roi-number">{{TIME_SAVED_HOURS}}h</div>
