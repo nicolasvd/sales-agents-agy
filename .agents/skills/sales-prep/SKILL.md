@@ -4,51 +4,61 @@ description: >-
   Meeting preparation brief generator. Synthesizes prospect intelligence, key talking points, discovery questions, and tailored objection prep for upcoming sales calls, saving MEETING-PREP.md.
 ---
 
+# Skill: sales-prep
 
-# Skill : sales-prep
+**Role:** Synthesize comprehensive, tactical meeting preparation briefs for high-stakes sales conversations.  
+**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Deliverables:** `reports/{slug}/MEETING-PREP.html` and `reports/{slug}/markdown/MEETING-PREP.md`.
 
-**Rôle :** Générer un brief de préparation complet pour une réunion de vente.
-**Règles requises :** `product-context.md`, `fact-checking.md`, `output-formatting.md`.
-**Output :** `MEETING-PREP.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal reasoning, participant research, and analysis operate in English. Brief content automatically adapts to the primary language of the audited company.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `prep <url>`. Lire tous les rapports disponibles dans le workspace :
-`PROSPECT-ANALYSIS.md`, `DECISION-MAKERS.md`, `LEAD-QUALIFICATION.md`, `COMPETITIVE-INTEL.md`
+Invoked via `prep <url>`. Read all available reports in the workspace:
+- `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+- `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md`
+- `reports/{slug}/LEAD-QUALIFICATION.html` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
+- `reports/{slug}/COMPETITIVE-INTEL.html` or `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
 
-## Workflow (2 étapes)
+## Workflow (2 Sequential Steps)
 
-1. **Phase de recherche** — Compléter les données manquantes :
-   - `search_web` : actualité récente (< 30 jours) sur l'entreprise et les participants
-   - `read_url_content` sur les pages non encore explorées
-   - LinkedIn des participants via `search_web`
+1. **Targeted Research Gap Fill:**
+   - Execute `search_web` for recent updates (< 30 days) regarding the account and key meeting participants.
+   - Run `read_url_content` on newly discovered public pages or product releases.
+   - Map attendee roles, tenure, and public perspectives via search.
 
-2. **Construction du brief** — 10 sections standardisées :
-   1. Snapshot entreprise (2 min de lecture max)
-   2. Profils des participants (titre, ancienneté, pain points probables)
-   3. Situation business (contexte, enjeux actuels confirmés)
-   4. Contexte concurrentiel (outils actuels, switching cost)
-   5. Points de discussion clés (3 angles prioritaires)
-   6. Questions de découverte (5 questions ouvertes SPIN/MEDDIC)
-   7. Objections à anticiper (top 3, avec réponse préparée)
-   8. Métriques de succès (comment mesurer le ROI de notre solution)
-   9. Landmines concurrentielles (sujets à éviter)
-   10. Prochaines étapes à proposer (2–3 options de next steps)
-   Template complet de chaque section :
-   `view_file(".agents/skills/sales-prep/references/meeting-brief-template.md")`
+2. **Brief Construction (10 Standardized Sections):**
+   1. *Company Snapshot:* 2-minute executive overview (business model, stage, key metrics).
+   2. *Participant Profiles:* Titles, seniority, background, and likely individual priorities.
+   3. *Business Situation:* Verified current context, growth initiatives, and confirmed challenges.
+   4. *Competitive Context:* Existing tooling, lock-in level, and switching friction.
+   5. *Key Discussion Angles:* Top 3 prioritized narrative bridges to explore.
+   6. *Strategic Discovery Questions:* 5 open-ended questions based on SPIN/MEDDIC.
+   7. *Anticipated Objections:* Top 3 likely objections with empathetic acknowledge-and-reframe talk tracks.
+   8. *Success Metrics:* Measurable criteria for prospect ROI validation.
+   9. *Competitive Landmines:* Critical topics, legacy sensitivities, and traps to avoid.
+   10. *Proposed Next Steps:* 2–3 concrete closing commitments with timelines.
+   Template reference: `view_file(".agents/skills/sales-prep/references/meeting-brief-template.md")`.
 
-## Contraintes
+## Strict Guardrails
 
-- Questions de découverte = ouvertes, jamais orientées vers une vente.
-- Produit présenté = strictement `product-context.md` (fonctionnalités + prix confirmés).
-- Brief ≤ 2 pages (concis pour une lecture rapide avant la réunion).
+- Discovery questions must be exploratory and open-ended, never premature sales pitches.
+- All product and pricing references must strictly adhere to `product-context.md`.
+- Keep the brief concise and actionable (≤ 2 pages equivalent for quick pre-meeting review).
 
-## Output (Double Livrable Obligatoire)
+## Mandatory Dual Output
 
-Créer simultanément dans `reports/{slug}/` :
-1. **Markdown :** `reports/{slug}/MEETING-PREP.md` selon le template :
-   `view_file(".agents/skills/sales-prep/references/output-template.md")`
-2. **HTML Autonome :** `reports/{slug}/MEETING-PREP.html` selon le template :
-   `view_file(".agents/skills/sales-prep/references/meeting-prep-template.html")`
+Save both deliverables simultaneously within `reports/{slug}/`:
+1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
-Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [MEETING-PREP.html](reports/{slug}/MEETING-PREP.html)
+- 📄 **Raw Machine Data (AI):** [MEETING-PREP.md](reports/{slug}/markdown/MEETING-PREP.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

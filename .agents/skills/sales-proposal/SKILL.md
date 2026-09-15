@@ -4,54 +4,62 @@ description: >-
   Client proposal generator. Creates comprehensive commercial proposals including executive summary, problem statement, solution architecture, ROI metrics, timeline, and terms, saving CLIENT-PROPOSAL.md.
 ---
 
+# Skill: sales-proposal
 
-# Skill : sales-proposal
+**Role:** Generate tailored, value-driven commercial proposals and post-proposal follow-up cadences.  
+**Mandatory Rules:** `product-context.md` (mandatory), `output-formatting.md`.  
+**Deliverables:** `reports/{slug}/CLIENT-PROPOSAL.html` and `reports/{slug}/markdown/CLIENT-PROPOSAL.md`.
 
-**Rôle :** Générer une proposition commerciale complète et personnalisée.
-**Règles requises :** `product-context.md` (obligatoire), `output-formatting.md`.
-**Output :** `CLIENT-PROPOSAL.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal reasoning, financial modeling, and analysis operate in English. Proposal copy and follow-ups automatically adapt to the primary language of the client.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `proposal <nom_client>`. Lire :
-- `PROSPECT-ANALYSIS.md` ou `LEAD-QUALIFICATION.md` (contexte prospect)
-- `DECISION-MAKERS.md` (destinataire et structure de décision)
-- `IDEAL-CUSTOMER-PROFILE.md` (calibration de l'offre)
-- `.agents/rules/product-context.md` (offre, prix, fonctionnalités — obligatoire)
+Invoked via `proposal <client_name>`. Read available workspace intelligence:
+- `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/LEAD-QUALIFICATION.html`
+- `reports/{slug}/DECISION-MAKERS.html` (economic buyer and evaluation committee)
+- `reports/IDEAL-CUSTOMER-PROFILE.html` (commercial calibration)
+- `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope — mandatory)
 
-## Workflow (3 étapes)
+## Workflow (3 Sequential Steps)
 
-1. **Collecte des inputs** — Lire tous les rapports disponibles ci-dessus.
-   Si un rapport manque : `search_web` + `read_url_content` pour combler les lacunes.
+1. **Input Consolidation:**
+   - Synthesize verified challenges, business priorities, and stakeholder goals from existing reports.
+   - Run targeted `search_web` or `read_url_content` if vital economic scope data is absent.
 
-2. **Génération de la proposition** — Structure imposée (dans l'ordre) :
-   - Résumé exécutif (1 page max, orienté valeur, pas fonctionnalités)
-   - Analyse de situation (pain points confirmés, sources citées)
-   - Solution proposée (référencer `product-context.md` strictement)
-   - Périmètre et jalons
-   - Timeline (réaliste, buffer inclus)
-   - Investissement (grille tarifaire de `product-context.md` uniquement)
-   - Projection ROI (basée sur les pain points identifiés, conservatrice)
-   - Équipe et références clients (celles documentées dans `product-context.md`)
-   - Prochaines étapes (3 actions concrètes avec dates proposées)
-   Pour le template complet de chaque section :
-   `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`
+2. **Proposal Architecture (Mandatory Standard Order):**
+   1. *Executive Summary:* 1-page C-level brief (metrics and bottom-line outcomes first).
+   2. *Situation Analysis:* Confirmed operational bottlenecks with factual sources.
+   3. *Recommended Solution:* Architecture and methodology strictly referencing `product-context.md`.
+   4. *Scope & Milestones:* Concrete phased breakdown of deliverables.
+   5. *Delivery Timeline:* Realistic implementation schedule with built-in validation buffers.
+   6. *Investment & Commercial Terms:* Fixed pricing strictly derived from `product-context.md`.
+   7. *Conservative ROI Projection:* Transparent financial model showing payback period and value multiplier.
+   8. *Delivery Team & Case Studies:* Verified proof points documented in `product-context.md`.
+   9. *Immediate Next Steps:* 3 concrete actions with target decision milestones.
+   Template reference: `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`.
 
-3. **Séquence de relance** — Inclure 3 e-mails de suivi post-envoi (J+2, J+5, J+10).
+3. **Follow-up Cadence:**
+   - Draft a 3-touch post-proposal re-engagement sequence (Day +2, Day +5, Day +10) with tailored value angles.
 
-## Contraintes
+## Strict Guardrails
 
-- ❌ Ne jamais citer un prix absent de `product-context.md`.
-- ❌ Ne jamais promettre une fonctionnalité non documentée.
-- ✅ ROI = conservateur. Toujours signaler les hypothèses.
-- ✅ Résumé exécutif rédigé pour le C-level : chiffres d'abord, contexte ensuite.
+- ❌ Never invent pricing tiers, daily rates, or discount structures absent from `product-context.md`.
+- ❌ Never commit to unlisted technical capabilities, custom integrations, or unverified SLAs.
+- ✅ ROI projections must remain conservative with explicit, documented underlying assumptions.
 
-## Output (Double Livrable Obligatoire)
+## Mandatory Dual Output
 
-Créer simultanément dans `reports/{slug}/` :
-1. **Markdown :** `reports/{slug}/CLIENT-PROPOSAL.md` selon le template :
-   `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`
-2. **HTML Autonome :** `reports/{slug}/CLIENT-PROPOSAL.html` selon le template :
-   `view_file(".agents/skills/sales-proposal/references/proposal-template.html")`
+Save both deliverables simultaneously within `reports/{slug}/`:
+1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/rules/references/proposal-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/CLIENT-PROPOSAL.md` using `view_file(".agents/skills/sales-proposal/references/output-template.md")`.
 
-Afficher le bloc résumé terminal en début de réponse et le **bloc de clôture avec liens cliquables** en fin de réponse (conforme à `output-formatting.md`).
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [CLIENT-PROPOSAL.html](reports/{slug}/CLIENT-PROPOSAL.html)
+- 📄 **Raw Machine Data (AI):** [CLIENT-PROPOSAL.md](reports/{slug}/markdown/CLIENT-PROPOSAL.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

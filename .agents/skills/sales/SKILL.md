@@ -6,39 +6,42 @@ description: >-
 
 # AI Sales Team — Main Orchestrator
 
-Plateforme d'intelligence commerciale B2B 100 % déclarative pour Google Antigravity.
-Orchestre 13 compétences de prospection et 5 sous-agents internes, sans aucun script ni dépendance externe.
+100% declarative B2B sales intelligence platform for Google Antigravity.
+Orchestrates 13 autonomous sales skills and 5 internal subagents without scripts or external runtime dependencies.
 
-## Répertoire des Commandes
+> [!IMPORTANT]
+> **Language Governance:** Internal reasoning, coordination, logs, and scratchpad schemas operate strictly in English. Customer-facing deliverables (HTML and Markdown) automatically adapt to the primary language of the audited company.
 
-| Commande | Description | Output |
+## Command Index
+
+| Command | Skill | Dual Output (Web HTML + AI Markdown) |
 |---|---|---|
-| `qualify <url>` | Qualification BANT (0-100) + MEDDIC | `reports/{slug}/LEAD-QUALIFICATION.md` |
-| `research <url>` | Analyse firmographique sur 8 dimensions | `reports/{slug}/COMPANY-RESEARCH.md` |
-| `contacts <url>` | Cartographie du comité d'achat & décideurs | `reports/{slug}/DECISION-MAKERS.md` |
-| `prospect <url>` | Audit 360° complet (5 sous-agents en 2 vagues) | `reports/{slug}/PROSPECT-ANALYSIS.md` |
-| `outreach <prospect>` | Séquence cold 5 touches + LinkedIn | `reports/{slug}/OUTREACH-SEQUENCE.md` |
-| `followup <prospect>` | Séquence de relance multi-scénarios | `reports/{slug}/FOLLOWUP-SEQUENCE.md` |
-| `prep <url>` | Brief de préparation de réunion (10 points) | `reports/{slug}/MEETING-PREP.md` |
-| `proposal <client>` | Proposition commerciale personnalisée | `reports/{slug}/CLIENT-PROPOSAL.md` |
-| `competitors <url>` | Détection de stack & Battle Cards | `reports/{slug}/COMPETITIVE-INTEL.md` |
-| `icp <description>` | Définition ICP + grille de scoring | `reports/IDEAL-CUSTOMER-PROFILE.md` |
-| `objections <topic>` | Playbook de traitement d'objections (A-R-C) | `reports/OBJECTION-PLAYBOOK.md` |
-| `report` | Rapport pipeline agrégé | `reports/PIPELINE-SUMMARY.md` |
+| `qualify <url>` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` (+ `markdown/`) |
+| `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` (+ `markdown/`) |
+| `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` (+ `markdown/`) |
+| `prospect <url>` | `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS.html` (+ `markdown/`) |
+| `outreach <prospect>` | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` (+ `markdown/`) |
+| `followup <prospect>` | `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE.html` (+ `markdown/`) |
+| `prep <url>` | `sales-prep` | `reports/{slug}/MEETING-PREP.html` (+ `markdown/`) |
+| `proposal <client>` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
+| `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
+| `icp <description>` | `sales-icp` | `reports/IDEAL-CUSTOMER-PROFILE.html` (+ `markdown/`) |
+| `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
 
-## Logique d'Aiguillage
+## Dispatching Logic
 
-Lors de l'appel d'une commande, charger le skill correspondant dans `.agents/skills/<skill>/SKILL.md`.
+When a command is invoked, load the corresponding skill instruction file from `.agents/skills/<skill>/SKILL.md`.
 
-### Audit Complet (`prospect <url>`)
-Orchestré par `sales-prospect` via un scratchpad sur disque (`.agents/.scratchpad/prospect_{slug}.json`) en 2 vagues :
-- **Vague 1 (Recherche) :** `sales-sub-company`, `sales-sub-contacts`, `sales-sub-competitive`
-- **Vague 2 (Synthèse) :** `sales-sub-opportunity` (BANT/MEDDIC), `sales-sub-strategy` (Outreach)
+### Full 360° Prospect Audit (`prospect <url>`)
+Orchestrated by `sales-prospect` via disk scratchpad (`.agents/.scratchpad/prospect_{slug}.json`) across two sequential waves:
+- **Wave 1 (Independent Research):** `sales-sub-company`, `sales-sub-contacts`, `sales-sub-competitive`
+- **Wave 2 (Synthesis & Strategy):** `sales-sub-opportunity` (BANT/MEDDIC scoring), `sales-sub-strategy` (Outreach plan)
 
-### Règles Transversales Obligatoires
-Toute exécution doit respecter :
-- `AGENTS.md` (point d'entrée, passivité absolue, zéro hallucination)
-- `.agents/rules/fact-checking.md` (sources primaires, citations)
-- `.agents/rules/scoring.md` (barèmes BANT/MEDDIC déterministes)
-- `.agents/rules/product-context.md` (offre produit, prix, personas)
-- `.agents/rules/output-formatting.md` (bloc terminal + formats Markdown)
+### Mandatory Transverse Rules
+Every execution must strictly load and enforce:
+- `AGENTS.md` (root entrypoint, absolute passivity, zero hallucination)
+- `.agents/rules/fact-checking.md` (primary source verification, strict citations)
+- `.agents/rules/scoring.md` (deterministic BANT, MEDDIC, Urgency scorecards)
+- `.agents/rules/product-context.md` (product offering, fixed pricing, ICP boundaries)
+- `.agents/rules/output-formatting.md` (terminal summary block, Dual Output, 3-link completion block)

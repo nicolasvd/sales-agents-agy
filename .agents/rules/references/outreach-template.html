@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{LANG}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séquence d'Outreach — {{COMPANY_NAME}}</title>
+  <title>{{PAGE_TITLE}} — {{COMPANY_NAME}}</title>
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
@@ -52,12 +52,12 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1>Séquence d'Outreach — {{COMPANY_NAME}}</h1>
-      <p>Prospect : {{CONTACT_NAME}} ({{CONTACT_TITLE}}) | Contact Access : {{CONTACT_SCORE}}/100</p>
+      <h1>{{TITLE}} — {{COMPANY_NAME}}</h1>
+      <p>{{CONTACT_LABEL}} : {{CONTACT_NAME}} ({{CONTACT_TITLE}}) | {{ACCESS_SCORE_LABEL}} : {{CONTACT_SCORE}}/100</p>
     </header>
 
     <section class="triggers-card">
-      <h3>🎯 Déclencheurs & Ancrages de Personnalisation</h3>
+      <h3>🎯 {{TRIGGERS_HEADING}}</h3>
       <div class="trigger-tags">
         {{TRIGGER_TAGS_HTML}}
       </div>

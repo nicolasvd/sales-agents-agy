@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{LANG}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brief de Réunion — {{COMPANY_NAME}}</title>
+  <title>{{PAGE_TITLE}} — {{COMPANY_NAME}}</title>
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
@@ -49,13 +49,13 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1>Brief de Réunion — {{COMPANY_NAME}}</h1>
-      <p>Objectif : {{MEETING_GOAL}} | Durée : {{MEETING_DURATION}}</p>
+      <h1>{{TITLE}} — {{COMPANY_NAME}}</h1>
+      <p>{{GOAL_LABEL}} : {{MEETING_GOAL}} | {{DURATION_LABEL}} : {{MEETING_DURATION}}</p>
     </header>
 
     <!-- Personas -->
     <section class="card">
-      <h2>👥 Profils des Participants & Personas</h2>
+      <h2>👥 {{PARTICIPANTS_HEADING}}</h2>
       <div class="personas-grid">
         {{PERSONAS_HTML}}
       </div>
@@ -63,7 +63,7 @@
 
     <!-- Questions de Découverte -->
     <section class="card">
-      <h2>💡 Questions de Découverte Stratégiques</h2>
+      <h2>💡 {{QUESTIONS_HEADING}}</h2>
       <div class="questions-list">
         {{DISCOVERY_QUESTIONS_HTML}}
       </div>
@@ -71,13 +71,13 @@
 
     <!-- Landmines & Alertes -->
     <section class="card">
-      <h2>⚠️ Pièges & Sujets Sensibles (Landmines)</h2>
+      <h2>⚠️ {{LANDMINES_HEADING}}</h2>
       {{LANDMINES_HTML}}
     </section>
 
     <!-- Prochaines Étapes -->
     <section class="card">
-      <h2>🚀 Prochaines Étapes à Conclure</h2>
+      <h2>🚀 {{NEXT_STEPS_HEADING}}</h2>
       <ul style="padding-left: 1.25rem; font-size: 0.875rem; line-height: 1.6;">
         {{NEXT_STEPS_HTML}}
       </ul>

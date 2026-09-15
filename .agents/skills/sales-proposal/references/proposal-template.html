@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{LANG}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proposition Commerciale — {{CLIENT_NAME}}</title>
+  <title>{{PAGE_TITLE}} — {{CLIENT_NAME}}</title>
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
@@ -49,18 +49,18 @@
   <div class="container">
     <header class="header">
       <div>
-        <h1>Proposition d'Accompagnement</h1>
-        <p>Préparé pour : <strong>{{CLIENT_NAME}}</strong> | Destinataire : {{RECIPIENT_NAME}}</p>
+        <h1>{{TITLE}}</h1>
+        <p>{{PREPARED_FOR_LABEL}} : <strong>{{CLIENT_NAME}}</strong> | {{RECIPIENT_LABEL}} : {{RECIPIENT_NAME}}</p>
       </div>
       <div class="meta-box">
-        <p>Date : {{PROPOSAL_DATE}}</p>
-        <p>Validité : {{VALIDITY_DAYS}} jours</p>
+        <p>{{DATE_LABEL}} : {{PROPOSAL_DATE}}</p>
+        <p>{{VALIDITY_LABEL}} : {{VALIDITY_DAYS}} {{DAYS_LABEL}}</p>
       </div>
     </header>
 
     <!-- Résumé Exécutif & Solution -->
     <section class="card">
-      <h2>🎯 Diagnostic & Objectifs Stratégiques</h2>
+      <h2>🎯 {{EXECUTIVE_SUMMARY_HEADING}}</h2>
       <p style="font-size: 0.9375rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
         {{EXECUTIVE_SUMMARY}}
       </p>
@@ -68,13 +68,13 @@
 
     <!-- Grille Tarifaire & Forfaits -->
     <section class="card">
-      <h2>💳 Forfait d'Intervention & Modalités</h2>
+      <h2>💳 {{PRICING_HEADING}}</h2>
       <table>
         <thead>
           <tr>
-            <th>Prestation / Livrable</th>
-            <th>Périmètre & Durée</th>
-            <th style="text-align: right;">Investissement HT</th>
+            <th>{{TABLE_HEADER_SERVICE}}</th>
+            <th>{{TABLE_HEADER_SCOPE}}</th>
+            <th style="text-align: right;">{{TABLE_HEADER_INVESTMENT}}</th>
           </tr>
         </thead>
         <tbody>
@@ -85,19 +85,19 @@
 
     <!-- Projection ROI -->
     <section class="roi-card">
-      <h3>📈 Estimation du Retour sur Investissement (ROI)</h3>
+      <h3>📈 {{ROI_HEADING}}</h3>
       <div class="roi-grid">
         <div class="roi-stat">
           <div class="roi-number">{{TIME_SAVED_HOURS}}h</div>
-          <div class="roi-label">Temps Équipe Économisé / Mois</div>
+          <div class="roi-label">{{TIME_SAVED_LABEL}}</div>
         </div>
         <div class="roi-stat">
-          <div class="roi-number">{{BREAKEVEN_MONTHS}} mois</div>
-          <div class="roi-label">Délai de Rentabilisation</div>
+          <div class="roi-number">{{BREAKEVEN_MONTHS}} {{MONTHS_LABEL}}</div>
+          <div class="roi-label">{{BREAKEVEN_LABEL}}</div>
         </div>
         <div class="roi-stat">
           <div class="roi-number">{{ROI_MULTIPLIER}}x</div>
-          <div class="roi-label">Multiplicateur de Valeur Annuel</div>
+          <div class="roi-label">{{ROI_MULTIPLIER_LABEL}}</div>
         </div>
       </div>
     </section>
