@@ -27,11 +27,20 @@ Ce projet s'inspire du concept novateur développé par [Zubair Trabzada](https:
 Aucune compétence technique ni terminal requis.
 
 1. Ouvrez l'application **Google Antigravity**.
-2. Copiez et collez ce prompt unique directement dans la barre d'instruction d'Antigravity :
+2. **Prompt 1 (Initialisation du workspace) :** Copiez et collez dans la barre d'instruction Antigravity :
    ```text
-   Clone and initialize https://github.com/nicolasvd/sales-agents-agy.git into my active workspace. Inspect AGENTS.md, configure my commercial offer in .agents/rules/product-context.md, and get ready to run sales prospect audits.
+   Initialize and inspect this sales-agents-agy workspace. Confirm that .agents/rules/ and .agents/skills/ are loaded, verify CLI routing (sales, prospect, outreach), and confirm readiness.
    ```
-3. Renseignez vos paramètres commerciaux dans [`.agents/rules/product-context.md`](.agents/rules/product-context.md) (forfaits, taux journalier, profil client idéal).
+3. **Prompt 2 (Configuration de l'offre avec exemple Acme) :**
+   ```text
+   Update .agents/rules/product-context.md to reflect our company profile:
+   - Company: Acme AI Automation Inc. [or your company name]
+   - Core Offering: [e.g., Enterprise Workflow Automation & AI Ops]
+   - Rates & Packages: [e.g., Daily Rate: 800 $, Discovery Audit: 1 500 $, Implementation Sprint: 4 500 $]
+   - Target Roles: [e.g., COO, VP Operations, Founders]
+   - Exclusions: [e.g., No custom mobile app dev, no cold spam]
+   Keep the file strictly under 5 KB.
+   ```
 4. Lancez votre premier audit 360° :
    ```text
    prospect https://nom-du-prospect.com
@@ -43,6 +52,10 @@ Aucune compétence technique ni terminal requis.
 # Cloner le dépôt
 git clone https://github.com/nicolasvd/sales-agents-agy.git
 cd sales-agents-agy
+
+# Inspecter le fichier de contexte produit
+cat .agents/rules/product-context.md
+wc -c .agents/rules/product-context.md
 
 # Lancer Antigravity
 agy
@@ -59,7 +72,7 @@ Chaque analyse produit simultanément deux livrables :
 - **Rapports Web Visuels (Humains) :** Fichiers HTML stylisés sous `reports/{slug}/` optimisés pour l'impression A4 (`@media print`) avec cartes de score interactives.
 - **Données Brutes Machine (IA) :** Fichiers Markdown sous `reports/{slug}/markdown/` réutilisables comme contexte d'inférence direct.
 
-Ouvrez `reports/index.html` dans n'importe quel navigateur pour accéder au tableau de bord central, filtrer les entreprises en temps réel et consulter les notes de qualification (A/B/C/D).
+Ouvrez `reports/index.html` dans n'importe quel navigateur pour accéder au tableau de bord central, filtrer les entreprises en temps réel et consulter les notes de qualification (A/B/C/D). Note : `reports/` est 100 % local et exclu du suivi Git (`.gitignore`).
 
 ---
 
@@ -82,7 +95,7 @@ sales-agents-agy/
 │       ├── scoring.md           ← Barèmes déterministes BANT / MEDDIC
 │       └── output-formatting.md ← Standard Dual Output et blocs terminaux
 └── reports/
-    ├── index.html               ← Tableau de bord visuel central
+    ├── index.html               ← Tableau de bord visuel central (local)
     └── {slug}/                  ← Dossier prospect (HTML + sous-dossier markdown/)
 ```
 

@@ -6,44 +6,41 @@
 
 ## Offering Identification
 
-**Commercial Name:** AI Agent Coaching & Workflow Modernization  
-**Profile:** Senior AI Coach & Strategist guiding business leaders, agencies, and SMBs through daily operational transformation using autonomous agents and automated workflows.  
-**Positioning:** Upgrading from basic AI tooling (isolated ChatGPT prompts) to structured, connected, semi-autonomous workflows that save dozens of team hours weekly.
+**Commercial Name:** Acme AI Automation Inc.  
+**Profile:** B2B automation agency specialized in AI agent integration and enterprise workflow modernization.  
+**Positioning:** Upgrading SMBs and scale-ups from manual processes to connected, semi-autonomous AI workflows.
 
 ## Value Proposition (Verbatim)
 
-We help agencies, professional service firms, and operational teams design and deploy custom AI agent teams to automate critical business processes (market intelligence, client reporting, deliverable preparation, campaign orchestration). We enable your talent to dramatically amplify productivity without superfluous technical complexity.
+We help SMBs, scale-ups, and professional service teams design and deploy custom AI agent workflows to automate core operational processes (market intelligence, client reporting, document processing, internal routing). We empower teams to amplify productivity without added technical complexity.
 
-## Official Pricing Grid (Base Daily Rate: 1,000 € excl. VAT / TJM)
+## Official Pricing Grid (Base Daily Rate: $800 / day)
 
-| Package | Format & Duration | Pricing (excl. VAT) | Inclusions |
+| Package | Format & Duration | Pricing (excl. tax) | Inclusions |
 |---|:---:|:---:|---|
-| **AI Automation Audit & Diagnostic** | 2-day fixed engagement | **2,000 €** | Friction-point mapping of repetitive tasks, identification of top 3 agentic use cases, deployment roadmap, and ROI estimation. |
-| **Acceleration & Deployment Sprint** | 1-month sprint (6 intervention days) | **6,000 €** | Architecture and production rollout of 2 concrete agentic workflows, hands-on team enablement workshops, operational runbooks, and skill transfer. |
-| **AI Advisory & Continuous Coaching** | Monthly retainer (3 days / month) | **3,000 € / month** | Ongoing monthly leadership and team advisory: technological watch, continuous workflow optimization, bottleneck resolution, and recurring coaching sessions. |
+| **Starter Audit** | Fixed engagement (2 days) | **$1,500** | Workflow friction mapping, top 3 agentic use cases identification, deployment roadmap, and ROI estimation. |
+| **Workflow Sprint** | 3-week sprint (6 days) | **$4,500** | Design, architecture, and production rollout of 2 custom agent workflows, team training workshops, and runbooks. |
+| **Monthly Retainer** | Ongoing advisory (3 days / mo) | **$2,500 / month** | Continuous workflow optimization, tech watch, prompt/agent tuning, and monthly executive advisory sessions. |
 
 ## Core Practice Pillars
 
-- **Operational & Marketing Workflows:** Automated reporting, continuous competitive intelligence, brief synthesis, asset preparation, and content curation.
-- **Team Enablement & Acculturation:** Practical hands-on coaching for both non-technical and technical teams to master agentic systems without external dependency.
-- **Tool Selection & Integration:** Pragmatic selection of best-in-class agentic platforms and connectors tailored to business realities.
+- **Enterprise Workflow Automation:** Automated reporting, continuous market research, lead routing, asset generation, and data extraction.
+- **Team Enablement & AI Ops:** Practical onboarding and hands-on enablement for operational and technical teams to master AI agents.
+- **Agent Integration & Tooling:** Pragmatic selection and deployment of agentic frameworks, APIs, and business software connectors.
 
 ## STRICTLY Excluded Scopes
 
-- Heavy custom monolithic software engineering or complete website redesigns.
-- Training foundation LLMs from scratch.
-- Manual data entry outsourcing or mass spam outbound cold calling.
+- Custom full-stack software development from scratch or mobile application creation.
+- Training foundation LLMs or hosting custom model infrastructure.
+- Mass non-targeted cold spam or unsolicited phone outreach.
 
 ## Target Personas
 
-- **Economic Buyer:** Co-CEO, Managing Director, Managing Partner, Chief Operating Officer (COO) of agencies, consulting firms, or SMBs (15 to 150 employees).
-  * *Pain point:* Margin compression, teams overwhelmed by repetitive manual tasks, desire to adopt AI without knowing how to start profitably.
-- **Internal Champion:** Head of Delivery, Marketing Lead, Operations / Project Director seeking concrete efficiency levers for their teams.
+- **Economic Buyer:** COO, VP Engineering, Head of Operations, or Founder of tech & professional service SMBs/scale-ups (20 to 250 employees).
+  * *Pain point:* Operational bottlenecks, teams overwhelmed by repetitive manual tasks, need for scalable AI adoption.
+- **Internal Champion:** Operations Lead, Product Manager, or Delivery Director seeking concrete efficiency gains.
 
-## Key Differentiators
+## Security & Operational Constraints
 
-| Alternative / Competitor | Our Positioning |
-|---|---|
-| **Theoretical Trainers / Keynote Speakers** | Hands-on delivery orientation: we connect real production workflows directly to your stack. |
-| **Pure No-Code Integrators** | Strategic enterprise vision combining deep business acumen and architectural robustness. |
-| **Dedicated Internal Hires** | Immediate operational impact within 30 days without heavy recurring fixed overhead. |
+- **Absolute Passivity:** The system generates drafts and analysis reports only. Zero automated sending of emails or external API mutations.
+- **Human-in-the-Loop:** All deliverables, proposals, and outreach sequences require explicit human review and approval prior to execution.

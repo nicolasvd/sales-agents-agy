@@ -26,12 +26,21 @@ This project draws inspiration from the pioneering concept developed by [Zubair 
 
 Zero technical setup or terminal required.
 
-1. Open the **Google Antigravity** desktop application.
-2. Copy and paste this single prompt directly into the Antigravity prompt bar:
+1. Open **Google Antigravity**.
+2. **Prompt 1 (Workspace Initialization):** Paste into the Antigravity prompt bar:
    ```text
-   Clone and initialize https://github.com/nicolasvd/sales-agents-agy.git into my active workspace. Inspect AGENTS.md, configure my commercial offer in .agents/rules/product-context.md, and get ready to run sales prospect audits.
+   Initialize and inspect this sales-agents-agy workspace. Confirm that .agents/rules/ and .agents/skills/ are loaded, verify CLI routing (sales, prospect, outreach), and confirm readiness.
    ```
-3. Update your commercial parameters in [`.agents/rules/product-context.md`](.agents/rules/product-context.md) (packages, daily rate, ICP boundaries).
+3. **Prompt 2 (Offer Configuration - Acme Example):**
+   ```text
+   Update .agents/rules/product-context.md to reflect our company profile:
+   - Company: Acme AI Automation Inc. [or your company name]
+   - Core Offering: [e.g., Enterprise Workflow Automation & AI Ops]
+   - Rates & Packages: [e.g., Daily Rate: 800 $, Discovery Audit: 1 500 $, Implementation Sprint: 4 500 $]
+   - Target Roles: [e.g., COO, VP Operations, Founders]
+   - Exclusions: [e.g., No custom mobile app dev, no cold spam]
+   Keep the file strictly under 5 KB.
+   ```
 4. Launch your first 360° audit:
    ```text
    prospect https://target-company.com
@@ -43,6 +52,10 @@ Zero technical setup or terminal required.
 # Clone repository
 git clone https://github.com/nicolasvd/sales-agents-agy.git
 cd sales-agents-agy
+
+# Inspect product context rules
+cat .agents/rules/product-context.md
+wc -c .agents/rules/product-context.md
 
 # Launch Antigravity
 agy
@@ -59,7 +72,7 @@ Every audit generates two synchronized deliverables:
 - **Visual Web Reports (Humans):** Formatted HTML in `reports/{slug}/` with print-ready A4 styling and interactive scorecards.
 - **Raw Machine Data (AI):** Unformatted Markdown files stored in `reports/{slug}/markdown/` for AI context reuse.
 
-Open `reports/index.html` in any browser to access the central dashboard, search accounts dynamically, and review qualification grades (A/B/C/D).
+Open `reports/index.html` in any browser to access the central dashboard, search accounts dynamically, and review qualification grades (A/B/C/D). Note: `reports/` is 100% local and excluded from Git tracking (`.gitignore`).
 
 ---
 
@@ -82,7 +95,7 @@ sales-agents-agy/
 │       ├── scoring.md           ← BANT / MEDDIC arithmetic scorecards
 │       └── output-formatting.md ← Dual Output & completion standards
 └── reports/
-    ├── index.html               ← Master visual pipeline dashboard
+    ├── index.html               ← Master visual pipeline dashboard (local)
     └── {slug}/                  ← Prospect reports (HTML + markdown/ subfolder)
 ```
 
