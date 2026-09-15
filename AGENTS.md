@@ -41,11 +41,14 @@ Avant toute action, chaque skill DOIT lire et respecter les règles indiquées.
 | `fact-checking.md` | `sales-research`, `sales-contacts`, `sales-competitors`, `sales-prospect`, `sales-sub-company`, `sales-sub-contacts`, `sales-sub-competitive` |
 | `output-formatting.md` | **Tous les skills sans exception** |
 
-## Gouvernance des Sous-Agents (`sales-prospect`)
+## Autonomie des Compétences & Gouvernance Multi-Agent
 
-`sales-prospect` orchestre 5 sous-agents internes en 2 vagues séquentielles.
-Les skills `sales-sub-*` sont des composants internes — ne pas les invoquer
-directement depuis le chat.
+### 1. Compétences Utilisateur Autonomes (13 Skills Unitaires)
+Les 13 compétences utilisateur (`sales`, `sales-qualify`, `sales-research`, `sales-contacts`, `sales-prospect`, `sales-outreach`, `sales-followup`, `sales-prep`, `sales-proposal`, `sales-competitors`, `sales-icp`, `sales-objections`, `sales-report`) sont **entièrement autonomes et utilisables unitairement à tout moment** depuis le chat en mode Dual Output (HTML interactif pour humains + Markdown brut pour IA). L'utilisateur peut ainsi produire un livrable ciblé sans devoir déclencher un audit global.
+
+### 2. Sous-Agents Internes d'Orchestration (5 Skills `sales-sub-*`)
+Les 5 skills `sales-sub-*` sont **exclusivement des sous-agents d'orchestration interne**, réservés aux flux multi-agents de `sales-prospect` via `start_subagent` et coordonnés à travers le scratchpad structuré `.agents/.scratchpad/prospect_{slug}.json`.
+Ils ne doivent **jamais être invoqués directement** par l'utilisateur depuis le chat.
 
 **Vague 1 — Recherche indépendante (3 sous-agents séquentiels) :**
 - `sales-sub-company` → Firmographics, financiers, tech stack, signaux de croissance

@@ -41,16 +41,14 @@ Pour chaque analyse, deux versions sont créées de façon étanche sous `report
 | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
 | `sales-report` | `reports/PIPELINE-SUMMARY.html` | `reports/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
 
-## Standard du Bloc de Clôture (Liens Cliquables Obligatoires)
+## Standard du Bloc de Clôture (Liens Cliquables Relatifs au Workspace)
 
-Toute réponse d'un skill doit **IMPÉRATIVEMENT se terminer** par ce récapitulatif avec liens directs absolus :
+Toute réponse d'un skill doit **IMPÉRATIVEMENT se terminer** par ce récapitulatif utilisant exclusivement des chemins relatifs au workspace pour garantir une portabilité universelle :
 
 ```markdown
 ---
 ### 📁 Livrables Générés
-- 🌐 **Version Web / Print (Humains) :** [NOM-DU-FICHIER.html](file://{ABSOLUTE_WORKSPACE_PATH}/reports/{slug}/NOM-DU-FICHIER.html)
-- 📄 **Données Brutes (IA) :** [NOM-DU-FICHIER.md](file://{ABSOLUTE_WORKSPACE_PATH}/reports/{slug}/markdown/NOM-DU-FICHIER.md)
-- 📑 **Portail Global des Rapports :** [index.html](file://{ABSOLUTE_WORKSPACE_PATH}/reports/index.html)
+- 🌐 **Version Web / Print (Humains) :** [NOM-DU-FICHIER.html](reports/{slug}/NOM-DU-FICHIER.html)
+- 📄 **Données Brutes (IA) :** [NOM-DU-FICHIER.md](reports/{slug}/markdown/NOM-DU-FICHIER.md)
+- 📑 **Portail Global des Rapports :** [index.html](reports/index.html)
 ```
-
-*(Où `{ABSOLUTE_WORKSPACE_PATH}` vaut `/Users/nicolasvd/antigravity/sales-agents-agy`)*.

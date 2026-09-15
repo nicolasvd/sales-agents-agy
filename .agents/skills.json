@@ -1,8 +1,5 @@
 {
   "entries": [
-    {
-      "path": ".agents/skills",
-      "exclude": ["sales-report-pdf"]
-    }
+    { "path": ".agents/skills" }
   ]
 }
