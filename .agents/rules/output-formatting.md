@@ -1,35 +1,38 @@
-# Règle : Format des Sorties & Double Livrable (HTML Humains + MD IA)
+# Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
 
-## Bloc Résumé Terminal (Obligatoire en début de réponse)
+> [!IMPORTANT]
+> **Language Directive:** Internal reasoning, subagent delegation, logs, and scratchpad schema operate strictly in English. Deliverable content automatically adapts to the primary language of the audited company.
 
-Ce bloc apparaît EN PREMIER dans la réponse textuelle, avant tout développement :
+## Terminal Summary Block (Mandatory at Start of Chat Response)
 
-```
-=== [NOM DU SKILL EN MAJUSCULES] : [NOM ENTREPRISE] ===
+This block appears FIRST in the conversational response before any in-depth narrative:
 
-[SCORE PRINCIPAL] : [X]/100  Grade : [A/B/C/D]
-[Sous-scores si applicable, ex: Budget: 18/25  Authority: 20/25]
+```text
+=== [SKILL NAME IN UPPERCASE] : [COMPANY NAME] ===
 
-Top Signaux :
-  1. [Signal le plus fort — preuve factuelle entre parenthèses]
+[PRIMARY SCORE] : [X]/100  Grade : [A/B/C/D]
+[Sub-scores if applicable, e.g.: Budget: 18/25  Authority: 20/25]
+
+Top Signals:
+  1. [Strongest signal — factual source in parentheses]
   2. [Signal 2 — source]
   3. [Signal 3 — source]
 
-Red Flags :
-  1. [Point de vigilance principal]
-  2. [Point de vigilance secondaire si pertinent]
+Red Flags:
+  1. [Primary point of vigilance]
+  2. [Secondary point of vigilance if applicable]
 
-Action recommandée : [Phrase d'action concrète, une seule ligne]
+Recommended Action: [Concrete action statement, single concise line]
 ```
 
-## Organisation du Stockage : HTML pour Humains & MD pour IA
+## Storage Architecture: HTML for Humans & Markdown for AI
 
-Pour chaque analyse, deux versions sont créées de façon étanche sous `reports/` :
-- **Version Visuelle (Pour les Humains) :** Écrite directement dans `reports/{slug}/{LIVRABLE}.html`. Typographie soignée, composants interactifs, jauges SVG inline et styles d'impression A4 (`@media print`).
-- **Version Données Brutes (Pour les IA) :** Rangée dans le sous-dossier `reports/{slug}/markdown/{LIVRABLE}.md` pour servir de contexte brut aux futurs agents ou prompts.
-- **Portail Centralisé :** `reports/index.html` centralise et lie tous les livrables HTML générés.
+For each prospect analysis, two distinct deliverables are created under `reports/`:
+- **Visual Version (For Humans):** Written directly to `reports/{slug}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` optimized A4 styles.
+- **Raw Data Version (For AI):** Stored in `reports/{slug}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions.
+- **Central Dashboard:** `reports/index.html` aggregates and links all generated HTML deliverables.
 
-| Skill | Version Web (Humains) | Version Brute (IA) | Template Référence |
+| Skill | Web Version (Humans) | Raw Version (AI) | Reference Template |
 |---|---|---|---|
 | `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS.html` | `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` | `report-template.html` |
 | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` | `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` | `outreach-template.html` |
@@ -41,14 +44,14 @@ Pour chaque analyse, deux versions sont créées de façon étanche sous `report
 | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
 | `sales-report` | `reports/PIPELINE-SUMMARY.html` | `reports/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
 
-## Standard du Bloc de Clôture (Liens Cliquables Relatifs au Workspace)
+## Mandatory Completion Block Standard (Workspace-Relative Links)
 
-Toute réponse d'un skill doit **IMPÉRATIVEMENT se terminer** par ce récapitulatif utilisant exclusivement des chemins relatifs au workspace pour garantir une portabilité universelle :
+Every skill response MUST conclude with this exact summary block using strictly workspace-relative links for universal portability:
 
 ```markdown
 ---
-### 📁 Livrables Générés
-- 🌐 **Version Web / Print (Humains) :** [NOM-DU-FICHIER.html](reports/{slug}/NOM-DU-FICHIER.html)
-- 📄 **Données Brutes (IA) :** [NOM-DU-FICHIER.md](reports/{slug}/markdown/NOM-DU-FICHIER.md)
-- 📑 **Portail Global des Rapports :** [index.html](reports/index.html)
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [FILE-NAME.html](reports/{slug}/FILE-NAME.html)
+- 📄 **Raw Machine Data (AI):** [FILE-NAME.md](reports/{slug}/markdown/FILE-NAME.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
 ```

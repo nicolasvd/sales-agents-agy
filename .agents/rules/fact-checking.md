@@ -1,59 +1,62 @@
-# Règle : Vérification des Faits & Navigation Web
+# Rule: Fact-Checking & Web Intelligence
 
-## Hiérarchie des Sources (ordre décroissant de fiabilité)
+> [!IMPORTANT]
+> **Language Directive:** Internal reasoning, search queries, validation labels, and logs operate strictly in English. Citation labels and factual extracts in customer-facing reports adapt to the prospect's language (e.g., French: Confirmé / Estimé / Non disponible publiquement; English: Confirmed / Estimated / Not publicly available).
 
-1. Pages officielles de l'entreprise (navigation web — toujours en premier)
-2. Registres officiels : BCE Belgique, SIRENE France, Companies House UK
-3. Presse spécialisée : TechCrunch, Forbes, Les Échos, PUB.be, Trends-Tendances
-4. Bases de données SaaS : Crunchbase, G2, Capterra, Glassdoor (via search_web)
-5. LinkedIn : via search_web uniquement (pas de scraping direct de profils)
+## Source Hierarchy (Descending Reliability)
 
-## Protocole de Navigation & Stratégie de Fallback Chrome
+1. Official company web pages (direct web extraction — always prioritize first)
+2. Official business registries: BCE/CBE Belgium, SIRENE France, Companies House UK
+3. Specialized business press: TechCrunch, Forbes, Les Échos, Trends-Tendances, PUB.be
+4. SaaS & customer feedback databases: Crunchbase, G2, Capterra, Glassdoor (via `search_web`)
+5. LinkedIn: via `search_web` only (no direct personal profile scraping)
 
-### Priorité 1 : Extraction Rapide (`read_url_content`)
-- Méthode par défaut sur l'ensemble des pages web cibles (exécution ultra-rapide).
-- Valide si le contenu extrait est structuré, intelligible et supérieur à **200 caractères de contenu utile**.
+## Browsing Protocol & Chrome Fallback Strategy
 
-### Priorité 2 (Fallback) : Sous-Agent Chrome (`/browser`)
-Déléguer impérativement l'accès au sous-agent Chrome (`/browser`) dans les cas suivants :
-1. **Rendu dynamique requis :** Applications monopages (SPA React, Vue, Next.js, Angular) dont le contenu n'est pas pré-rendu.
-2. **Protection & Blocage :** Pages protégées par Cloudflare, antibot, challenges JavaScript ou renvoyant des erreurs HTTP 403/429.
-3. **Contenu utile insuffisant :** Si `read_url_content` renvoie **moins de 200 caractères de texte utile** (ex. "Please enable JavaScript" ou loader vide).
-- **Objectif :** Extraire le DOM hydraté après exécution du JavaScript pour garantir une vérité terrain complète.
+### Priority 1: Fast Extraction (`read_url_content`)
+- Default method across all target URLs (ultra-low latency execution).
+- Validated if extracted content is structured, intelligible, and contains **> 200 characters of meaningful text**.
 
-## Pages à Explorer Systématiquement
+### Priority 2 (Fallback): Chrome Subagent (`/browser`)
+Mandatorily delegate URL access to the Chrome subagent (`/browser`) in the following cases:
+1. **Dynamic Client-Side Rendering Required:** Single Page Applications (SPA: React, Vue, Next.js, Angular) without pre-rendered server HTML.
+2. **Bot Protections & Blocking:** Pages guarded by Cloudflare, anti-scraping mechanisms, JavaScript challenges, or returning HTTP 403/429 errors.
+3. **Insufficient Useful Content:** When `read_url_content` returns **< 200 characters of useful text** (e.g., "Please enable JavaScript" or empty loading state).
+- **Goal:** Extract the fully hydrated post-execution DOM to capture true ground truth.
 
-Pour chaque prospect, tenter dans cet ordre (ignorer les 404) :
-1. `/` — Homepage (obligatoire)
-2. `/about` ou `/about-us` — Équipe, mission, fondateurs
-3. `/pricing` ou `/plans` — Signaux budget et segment de marché
-4. `/careers` ou `/jobs` — Signaux de croissance et besoins techniques ouverts
-5. `/blog` — Maturité marketing et défis traités
-6. `/integrations` ou `/partners` — Écosystème logiciel et stack SaaS
-7. `/customers` ou `/case-studies` — Preuves sociales et typologie client
+## Systematic Pages to Explore
 
-## 5 Requêtes search_web Systématiques
+For each target prospect, probe in this specific sequence (gracefully ignore 404s):
+1. `/` — Homepage (mandatory)
+2. `/about` or `/about-us` — Leadership team, mission, founders
+3. `/pricing` or `/plans` — Budget indicators, tiers, and market segment
+4. `/careers` or `/jobs` — Growth velocity, open technical/business needs
+5. `/blog` — Marketing maturity, recent announcements, discussed challenges
+6. `/integrations` or `/partners` — Software ecosystem and technical stack
+7. `/customers` or `/case-studies` — Social proof, testimonials, and client typologies
 
-Exécuter pour chaque prospect (remplacer `[NOM]` par le nom officiel) :
-1. `"[NOM]" funding OR raised OR revenue OR valuation`
-2. `"[NOM]" employees OR headcount OR hiring site:linkedin.com`
-3. `"[NOM]" news OR announcement` (filtrer sur les 12 derniers mois)
-4. `"[NOM]" review OR reviews site:g2.com OR site:capterra.com`
-5. `"[NOM]" alternative OR competitor OR "vs "`
+## 5 Systematic `search_web` Queries
 
-## Standards de Citation Obligatoires
+Execute for every prospect (replace `[NAME]` with verified company name):
+1. `"[NAME]" funding OR raised OR revenue OR valuation`
+2. `"[NAME]" employees OR headcount OR hiring site:linkedin.com`
+3. `"[NAME]" news OR announcement` (filter within past 12 months)
+4. `"[NAME]" review OR reviews site:g2.com OR site:capterra.com`
+5. `"[NAME]" alternative OR competitor OR "vs "`
 
-Chaque donnée factuelle DOIT être suivie de sa source :
-- **Confirmé :** Mention explicite dans une source primaire
-  → `3,4 M€ de CA (Source : Forbes Belgique, juin 2026)`
-- **Estimé :** Triangulation de sources indirectes
-  → `~40 employés (Estimé d'après LinkedIn + offres d'emploi, sept. 2026)`
-- **Non disponible publiquement :** Si l'information est absente — jamais inventer
+## Mandatory Citation Standards
 
-## Fraîcheur des Données
+Every single factual metric or claim MUST include its provenance:
+- **Confirmed / Confirmé:** Explicit statement in a verified primary source  
+  → `€3.4M Revenue (Source: Forbes Belgium, June 2026)`
+- **Estimated / Estimé:** Triangulated from secondary signals  
+  → `~40 employees (Estimated from LinkedIn + open job postings, Sept 2026)`
+- **Not publicly available / Non disponible publiquement:** When information is absent — never invent.
 
-| Type de donnée | Fenêtre de validité |
+## Data Freshness Windows
+
+| Data Type | Validity Window |
 |---|---|
-| Données de scoring (Budget, Need) | ≤ 18 mois |
-| Trigger events (funding, M&A, recrutement exécutif) | ≤ 90 jours |
-| Données historiques (contexte uniquement) | > 18 mois → étiqueter "historique" |
+| Scoring Data (Budget, Need) | ≤ 18 months |
+| Trigger Events (Funding, M&A, Executive Hires) | ≤ 90 days |
+| Historical Data (Contextual Background Only) | > 18 months → explicitly tag as "Historical" |

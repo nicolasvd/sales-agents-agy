@@ -1,79 +1,82 @@
-# Règle : Barèmes de Scoring Déterministes
+# Rule: Deterministic Scoring Frameworks
 
-## BANT — 100 points au total (25 pts par dimension)
+> [!IMPORTANT]
+> **Language Directive:** Scoring dimensions, grades, and calculation logs operate strictly in English. All point attributions, bonuses, and penalties must be applied mechanically without optimistic bias.
 
-### Budget (0–25 pts) — Capacité et volonté de dépense
-| Signal détecté | Points |
+## BANT Framework — 100 Total Points (25 pts per dimension)
+
+### Budget (0–25 pts) — Willingness & Capacity to Spend
+| Detected Signal | Points |
 |---|---|
-| Financement C+ / IPO récent (< 18 mois) | +20 |
-| Financement B récent (< 18 mois) | +16 |
-| Financement A récent (< 18 mois) | +12 |
-| Revenus récurrents confirmés (ARR mentionné) | +10 |
-| Stack SaaS multi-outils confirmée | +8 |
-| Recrutement actif dans la catégorie produit | +10 |
-| Effectif > 200 | +6 |
-| Effectif 50–200 | +4 |
-| Signaux de réduction de coûts ou licenciements | −10 |
+| Recent Series C+ / IPO (< 18 months) | +20 |
+| Recent Series B (< 18 months) | +16 |
+| Recent Series A (< 18 months) | +12 |
+| Confirmed recurring revenue (explicit ARR mentioned) | +10 |
+| Confirmed multi-tool SaaS stack | +8 |
+| Active hiring in relevant product/functional category | +10 |
+| Headcount > 200 | +6 |
+| Headcount 50–200 | +4 |
+| Cost-cutting signals, downsizings, or layoffs | −10 |
 
-### Authority (0–25 pts) — Accès aux décideurs
-| Signal détecté | Points |
+### Authority (0–25 pts) — Access to Decision-Makers
+| Detected Signal | Points |
 |---|---|
-| Acheteur économique identifié (nom + titre confirmés) | +20 |
-| Organigramme C-suite / VP visible publiquement | +12 |
-| Structure plate (fondateur = décideur unique) | +15 |
-| Multiples couches d'approbation détectées | +5 |
+| Economic Buyer identified (verified name + title) | +20 |
+| C-suite / VP organizational structure publicly visible | +12 |
+| Flat structure (founder = sole primary decision-maker) | +15 |
+| Multiple complex approval layers detected | +5 |
 
-### Need (0–25 pts) — Intensité du besoin
-| Signal détecté | Points |
+### Need (0–25 pts) — Intensity of the Problem
+| Detected Signal | Points |
 |---|---|
-| Pain point explicite sur site ou blog (citation directe) | +20 |
-| Offre d'emploi résolvant le problème adressé | +15 |
-| Avis négatifs sur l'outil actuel (G2/Capterra) | +12 |
-| Contenu de blog sur les défis de notre catégorie | +10 |
-| Aucun signal de besoin détecté | 0 |
+| Explicit pain point on website or blog (direct quotation) | +20 |
+| Active job posting addressing the exact problem | +15 |
+| Negative reviews on incumbent vendor (G2 / Capterra) | +12 |
+| Published blog content discussing challenges in our category | +10 |
+| No identifiable need signal detected | 0 |
 
-### Timeline (0–25 pts) — Urgence et déclencheurs
-| Signal détecté | Points |
+### Timeline (0–25 pts) — Urgency & Trigger Events
+| Detected Signal | Points |
 |---|---|
-| Trigger event < 30 jours (funding, M&A, exec hire) | +20 |
-| Trigger event 30–90 jours | +12 |
-| Recrutement actif dans la catégorie | +15 |
-| Croissance rapide (> 30%/an confirmée) | +10 |
-| Aucun signal d'urgence | 0 |
+| Trigger event < 30 days (funding, M&A, executive hire) | +20 |
+| Trigger event 30–90 days | +12 |
+| Active hiring surge in category | +15 |
+| Confirmed fast growth (> 30%/year) | +10 |
+| No urgency signal detected | 0 |
 
-## MEDDIC — Complétude (0–100%)
+## MEDDIC Framework — Completeness (0–100%)
 
-| Élément | Critère "Trouvé" (confiance ≥ Moyenne) |
+| Dimension | "Identified" Criterion (Confidence ≥ Medium) |
 |---|---|
-| **M** etrics | KPIs métier avec valeurs cibles identifiés |
-| **E** conomic Buyer | Nom + titre de l'acheteur budgétaire confirmé |
-| **D** ecision Criteria | Facteurs d'évaluation mentionnés publiquement |
-| **D** ecision Process | Processus d'achat cartographié (même informel) |
-| **I** dentify Pain | Pain point spécifique et documenté par une source |
-| **C** hampion | Ambassadeur interne potentiel identifié (nom ou rôle) |
+| **M** etrics | Business KPIs with explicit target values identified |
+| **E** conomic Buyer | Name + title of primary budget holder confirmed |
+| **D** ecision Criteria | Evaluation criteria explicitly stated or standard |
+| **D** ecision Process | Buying evaluation process mapped (formal or informal) |
+| **I** dentify Pain | Specific operational pain point documented with source |
+| **C** hampion | Potential internal champion identified (name or role) |
 
-`Complétude MEDDIC (%) = (Éléments à confiance Moyenne+ / 6) × 100`
+$$\text{MEDDIC Completeness (\%)} = \left(\frac{\text{Dimensions with Medium+ Confidence}}{6}\right) \times 100$$
 
-## Formule Composite — Prospect Score
+## Composite Formula — Prospect Score
 
+```text
+Prospect Score = (BANT × 0.50) + (MEDDIC% × 0.30) + (Urgency × 0.20)
 ```
-Prospect Score = (BANT × 0,50) + (MEDDIC% × 0,30) + (Urgency × 0,20)
-```
 
-**Urgency Modifier (0–100) :**
+**Urgency Modifier (0–100):**
 | Situation | Score |
 |---|---|
-| Achat actif en cours ou trigger < 30 j | 80–100 |
-| Trigger < 90 j | 60–79 |
-| Tendance de croissance sans urgence immédiate | 40–59 |
-| Faible urgence | 20–39 |
-| Aucun signal | 0–19 |
+| Active procurement in progress or trigger event < 30 days | 80–100 |
+| Trigger event < 90 days | 60–79 |
+| Growth trend without immediate catalyst | 40–59 |
+| Low urgency | 20–39 |
+| No discernible urgency signal | 0–19 |
 
-## Grille de Notation
+## Tier Grading Grid
 
-| Score | Grade | Signification | Action |
+| Score | Grade | Classification | Action Directive |
 |---|---|---|---|
-| 75–100 | **A — SQL** | Sales Qualified Lead | Outreach immédiat, priorité max |
-| 50–74 | **B — MQL** | Marketing Qualified Lead | Séquence standard + découverte |
-| 25–49 | **C — IQL** | Interest Qualified Lead | Nurture, surveiller triggers |
-| 0–24 | **D** | Non qualifié | Déprioritiser |
+| 75–100 | **A — SQL** | Sales Qualified Lead | Immediate outreach, maximum priority |
+| 50–74 | **B — MQL** | Marketing Qualified Lead | Standard sequence + discovery focus |
+| 25–49 | **C — IQL** | Interest Qualified Lead | Nurture campaign, monitor future triggers |
+| 0–24 | **D** | Unqualified | Deprioritize / Archive |

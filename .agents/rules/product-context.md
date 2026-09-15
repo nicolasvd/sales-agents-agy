@@ -1,49 +1,49 @@
-# Règle : Contexte Produit Strict
+# Rule: Strict Product Context
 
 > [!IMPORTANT]
-> Cette règle est la source de vérité absolue. Zéro extrapolation sur les tarifs,
-> l'expertise et les limites d'intervention.
+> This rule is the absolute source of truth. Zero extrapolation regarding pricing, services, expertise, or delivery boundaries.
+> **Language Directive:** Internal reasoning operates in English. Pitch verbatims and outreach content adapt to the target prospect's primary language (e.g., French for French/Belgian companies).
 
-## Identification de l'Offre
+## Offering Identification
 
-**Nom commercial :** AI Agent Coaching & Workflow Modernization
-**Profil :** Coach & Stratège IA senior accompagnant les dirigeants, agences et PMEs dans la transformation de leurs opérations quotidiennes grâce aux agents autonomes et aux workflows automatisés.
-**Positionnement :** Passer des outils d'IA basiques (prompts ChatGPT isolés) à des flux de travail structurés, connectés et semi-autonomes qui font gagner des dizaines d'heures aux équipes.
+**Commercial Name:** AI Agent Coaching & Workflow Modernization  
+**Profile:** Senior AI Coach & Strategist guiding business leaders, agencies, and SMBs through daily operational transformation using autonomous agents and automated workflows.  
+**Positioning:** Upgrading from basic AI tooling (isolated ChatGPT prompts) to structured, connected, semi-autonomous workflows that save dozens of team hours weekly.
 
-## Proposition de Valeur (Verbatim)
+## Value Proposition (Verbatim)
 
-Nous aidons les agences, entreprises de services et équipes opérationnelles à concevoir et déployer des équipes d'agents IA sur-mesure pour automatiser leurs processus critiques (veille de marché, reporting client, préparation de livrables, orchestration de campagnes). Nous formons vos talents pour démultiplier leur productivité sans complexité technique superflue.
+We help agencies, professional service firms, and operational teams design and deploy custom AI agent teams to automate critical business processes (market intelligence, client reporting, deliverable preparation, campaign orchestration). We enable your talent to dramatically amplify productivity without superfluous technical complexity.
 
-## Grille Tarifaire Officielle (Base : TJM de 1 000 € HT)
+## Official Pricing Grid (Base Daily Rate: 1,000 € excl. VAT / TJM)
 
-| Formule | Format & Durée | Tarif (HT) | Inclusions |
+| Package | Format & Duration | Pricing (excl. VAT) | Inclusions |
 |---|:---:|:---:|---|
-| **Audit & Diagnostic d'Automatisation IA** | Forfait 2 jours | **2 000 €** | Cartographie des tâches répétitives à forte friction, identification des 3 meilleurs cas d'usage d'agents IA, feuille de route de déploiement et estimation du ROI. |
-| **Sprint d'Accélération & Déploiement** | Forfait 1 mois (6 jours d'intervention) | **6 000 €** | Conception et mise en production de 2 workflows agentiques concrets, ateliers de formation hands-on des équipes, documentation opérationnelle et transfert de compétences. |
-| **Advisory IA & Coaching Continu** | Récurrent mensuel (3 jours / mois) | **3 000 € / mois** | Accompagnement mensuel du leadership et des équipes : veille sur les nouveautés, optimisation continue des flux en place, levée des blocages et sessions de coaching régulières. |
+| **AI Automation Audit & Diagnostic** | 2-day fixed engagement | **2,000 €** | Friction-point mapping of repetitive tasks, identification of top 3 agentic use cases, deployment roadmap, and ROI estimation. |
+| **Acceleration & Deployment Sprint** | 1-month sprint (6 intervention days) | **6,000 €** | Architecture and production rollout of 2 concrete agentic workflows, hands-on team enablement workshops, operational runbooks, and skill transfer. |
+| **AI Advisory & Continuous Coaching** | Monthly retainer (3 days / month) | **3,000 € / month** | Ongoing monthly leadership and team advisory: technological watch, continuous workflow optimization, bottleneck resolution, and recurring coaching sessions. |
 
-## Piliers d'Intervention
+## Core Practice Pillars
 
-- **Workflows Opérationnels & Marketing :** Automatisation du reporting, analyse concurrentielle continue, synthèses de briefs, préparation d'assets et curation de contenus.
-- **Acculturation & Montée en Compétences :** Coaching pratique des équipes (non-techniques comme techniques) pour maîtriser les agents et automatismes sans dépendance externe.
-- **Sélection et Intégration d'Outils :** Choix des meilleures plateformes agentiques et connecteurs adaptés aux réalités métiers.
+- **Operational & Marketing Workflows:** Automated reporting, continuous competitive intelligence, brief synthesis, asset preparation, and content curation.
+- **Team Enablement & Acculturation:** Practical hands-on coaching for both non-technical and technical teams to master agentic systems without external dependency.
+- **Tool Selection & Integration:** Pragmatic selection of best-in-class agentic platforms and connectors tailored to business realities.
 
-## Périmètres STRICTEMENT Exclus
+## STRICTLY Excluded Scopes
 
-- Développement de code applicatif lourd sur-mesure ou refonte de sites web.
-- Entraînement de modèles de langage from scratch.
-- Prestations d'externalisation de saisie manuelle ou de téléprospection spammée.
+- Heavy custom monolithic software engineering or complete website redesigns.
+- Training foundation LLMs from scratch.
+- Manual data entry outsourcing or mass spam outbound cold calling.
 
-## Personas Cibles
+## Target Personas
 
-- **Acheteur Économique :** Co-CEO, Directeur Général, Managing Partner, Directeur des Opérations (COO) d'agences, cabinets de conseil ou PMEs de 15 à 150 collaborateurs.
-    * *Pain point :* Pression sur les marges, collaborateurs débordés par des tâches manuelles répétitives, volonté d'adopter l'IA sans savoir par quel processus commencer de façon rentable.
-- **Champion Interne :** Head of Delivery, Responsable Marketing, Lead Project Manager en quête de leviers d'efficacité pour ses équipes.
+- **Economic Buyer:** Co-CEO, Managing Director, Managing Partner, Chief Operating Officer (COO) of agencies, consulting firms, or SMBs (15 to 150 employees).
+  * *Pain point:* Margin compression, teams overwhelmed by repetitive manual tasks, desire to adopt AI without knowing how to start profitably.
+- **Internal Champion:** Head of Delivery, Marketing Lead, Operations / Project Director seeking concrete efficiency levers for their teams.
 
-## Différenciateurs Clés
+## Key Differentiators
 
-| Concurrence | Notre Positionnement |
+| Alternative / Competitor | Our Positioning |
 |---|---|
-| **Formateurs théoriques / Conférenciers** | Accompagnement orienté delivery terrain : on branche de vrais flux de travail en production. |
-| **Intégrateurs purement No-Code** | Vision stratégique globale combinant compréhension métier approfondie et solidité de conception. |
-| **Recrutements internes dédiés** | Impact opérationnel sous 30 jours sans coût fixe récurrent lourd. |
+| **Theoretical Trainers / Keynote Speakers** | Hands-on delivery orientation: we connect real production workflows directly to your stack. |
+| **Pure No-Code Integrators** | Strategic enterprise vision combining deep business acumen and architectural robustness. |
+| **Dedicated Internal Hires** | Immediate operational impact within 30 days without heavy recurring fixed overhead. |
