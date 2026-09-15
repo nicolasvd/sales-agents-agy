@@ -1,11 +1,6 @@
-# Generated reports (outputs created in reports/)
-reports/*/*.md
-reports/*/*.html
-reports/*/*/*.md
-reports/*/*/*.html
-reports/*.md
+# Generated reports & prospect audits (100% local, never committed)
+reports/*
 !reports/.gitkeep
-!reports/index.html
 
 # IDE & OS
 .DS_Store
@@ -14,5 +9,6 @@ reports/*.md
 .vscode/
 .idea/
 
-# Antigravity Scratchpad — données inter-agents temporaires
-.agents/.scratchpad/*.json
+# Ephemeral scratchpad data
+.agents/.scratchpad/*
+!.agents/.scratchpad/README.md
