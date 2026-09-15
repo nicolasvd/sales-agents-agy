@@ -4,45 +4,66 @@ description: >-
   Competitive intelligence and battle card generator. Identifies direct/indirect competitors, compares features, pricing, and positioning, and creates competitive battle cards in COMPETITIVE-INTEL.md.
 ---
 
+# Skill: sales-competitors
 
-# Skill : sales-competitors
+**Role:** Analyze the prospect's incumbent technology stack, map competitive presence, and produce actionable battle cards.  
+**Mandatory Rules:** `fact-checking.md` (mandatory), `product-context.md`, `output-formatting.md`.  
+**Deliverables:** `reports/{slug}/COMPETITIVE-INTEL.html` and `reports/{slug}/markdown/COMPETITIVE-INTEL.md`.
 
-**Rôle :** Analyser le paysage concurrentiel d'un prospect et générer des battle cards.
-**Règles requises :** `fact-checking.md`, `output-formatting.md`.
-**Output :** `COMPETITIVE-INTEL.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal technology detection, competitive gap analysis, and notes operate in English. Deliverable content automatically adapts to the primary language of the prospect.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `competitors <url>`. Lire :
-- `COMPANY-RESEARCH.md` · `PROSPECT-ANALYSIS.md` si disponibles
-- `IDEAL-CUSTOMER-PROFILE.md` (technographic profile)
+Invoked via `competitors <url>`. If available, inspect:
+- `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/PROSPECT-ANALYSIS.html`
+- `reports/IDEAL-CUSTOMER-PROFILE.html` (technographic profile & baseline tools)
+- `.agents/rules/product-context.md` (authorized competitive positioning & differentiators)
 
-## Workflow (5 étapes)
+## Workflow (5 Sequential Steps)
 
-1. **Détection des outils actuels** — `read_url_content` : `/integrations`, `/partners`.
-   `search_web` : `"[NOM]" site:stackshare.io`, `"[NOM]" uses OR "built with"`.
+1. **Current Tooling Detection:**
+   - Execute `read_url_content` across integration and partner directories: `/integrations`, `/partners`, `/ecosystem`.
+   - Query `search_web` for stack disclosures: `"[Company Name]" site:stackshare.io`, `"[Company Name]" uses OR "built with"`.
 
-2. **Catégorisation** — Classer chaque outil :
-   - Concurrent direct (même catégorie que notre produit)
-   - Concurrent indirect (résout le même problème différemment)
-   - Outil complémentaire (peut intégrer avec notre produit)
-   - Outil à déplacer (notre produit le remplace)
+2. **Competitive Categorization:**
+   - Categorize detected tools into 4 distinct groups:
+     - **Direct Competitor:** Alternative operating in our exact category.
+     - **Indirect Competitor:** Alternative solving the same business friction with a different paradigm.
+     - **Complementary Tool:** Software that cleanly integrates with our solution.
+     - **Displaceable Legacy Tool:** Tool that our solution directly replaces or consolidates.
 
-3. **Battle cards** — Une card par concurrent direct (max 4) :
-   Notre force · Leur force · Nos angles d'attaque · Leurs angles d'attaque · Script de différenciation.
-   Template détaillé : `view_file(".agents/skills/sales-competitors/references/battle-card-template.md")`
+3. **Battle Card Formulation:**
+   - Build a tactical battle card for each identified direct competitor (maximum 4 rivals):
+     - Our key strengths vs. Their key strengths
+     - Our prioritized attack angles vs. Their likely counter-attacks
+     - Objection reframing scripts and differentiation talk tracks
+   - Reference template: `view_file(".agents/skills/sales-competitors/references/battle-card-template.md")`.
 
-4. **Analyse des gaps** — Identifier les fonctionnalités manquantes dans l'outil actuel
-   que notre produit adresse (basé sur `product-context.md` et les reviews G2/Capterra).
+4. **Capability Gap Analysis:**
+   - Map functional shortcomings in the prospect's incumbent stack that our offering addresses, verified via public user reviews (G2, Capterra) or job posting requirements.
 
-5. **Évaluation du switching cost** — Faible / Moyen / Élevé selon l'ancienneté et les intégrations.
+5. **Switching Cost Evaluation:**
+   - Determine switching friction (Low / Medium / High) based on integration depth, historical tenure, and operational lock-in.
 
-## Contraintes
+## Strict Guardrails
 
-- ❌ Ne jamais dénigrer un concurrent nommément sans données sourcées.
-- Chaque gap identifié = review ou job posting source entre parenthèses.
+- ❌ Never disparage a competitor without cited, public factual proof.
+- ❌ Zero unverified product claims: capabilities and differentiators must strictly originate from `product-context.md`.
+- Every identified product gap must reference a verifiable public review or job spec in parentheses.
 
-## Output
+## Mandatory Dual Output
 
-Créer `COMPETITIVE-INTEL.md` selon le template :
-`view_file(".agents/skills/sales-competitors/references/output-template.md")`
+Save both deliverables simultaneously within `reports/{slug}/`:
+1. **Web HTML (Humans):** `reports/{slug}/COMPETITIVE-INTEL.html` using `view_file(".agents/rules/references/report-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPETITIVE-INTEL.md` using `view_file(".agents/skills/sales-competitors/references/output-template.md")`.
+
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [COMPETITIVE-INTEL.html](reports/{slug}/COMPETITIVE-INTEL.html)
+- 📄 **Raw Machine Data (AI):** [COMPETITIVE-INTEL.md](reports/{slug}/markdown/COMPETITIVE-INTEL.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

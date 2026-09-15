@@ -4,46 +4,59 @@ description: >-
   Follow-up sequence generator for engaged leads, stalled deals, or no-response situations across email, LinkedIn, and phone, saving FOLLOWUP-SEQUENCE.md.
 ---
 
+# Skill: sales-followup
 
-# Skill : sales-followup
+**Role:** Generate adaptive multi-touch follow-up cadences across email, LinkedIn, and phone for stalled deals, unanswered outreach, or engaged leads.  
+**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Deliverables:** `reports/{slug}/FOLLOWUP-SEQUENCE.html` and `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md`.
 
-**Rôle :** Générer une séquence de relance pour leads engagés, deals stagnants ou sans réponse.
-**Règles requises :** `product-context.md`, `output-formatting.md`.
-**Output :** `FOLLOWUP-SEQUENCE.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal scenario selection and follow-up strategy operate in English. Drafted messages automatically adapt to the primary language of the prospect.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `followup <nom_prospect>`. Lire :
-- `OUTREACH-SEQUENCE.md` (séquence initiale envoyée)
-- `DECISION-MAKERS.md` (contacts relancés)
+Invoked via `followup <prospect_name>`. Inspect available workspace context:
+- `reports/{slug}/OUTREACH-SEQUENCE.html` or `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` (initial sequence history)
+- `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md` (contact coordinates)
 
-## Workflow (4 étapes)
+## Workflow (4 Sequential Steps)
 
-1. **Collecte du contexte de relance** — Lire les rapports disponibles. Identifier :
-   - Nombre de tentatives déjà faites
-   - Dernier point de contact (date, canal, contenu)
-   - Signal de réponse (ouverture, clic, réponse partielle, silence complet)
+1. **Engagement History Audit:**
+   - Review prior touchpoints: count of touches, last channel used, time elapsed.
+   - Detect response signals: silence, email opens/clicks, partial interest, or stalling.
 
-2. **Sélection du scénario** — 4 scénarios selon la situation :
-   - **Scénario A** : Pas de réponse (série "breakup" en 3 touches)
-   - **Scénario B** : Intérêt exprimé mais deal stagnant (nurture + urgence)
-   - **Scénario C** : Objection soulevée (relance ciblée post-objection)
-   - **Scénario D** : Champion identifié, budget non confirmé (multi-threading)
-   Bibliothèque complète de scénarios + scripts :
-   `view_file(".agents/skills/sales-followup/references/scenario-library.md")`
+2. **Tactical Scenario Selection:**
+   - Select 1 of 4 specialized follow-up frameworks:
+     - **Scenario A (No-Response Breakup):** 3 progressive touches leading to a polite, high-status breakup note.
+     - **Scenario B (Stalled Deal Re-Ignition):** Value-add nurture injecting new urgency or market insights.
+     - **Scenario C (Post-Objection Reframe):** Targeted follow-up addressing specific reservations raised.
+     - **Scenario D (Internal Champion Multi-Threading):** Expanding lateral buy-in across technical and operational peers.
+   - Script library reference: `view_file(".agents/skills/sales-followup/references/scenario-library.md")`.
 
-3. **Personnalisation** — Chaque relance = nouveau déclencheur ou nouvel angle.
-   Jamais le même message reformulé.
+3. **Incremental Value Personalization:**
+   - Every single follow-up must deliver fresh value: a relevant industry article, newly released trigger event, or specific operational tip. Never send "just checking in" messages.
 
-4. **Séquence multi-canal** — Alterner email, LinkedIn DM, téléphone si données disponibles.
+4. **Omnichannel Orchestration:**
+   - Alternate intelligently between Email, LinkedIn message, and phone touch scripts based on available contact channels.
 
-## Contraintes
+## Strict Guardrails
 
-- Maximum 3 relances sans réponse avant le "breakup email".
-- CTA = question ouverte. Jamais de demande de réunion dès le premier message.
-- ❌ Aucun contact sortant réel — brouillons uniquement.
+- Maximum 3 follow-up attempts without response before triggering the final breakup email.
+- Every CTA must be a low-friction open discovery question — never demand a call on early follow-ups.
+- ❌ Absolute passivity: all messages are drafts for human review. Never send external communications.
 
-## Output
+## Mandatory Dual Output
 
-Créer `FOLLOWUP-SEQUENCE.md` selon le template :
-`view_file(".agents/skills/sales-followup/references/output-template.md")`
+Save both deliverables simultaneously within `reports/{slug}/`:
+1. **Web HTML (Humans):** `reports/{slug}/FOLLOWUP-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md` using `view_file(".agents/skills/sales-followup/references/output-template.md")`.
+
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [FOLLOWUP-SEQUENCE.html](reports/{slug}/FOLLOWUP-SEQUENCE.html)
+- 📄 **Raw Machine Data (AI):** [FOLLOWUP-SEQUENCE.md](reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

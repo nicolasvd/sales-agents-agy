@@ -4,47 +4,59 @@ description: >-
   Sales pipeline reporting agent. Aggregates all prospect audits, qualifications, and research files in the workspace into a consolidated executive pipeline report in SALES-REPORT.md.
 ---
 
+# Skill: sales-report
 
-# Skill : sales-report
+**Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
+**Mandatory Rules:** `scoring.md` (mandatory), `output-formatting.md`.  
+**Deliverables:** `reports/PIPELINE-SUMMARY.html`, `reports/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
 
-**Rôle :** Générer un rapport pipeline agrégé depuis tous les rapports du workspace.
-**Règles requises :** `scoring.md`, `output-formatting.md`.
-**Output :** `SALES-REPORT.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal aggregation, mathematical rollups, and logs operate in English. Deliverable executive summaries and notes adapt to the user's primary operating language.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `report` (sans argument). Ce skill agrège tous les fichiers
-de rapports existants dans le workspace.
+Invoked via `report` (standalone, without arguments). Aggregates all prospect directories and audit files generated across the entire workspace.
 
-## Workflow (3 étapes)
+## Workflow (3 Sequential Steps)
 
-1. **Inventaire des rapports** — Scanner le workspace pour tous les fichiers :
-   `LEAD-QUALIFICATION.md`, `PROSPECT-ANALYSIS.md`, `COMPANY-RESEARCH.md`
-   et tout autre rapport généré par les skills précédents.
+1. **Workspace Audit Discovery & Inventory:**
+   - Recursively inspect the `reports/` directory to discover all prospect subdirectories (`reports/{slug}/`) and root reports (`IDEAL-CUSTOMER-PROFILE.*`, `OBJECTION-PLAYBOOK.*`).
+   - For each prospect directory, inspect available deliverables:
+     `PROSPECT-ANALYSIS.*`, `LEAD-QUALIFICATION.*`, `COMPANY-RESEARCH.*`, `DECISION-MAKERS.*`, `OUTREACH-SEQUENCE.*`, `MEETING-PREP.*`, `CLIENT-PROPOSAL.*`, `COMPETITIVE-INTEL.*`.
 
-2. **Extraction des métriques clés** — Pour chaque prospect :
-   - Prospect Score / BANT total / Grade (A/B/C/D)
-   - Signaux déclencheurs identifiés
-   - Statut outreach (si `OUTREACH-SEQUENCE.md` disponible)
-   - Prochaine action recommandée
+2. **Metric Extraction & Pipeline Rollup:**
+   - Extract key data per audited company:
+     - Composite Prospect Score, BANT Total (/100), MEDDIC Completeness (%), Assigned Grade (A/B/C/D).
+     - Top identified trigger events and primary buying committee contacts.
+     - Sequence readiness score and recommended immediate next step.
+   - Calculate aggregate metrics: Total audited accounts, average qualification score, grade distribution breakdown, and priority deal ranking.
 
-3. **Rapport pipeline consolidé** — Structure imposée :
-   - Résumé exécutif (total prospects, score moyen, répartition des grades)
-   - Dashboard pipeline (tableau : prospect, score, grade, signal fort, action)
-   - Distribution des scores (histogram textuel A/B/C/D)
-   - Top 3 prospects prioritaires (avec justification)
-   - Actions immédiates (cette semaine)
-   - Statut outreach global
-   - Santé du pipeline (ratios, tendances)
-   - Focus de la semaine (recommandation priorisée)
-   Template complet : `view_file(".agents/skills/sales-report/references/output-template.md")`
+3. **Dual Reporting & Master Portal Maintenance:**
+   - **Executive Pipeline Deliverable:** Generate `reports/PIPELINE-SUMMARY.html` and `reports/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
+   - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
+     - Company Name, Slug, and Grade Badge (A/B/C/D).
+     - Direct links to every generated HTML deliverable.
+     - Direct link to the raw machine data folder (`reports/{slug}/markdown/`).
+     - Client-side search and filtering compatibility (`filterCards()`).
 
-## Contraintes
+## Strict Guardrails
 
-- Ne jamais inventer un score ou une métrique non présents dans les rapports sources.
-- Si aucun rapport disponible → créer un `SALES-REPORT.md` avec section "Pipeline vide".
-- Rapport = snapshot à date. Mentionner la date de génération.
+- Never invent or estimate metrics, scores, or company names absent from source audit files.
+- If no prospect audits exist in `reports/`, generate a clean `PIPELINE-SUMMARY` flagging an empty pipeline.
+- Every report is an immutable snapshot timestamped with generation date and UTC time.
 
-## Output
+## Mandatory Dual Output
 
-Créer (ou écraser) `SALES-REPORT.md` selon le template de référence.
+Save all deliverables simultaneously within `reports/`:
+1. **Web HTML (Humans):** `reports/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
+2. **Raw Markdown (AI Memory):** `reports/markdown/PIPELINE-SUMMARY.md`.
+
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [PIPELINE-SUMMARY.html](reports/PIPELINE-SUMMARY.html)
+- 📄 **Raw Machine Data (AI):** [PIPELINE-SUMMARY.md](reports/markdown/PIPELINE-SUMMARY.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

@@ -4,51 +4,65 @@ description: >-
   In-depth company research and firmographics analysis. Evaluates business models, team size, financial signals, technology stack, and recent news, saving COMPANY-RESEARCH.md.
 ---
 
+# Skill: sales-research
 
-# Skill : sales-research
+**Role:** In-depth firmographic and growth signal analysis of target B2B accounts across 8 standardized dimensions.  
+**Mandatory Rules:** `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Deliverables:** `reports/{slug}/COMPANY-RESEARCH.html` and `reports/{slug}/markdown/COMPANY-RESEARCH.md`.
 
-**Rôle :** Analyse firmographique approfondie d'un prospect B2B sur 8 dimensions.
-**Règles requises :** `fact-checking.md`, `scoring.md`, `output-formatting.md`.
-**Output :** `COMPANY-RESEARCH.md`
+> [!IMPORTANT]
+> **Language Governance:** Internal reasoning, web queries, and analytical notes operate in English. The final deliverable automatically adapts to the primary language of the audited prospect.
 
-## Déclenchement
+## Trigger
 
-Invoqué par la commande `research <url>`.
-Lire si disponible : `IDEAL-CUSTOMER-PROFILE.md`
+Invoked via `research <url>`. If available, inspect:
+- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — to evaluate fit thresholds.
 
-## Workflow (4 étapes)
+## Workflow (4 Sequential Steps)
 
-1. **Analyse du site officiel** — `read_url_content` sur 7 pages cibles :
-   `/` → `/about` → `/pricing` → `/careers` → `/blog` → `/integrations` → `/customers`
+1. **Official Web Intelligence Gathering:**
+   - Run `read_url_content` across 7 target pages: `/` → `/about` → `/pricing` → `/careers` → `/blog` → `/integrations` → `/customers`.
 
-2. **Recherche externe** — 5 requêtes `search_web` systématiques (cf. `fact-checking.md`) :
-   - Funding & revenue
-   - Effectifs & recrutement
-   - News < 12 mois
-   - Reviews G2/Capterra
-   - Alternatives & concurrents
+2. **Multi-Source External Research:**
+   - Execute 5 systematic `search_web` queries per `fact-checking.md`:
+     - Funding, valuation, and verified revenue statements
+     - Headcount trajectory and active hiring roles
+     - Press releases and business updates (< 12 months)
+     - Customer reviews on G2 / Capterra / Trustpilot
+     - Core alternatives and named competitors
 
-3. **Analyse sur 8 dimensions** — Pour chaque dimension, collecter les signaux et les sourcer :
-   1. Vue d'ensemble (secteur, modèle, positionnement)
-   2. Business model et revenus
-   3. Produit et technologie
-   4. Leadership et équipe
-   5. Financement et santé financière
-   6. Position marché
-   7. Culture et employer brand
-   8. Développements récents
-   Protocole détaillé par dimension :
-   `view_file(".agents/skills/sales-research/references/research-dimensions.md")`
+3. **8-Dimensional Firmographic Synthesis:**
+   1. *Company Overview:* Sector, founded year, HQ location, core mission.
+   2. *Business Model & Monetization:* Pricing model, customer segments, ACV signals.
+   3. *Product Architecture & Tech:* Core software stack, delivery model, integration maturity.
+   4. *Leadership & Organization:* Founders, key executive tenure, team structure.
+   5. *Funding & Financial Health:* Capital raised, lead investors, growth trajectory.
+   6. *Market Position & Competitors:* Direct rival landscape, differentiators.
+   7. *Culture & Employer Brand:* Hiring velocity, engineering culture, employee sentiment.
+   8. *Recent Developments:* New product launches, executive hires, corporate expansions.
+   Specification reference: `view_file(".agents/skills/sales-research/references/research-dimensions.md")`.
 
-4. **Synthèse et Company Fit Score** — Appliquer le barème Budget de `scoring.md`.
+4. **Synthesis & Company Fit Score:**
+   - Mechanically derive the Company Fit Score (0–25) using the Budget scorecard in `scoring.md`.
 
-## Contraintes
+## Strict Guardrails
 
-- Chaque donnée = source entre parenthèses (Confirmé / Estimé / Non disponible).
-- Données > 18 mois = étiquetées "historique".
-- Ne jamais inférer un chiffre d'affaires non cité explicitement.
+- Every documented data point must cite its verified source in parentheses (Confirmed / Estimated / Not publicly available).
+- Data older than 18 months must be explicitly flagged as `[Historical]`.
+- Never guess or extrapolate unstated financial figures. Unverifiable revenue = `Not publicly available`.
 
-## Output
+## Mandatory Dual Output
 
-Créer `COMPANY-RESEARCH.md` selon le template :
-`view_file(".agents/skills/sales-research/references/output-template.md")`
+Save both deliverables simultaneously within `reports/{slug}/`:
+1. **Web HTML (Humans):** `reports/{slug}/COMPANY-RESEARCH.html` using `view_file(".agents/rules/references/report-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPANY-RESEARCH.md` using `view_file(".agents/skills/sales-research/references/output-template.md")`.
+
+Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
+
+```markdown
+---
+### 📁 Generated Deliverables
+- 🌐 **Web / Print Version (Humans):** [COMPANY-RESEARCH.html](reports/{slug}/COMPANY-RESEARCH.html)
+- 📄 **Raw Machine Data (AI):** [COMPANY-RESEARCH.md](reports/{slug}/markdown/COMPANY-RESEARCH.md)
+- 📑 **Global Reports Portal:** [index.html](reports/index.html)
+```

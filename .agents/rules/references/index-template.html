@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{LANG}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portail des Rapports & Audits B2B — AI Sales Team</title>
+  <title>{{PAGE_TITLE}}</title>
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
@@ -46,6 +46,7 @@
     .grade-pill { display: inline-flex; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
     .grade-a { background: var(--success-bg); color: var(--success); border: 1px solid #a7f3d0; }
     .grade-b { background: var(--warning-bg); color: var(--warning); border: 1px solid #fde68a; }
+    .grade-c { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
 
     /* Deliverables list */
     .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
@@ -68,16 +69,16 @@
   <div class="container">
     <header class="header">
       <div class="header-info">
-        <h1>Portail d'Intelligence Commerciale B2B</h1>
-        <p>Index unifié des analyses de prospects, comités d'achat et séquences d'outreach</p>
+        <h1>{{HEADER_TITLE}}</h1>
+        <p>{{HEADER_SUBTITLE}}</p>
       </div>
       <div>
-        <span class="badge-hub">100% Déclaratif &bull; Gemini 3</span>
+        <span class="badge-hub">{{BADGE_TEXT}}</span>
       </div>
     </header>
 
     <div class="filter-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="Filtrer un prospect ou une entreprise..." onkeyup="filterCards()">
+      <input type="text" id="searchInput" class="search-input" placeholder="{{SEARCH_PLACEHOLDER}}" onkeyup="filterCards()">
     </div>
 
     <main class="company-grid" id="companyGrid">
