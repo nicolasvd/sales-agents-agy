@@ -8,7 +8,7 @@ description: >-
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
 **Mandatory Rules:** `scoring.md` (mandatory), `output-formatting.md`.  
-**Deliverables:** `reports/PIPELINE-SUMMARY.html`, `reports/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
+**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal aggregation, mathematical rollups, and logs operate in English. Deliverable executive summaries and notes adapt to the user's primary operating language.
@@ -32,7 +32,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
    - Calculate aggregate metrics: Total audited accounts, average qualification score, grade distribution breakdown, and priority deal ranking.
 
 3. **Dual Reporting & Master Portal Maintenance:**
-   - **Executive Pipeline Deliverable:** Generate `reports/PIPELINE-SUMMARY.html` and `reports/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
+   - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
    - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
      - Company Name, Slug, and Grade Badge (A/B/C/D).
      - Direct links to every generated HTML deliverable.
@@ -48,15 +48,15 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 ## Mandatory Dual Output
 
 Save all deliverables simultaneously within `reports/`:
-1. **Web HTML (Humans):** `reports/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
-2. **Raw Markdown (AI Memory):** `reports/markdown/PIPELINE-SUMMARY.md`.
+1. **Web HTML (Humans):** `reports/pipeline/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
+2. **Raw Markdown (AI Memory):** `reports/pipeline/markdown/PIPELINE-SUMMARY.md`.
 
 Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory 3-link completion block:
 
 ```markdown
 ---
 ### 📁 Generated Deliverables
-- 🌐 **Web / Print Version (Humans):** [PIPELINE-SUMMARY.html](reports/PIPELINE-SUMMARY.html)
-- 📄 **Raw Machine Data (AI):** [PIPELINE-SUMMARY.md](reports/markdown/PIPELINE-SUMMARY.md)
+- 🌐 **Web / Print Version (Humans):** [PIPELINE-SUMMARY.html](reports/pipeline/PIPELINE-SUMMARY.html)
+- 📄 **Raw Machine Data (AI):** [PIPELINE-SUMMARY.md](reports/pipeline/markdown/PIPELINE-SUMMARY.md)
 - 📑 **Global Reports Portal:** [index.html](reports/index.html)
 ```
