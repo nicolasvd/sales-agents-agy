@@ -58,18 +58,18 @@ directement depuis le chat.
 
 ## Index des Commandes
 
-| Commande | Skill | Output |
+| Commande | Skill | Output (HTML Humains + MD IA) |
 |---|---|---|
-| `qualify <url>` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.md` |
-| `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.md` |
-| `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.md` |
-| `prospect <url>` | `sales-prospect` + 5 sous-agents | `reports/{slug}/PROSPECT-ANALYSIS.md` |
-| `outreach <prospect>` | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.md` |
-| `followup <prospect>` | `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE.md` |
-| `prep <url>` | `sales-prep` | `reports/{slug}/MEETING-PREP.md` |
-| `proposal <client>` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.md` |
-| `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.md` |
-| `icp <description>` | `sales-icp` | `reports/IDEAL-CUSTOMER-PROFILE.md` |
-| `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.md` |
-| `report` | `sales-report` | `reports/PIPELINE-SUMMARY.md` |
+| `qualify <url>` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` (+ `markdown/`) |
+| `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` (+ `markdown/`) |
+| `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` (+ `markdown/`) |
+| `prospect <url>` | `sales-prospect` + 5 sous-agents | `reports/{slug}/PROSPECT-ANALYSIS.html` (+ `markdown/`) |
+| `outreach <prospect>` | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` (+ `markdown/`) |
+| `followup <prospect>` | `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE.html` (+ `markdown/`) |
+| `prep <url>` | `sales-prep` | `reports/{slug}/MEETING-PREP.html` (+ `markdown/`) |
+| `proposal <client>` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
+| `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
+| `icp <description>` | `sales-icp` | `reports/IDEAL-CUSTOMER-PROFILE.html` (+ `markdown/`) |
+| `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
 

@@ -149,28 +149,28 @@ Ce pattern prévient la saturation du contexte mémoire (*attention dilution*) t
 
 ---
 
-## 📁 Stockage des Livrables & Double Rendu (MD + HTML)
+## 📁 Stockage des Livrables : HTML pour Humains & Markdown pour IA
 
-Chaque analyse produit systématiquement **deux formats de livrables** sous le dossier `reports/` :
-1. **Markdown (`.md`) :** Format texte brut pour lecture console, versioning Git et recherche plein texte.
-2. **HTML autonome (`.html`) :** Rendu visuel soigné avec cartes, jauges de scores en SVG inline et mise en page optimisée pour l'impression A4 / export PDF.
+Chaque analyse produit deux formats avec une séparation claire des usages :
+1. **Version Visuelle (Pour les Humains) :** Fichiers `.html` enregistrés directement sous `reports/{slug}/`. Rendu visuel soigné avec cartes, jauges SVG inline, tags et mise en page optimisée pour l'impression A4 / export PDF.
+2. **Version Données Brutes (Pour les IA) :** Fichiers `.md` rangés dans le sous-dossier `reports/{slug}/markdown/` pour faciliter leur réutilisation directe par des modèles ou agents ultérieurs.
+3. **Portail Centralisé :** `reports/index.html` lie et référence l'intégralité des rapports générés dans une interface unifiée.
 
 ```text
 reports/
 ├── .gitkeep
-├── PIPELINE-SUMMARY.md / .html         ← Rapport consolidé multi-prospects
-├── IDEAL-CUSTOMER-PROFILE.md / .html   ← Livrable stratégique d'ICP
-├── OBJECTION-PLAYBOOK.md / .html       ← Playbook général de vente
-└── {slug}/                             ← Dossier dédié par entreprise analysée
-    ├── PROSPECT-ANALYSIS.md & .html
-    ├── LEAD-QUALIFICATION.md & .html
-    ├── COMPANY-RESEARCH.md & .html
-    ├── DECISION-MAKERS.md & .html
-    ├── OUTREACH-SEQUENCE.md & .html
-    ├── FOLLOWUP-SEQUENCE.md & .html
-    ├── MEETING-PREP.md & .html
-    ├── CLIENT-PROPOSAL.md & .html
-    └── COMPETITIVE-INTEL.md & .html
+├── index.html                                   ← Portail interactif global (Dashboard)
+├── PIPELINE-SUMMARY.html                        ← Rapport pipeline global (Web)
+├── markdown/
+│   └── PIPELINE-SUMMARY.md                      ← Rapport pipeline global (IA)
+└── {slug}/                                      ← Dossier dédié par entreprise analysée
+    ├── PROSPECT-ANALYSIS.html                   ← Audit visuel (Humains)
+    ├── OUTREACH-SEQUENCE.html                   ← Séquence visuelle (Humains)
+    ├── MEETING-PREP.html                        ← Brief réunion visuel (Humains)
+    └── markdown/                                ← Données brutes réutilisables (IA)
+        ├── PROSPECT-ANALYSIS.md
+        ├── OUTREACH-SEQUENCE.md
+        └── MEETING-PREP.md
 ```
 
 ---

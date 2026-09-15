@@ -1,9 +1,11 @@
-# Generated reports (outputs created in reports/{slug}/)
+# Generated reports (outputs created in reports/)
 reports/*/*.md
 reports/*/*.html
+reports/*/*/*.md
+reports/*/*/*.html
 reports/*.md
-reports/*.html
 !reports/.gitkeep
+!reports/index.html
 
 # IDE & OS
 .DS_Store

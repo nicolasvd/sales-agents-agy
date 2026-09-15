@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail des Rapports & Audits B2B — AI Sales Team</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    /* Header */
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .header-info h1 { font-size: 1.75rem; font-weight: 800; color: var(--text); letter-spacing: -0.025em; }
+    .header-info p { color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.35rem; }
+    .badge-hub { background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; }
+
+    /* Search & Filter */
+    .filter-bar { margin-bottom: 1.5rem; display: flex; gap: 1rem; }
+    .search-input { flex: 1; padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9375rem; background: var(--surface); outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--primary); }
+
+    /* Grid of Companies */
+    .company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .company-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .company-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
+
+    .company-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .company-title { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .grade-pill { display: inline-flex; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .grade-a { background: var(--success-bg); color: var(--success); border: 1px solid #a7f3d0; }
+    .grade-b { background: var(--warning-bg); color: var(--warning); border: 1px solid #fde68a; }
+
+    /* Deliverables list */
+    .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .doc-link { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; border-radius: 8px; background: #f8fafc; border: 1px solid #f1f5f9; text-decoration: none; color: var(--text); font-size: 0.875rem; font-weight: 600; transition: background 0.15s, border-color 0.15s; }
+    .doc-link:hover { background: var(--primary-light); border-color: #bfdbfe; color: var(--primary); }
+    .doc-icon { font-size: 1.1rem; margin-right: 0.5rem; }
+
+    .ai-folder-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; padding-top: 0.5rem; border-top: 1px dashed var(--border); }
+    .ai-folder-link:hover { color: var(--primary); }
+
+    /* Print */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .header, .company-card { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
+      .filter-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-info">
+        <h1>Portail d'Intelligence Commerciale B2B</h1>
+        <p>Index unifié des analyses de prospects, comités d'achat et séquences d'outreach</p>
+      </div>
+      <div>
+        <span class="badge-hub">100% Déclaratif &bull; Gemini 3</span>
+      </div>
+    </header>
+
+    <div class="filter-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="Filtrer un prospect ou une entreprise..." onkeyup="filterCards()">
+    </div>
+
+    <main class="company-grid" id="companyGrid">
+      {{COMPANIES_CARDS_HTML}}
+    </main>
+  </div>
+
+  <script>
+    function filterCards() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.company-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
