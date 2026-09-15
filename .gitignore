@@ -1,0 +1,14 @@
+# Generated reports (outputs created in reports/{slug}/)
+reports/*/*.md
+reports/*.md
+!reports/.gitkeep
+
+# IDE & OS
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Antigravity Scratchpad — données inter-agents temporaires
+.agents/.scratchpad/*.json
