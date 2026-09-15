@@ -16,3 +16,9 @@ reports/*.md
 
 # Antigravity Scratchpad — données inter-agents temporaires
 .agents/.scratchpad/*.json
+
+# Secrets & Environment variables
+.env
+.env.*
+*.env
+
