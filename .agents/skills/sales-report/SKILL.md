@@ -7,6 +7,7 @@ description: >-
 # Skill: sales-report
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
+**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:**
 - **Primary:** `reports/pipeline/PIPELINE-SUMMARY.html` & `reports/pipeline/markdown/PIPELINE-SUMMARY.md`
 - **Master Hub:** `reports/index.html` (auto-synced with `reports/my-company/company-dna.html` & `reports/pipeline/RADAR-DISCOVERY.html`)
