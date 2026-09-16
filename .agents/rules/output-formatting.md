@@ -46,6 +46,7 @@ For each prospect analysis, two distinct deliverables are created under `reports
 | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` | `reports/{slug}/markdown/DECISION-MAKERS.md` | `report-template.html` |
 | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
 | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
+| `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` | `reports/pipeline/markdown/RADAR-DISCOVERY.md` | `radar-template.html` |
 
 ## Completion Block Standard (Browser First)
 

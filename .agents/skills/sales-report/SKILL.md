@@ -8,7 +8,7 @@ description: >-
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
 **Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
-**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, master portal `reports/index.html`, and synced `reports/my-company/company-dna.html`.
+**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, master portal `reports/index.html`, synced `reports/my-company/company-dna.html`, and synced `reports/pipeline/RADAR-DISCOVERY.html`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal aggregation, mathematical rollups, and logs operate in English. Deliverable executive summaries and notes adapt to the user's primary operating language.
@@ -22,6 +22,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 
 1. **Workspace Audit Discovery & Inventory:**
    - Recursively inspect the `reports/` directory to discover all prospect subdirectories (`reports/{slug}/`) and root reports (`IDEAL-CUSTOMER-PROFILE.*`, `OBJECTION-PLAYBOOK.*`).
+   - Check pipeline-level intelligence files (`reports/pipeline/RADAR-DISCOVERY.html`, `reports/pipeline/markdown/RADAR-DISCOVERY.md`).
    - For each prospect directory, inspect available deliverables:
      `PROSPECT-ANALYSIS.*`, `LEAD-QUALIFICATION.*`, `COMPANY-RESEARCH.*`, `DECISION-MAKERS.*`, `OUTREACH-SEQUENCE.*`, `MEETING-PREP.*`, `CLIENT-PROPOSAL.*`, `COMPETITIVE-INTEL.*`.
 
@@ -34,7 +35,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 
 3. **Dual Reporting & Master Portal Maintenance:**
    - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
-   - **Company DNA Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")` to maintain full synchronization with current `.agents/rules/product-context.md` and `.agents/rules/customer-context.md`.
+   - **Company DNA & Opportunity Radar Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")` and ensure `reports/pipeline/RADAR-DISCOVERY.html` is linked and preserved in the portal header.
    - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
      - Company Name, Slug, and Grade Badge (A/B/C/D).
      - Direct links to every generated HTML deliverable.

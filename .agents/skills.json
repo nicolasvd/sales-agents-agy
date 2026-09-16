@@ -1,6 +1,7 @@
 {
   "entries": [
     { "path": ".agents/skills" },
-    { "path": ".agents/skills/sales-setup" }
+    { "path": ".agents/skills/sales-setup" },
+    { "path": ".agents/skills/sales-radar" }
   ]
 }
