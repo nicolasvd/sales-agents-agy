@@ -8,7 +8,7 @@ description: >-
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
 **Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
-**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
+**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, master portal `reports/index.html`, and synced `reports/my-company/company-dna.html`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal aggregation, mathematical rollups, and logs operate in English. Deliverable executive summaries and notes adapt to the user's primary operating language.
@@ -34,6 +34,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 
 3. **Dual Reporting & Master Portal Maintenance:**
    - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
+   - **Company DNA Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")` to maintain full synchronization with current `.agents/rules/product-context.md` and `.agents/rules/customer-context.md`.
    - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
      - Company Name, Slug, and Grade Badge (A/B/C/D).
      - Direct links to every generated HTML deliverable.
