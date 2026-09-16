@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-prospect
 
 **Role:** Pure orchestrator for the 5 internal subagents — full 360° B2B prospect audit.  
-**Required Rules:** `scoring.md`, `output-formatting.md`.  
+**Required Rules:** `scoring.md`, `customer-context.md`, `fact-checking.md`, `output-formatting.md`.  
 **Output:** `reports/{slug}/PROSPECT-ANALYSIS.html` & `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`.  
 **Invoked Subagents:** `sales-sub-company`, `sales-sub-contacts`, `sales-sub-competitive`, `sales-sub-opportunity`, `sales-sub-strategy`.
 
@@ -19,7 +19,7 @@ description: >-
 
 ### Authorized Tools for Orchestrator
 - `create_file` (scratchpad initialization, final reports)
-- `view_file` (reading consolidated scratchpad, ICP profile, templates)
+- `view_file` (reading consolidated scratchpad, `customer-context.md`, templates)
 - `edit_file` (scratchpad metadata updates)
 - `start_subagent` (launching internal subagents)
 - ❌ **FORBIDDEN:** `read_url_content`, `search_web`, `run_command`
@@ -27,19 +27,21 @@ description: >-
 ## Invocation Trigger
 
 Invoked via chat command: `prospect <url>`.  
-If available, read: `reports/IDEAL-CUSTOMER-PROFILE.html` / `markdown/` via `view_file`.
+Mandatorily read: `.agents/rules/customer-context.md` and `.agents/rules/fact-checking.md` (verifying demo profile guardrail). If available, also read: `reports/IDEAL-CUSTOMER-PROFILE.html` / `markdown/` via `view_file`.
 
 ## Workflow — Scratchpad State Machine
 
 ### 1. Scratchpad Initialization
 1. Extract domain and normalize company name → `{slug}` (e.g., `socialsky`).
-2. Initialize `.agents/.scratchpad/prospect_{slug}.json` via `create_file`:
+2. Read `.agents/rules/customer-context.md` and propagate target ICP criteria into scratchpad.
+3. Initialize `.agents/.scratchpad/prospect_{slug}.json` via `create_file`:
 ```json
 {
   "meta": {
     "url": "<url>",
     "slug": "{slug}",
-    "status": "wave1_started"
+    "status": "wave1_started",
+    "customer_context_loaded": true
   },
   "wave1": {
     "company_data": null,

@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-icp
 
 **Role:** Define and calibrate the Ideal Customer Profile (ICP), negative disqualification rules, and deterministic scoring rubrics for the workspace.  
-**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/IDEAL-CUSTOMER-PROFILE.html` and `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`.
 
 > [!IMPORTANT]
@@ -15,7 +15,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `icp <description>`. The `<description>` argument is a freeform summary of the target market or solution focus provided by the user.
+Invoked via `icp <description>`. Mandatorily inspect `.agents/rules/customer-context.md` as the baseline for deep sector analysis and ICP refinement. The `<description>` argument is a freeform summary of the target market or solution focus provided by the user.
 
 ## Workflow (3 Sequential Steps)
 

@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-competitors
 
 **Role:** Analyze the prospect's incumbent technology stack, map competitive presence, and produce actionable battle cards.  
-**Mandatory Rules:** `fact-checking.md` (mandatory), `product-context.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/COMPETITIVE-INTEL.html` and `reports/{slug}/markdown/COMPETITIVE-INTEL.md`.
 
 > [!IMPORTANT]
@@ -15,10 +15,9 @@ description: >-
 
 ## Trigger
 
-Invoked via `competitors <url>`. If available, inspect:
+Invoked via `competitors <url>`. Mandatorily inspect `.agents/rules/customer-context.md` (ICP core pains and tech stack sweet spot) and `.agents/rules/product-context.md` (authorized positioning). If available, inspect also:
 - `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/PROSPECT-ANALYSIS.html`
 - `reports/IDEAL-CUSTOMER-PROFILE.html` (technographic profile & baseline tools)
-- `.agents/rules/product-context.md` (authorized competitive positioning & differentiators)
 
 ## Workflow (5 Sequential Steps)
 

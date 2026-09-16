@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-prep
 
 **Role:** Synthesize comprehensive, tactical meeting preparation briefs for high-stakes sales conversations.  
-**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/MEETING-PREP.html` and `reports/{slug}/markdown/MEETING-PREP.md`.
 
 > [!IMPORTANT]
@@ -15,7 +15,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `prep <url>`. Read all available reports in the workspace:
+Invoked via `prep <url>`. Mandatorily inspect `.agents/rules/customer-context.md` (target persona pains and buying criteria) and `.agents/rules/product-context.md`. Then read all available reports in the workspace:
 - `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 - `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md`
 - `reports/{slug}/LEAD-QUALIFICATION.html` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`

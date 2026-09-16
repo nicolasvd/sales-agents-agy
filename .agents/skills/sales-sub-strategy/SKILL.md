@@ -8,17 +8,17 @@ description: >-
 
 **Role:** Selection of optimal outreach channel, top 3 trigger events, personalized messaging angles, and anticipated objection handling.  
 **Scope:** Wave 2 of the `sales-prospect` audit.  
-**Required Rules:** `product-context.md` (mandatory), `output-formatting.md`.  
+**Required Rules:** `product-context.md` (mandatory), `customer-context.md` (mandatory), `output-formatting.md`.  
 **Invoked By:** `sales-prospect` via `start_subagent`.
 
 ## ⛔ Blocking Rule (Status Condition, Strict Product Context & Zero Web Tools)
 
 > **1. Mandatory Trigger Condition:** Verify `meta.status == "opportunity_done"` or `"wave1_complete"`.
-> **2. Strict Product Context:** Mandatorily read `.agents/rules/product-context.md`. STRICT PROHIBITION against inventing features, offerings, or pricing outside the rule.
-> **3. Strict Prohibition of Web Tools:** It is STRICTLY FORBIDDEN to call `read_url_content` or `search_web`. You work EXCLUSIVELY by synthesizing scratchpad data with the official product rule.
+> **2. Strict Product Context:** Mandatorily read `.agents/rules/product-context.md` and `.agents/rules/customer-context.md`. STRICT PROHIBITION against inventing features, offerings, or pricing outside the rule.
+> **3. Strict Prohibition of Web Tools:** It is STRICTLY FORBIDDEN to call `read_url_content` or `search_web`. You work EXCLUSIVELY by synthesizing scratchpad data with official product and customer rules.
 
 ### Authorized Tools
-- `view_file` (reading scratchpad and `product-context.md`)
+- `view_file` (reading scratchpad, `product-context.md`, and `customer-context.md`)
 - `edit_file` (strict writing to `wave2.strategy_data` key)
 - ❌ **FORBIDDEN:** `read_url_content`, `search_web`, `start_subagent`, `run_command`
 
@@ -29,16 +29,17 @@ description: >-
    ```
    view_file(".agents/.scratchpad/prospect_{slug}.json")
    ```
-2. Read the official product offering:
+2. Read the official product offering and customer context:
    ```
    view_file(".agents/rules/product-context.md")
+   view_file(".agents/rules/customer-context.md")
    ```
 3. Extract all `wave1.*` data and `wave2.opportunity_data`.
 
 ### 2. Strategic Synthesis
 1. **Primary Channel Selection:** Warm intro > Direct LinkedIn (if stakeholder active) > Cold email (if verified pattern exists) > Phone (SMB / founder).
 2. **Top 3 Trigger Events:** Select the 3 most recent, high-leverage catalysts (funding round, executive hiring, expansion).
-3. **Personalized Messaging Angle:** Hook anchored on verified trigger + bridge to documented value proposition + low-friction open-ended CTA.
+3. **Personalized Messaging Angle:** Anchor hook on verified trigger + bridge to documented value proposition (`product-context.md`) addressing documented persona pains (`customer-context.md`) + low-friction CTA.
 4. **Anticipated Objections:** Identify 3 natural resistance points with suggested A-R-C (Acknowledge-Reframe-Close) pivots.
 
 ### 3. Strict Interface Contract Write

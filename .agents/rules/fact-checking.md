@@ -60,3 +60,18 @@ Every single factual metric or claim MUST include its provenance:
 | Scoring Data (Budget, Need) | ≤ 18 months |
 | Trigger Events (Funding, M&A, Executive Hires) | ≤ 90 days |
 | Historical Data (Contextual Background Only) | > 18 months → explicitly tag as "Historical" |
+
+## Workspace Guardrail: Dual Context & Demo Profile Check
+
+Before executing any prospect intelligence, lead qualification, or outreach workflow, mandatorily verify the presence and validity of both context files (`.agents/rules/product-context.md` and `.agents/rules/customer-context.md`).
+
+- **Trigger Conditions (OR condition):**
+  1. `.agents/rules/product-context.md` or `.agents/rules/customer-context.md` is missing from the workspace.
+  2. `.agents/rules/product-context.md` contains the demo marker `"Acme AI Automation Inc."` or `"Acme Corp"`.
+  3. `.agents/rules/customer-context.md` contains the default Acme demo profile.
+- **Enforcement:** Mandatorily display the following warning banner at the very top of the chat output before delivering results:
+
+> ⚠️ **Workspace Configuration Warning:** You are currently using the default demo company profile (*Acme Corp*). Generated analyses, pricing models, and value propositions are based on fictional demo data.  
+> 👉 To configure your workspace with your actual company offerings and ideal customer profile (ICP), run: `setup` or `setup <url>`.
+
+
