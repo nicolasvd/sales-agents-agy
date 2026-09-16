@@ -9,7 +9,7 @@ description: >-
 **Role:** Autonomous conversational onboarding and workspace configuration engine. Calibrates product offering and customer ICP rules directly from public web intelligence and targeted user feedback.  
 **Autonomy:** 100% autonomous standalone skill. Never delegates to sub-agents (e.g., does not invoke `sales-icp`). Orchestrates the complete discovery dialogue, web scraping, and file persistence directly.  
 **Mandatory Rules:** `output-formatting.md` (mandatory).  
-**Generated Rules:** `.agents/rules/product-context.md` (< 5 KB) and `.agents/rules/customer-context.md` (< 5 KB).
+**Generated Deliverables:** `.agents/rules/product-context.md` (< 5 KB), `.agents/rules/customer-context.md` (< 5 KB), and `reports/my-company/company-dna.html`.
 
 > [!IMPORTANT]
 > **Language Governance:** The skill specification, internal prompts, and schemas remain strictly in English. During execution, the agent converses in the user's input language (French/English) and populates the rule files in that same language.
@@ -57,22 +57,24 @@ Ask the user the following 2 targeted questions in chat:
 2. **Question B (Strict Exclusions & Disqualification Filters):**  
    *Prompt Example:* "What are your strict disqualification criteria (e.g., excluded industries, minimum or maximum company headcount, out-of-scope geographies, forbidden technologies)?"
 
-### Step 5: Persistence & Workspace Guardrail Clearing
+### Step 5: Persistence, Visual Scaffolding & Guardrail Clearing
 1. Write `.agents/rules/customer-context.md` using `.agents/skills/sales-setup/references/customer-template.md` incorporating the abstracted ICP, triggers, and calibrated disqualification rules.
 2. Update `.agents/rules/product-context.md` if the user provided specific pricing packages or exclusions during Step 4.
 3. Verify file sizes: both `.agents/rules/product-context.md` and `.agents/rules/customer-context.md` must be strictly `< 5,120 bytes` (target ~3 KB).
+4. Compile the visual HTML dashboard: instantiate `.agents/rules/references/context-template.html` and write `reports/my-company/company-dna.html` with a dynamic state badge (`Demo Profile` or `Production Profile`). Do NOT create duplicate Markdown files in `reports/my-company/`.
 
 ---
 
 ## Output & Completion Standard
 
-Conclude the onboarding session with the mandatory Terminal Summary Block per `output-formatting.md`:
+Conclude the onboarding session with the mandatory Terminal Summary Block and Browser First completion block per `output-formatting.md`:
 
 ```text
 === SALES-SETUP : [COMPANY NAME] ===
 
 Status : ACTIVE CONFIGURATION  Size : < 5 KB per rule
 Configured Rules : product-context.md · customer-context.md
+Visual Dashboard : reports/my-company/company-dna.html
 
 Top Configurations:
   1. Offering & Positioning: [1-line offering synthesis]
@@ -84,4 +86,11 @@ Watchpoints:
   2. ICP Disqualifiers: [Key disqualification thresholds]
 
 Recommended Action: Workspace fully calibrated! You can now run a prospect audit with `prospect <url>` or qualify a lead with `qualify <url>`.
+
+=== LIVRABLES GÉNÉRÉS ===
+📄 Fichier Web : reports/my-company/company-dna.html
+⚙️ Règles IA    : .agents/rules/product-context.md · customer-context.md
+
+🚀 Ouvrir dans le navigateur :
+open reports/my-company/company-dna.html
 ```
