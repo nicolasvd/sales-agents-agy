@@ -45,7 +45,46 @@ For each prospect analysis, two distinct deliverables are created under `reports
 | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` | `reports/{slug}/markdown/COMPANY-RESEARCH.md` | `report-template.html` |
 | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` | `reports/{slug}/markdown/DECISION-MAKERS.md` | `report-template.html` |
 | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
-| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
+| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `pipeline-summary-template.html` |
+| `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` | `reports/pipeline/markdown/RADAR-DISCOVERY.md` | `radar-template.html` |
+
+## Universal Hub & Spoke Navigation Standard (HTML Deliverables)
+
+No HTML deliverable is a dead end. Every report generated within the workspace (except the root portal `reports/index.html`) MUST include a right-aligned actions container in its `<header>` with the standard cockpit return button:
+
+```html
+<nav class="nav-actions">
+  <a href="../index.html" class="btn-back">← Back to Portal</a>
+</nav>
+```
+*(For reports placed directly at the `reports/` root, use `href="index.html"`).*
+
+### Canonical CSS Style (`.btn-back`)
+```css
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  color: var(--text, #0f172a);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+}
+.btn-back:hover {
+  background: var(--primary-light, #eff6ff);
+  border-color: var(--primary-border, #bfdbfe);
+  color: var(--primary, #2563eb);
+  transform: translateY(-1px);
+}
+@media print {
+  .btn-back, .nav-actions { display: none !important; }
+}
+```
 
 ## Completion Block Standard (Browser First)
 

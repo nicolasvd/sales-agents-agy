@@ -1,4 +1,4 @@
-# Template de Sortie — PROSPECT-ANALYSIS.md
+# Output Template — PROSPECT-ANALYSIS.md
 
 ## Output Format: PROSPECT-ANALYSIS.md
 

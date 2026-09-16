@@ -1,4 +1,4 @@
-# Template de Sortie — OUTREACH-SEQUENCE.md
+# Output Template — OUTREACH-SEQUENCE.md
 
 Utiliser ce template pour structurer le fichier de sortie.
 

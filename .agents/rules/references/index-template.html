@@ -66,6 +66,28 @@
     .markdown-links a { color: var(--text-muted); text-decoration: none; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.75rem; transition: color 0.15s; }
     .markdown-links a:hover { color: var(--primary); text-decoration: underline; }
 
+    /* Header Actions */
+    .header-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .header-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .header-btn:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
     /* Print */
     @media print {
       body { background: #fff; padding: 0; }
@@ -81,11 +103,14 @@
         <h1>{{HEADER_TITLE}}</h1>
         <p>{{HEADER_SUBTITLE}}</p>
       </div>
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <a href="my-company/company-dna.html" class="doc-link" style="background: var(--surface); color: var(--text); border-color: var(--border);">
+      <div class="header-actions">
+        <a href="my-company/company-dna.html" class="header-btn">
           <span>🏢 My Company DNA</span>
         </a>
-        <a href="pipeline/PIPELINE-SUMMARY.html" class="doc-link" style="background: var(--primary-light); color: var(--primary); border-color: #bfdbfe;">
+        <a href="pipeline/RADAR-DISCOVERY.html" class="header-btn">
+          <span>📡 Opportunity Radar</span>
+        </a>
+        <a href="pipeline/PIPELINE-SUMMARY.html" class="header-btn">
           <span>📊 Global Pipeline Summary</span>
         </a>
       </div>

@@ -1,13 +1,13 @@
 ---
 name: sales
 description: >-
-  Main orchestrator for the AI Sales Team. Coordinates all 14 specialized sales workflows including workspace onboarding, prospect auditing, lead qualification, contacts mapping, outreach sequences, and pipeline reporting.
+  Main orchestrator for the AI Sales Team. Coordinates all 15 specialized sales workflows including workspace onboarding, prospect discovery & radar, lead qualification, contacts mapping, outreach sequences, and pipeline reporting.
 ---
 
 # AI Sales Team — Main Orchestrator
 
 100% declarative B2B sales intelligence platform for Google Antigravity.
-Orchestrates 14 autonomous sales skills and 5 internal subagents without scripts or external runtime dependencies.
+Orchestrates 15 autonomous sales skills and 5 internal subagents without scripts or external runtime dependencies.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, coordination, logs, and scratchpad schemas operate strictly in English. Customer-facing deliverables (HTML and Markdown) automatically adapt to the primary language of the audited company.
@@ -28,6 +28,7 @@ Orchestrates 14 autonomous sales skills and 5 internal subagents without scripts
 | `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
 | `icp <description>` | `sales-icp` | `reports/IDEAL-CUSTOMER-PROFILE.html` (+ `markdown/`) |
 | `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `radar [topic/event]` | `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` (+ `markdown/`) |
 | `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
 
 ## Dispatching Logic

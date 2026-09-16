@@ -1,4 +1,4 @@
-# Template de Sortie — OBJECTION-PLAYBOOK.md
+# Output Template — OBJECTION-PLAYBOOK.md
 
 ## Output Format
 

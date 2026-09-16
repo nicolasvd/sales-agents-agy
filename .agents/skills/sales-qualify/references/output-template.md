@@ -1,4 +1,4 @@
-# Template de Sortie — LEAD-QUALIFICATION.md
+# Output Template — LEAD-QUALIFICATION.md
 
 ## Output Format: LEAD-QUALIFICATION.md
 

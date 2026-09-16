@@ -1,4 +1,4 @@
-# Template de Sortie — DECISION-MAKERS.md
+# Output Template — DECISION-MAKERS.md
 
 ## Output Format: DECISION-MAKERS.md
 
