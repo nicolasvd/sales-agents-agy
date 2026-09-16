@@ -26,12 +26,13 @@ This project draws inspiration from the pioneering concept developed by [Zubair 
 
 Zero technical setup or terminal required.
 
-1. Open **Google Antigravity**.
-2. **Prompt 1 (Workspace Initialization):** Paste into the Antigravity prompt bar:
+1. Download the archive via the green **"Code"** button > **"Download ZIP"** (at the top of this page) and unzip it.
+2. In **Antigravity**, click the **"+"** icon next to Projects > **"New Project"** and select the unzipped folder.
+3. **Prompt 1 (Workspace Initialization):** Paste into the Antigravity prompt bar:
    ```text
    Initialize and inspect this sales-agents-agy workspace. Confirm that .agents/rules/ and .agents/skills/ are loaded, verify CLI routing (sales, prospect, outreach), and confirm readiness.
    ```
-3. **Prompt 2 (Offer Configuration - Acme Example):**
+4. **Prompt 2 (Offer Configuration - Acme Example):**
    ```text
    Update .agents/rules/product-context.md to reflect our company profile:
    - Company: Acme AI Automation Inc. [or your company name]
@@ -41,7 +42,7 @@ Zero technical setup or terminal required.
    - Exclusions: [e.g., No custom mobile app dev, no cold spam]
    Keep the file strictly under 5 KB.
    ```
-4. Launch your first 360° audit:
+5. Launch your first 360° audit:
    ```text
    prospect https://target-company.com
    ```
