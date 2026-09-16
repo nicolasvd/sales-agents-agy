@@ -30,10 +30,14 @@ Orchestrates 15 autonomous sales skills and 5 internal subagents without scripts
 | `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
 | `radar [topic/event]` | `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` (+ `markdown/`) |
 | `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
+| `update [framework]` | `framework-update` | Workspace sync via GitHub REST API (Sanctuary-safe) |
 
 ## Dispatching Logic
 
 When a command is invoked, load the corresponding skill instruction file from `.agents/skills/<skill>/SKILL.md`.
+
+### System & Maintenance Dispatching
+Commands requesting framework or workspace updates (`update`, `update framework`) are routed to `.agents/skills/framework-update/SKILL.md` to ensure strict isolation from commercial workflows.
 
 ### Full 360° Prospect Audit (`prospect <url>`)
 Orchestrated by `sales-prospect` via disk scratchpad (`.agents/.scratchpad/prospect_{slug}.json`) across two sequential waves:
