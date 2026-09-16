@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-followup
 
 **Role:** Generate adaptive multi-touch follow-up cadences across email, LinkedIn, and phone for stalled deals, unanswered outreach, or engaged leads.  
-**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/FOLLOWUP-SEQUENCE.html` and `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md`.
 
 > [!IMPORTANT]
@@ -15,7 +15,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `followup <prospect_name>`. Inspect available workspace context:
+Invoked via `followup <prospect_name>`. Mandatorily inspect `.agents/rules/customer-context.md` (persona priorities, target deal velocity) and `.agents/rules/product-context.md`. Then inspect available workspace context:
 - `reports/{slug}/OUTREACH-SEQUENCE.html` or `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` (initial sequence history)
 - `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md` (contact coordinates)
 

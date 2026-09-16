@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-contacts
 
 **Role:** Identify and map the target account's buying committee, key decision-makers, and public personalization anchors.  
-**Mandatory Rules:** `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/DECISION-MAKERS.html` and `reports/{slug}/markdown/DECISION-MAKERS.md`.
 
 > [!IMPORTANT]
@@ -15,7 +15,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `contacts <url>`. If available, inspect:
+Invoked via `contacts <url>`. Mandatorily inspect `.agents/rules/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
 - `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/markdown/COMPANY-RESEARCH.md`
 - `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`
 

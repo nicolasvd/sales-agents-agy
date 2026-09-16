@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-report
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
-**Mandatory Rules:** `scoring.md` (mandatory), `output-formatting.md`.  
+**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
 
 > [!IMPORTANT]
@@ -16,6 +16,7 @@ description: >-
 ## Trigger
 
 Invoked via `report` (standalone, without arguments). Aggregates all prospect directories and audit files generated across the entire workspace.
+- **Demo Profile Guardrail:** Verify context files per `fact-checking.md`. If demo marker (`Acme AI Automation Inc.` or unconfigured `customer-context.md`) is detected, prepend the canonical warning banner in chat and display a visible warning badge in `reports/index.html` and pipeline summary.
 
 ## Workflow (3 Sequential Steps)
 

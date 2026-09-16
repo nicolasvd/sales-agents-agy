@@ -1,13 +1,13 @@
 ---
 name: sales
 description: >-
-  Main orchestrator for the AI Sales Team. Coordinates all 13 specialized sales workflows including prospect auditing, lead qualification, contacts mapping, outreach sequences, and pipeline reporting.
+  Main orchestrator for the AI Sales Team. Coordinates all 14 specialized sales workflows including workspace onboarding, prospect auditing, lead qualification, contacts mapping, outreach sequences, and pipeline reporting.
 ---
 
 # AI Sales Team — Main Orchestrator
 
 100% declarative B2B sales intelligence platform for Google Antigravity.
-Orchestrates 13 autonomous sales skills and 5 internal subagents without scripts or external runtime dependencies.
+Orchestrates 14 autonomous sales skills and 5 internal subagents without scripts or external runtime dependencies.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, coordination, logs, and scratchpad schemas operate strictly in English. Customer-facing deliverables (HTML and Markdown) automatically adapt to the primary language of the audited company.
@@ -16,6 +16,7 @@ Orchestrates 13 autonomous sales skills and 5 internal subagents without scripts
 
 | Command | Skill | Dual Output (Web HTML + AI Markdown) |
 |---|---|---|
+| `setup [url]` | `sales-setup` | `.agents/rules/product-context.md` + `customer-context.md` |
 | `qualify <url>` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` (+ `markdown/`) |
 | `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` (+ `markdown/`) |
 | `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` (+ `markdown/`) |
@@ -41,7 +42,8 @@ Orchestrated by `sales-prospect` via disk scratchpad (`.agents/.scratchpad/prosp
 ### Mandatory Transverse Rules
 Every execution must strictly load and enforce:
 - `AGENTS.md` (root entrypoint, absolute passivity, zero hallucination)
-- `.agents/rules/fact-checking.md` (primary source verification, strict citations)
+- `.agents/rules/fact-checking.md` (primary source verification, strict citations, demo profile check)
 - `.agents/rules/scoring.md` (deterministic BANT, MEDDIC, Urgency scorecards)
-- `.agents/rules/product-context.md` (product offering, fixed pricing, ICP boundaries)
+- `.agents/rules/product-context.md` (product offering, fixed pricing, scope exclusions)
+- `.agents/rules/customer-context.md` (ICP definition, target personas, qualification thresholds)
 - `.agents/rules/output-formatting.md` (terminal summary block, Dual Output, 3-link completion block)

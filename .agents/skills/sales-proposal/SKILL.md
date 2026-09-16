@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-proposal
 
 **Role:** Generate tailored, value-driven commercial proposals and post-proposal follow-up cadences.  
-**Mandatory Rules:** `product-context.md` (mandatory), `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/CLIENT-PROPOSAL.html` and `reports/{slug}/markdown/CLIENT-PROPOSAL.md`.
 
 > [!IMPORTANT]
@@ -15,11 +15,10 @@ description: >-
 
 ## Trigger
 
-Invoked via `proposal <client_name>`. Read available workspace intelligence:
+Invoked via `proposal <client_name>`. Mandatorily inspect `.agents/rules/customer-context.md` (budget sweet spot, ICP pains) and `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence:
 - `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/LEAD-QUALIFICATION.html`
 - `reports/{slug}/DECISION-MAKERS.html` (economic buyer and evaluation committee)
 - `reports/IDEAL-CUSTOMER-PROFILE.html` (commercial calibration)
-- `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope — mandatory)
 
 ## Workflow (3 Sequential Steps)
 

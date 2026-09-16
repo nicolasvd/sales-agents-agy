@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-outreach
 
 **Role:** Generate highly personalized 5-touch omnichannel outreach sequences (Email + LinkedIn) strictly grounded in verified public trigger events.  
-**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`, `scoring.md`.  
+**Mandatory Rules:** `product-context.md` (mandatory), `customer-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`, `scoring.md`.  
 **Deliverables:** `reports/{slug}/OUTREACH-SEQUENCE.html` and `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`.
 
 > [!IMPORTANT]
@@ -15,7 +15,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `outreach <prospect_name>`. Inspect available workspace intelligence first:
+Invoked via `outreach <prospect_name>`. Mandatorily inspect `.agents/rules/customer-context.md` (ICP persona pains) and `.agents/rules/product-context.md` (product offering), then inspect available workspace intelligence:
 - `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 - `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md`
 - `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`

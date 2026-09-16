@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-qualify
 
 **Role:** Qualify prospects using BANT + MEDDIC frameworks exclusively from public web intelligence.  
-**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Rules:** `scoring.md` (mandatory), `customer-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/LEAD-QUALIFICATION.html` and `reports/{slug}/markdown/LEAD-QUALIFICATION.md`.
 
 > [!IMPORTANT]
@@ -15,8 +15,8 @@ description: >-
 
 ## Trigger
 
-Invoked via `qualify <url>`. If available, inspect:
-- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — to calibrate ICP alignment.
+Invoked via `qualify <url>`. Mandatorily inspect `.agents/rules/customer-context.md` for target ICP parameters and disqualification filters. If available, inspect also:
+- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — for additional ICP nuances.
 
 ## Workflow (4 Sequential Steps)
 

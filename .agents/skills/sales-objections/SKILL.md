@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-objections
 
 **Role:** Generate tactical objection handling playbooks grounded in the A-R-C framework (Acknowledge, Reframe, Clarify).  
-**Mandatory Rules:** `product-context.md` (mandatory), `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/OBJECTION-PLAYBOOK.html` and `reports/markdown/OBJECTION-PLAYBOOK.md` (or prospect-specific under `reports/{slug}/`).
 
 > [!IMPORTANT]
@@ -15,9 +15,8 @@ description: >-
 
 ## Trigger
 
-Invoked via `objections <topic>`. Inspect available workspace context:
+Invoked via `objections <topic>`. Mandatorily inspect `.agents/rules/customer-context.md` (core persona friction points and exclusion criteria) and `.agents/rules/product-context.md` (authorized commercial offering, pricing, proof points). Then inspect available workspace context:
 - `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/COMPETITIVE-INTEL.html` (if generated for a specific prospect)
-- `.agents/rules/product-context.md` (authorized commercial offering, pricing, and proof points — mandatory)
 
 ## Workflow (4 Sequential Steps)
 

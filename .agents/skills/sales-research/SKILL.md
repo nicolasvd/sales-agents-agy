@@ -7,7 +7,7 @@ description: >-
 # Skill: sales-research
 
 **Role:** In-depth firmographic and growth signal analysis of target B2B accounts across 8 standardized dimensions.  
-**Mandatory Rules:** `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/COMPANY-RESEARCH.html` and `reports/{slug}/markdown/COMPANY-RESEARCH.md`.
 
 > [!IMPORTANT]
@@ -15,8 +15,8 @@ description: >-
 
 ## Trigger
 
-Invoked via `research <url>`. If available, inspect:
-- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — to evaluate fit thresholds.
+Invoked via `research <url>`. Mandatorily inspect `.agents/rules/customer-context.md` to benchmark prospect firmographics and filter relevant signals against target sweet spots. If available, inspect also:
+- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — for extended ICP context.
 
 ## Workflow (4 Sequential Steps)
 
