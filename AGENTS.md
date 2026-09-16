@@ -57,7 +57,7 @@ The 5 `sales-sub-*` skills are **strictly internal orchestration subagents**, re
 
 | Command | Skill | Deliverables (HTML Humans + MD AI) |
 |---|---|---|
-| `setup [url]` | `sales-setup` | `reports/my-company/company-dna.html` (+ rules) |
+| `setup [url]` | `sales-setup` | `reports/my-company/company-dna.html` (+ `.agents/rules/product-context.md`, `.agents/rules/customer-context.md`) |
 | `qualify <url>` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` (+ `markdown/`) |
 | `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` (+ `markdown/`) |
 | `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` (+ `markdown/`) |
