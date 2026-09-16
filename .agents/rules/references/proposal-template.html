@@ -15,10 +15,33 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; }
     .container { max-width: 900px; margin: 0 auto; }
-    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: flex-start; }
-    .header h1 { font-size: 1.75rem; font-weight: 700; color: var(--text); }
-    .header p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .header-info h1 { font-size: 1.75rem; font-weight: 700; color: var(--text); }
+    .header-info p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .header-actions { display: flex; align-items: flex-start; gap: 1.25rem; flex-wrap: wrap; }
     .meta-box { text-align: right; font-size: 0.8125rem; color: var(--text-muted); }
+
+    .nav-actions { display: flex; align-items: center; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+    .btn-back:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
 
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
     .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; }
@@ -42,19 +65,25 @@
       @page { margin: 12mm 15mm; size: A4; }
       body { background: #fff; padding: 0; }
       .card, .roi-card { break-inside: avoid; border: 1px solid #cbd5e1; }
+      .nav-actions, .btn-back { display: none !important; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <div>
+      <div class="header-info">
         <h1>{{TITLE}}</h1>
         <p>Prepared for: <strong>{{CLIENT_NAME}}</strong> | Recipient: {{RECIPIENT_NAME}}</p>
       </div>
-      <div class="meta-box">
-        <p>Date: {{PROPOSAL_DATE}}</p>
-        <p>Validity: {{VALIDITY_DAYS}} days</p>
+      <div class="header-actions">
+        <div class="meta-box">
+          <p>Date: {{PROPOSAL_DATE}}</p>
+          <p>Validity: {{VALIDITY_DAYS}} days</p>
+        </div>
+        <nav class="nav-actions">
+          <a href="../index.html" class="btn-back">← Back to Portal</a>
+        </nav>
       </div>
     </header>
 
@@ -100,6 +129,22 @@
           <div class="roi-label">{{ROI_MULTIPLIER_LABEL}}</div>
         </div>
       </div>
+    </section>
+
+    <!-- Implementation Timeline -->
+    <section class="card">
+      <h2>🗓️ Implementation Timeline & Milestones</h2>
+      <div class="timeline">
+        {{TIMELINE_ROWS}}
+      </div>
+    </section>
+
+    <!-- Terms & Next Steps -->
+    <section class="card">
+      <h2>✍️ Terms of Engagement & Activation</h2>
+      <p style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
+        {{TERMS_AND_NEXT_STEPS}}
+      </p>
     </section>
   </div>
 </body>

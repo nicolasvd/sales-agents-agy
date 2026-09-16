@@ -1,4 +1,4 @@
-# Template de Sortie — COMPANY-RESEARCH.md
+# Output Template — COMPANY-RESEARCH.md
 
 ## Output Format: COMPANY-RESEARCH.md
 

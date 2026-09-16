@@ -59,6 +59,34 @@
       gap: 1rem;
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+
+    .btn-back:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
     .header-info h1 {
       font-size: 1.75rem;
       font-weight: 700;
@@ -317,6 +345,10 @@
         break-inside: avoid;
       }
 
+      .nav-actions, .btn-back {
+        display: none !important;
+      }
+
       .card {
         margin-bottom: 1.25rem;
       }
@@ -335,8 +367,9 @@
         <h1>{{COMPANY_NAME}}</h1>
         <p>URL: <a href="{{URL}}" target="_blank">{{URL}}</a> | Analyzed on {{DATE}}</p>
       </div>
-      <div>
+      <div class="nav-actions">
         <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
+        <a href="../index.html" class="btn-back">← Back to Portal</a>
       </div>
     </header>
 

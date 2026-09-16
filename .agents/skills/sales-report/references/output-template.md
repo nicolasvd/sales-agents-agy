@@ -1,4 +1,4 @@
-# Template de Sortie — SALES-REPORT.md
+# Output Template — SALES-REPORT.md
 
 ## Output Format
 
