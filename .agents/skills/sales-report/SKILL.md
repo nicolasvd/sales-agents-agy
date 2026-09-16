@@ -35,7 +35,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 
 3. **Dual Reporting & Master Portal Maintenance:**
    - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` using `view_file(".agents/rules/references/pipeline-summary-template.html")` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
-   - **Company DNA & Opportunity Radar Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")` and ensure `reports/pipeline/RADAR-DISCOVERY.html` is linked and preserved in the portal header.
+   - **Company DNA & Opportunity Radar Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")`, recompile `reports/pipeline/RADAR-DISCOVERY.html` from source markdown (`reports/pipeline/markdown/RADAR-DISCOVERY.md`) using `view_file(".agents/rules/references/radar-template.html")` when present, and ensure both are linked and accessible from the portal header.
    - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
      - Company Name, Slug, and Grade Badge (A/B/C/D).
      - Direct links to every generated HTML deliverable.

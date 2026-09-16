@@ -53,6 +53,9 @@ The 5 `sales-sub-*` skills are **strictly internal orchestration subagents**, re
 - `sales-sub-opportunity` → Deterministic BANT + MEDDIC scoring
 - `sales-sub-strategy` → Outreach angles, trigger events, recommended channel
 
+### 3. Workspace Maintenance & System Skills (1 Skill)
+The `framework-update` skill provides 100% declarative workspace synchronization with upstream GitHub releases via REST API, completely isolated from commercial workflows. It enforces an absolute **Sanctuary Denylist** (`reports/**`, `*scratchpad/**`, `.agents/rules/product-context.md`, `.agents/rules/customer-context.md`) guaranteeing zero loss of user intelligence, and requires human-in-the-loop confirmation before applying changes.
+
 ## Command Index
 
 | Command | Skill | Deliverables (HTML Humans + MD AI) |
@@ -71,4 +74,5 @@ The 5 `sales-sub-*` skills are **strictly internal orchestration subagents**, re
 | `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
 | `radar [topic/event]` | `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` (+ `markdown/`) |
 | `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
+| `update [framework]` | `framework-update` | Workspace sync via GitHub REST API (Sanctuary-safe) |
 
