@@ -1,7 +1,7 @@
-# Bibliothèque des Objections — 15 Universelles + Spécifiques
+# Objection Library — 15 Universal + Contextual Objections
 
-Lire via : view_file(".agents/skills/sales-objections/references/objection-library.md")
-Quand : tu as besoin du script exact pour une objection spécifique.
+Read via: `view_file(".agents/skills/sales-objections/references/objection-library.md")`
+When: you need the exact talk track or script for a specific objection.
 
 ## Step 3: The 15 Universal Sales Objections
 
@@ -21,7 +21,7 @@ Generate complete handling scripts for each of the following objections. For EAC
 
 **Follow-up question**: "Just so I understand — is it that the price is higher than you expected, or that you haven't been able to secure budget for this category yet? Those are different problems, and I might be able to help with both."
 
-**Proof point to deploy**: [Generate a specific ROI case study — e.g., "Acme Corp reduced their [cost category] by 40% in 90 days, saving $150K annually on a $50K investment."]
+**Proof point to deploy**: [Generate a specific ROI case study — e.g., "[Reference Customer] reduced their [cost category] by 40% in 90 days, saving $150K annually on a $50K investment."]
 
 **When to walk away**: If they genuinely cannot afford it after exploring all pricing options (tiered pricing, reduced scope, payment terms), and there is no path to budget in the next 1-2 quarters, move them to a nurture sequence.
 

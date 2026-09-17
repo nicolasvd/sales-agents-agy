@@ -1,6 +1,6 @@
 # Output Template — OUTREACH-SEQUENCE.md
 
-Utiliser ce template pour structurer le fichier de sortie.
+Use this template to structure the output deliverable.
 
 Phase 1: Personalization Research (Before Writing Any Email)
 
