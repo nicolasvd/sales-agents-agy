@@ -6,96 +6,85 @@
 > 2. **Generated Analysis & Copy:** Strictly adapts to the language of the user prompt (e.g., French prompt = content drafted in French inside the English UI shell; English prompt = 100% English).
 > 3. **Internal Reasoning & Logs:** Scratchpad schemas, internal deliberation, subagent delegation, and tool arguments operate strictly in English.
 
-## Terminal Summary Block (Mandatory at Start of Chat Response)
+## Executive Summary (Start of Chat Response)
 
-This block appears FIRST in the conversational response before any in-depth narrative:
+Every skill response begins directly with a concise executive summary in natural Markdown before any in-depth narrative:
 
-```text
-=== [SKILL NAME IN UPPERCASE] : [COMPANY NAME] ===
-
-[PRIMARY SCORE] : [X]/100  Grade : [A/B/C/D]
-[Sub-scores if applicable, e.g.: Budget: 18/25  Authority: 20/25]
-
-Top Signals:
-  1. [Strongest signal — factual source in parentheses]
-  2. [Signal 2 — source]
-  3. [Signal 3 — source]
-
-Red Flags:
-  1. [Primary point of vigilance]
-  2. [Secondary point of vigilance if applicable]
-
-Recommended Action: [Concrete action statement, single concise line]
-```
+### 📊 Executive Summary — [Company / Subject]
+- **Verdict / Score:** [Primary score, rating or qualification grade, e.g., 78/100 (Tier 1)]
+- **Key Signals:**
+  - [Strongest signal — source in parentheses]
+  - [Secondary signal — source]
+- **Points of Vigilance:**
+  - [Primary risk, blocker, or landmine]
+- **Recommended Action:** [Single concrete, actionable next step]
 
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
-For each prospect analysis, two distinct deliverables are created under `reports/`:
-- **Visual Version (For Humans):** Written directly to `reports/{slug}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` optimized A4 styles.
-- **Raw Data Version (For AI):** Stored in `reports/{slug}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions.
+For each analysis, two distinct deliverables are created under `reports/`:
+- **Visual Version (For Humans):** Written to `reports/{path}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` styles.
+- **Raw Data Version (For AI):** Stored in `reports/{path}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions. Downstream AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
 - **Central Dashboard:** `reports/index.html` aggregates and links all generated HTML deliverables.
 
-| Skill | Web Version (Humans) | Raw Version (AI) | Reference Template |
-|---|---|---|---|
-| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS.html` | `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` | `report-template.html` |
-| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` | `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` | `outreach-template.html` |
-| `sales-prep` | `reports/{slug}/MEETING-PREP.html` | `reports/{slug}/markdown/MEETING-PREP.md` | `meeting-prep-template.html` |
-| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` | `reports/{slug}/markdown/CLIENT-PROPOSAL.md` | `proposal-template.html` |
-| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` | `reports/{slug}/markdown/LEAD-QUALIFICATION.md` | `report-template.html` |
-| `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` | `reports/{slug}/markdown/COMPANY-RESEARCH.md` | `report-template.html` |
-| `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` | `reports/{slug}/markdown/DECISION-MAKERS.md` | `report-template.html` |
-| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
-| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `pipeline-summary-template.html` |
-| `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` | `reports/pipeline/markdown/RADAR-DISCOVERY.md` | `radar-template.html` |
+| Skill | Deliverable Base (.html & markdown/.md) | Reference Template |
+|---|---|---|
+| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | `report-template.html` |
+| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | `outreach-template.html` |
+| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | `outreach-template.html` |
+| `sales-prep` | `reports/{slug}/MEETING-PREP` | `meeting-prep-template.html` |
+| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | `proposal-template.html` |
+| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | `report-template.html` |
+| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | `report-template.html` |
+| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | `report-template.html` |
+| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | `report-template.html` |
+| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | `battle-card-template.html` |
+| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | `context-template.html` |
+| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | `pipeline-summary-template.html` |
+| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | `radar-template.html` |
+| `sales-setup` | `reports/my-company/company-dna` | `context-template.html` |
+
+## Mandatory Machine Metadata Standard (YAML Frontmatter)
+
+Every Markdown deliverable written to `reports/{path}/markdown/{DELIVERABLE}.md` MUST begin with a standardized YAML frontmatter header containing verified machine metadata:
+
+```yaml
+---
+slug: "{slug}"
+company_name: "{company_name}"
+domain: "{domain}"
+audit_date: "YYYY-MM-DD"
+scoring:
+  prospect_score: {0-100}
+  lead_grade: "A|B|C|D"
+  bant_total: {0-100}
+  meddic_completeness_pct: {0-100}
+primary_contacts:
+  economic_buyer: "{Name or Not publicly available}"
+  champion: "{Name or Not publicly available}"
+competitive_context:
+  incumbent_tools: ["{Tool1}", "{Tool2}"]
+  switching_cost: "Low|Medium|High"
+top_triggers:
+  - "{Verified Trigger 1 (< 90 days)}"
+---
+```
 
 ## Universal Hub & Spoke Navigation Standard (HTML Deliverables)
 
-No HTML deliverable is a dead end. Every report generated within the workspace (except the root portal `reports/index.html`) MUST include a right-aligned actions container in its `<header>` with the standard cockpit return button:
+No HTML deliverable is a dead end. Every report generated within the workspace (except the root portal `reports/index.html`) MUST include the standard cockpit return button in its `<header>`:
 
 ```html
 <nav class="nav-actions">
   <a href="../index.html" class="btn-back">← Back to Portal</a>
 </nav>
 ```
-*(For reports placed directly at the `reports/` root, use `href="index.html"`).*
+*(All deliverables reside in subdirectories like `reports/{slug}/`, `reports/my-company/`, `reports/radar/`, or `reports/pipeline/` and use `href="../index.html"`. Styling is handled natively by the reference templates).*
 
-### Canonical CSS Style (`.btn-back`)
-```css
-.btn-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  background: var(--surface, #ffffff);
-  border: 1px solid var(--border, #e2e8f0);
-  color: var(--text, #0f172a);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
-}
-.btn-back:hover {
-  background: var(--primary-light, #eff6ff);
-  border-color: var(--primary-border, #bfdbfe);
-  color: var(--primary, #2563eb);
-  transform: translateY(-1px);
-}
-@media print {
-  .btn-back, .nav-actions { display: none !important; }
-}
-```
+## Deliverables Generated (Completion Standard)
 
-## Completion Block Standard (Browser First)
+Every skill response MUST conclude with a clean, sober block listing the created file paths and confirming that `reports/index.html` has been updated:
 
-Every skill response MUST conclude with this standardized closing block. Execute the command `open reports/{slug}/{REPORT_NAME}.html` via the shell if context allows, or display the block below:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/{REPORT_NAME}.html
-🤖 Données IA  : reports/{slug}/markdown/{REPORT_NAME}.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/{REPORT_NAME}.html
-```
-
+### 📦 Deliverables Generated
+- **Web :** `reports/{path}/{DELIVERABLE}.html`
+- **Données IA :** `reports/{path}/markdown/{DELIVERABLE}.md`
+- **Portail mis à jour :** `reports/index.html`
