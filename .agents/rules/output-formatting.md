@@ -1,7 +1,3 @@
----
-trigger: always_on
----
-
 # Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
 
 > [!IMPORTANT]
