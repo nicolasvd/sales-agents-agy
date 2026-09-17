@@ -1,6 +1,6 @@
-# Bibliothèque de Scénarios de Relance
+# Follow-Up Scenario Library
 
-Lire via : view_file(".agents/skills/sales-followup/references/scenario-library.md")
+Read via: `view_file(".agents/skills/sales-followup/references/scenario-library.md")`
 
 ## Step 2: Select Follow-Up Scenario
 
@@ -276,4 +276,3 @@ When generating any breakup or final email in a sequence, follow these rules:
 7. **Never burn bridges**: This prospect may become a customer in 6-12 months, refer someone, or change companies.
 
 ---
-

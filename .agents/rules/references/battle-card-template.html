@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objection Playbook & Battle Cards — {{COMPANY_NAME}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-info h1 { font-size: 1.75rem; font-weight: 800; color: var(--text); }
+    .header-info p { color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.35rem; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn-back:hover { background: var(--primary-light); color: var(--primary); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+    .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .objection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+      padding: 1.25rem;
+    }
+    .real-meaning {
+      background: #f1f5f9;
+      border-left: 4px solid var(--text-muted);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+    .script-box { border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; font-size: 0.875rem; }
+    .script-arc { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .script-proof { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .container { max-width: 100%; }
+      .btn-back { display: none !important; }
+      .card, .objection-card { box-shadow: none; border: 1px solid #cbd5e1; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-info">
+        <h1>{{PLAYBOOK_TITLE}}</h1>
+        <p>{{COMPANY_NAME}} — {{THEME}}</p>
+      </div>
+      <nav class="nav-actions">
+        <a href="../index.html" class="btn-back">← Back to Portal</a>
+      </nav>
+    </header>
+    <section class="card">
+      <h2>A-R-C Playbook</h2>
+      {{OBJECTIONS_CONTENT}}
+    </section>
+  </div>
+</body>
+</html>

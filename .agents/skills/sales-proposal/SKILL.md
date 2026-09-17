@@ -13,27 +13,42 @@ description: >-
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, financial modeling, and analysis operate in English. Proposal copy and follow-ups automatically adapt to the primary language of the client.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Explicit argument provided:** Use the prospect slug (`reports/{slug}/`).
+2. **Omitted argument (`*`):** Analyze recent conversation history. If a prospect account is already active in the exchange, deduce and reuse its slug without prompting for confirmation.
+3. **Complete absence of context:** STOP IMMEDIATELY. Write NO files to disk. Prompt the user clearly for clarification:
+   > *"Which prospect account would you like to analyze? (e.g., `proposal prospect-slug`)"*
+
+> [!CAUTION]
+> **Strict Prohibition:** Never create any deliverable directly at the root of `reports/`.
+
 ## Trigger
 
-Invoked via `proposal <client_name>`. Mandatorily inspect `.agents/rules/customer-context.md` (budget sweet spot, ICP pains) and `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence:
-- `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/LEAD-QUALIFICATION.html`
-- `reports/{slug}/DECISION-MAKERS.html` (economic buyer and evaluation committee)
-- `reports/IDEAL-CUSTOMER-PROFILE.html` (commercial calibration)
+Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (budget sweet spot, ICP pains) and `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence strictly in Markdown:
+- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
+- Buying Committee: `reports/{slug}/markdown/DECISION-MAKERS.md`
+- Meeting Intelligence & Discovery: `reports/{slug}/markdown/MEETING-PREP.md`
+- Competitive Intel & Displacement: `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
+- Commercial Calibration: `reports/my-company/markdown/ICP-FRAMEWORK.md`
 
 ## Workflow (3 Sequential Steps)
 
 1. **Input Consolidation:**
-   - Synthesize verified challenges, business priorities, and stakeholder goals from existing reports.
-   - Run targeted `search_web` or `read_url_content` if vital economic scope data is absent.
+   - Synthesize verified challenges, business priorities, meeting findings, and competitor gaps from existing Markdown reports.
+   - Run targeted `search_web` or `read_url_content` ONLY if vital economic scope data is absent.
 
 2. **Proposal Architecture (Mandatory Standard Order):**
    1. *Executive Summary:* 1-page C-level brief (metrics and bottom-line outcomes first).
    2. *Situation Analysis:* Confirmed operational bottlenecks with factual sources.
    3. *Recommended Solution:* Architecture and methodology strictly referencing `product-context.md`.
-   4. *Scope & Milestones:* Concrete phased breakdown of deliverables.
+   4. *Scope & Milestones:* Concrete phased breakdown of deliverables and exclusions.
    5. *Delivery Timeline:* Realistic implementation schedule with built-in validation buffers.
-   6. *Investment & Commercial Terms:* Fixed pricing strictly derived from `product-context.md`.
-   7. *Conservative ROI Projection:* Transparent financial model showing payback period and value multiplier.
+   6. *Investment & Commercial Terms:* Pricing structure faithfully reflecting `product-context.md` (Dynamic CPM, custom SaaS per screen, or project quote — DO NOT force 3 artificial tiers if absent from product context).
+   7. *Financial Business Case (ROI & Cost of Inaction):*
+      - **Conservative Upside ROI:** Transparent financial model showing payback period and value multiplier.
+      - **Quantified Cost of Inaction (COI):** Monthly and annual compounding cost of maintaining status quo ($\text{Identified Waste} + \text{Yield Loss} + \text{Excess Legacy Cost}$).
    8. *Delivery Team & Case Studies:* Verified proof points documented in `product-context.md`.
    9. *Immediate Next Steps:* 3 concrete actions with target decision milestones.
    Template reference: `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`.
@@ -53,13 +68,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/rules/references/proposal-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/CLIENT-PROPOSAL.md` using `view_file(".agents/skills/sales-proposal/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/CLIENT-PROPOSAL.html
-🤖 Données IA  : reports/{slug}/markdown/CLIENT-PROPOSAL.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/CLIENT-PROPOSAL.html
-```
+Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

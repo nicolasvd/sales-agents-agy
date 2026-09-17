@@ -6,45 +6,40 @@
 
 ## Ideal Customer Profile (ICP) Overview
 
-**Target Segment:** Tech-enabled SMBs, scale-ups, and professional service firms seeking operational efficiency through AI automation.  
-**Maturity Stage:** Seed/Series A to Series C, or established profitable SMBs with verified product-market fit.  
-**Geographic Footprint:** Western Europe (France, Belgium, UK, DACH, Nordics) and North America (US, Canada).
+**Target Segment:** My Perfect Customer — [Insert primary industry verticals, e.g., Enterprise B2B SaaS, Luxury Brands, Financial Institutions, Retail Chains].  
+**Maturity Stage:** [Insert target operational stage: e.g., Scale-ups Series B+, established mid-market enterprises, legacy groups undergoing transformation].  
+**Geographic Footprint:** [Insert target geographies: e.g., Western Europe, North America, Benelux, DACH].
 
-## Firmographic & Technographic Boundaries
+## Firmographic & Positioning Boundaries
 
 | Dimension | Target Sweet Spot | Disqualification Threshold |
 |---|---|---|
-| **Headcount** | 20 – 250 employees | < 10 employees or > 1,500 employees |
-| **Revenue / Funding** | €2M – €30M ARR or recent funding (€1M+) | Pre-revenue without verified backing |
-| **Tech Stack** | Modern cloud & collaboration tools (Slack, HubSpot, Notion, Google Workspace, Jira, Salesforce) | 100% on-prem legacy systems with zero API access |
-| **Operating Model** | Digital-first, hybrid/remote workflows | Purely manual/physical non-digitized operations |
+| **Company Size / Headcount** | [e.g., 50 – 1,000+ employees] | [e.g., < 15 employees (unless venture-backed)] |
+| **Revenue / Annual Budget** | [e.g., > €10M annual turnover] | [e.g., < €2M annual turnover] |
+| **Tech Stack & Operations** | [e.g., Modern CRM, established tools] | [e.g., Zero digital infrastructure, pure manual spreadsheets] |
+| **Budget Willingness** | [e.g., Ability to invest €5k+ on audits or €800+/day] | [e.g., Micro-budget tenders, price-driven commodity bidding] |
 
 ## Buying Committee & Target Personas
 
 ### 1. Economic Buyer (Decision Maker)
-- **Titles:** Chief Operating Officer (COO), VP Operations, VP Engineering, Co-Founder / CEO.
-- **Strategic Priorities:** Operational scalability, margin expansion, reducing headcount growth requirements while scaling delivery.
-- **Core Pains:** Capacity bottlenecks, manual reporting churn, disconnected business tools, high operational overhead.
+- **Titles:** [e.g., Chief Executive Officer (CEO), Chief Marketing Officer (CMO), VP Operations].
+- **Strategic Priorities:** [Top business objectives: ROI, market share, risk mitigation, margin growth].
+- **Core Pains:** [Executive vulnerabilities: wasted budgets, organizational silos, slow cycle times].
 
 ### 2. Internal Champion (Day-to-Day Catalyst)
-- **Titles:** Head of Operations, Operations Lead, Product Ops Lead, Delivery Director.
-- **Strategic Priorities:** Workflow fluidity, reducing repetitive tasks, improving internal response times.
-- **Core Pains:** Team burnout on administrative tasks, lack of engineering bandwidth for internal tooling.
+- **Titles:** [e.g., Head of Digital, Strategy Director, Growth Lead].
+- **Strategic Priorities:** [Operational speed, team leverage, modern playbooks, executive alignment].
+- **Core Pains:** [Daily execution overload, friction with legacy processes, lack of leadership mandate].
 
-### 3. Technical & Governance Evaluator
-- **Titles:** CTO, Head of IT, Chief Information Security Officer (CISO).
-- **Key Criteria:** Data privacy (GDPR / CCPA compliance), non-intrusive API integrations, zero data training on customer models.
+## High-Leverage Business Triggers & Buying Signals
 
-## Business Triggers & High-Leverage Buying Signals
+- **Executive Turnover:** [e.g., New C-level appointment (CEO, CMO, VP) within the last 90 days].
+- **Strategic Pivot / Funding:** [e.g., Recent fundraising round, M&A activity, or corporate rebranding].
+- **Market Catalyst:** [e.g., Upcoming industry summit, regulatory change, or international expansion].
+- **Operational Strain:** [e.g., Rapid headcount growth outstripping existing internal workflows].
 
-- **Hiring Surges:** Multiple open roles in operations, customer success, or business analysis within the past 90 days.
-- **Capital Injection:** Seed, Series A/B funding, or strategic growth investment announced in the last 180 days.
-- **Executive Transition:** Appointment of a new COO, VP Ops, or Head of Engineering in the past 6 months.
-- **Tech Expansion:** Recent migration to modern CRM/ERP platforms or public announcement of automation initiatives.
+## Strict Exclusions & Disqualification Rules (Anti-ICP)
 
-## Strict Exclusions & Disqualification Rules
-
-- **Micro-businesses (< 10 FTEs):** Insufficient process volume and inadequate budget for retainer services.
-- **Enterprise Bloat (> 1,500 FTEs):** Heavy RFP processes exceeding 9-month procurement timelines.
-- **Low-margin retail / B2C:** E-commerce without dedicated operations or high-volume ticket handling.
-- **Zero API readiness:** Organizations refusing or unable to authorize standard REST API or webhook integrations.
+- **Sub-Scale Micro-Entities:** [e.g., Solopreneurs or businesses lacking dedicated budget and execution capacity].
+- **Commodity / Low-Cost Bidders:** [e.g., Prospects prioritizing lowest-cost transactional services over strategic impact].
+- **Ethical / Scope Restrictions:** [e.g., Prohibited verticals, unregulated markets, or misaligned commercial practices].

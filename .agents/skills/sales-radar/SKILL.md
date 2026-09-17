@@ -9,7 +9,7 @@ description: >-
 **Role:** Autonomous temporal prospect discovery engine. Identifies and qualifies high-readiness B2B accounts driven by real-world events, trade shows, regulatory deadlines, and executive appointments.  
 **Mode:** One-shot direct execution (non-interactive, zero conversational questions).  
 **Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
-**Deliverables:** `reports/pipeline/RADAR-DISCOVERY.html` and `reports/pipeline/markdown/RADAR-DISCOVERY.md`.
+**Deliverables:** `reports/radar/RADAR-DISCOVERY.html` and `reports/radar/markdown/RADAR-DISCOVERY.md`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, search queries, and analytical notes operate strictly in English. Customer-facing summaries and deliverable content adapt to the user's primary operating language.
@@ -51,36 +51,25 @@ Execute targeted search queries covering both temporal horizons:
 5. **Instant Action Hook:** Pre-format the direct command `prospect <url>` for each account.
 
 ### Step 4: Dual Output Generation & Hub Sync
-1. **Web HTML (Humans):** Write `reports/pipeline/RADAR-DISCOVERY.html` using `.agents/rules/references/radar-template.html` (Light SaaS theme, responsive cards, direct action commands).
-2. **Raw Markdown (AI Memory):** Write `reports/pipeline/markdown/RADAR-DISCOVERY.md` using `.agents/skills/sales-radar/references/output-template.md`.
-3. Display the Terminal Summary Block at the start of your chat response, and conclude with the browser-first completion block.
+1. **Web HTML (Humans):** Write `reports/radar/RADAR-DISCOVERY.html` using `.agents/rules/references/radar-template.html` (Light SaaS theme, responsive cards, direct action commands).
+2. **Raw Markdown (AI Memory):** Write `reports/radar/markdown/RADAR-DISCOVERY.md` using `.agents/skills/sales-radar/references/output-template.md`.
+3. Conclude with the executive summary and deliverable completion block per `output-formatting.md`.
 
 ---
 
 ## Output & Completion Standard
 
-Conclude the execution with the standardized Terminal Summary Block and Browser First completion block:
+Conclude the execution with the standardized Executive Summary and standard completion block per `output-formatting.md`:
 
-```text
-=== SALES-RADAR : [TARGET FOCUS] ===
+### 📊 Executive Summary — Opportunity Radar: [Target Focus]
+- **Verdict / Scope:** 5 Verified Accounts (Dual Window: Forward J+15..90 & Retrospective J-60..0)
+- **Key Signals:**
+  - Forward Catalysts: [Key forward event surfaced]
+  - Retrospective Accelerations: [Key retrospective signal surfaced]
+  - Points of Vigilance: [Disqualification or ICP guardrail noted]
+- **Recommended Action:** Run `prospect <url>` on priority account #1.
 
-Total Surfaced Leads : 5 Verified Accounts
-Temporal Coverage : Dual Window (Forward J+15..90 & Retrospective J-60..0)
-ICP Filter Applied : customer-context.md
-
-Top Surfaced Accounts:
-  1. [Company 1] — [Trigger summary, date & source] -> prospect [url]
-  2. [Company 2] — [Trigger summary, date & source] -> prospect [url]
-  3. [Company 3] — [Trigger summary, date & source] -> prospect [url]
-  4. [Company 4] — [Trigger summary, date & source] -> prospect [url]
-  5. [Company 5] — [Trigger summary, date & source] -> prospect [url]
-
-Recommended Action : Run `prospect <url>` on priority account #1 to trigger full 360° audit.
-
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/pipeline/RADAR-DISCOVERY.html
-🤖 Données IA  : reports/pipeline/markdown/RADAR-DISCOVERY.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/pipeline/RADAR-DISCOVERY.html
-```
+### 📦 Deliverables Generated
+- **Web:** `reports/radar/RADAR-DISCOVERY.html`
+- **AI Data:** `reports/radar/markdown/RADAR-DISCOVERY.md`
+- **Portal Updated:** `reports/index.html`

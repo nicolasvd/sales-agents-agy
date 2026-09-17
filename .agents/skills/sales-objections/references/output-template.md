@@ -2,9 +2,20 @@
 
 ## Output Format
 
-Write the complete objection handling playbook to **OBJECTION-PLAYBOOK.md** in the current working directory with the following structure:
+Write the complete objection handling playbook to `reports/{slug}/markdown/OBJECTION-PLAYBOOK.md` with the following structure:
 
 ```markdown
+---
+slug: "[slug or topic]"
+company: "[Prospect Company or Universal]"
+url: "[URL or Not publicly available]"
+type: "objections"
+date: "[Date]"
+industry: "[Industry]"
+primary_framework: "A-R-C (Acknowledge, Reframe, Clarify) & FFR"
+total_objections: 20
+---
+
 # Objection Handling Playbook: [Industry/Topic]
 
 Generated: [Date]
@@ -17,7 +28,7 @@ Customized For: [Prospect company if applicable]
 
 | # | Objection | Real Meaning | Best Framework | Key Response |
 |---|-----------|-------------|----------------|--------------|
-| 1 | Too expensive | Value not proven | ABC | Show ROI math |
+| 1 | Too expensive | Value not proven | A-R-C | Show ROI math |
 | 2 | Happy with current | Status quo bias | FFR | Gap analysis offer |
 [...continue for all 15...]
 
@@ -28,7 +39,7 @@ Customized For: [Prospect company if applicable]
 ### Feel-Felt-Found (FFR)
 [Framework description and structure]
 
-### Acknowledge-Bridge-Close (ABC)
+### Acknowledge, Reframe, Clarify (A-R-C)
 [Framework description and structure]
 
 ---
@@ -78,9 +89,9 @@ Customized For: [Prospect company if applicable]
 2. **Honest about weaknesses.** If a competitor genuinely has an advantage, acknowledge it. Credibility is more valuable than winning one argument.
 3. **Never manipulative.** No high-pressure tactics, guilt trips, fear-mongering, or manufactured urgency. Respect the prospect as an intelligent professional.
 4. **Customized to context.** If the user provides a specific prospect or industry, every response must be tailored to that context — not generic.
-5. **Both frameworks for every objection.** Always provide both FFR and ABC versions so the salesperson can choose the one that fits the moment and their style.
+5. **Both frameworks for every objection.** Always provide both FFR and A-R-C (Acknowledge, Reframe, Clarify) versions so the salesperson can choose the one that fits the moment and their style.
 6. **Follow-up questions are mandatory.** An objection response without a follow-up question leaves the conversation dead. Every response must continue the dialogue.
 7. **Include walk-away criteria.** Real salespeople need to know when to stop pushing. Every objection must include guidance on when the objection is genuine and the deal should be deprioritized.
-8. **Proof points must be specific.** "Customers love us" is not a proof point. "[Company Name] increased [metric] by [X%] in [timeframe]" is a proof point. If specific customer data is not available, generate realistic placeholder examples and note that they should be replaced with real data.
-9. **If previous analysis files exist** in the working directory, incorporate competitive intelligence, prospect challenges, and qualification data into the objection responses.
+8. **Proof points must be specific.** "Customers love us" is not a proof point. "[Company Name] increased [metric] by [X%] in [timeframe]" is a proof point. If specific customer data is not publicly available, indicate `Not publicly available` — never invent fictitious client names or metrics.
+9. **If previous analysis files exist** in `reports/{slug}/markdown/` (`PROSPECT-ANALYSIS.md`, `COMPANY-RESEARCH.md`, `LEAD-QUALIFICATION.md`, `COMPETITIVE-INTEL.md`), incorporate competitive intelligence, prospect challenges, and qualification data into the objection responses.
 10. **Natural language.** Scripts should sound like a real human talking, not a sales robot. Use contractions, conversational transitions, and genuine empathy.

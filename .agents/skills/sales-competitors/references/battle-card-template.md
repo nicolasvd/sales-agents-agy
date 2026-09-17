@@ -1,6 +1,6 @@
-# Template de Battle Card Concurrentielle
+# Competitive Battle Card Template
 
-Lire via : view_file(".agents/skills/sales-competitors/references/battle-card-template.md")
+Read via: `view_file(".agents/skills/sales-competitors/references/battle-card-template.md")`
 
 ## Step 3: Build Battle Cards
 
@@ -89,4 +89,3 @@ One sentence that positions you against this specific competitor. This is NOT a 
 ```
 
 ---
-

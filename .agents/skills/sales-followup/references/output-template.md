@@ -2,9 +2,21 @@
 
 ## Output Format
 
-Write the complete follow-up sequence to **FOLLOWUP-SEQUENCE.md** in the current working directory with the following structure:
+Write the complete follow-up sequence to `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md` with the following structure:
 
 ```markdown
+---
+slug: "[slug]"
+company: "[Company]"
+url: "[url or Not publicly available]"
+type: "followup"
+date: "[Date]"
+prospect_name: "[Prospect Name]"
+scenario: "[Selected Scenario Name]"
+temperature: "[Hot/Warm/Cool/Cold]"
+deal_stage: "[Early/Active/Near Decision/Stalled]"
+---
+
 # Follow-Up Sequence: [Prospect Name] — [Company]
 
 Generated: [Date]
@@ -102,4 +114,4 @@ Deal Stage: [Early/Active/Near Decision/Stalled]
 7. **Professional but human tone.** Write like a helpful human, not a sales bot. Contractions are fine. Overly formal language is not.
 8. **No manipulation tactics.** No fake scarcity, no guilt trips, no "I noticed you opened my email" tracking callouts.
 9. **Respect the prospect's time and intelligence.** They know you want to sell. Be direct about your intent while providing genuine value.
-10. **If previous analysis files exist**, incorporate their data. Do not ask the user to repeat information that is already available in PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, or other output files in the working directory.
+10. **If previous analysis files exist**, incorporate their data. Do not ask the user to repeat information that is already available in `reports/{slug}/markdown/` (`PROSPECT-ANALYSIS.md`, `COMPANY-RESEARCH.md`, `MEETING-PREP.md`, or `CLIENT-PROPOSAL.md`).

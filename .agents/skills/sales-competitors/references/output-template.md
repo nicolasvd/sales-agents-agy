@@ -2,9 +2,20 @@
 
 ## Output Format
 
-Write the complete competitive intelligence report to **COMPETITIVE-INTEL.md** in the current working directory with the following structure:
+Write the complete competitive intelligence report to `reports/{slug}/markdown/COMPETITIVE-INTEL.md` with the following structure:
 
 ```markdown
+---
+slug: "[slug]"
+company: "[Prospect Company Name]"
+url: "[URL]"
+type: "competitors"
+date: "[Date]"
+competitors_detected: ["[Competitor 1]", "[Competitor 2]"]
+primary_displacement_angle: "[1-line angle]"
+switching_cost_level: "[High/Medium/Low]"
+---
+
 # Competitive Intelligence: [Prospect Company Name]
 
 Generated: [Date]
@@ -104,6 +115,6 @@ Analysis Focus: Sales competitive positioning
 5. **Never recommend bashing competitors.** The battle cards should help the salesperson position and differentiate, not attack. Negative selling backfires.
 6. **Focus on what matters to THIS prospect.** Not every feature gap or competitive advantage is relevant to every deal. Prioritize the battle card content based on the prospect's likely priorities and pain points.
 7. **Switching costs must be realistic.** Underestimating switching costs makes you look naive. Overestimating them makes the deal feel impossible. Be accurate.
-8. **If previous analysis files exist** (PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, LEAD-QUALIFICATION.md), incorporate findings about the prospect's priorities, pain points, and evaluation criteria into the competitive positioning.
+8. **If previous analysis files exist** (`reports/{slug}/markdown/PROSPECT-ANALYSIS.md`, `reports/{slug}/markdown/COMPANY-RESEARCH.md`, `reports/{slug}/markdown/LEAD-QUALIFICATION.md`), incorporate findings about the prospect's priorities, pain points, and evaluation criteria into the competitive positioning.
 9. **Landmine questions must be genuinely curious.** They should be questions any smart buyer would ask — not transparent traps designed to make the competitor look bad.
 10. **Update frequency.** Competitive intelligence has a shelf life. Note the date of each source and recommend a refresh timeline (typically every 3-6 months or before a major competitive deal).

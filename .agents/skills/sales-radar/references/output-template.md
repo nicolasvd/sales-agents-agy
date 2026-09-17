@@ -1,8 +1,17 @@
 # Radar Discovery Output Template
 
-Use this template to generate `reports/pipeline/markdown/RADAR-DISCOVERY.md`.
+Use this template to generate `reports/radar/markdown/RADAR-DISCOVERY.md`.
 
 ```markdown
+---
+slug: "radar"
+company: "Opportunity Radar"
+type: "radar"
+date: "{{SCAN_DATE}}"
+target_focus: "{{TARGET_FOCUS}}"
+accounts_surfaced: 5
+---
+
 # Opportunity Radar: Temporal Trigger & Event-Driven Discovery
 
 **Scan Date:** {{SCAN_DATE}}  
