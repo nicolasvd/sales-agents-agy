@@ -27,13 +27,13 @@ description: >-
 ## Contextual Resolution Gateway (Mandatory Step 0)
 
 Before generating any output, resolve the target prospect:
-1. **Argument explicite fourni :** Extrais le domaine et le slug du prospect (`reports/{slug}/`).
-2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
-3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
-   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse 360° ? (ex: `prospect https://exemple.com`)"*
+1. **Explicit argument provided:** Extract the domain and prospect slug (`reports/{slug}/`).
+2. **Omitted argument (`*`):** Analyze recent conversation history. If a prospect account is already active in the exchange, deduce and reuse its slug without prompting for confirmation.
+3. **Complete absence of context:** STOP IMMEDIATELY. Write NO files to disk. Prompt the user clearly for clarification:
+   > *"Which prospect account or URL would you like to analyze? (e.g., `prospect https://example.com`)"*
 
 > [!CAUTION]
-> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+> **Strict Prohibition:** Never create any deliverable directly at the root of `reports/`.
 
 ## Invocation Trigger
 

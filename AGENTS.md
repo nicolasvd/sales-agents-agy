@@ -71,9 +71,7 @@ The `framework-update` skill provides 100% declarative workspace synchronization
 | `proposal [prospect]*` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
 | `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
 | `icp [segment]*` | `sales-icp` | `reports/my-company/ICP-FRAMEWORK.html` (+ `markdown/`) |
-| `objections [prospect]* <thème>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `objections [prospect]* <topic>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
 | `radar [topic/event]` | `sales-radar` | `reports/radar/RADAR-DISCOVERY.html` (+ `markdown/`) |
 | `report` | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` (Index Hub) |
 | `update [framework]` | `framework-update` | Workspace sync via GitHub REST API (Sanctuary-safe) |
-
-

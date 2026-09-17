@@ -27,7 +27,7 @@ Orchestrates 15 autonomous sales skills and 5 internal subagents without scripts
 | `proposal [prospect]*` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
 | `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
 | `icp [segment]*` | `sales-icp` | `reports/my-company/ICP-FRAMEWORK.html` (+ `markdown/`) |
-| `objections [prospect]* <thème>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `objections [prospect]* <topic>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
 | `radar [topic/event]` | `sales-radar` | `reports/radar/RADAR-DISCOVERY.html` (+ `markdown/`) |
 | `report` | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` (Index Hub) |
 | `update [framework]` | `framework-update` | Workspace sync via GitHub REST API (Sanctuary-safe) |
@@ -39,7 +39,7 @@ When a command is invoked:
    - For commands requiring a target prospect (`qualify`, `research`, `contacts`, `prospect`, `competitors`, `outreach`, `followup`, `prep`, `proposal`, `objections`):
      - If an argument is provided: extract prospect domain/slug and proceed.
      - If the argument is omitted: check the recent conversation history. If a prospect was previously discussed, inherit its slug automatically.
-     - If no argument is provided AND no active prospect exists in context: **STOP IMMEDIATELY**. Do not dispatch or write any files. Prompt the user clearly with the expected syntax (e.g., *"Sur quel compte ou URL souhaitez-vous exécuter cette commande ? (ex: `qualify https://exemple.com`)"*).
+     - If no argument is provided AND no active prospect exists in context: **STOP IMMEDIATELY**. Do not dispatch or write any files. Prompt the user clearly with the expected syntax (e.g., *"Which account or URL would you like to execute this command on? (e.g., `qualify https://example.com`)"*).
 2. **Skill Loading:** Load the corresponding skill instruction file from `.agents/skills/<skill>/SKILL.md`.
 
 ### System & Maintenance Dispatching

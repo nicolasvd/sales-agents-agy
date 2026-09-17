@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
 
 > [!IMPORTANT]
@@ -22,8 +26,8 @@ Every skill response begins directly with a concise executive summary in natural
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
 For each analysis, two distinct deliverables are created under `reports/`:
-- **Visual Version (For Humans):** Written to `reports/{path}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` styles.
-- **Raw Data Version (For AI):** Stored in `reports/{path}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions. Downstream AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
+- **Visual Version (For Humans):** Written to `reports/{slug}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` styles.
+- **Raw Data Version (For AI):** Stored in `reports/{slug}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions. Downstream AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
 - **Central Dashboard:** `reports/index.html` aggregates and links all generated HTML deliverables.
 
 | Skill | Deliverable Base (.html & markdown/.md) | Reference Template |
@@ -45,7 +49,7 @@ For each analysis, two distinct deliverables are created under `reports/`:
 
 ## Mandatory Machine Metadata Standard (YAML Frontmatter)
 
-Every Markdown deliverable written to `reports/{path}/markdown/{DELIVERABLE}.md` MUST begin with a standardized YAML frontmatter header containing verified machine metadata:
+Every Markdown deliverable written to `reports/{slug}/markdown/{DELIVERABLE}.md` MUST begin with a standardized YAML frontmatter header containing verified machine metadata:
 
 ```yaml
 ---
@@ -85,6 +89,6 @@ No HTML deliverable is a dead end. Every report generated within the workspace (
 Every skill response MUST conclude with a clean, sober block listing the created file paths and confirming that `reports/index.html` has been updated:
 
 ### 📦 Deliverables Generated
-- **Web :** `reports/{path}/{DELIVERABLE}.html`
-- **Données IA :** `reports/{path}/markdown/{DELIVERABLE}.md`
-- **Portail mis à jour :** `reports/index.html`
+- **Web:** `reports/{slug}/{DELIVERABLE}.html`
+- **AI Data:** `reports/{slug}/markdown/{DELIVERABLE}.md`
+- **Portal Updated:** `reports/index.html`
