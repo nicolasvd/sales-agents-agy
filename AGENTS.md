@@ -65,14 +65,15 @@ The `framework-update` skill provides 100% declarative workspace synchronization
 | `research <url>` | `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` (+ `markdown/`) |
 | `contacts <url>` | `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` (+ `markdown/`) |
 | `prospect <url>` | `sales-prospect` + 5 subagents | `reports/{slug}/PROSPECT-ANALYSIS.html` (+ `markdown/`) |
-| `outreach <prospect>` | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` (+ `markdown/`) |
-| `followup <prospect>` | `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE.html` (+ `markdown/`) |
-| `prep <url>` | `sales-prep` | `reports/{slug}/MEETING-PREP.html` (+ `markdown/`) |
-| `proposal <client>` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
+| `outreach [prospect]*` | `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` (+ `markdown/`) |
+| `followup [prospect]*` | `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE.html` (+ `markdown/`) |
+| `prep [prospect]*` | `sales-prep` | `reports/{slug}/MEETING-PREP.html` (+ `markdown/`) |
+| `proposal [prospect]*` | `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` (+ `markdown/`) |
 | `competitors <url>` | `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` (+ `markdown/`) |
-| `icp <description>` | `sales-icp` | `reports/IDEAL-CUSTOMER-PROFILE.html` (+ `markdown/`) |
-| `objections <topic>` | `sales-objections` | `reports/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
-| `radar [topic/event]` | `sales-radar` | `reports/pipeline/RADAR-DISCOVERY.html` (+ `markdown/`) |
-| `report` | `sales-report` | `reports/PIPELINE-SUMMARY.html` (Index Hub) |
+| `icp [segment]*` | `sales-icp` | `reports/my-company/ICP-FRAMEWORK.html` (+ `markdown/`) |
+| `objections [prospect]* <thème>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` (+ `markdown/`) |
+| `radar [topic/event]` | `sales-radar` | `reports/radar/RADAR-DISCOVERY.html` (+ `markdown/`) |
+| `report` | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` (Index Hub) |
 | `update [framework]` | `framework-update` | Workspace sync via GitHub REST API (Sanctuary-safe) |
+
 
