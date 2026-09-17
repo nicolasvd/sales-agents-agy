@@ -13,10 +13,21 @@ description: >-
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, search queries, and scoring logs operate in English. The final deliverable automatically adapts to the primary language of the audited company.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Argument explicite fourni :** Extrais le domaine et le slug du prospect (`reports/{slug}/`).
+2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
+3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
+   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse ? (ex: `qualify https://exemple.com`)"*
+
+> [!CAUTION]
+> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+
 ## Trigger
 
-Invoked via `qualify <url>`. Mandatorily inspect `.agents/rules/customer-context.md` for target ICP parameters and disqualification filters. If available, inspect also:
-- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` — for additional ICP nuances.
+Invoked via `qualify <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` for target ICP parameters and disqualification filters. If available, inspect also:
+- `reports/my-company/ICP-FRAMEWORK.html` ou `reports/my-company/markdown/ICP-FRAMEWORK.md`.
 
 ## Workflow (4 Sequential Steps)
 
@@ -49,13 +60,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/LEAD-QUALIFICATION.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/LEAD-QUALIFICATION.md` using `view_file(".agents/skills/sales-qualify/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/LEAD-QUALIFICATION.html
-🤖 Données IA  : reports/{slug}/markdown/LEAD-QUALIFICATION.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/LEAD-QUALIFICATION.html
-```
+Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

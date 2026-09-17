@@ -13,11 +13,22 @@ description: >-
 > [!IMPORTANT]
 > **Language Governance:** Internal technology detection, competitive gap analysis, and notes operate in English. Deliverable content automatically adapts to the primary language of the prospect.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Argument explicite fourni :** Extrais le domaine et le slug du prospect (`reports/{slug}/`).
+2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
+3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
+   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse ? (ex: `competitors https://exemple.com`)"*
+
+> [!CAUTION]
+> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+
 ## Trigger
 
-Invoked via `competitors <url>`. Mandatorily inspect `.agents/rules/customer-context.md` (ICP core pains and tech stack sweet spot) and `.agents/rules/product-context.md` (authorized positioning). If available, inspect also:
-- `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/PROSPECT-ANALYSIS.html`
-- `reports/IDEAL-CUSTOMER-PROFILE.html` (technographic profile & baseline tools)
+Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (ICP core pains and tech stack sweet spot) and `.agents/rules/product-context.md` (authorized positioning). If available, inspect also:
+- `reports/{slug}/markdown/COMPANY-RESEARCH.md` ou `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+- `reports/my-company/markdown/ICP-FRAMEWORK.md` (technographic profile & baseline tools)
 
 ## Workflow (5 Sequential Steps)
 
@@ -57,13 +68,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/COMPETITIVE-INTEL.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPETITIVE-INTEL.md` using `view_file(".agents/skills/sales-competitors/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/COMPETITIVE-INTEL.html
-🤖 Données IA  : reports/{slug}/markdown/COMPETITIVE-INTEL.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/COMPETITIVE-INTEL.html
-```
+Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

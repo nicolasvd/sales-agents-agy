@@ -36,7 +36,9 @@ description: >-
    - **Verbatim Value Proposition**
    - **Core Practice Pillars** (top 3 service/product lines)
    - **Target Personas** (Economic Buyer & Champion)
-   - **Initial Pricing Indicators & Exclusions**
+   - **Initial Pricing Indicators & Exclusions:**
+     > [!IMPORTANT]
+     > **Strict Pricing Guardrail (Anti-Hallucination):** If the audited website does not explicitly publish public pricing (very common in Enterprise B2B), **DO NOT invent or extrapolate pricing tiers, hourly rates, or figures**. Explicitly set the initial pricing in `product-context.md` to `"Custom Enterprise / To be calibrated with user"` and freeze it until the user provides their real pricing model in Step 4.
 3. Generate initial `.agents/rules/product-context.md` using `.agents/skills/sales-setup/references/product-template.md`. Ensure strict compliance with the `< 5,120 bytes` limit.
 
 ### Step 2: Reference Client Inquiry
@@ -86,11 +88,6 @@ Watchpoints:
   2. ICP Disqualifiers: [Key disqualification thresholds]
 
 Recommended Action: Workspace fully calibrated! You can now run a prospect audit with `prospect <url>` or qualify a lead with `qualify <url>`.
-
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/my-company/company-dna.html
-⚙️ Règles IA    : .agents/rules/product-context.md · customer-context.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/my-company/company-dna.html
 ```
+
+Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

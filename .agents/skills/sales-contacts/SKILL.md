@@ -13,11 +13,22 @@ description: >-
 > [!IMPORTANT]
 > **Language Governance:** Internal search queries, reasoning, and role classifications operate in English. Deliverable content automatically adapts to the primary language of the prospect.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Argument explicite fourni :** Extrais le domaine et le slug du prospect (`reports/{slug}/`).
+2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
+3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
+   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse ? (ex: `contacts https://exemple.com`)"*
+
+> [!CAUTION]
+> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+
 ## Trigger
 
-Invoked via `contacts <url>`. Mandatorily inspect `.agents/rules/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
-- `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/markdown/COMPANY-RESEARCH.md`
-- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`
+Invoked via `contacts <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
+- `reports/{slug}/markdown/COMPANY-RESEARCH.md` (ou version `.html`)
+- `reports/my-company/markdown/ICP-FRAMEWORK.md` (ou version `.html`)
 
 ## Workflow (4 Sequential Steps)
 
@@ -54,13 +65,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/DECISION-MAKERS.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/DECISION-MAKERS.md` using `view_file(".agents/skills/sales-contacts/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/DECISION-MAKERS.html
-🤖 Données IA  : reports/{slug}/markdown/DECISION-MAKERS.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/DECISION-MAKERS.html
-```
+Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

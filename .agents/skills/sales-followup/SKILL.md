@@ -13,24 +13,39 @@ description: >-
 > [!IMPORTANT]
 > **Language Governance:** Internal scenario selection and follow-up strategy operate in English. Drafted messages automatically adapt to the primary language of the prospect.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Argument explicite fourni :** Utilise le slug du prospect (`reports/{slug}/`).
+2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
+3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
+   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse ? (ex: `followup nom-du-prospect`)"*
+
+> [!CAUTION]
+> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+
 ## Trigger
 
-Invoked via `followup <prospect_name>`. Mandatorily inspect `.agents/rules/customer-context.md` (persona priorities, target deal velocity) and `.agents/rules/product-context.md`. Then inspect available workspace context:
-- `reports/{slug}/OUTREACH-SEQUENCE.html` or `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` (initial sequence history)
-- `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md` (contact coordinates)
+Invoked via `followup [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (persona priorities, target deal velocity) and `.agents/rules/product-context.md`. Then inspect available workspace context strictly in Markdown:
+- Initial Sequence & Touches: `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`
+- Meeting Notes & Engagements: `reports/{slug}/markdown/MEETING-PREP.md`
+- Proposal Terms & Scope: `reports/{slug}/markdown/CLIENT-PROPOSAL.md`
+- Contact Coordinates: `reports/{slug}/markdown/DECISION-MAKERS.md`
+- Core Prospect Diagnostic: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 
 ## Workflow (4 Sequential Steps)
 
 1. **Engagement History Audit:**
-   - Review prior touchpoints: count of touches, last channel used, time elapsed.
-   - Detect response signals: silence, email opens/clicks, partial interest, or stalling.
+   - Review prior touchpoints: count of touches, last channel used, time elapsed, commitments from meeting prep or proposal files.
+   - Detect response signals: silence, email opens/clicks, partial interest, objection raised, or stalled contract review.
 
 2. **Tactical Scenario Selection:**
-   - Select 1 of 4 specialized follow-up frameworks:
-     - **Scenario A (No-Response Breakup):** 3 progressive touches leading to a polite, high-status breakup note.
-     - **Scenario B (Stalled Deal Re-Ignition):** Value-add nurture injecting new urgency or market insights.
-     - **Scenario C (Post-Objection Reframe):** Targeted follow-up addressing specific reservations raised.
-     - **Scenario D (Internal Champion Multi-Threading):** Expanding lateral buy-in across technical and operational peers.
+   - Select 1 of 5 standardized lifecycle scenarios aligned with `scenario-library.md`:
+     - **Scenario 1 (Post-Discovery Meeting):** 3 touches (Recap + Value Reinforcement + Decision Nudge).
+     - **Scenario 2 (Post-Demo):** 4 touches (Recap & Resources + Address Objections + Social Proof + Decision Timeline).
+     - **Scenario 3 (Post-Proposal):** 5 touches (Delivery + Walkthrough Offer + Value-Add Insight + Direct Check-In + Breakup).
+     - **Scenario 4 (Ghost Recovery / Stalled Deal):** 3 touches (Pattern Interrupt + New Value Angle + Honest Breakup).
+     - **Scenario 5 (Strategic Nurture):** Low-touch ongoing monthly value drops without selling pressure.
    - Script library reference: `view_file(".agents/skills/sales-followup/references/scenario-library.md")`.
 
 3. **Incremental Value Personalization:**
@@ -51,13 +66,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/FOLLOWUP-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md` using `view_file(".agents/skills/sales-followup/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/FOLLOWUP-SEQUENCE.html
-🤖 Données IA  : reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/FOLLOWUP-SEQUENCE.html
-```
+Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

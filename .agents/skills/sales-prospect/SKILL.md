@@ -24,10 +24,21 @@ description: >-
 - `start_subagent` (launching internal subagents)
 - ❌ **FORBIDDEN:** `read_url_content`, `search_web`, `run_command`
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Argument explicite fourni :** Extrais le domaine et le slug du prospect (`reports/{slug}/`).
+2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
+3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
+   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse 360° ? (ex: `prospect https://exemple.com`)"*
+
+> [!CAUTION]
+> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+
 ## Invocation Trigger
 
-Invoked via chat command: `prospect <url>`.  
-Mandatorily read: `.agents/rules/customer-context.md` and `.agents/rules/fact-checking.md` (verifying demo profile guardrail). If available, also read: `reports/IDEAL-CUSTOMER-PROFILE.html` / `markdown/` via `view_file`.
+Invoked via chat command: `prospect <url>`. Apply the **Contextual Resolution Gateway** first.
+Mandatorily read: `.agents/rules/customer-context.md` and `.agents/rules/fact-checking.md` (verifying demo profile guardrail). If available, also read: `reports/my-company/markdown/ICP-FRAMEWORK.md` via `view_file`.
 
 ## Workflow — Scratchpad State Machine
 
