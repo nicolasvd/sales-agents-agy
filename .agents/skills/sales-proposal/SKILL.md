@@ -16,18 +16,18 @@ description: >-
 ## Contextual Resolution Gateway (Mandatory Step 0)
 
 Before generating any output, resolve the target prospect:
-1. **Argument explicite fourni :** Utilise le slug du prospect (`reports/{slug}/`).
-2. **Argument omis (`*`) :** Analyse l'historique récent de la conversation. Si un compte prospect fait l'objet de l'échange, déduis et réutilise son slug sans demander confirmation.
-3. **Absence totale de contexte :** ARRÊT IMMÉDIAT. N'écris AUCUN fichier sur le disque. Demande une clarification :
-   > *"Sur quel compte prospect souhaitez-vous exécuter cette analyse ? (ex: `proposal nom-du-prospect`)"*
+1. **Explicit argument provided:** Use the prospect slug (`reports/{slug}/`).
+2. **Omitted argument (`*`):** Analyze recent conversation history. If a prospect account is already active in the exchange, deduce and reuse its slug without prompting for confirmation.
+3. **Complete absence of context:** STOP IMMEDIATELY. Write NO files to disk. Prompt the user clearly for clarification:
+   > *"Which prospect account would you like to analyze? (e.g., `proposal prospect-slug`)"*
 
 > [!CAUTION]
-> **Interdiction stricte :** Aucun livrable ne doit être créé directement à la racine de `reports/`.
+> **Strict Prohibition:** Never create any deliverable directly at the root of `reports/`.
 
 ## Trigger
 
 Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (budget sweet spot, ICP pains) and `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence strictly in Markdown:
-- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` ou `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
+- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
 - Buying Committee: `reports/{slug}/markdown/DECISION-MAKERS.md`
 - Meeting Intelligence & Discovery: `reports/{slug}/markdown/MEETING-PREP.md`
 - Competitive Intel & Displacement: `reports/{slug}/markdown/COMPETITIVE-INTEL.md`

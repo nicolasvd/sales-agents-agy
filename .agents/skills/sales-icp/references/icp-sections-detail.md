@@ -1,6 +1,6 @@
-# Détail des Sections ICP — Protocole Complet
+# Detailed ICP Sections — Complete Protocol
 
-Lire via : view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")
+Read via: `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`
 
 ## Output Format
 

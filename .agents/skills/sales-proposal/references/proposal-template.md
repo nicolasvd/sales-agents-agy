@@ -1,7 +1,7 @@
-# Template de Proposition Commerciale
+# Commercial Client Proposal Template
 
-Ce template est le squelette de `reports/{slug}/markdown/CLIENT-PROPOSAL.md`.
-Utiliser via : view_file(".agents/skills/sales-proposal/references/proposal-template.md")
+This template serves as the scaffold for `reports/{slug}/markdown/CLIENT-PROPOSAL.md`.
+Read via: `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`
 
 ```markdown
 ---
