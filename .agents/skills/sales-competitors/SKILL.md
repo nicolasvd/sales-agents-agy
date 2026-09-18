@@ -32,6 +32,9 @@ Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** fir
 
 ## Workflow (5 Sequential Steps)
 
+> [!IMPORTANT]
+> **Re-run & Refresh Policy:** When explicitly invoked with a target prospect URL or topic, systematically execute a fresh web exploration. Overwrite existing local reports with updated findings and today's date (`audit_date`). Never use existing local markdown files as a substitute for an explicit user re-run.
+
 1. **Current Tooling Detection:**
    - Execute `read_url_content` across integration and partner directories: `/integrations`, `/partners`, `/ecosystem`.
    - Query `search_web` for stack disclosures: `"[Company Name]" site:stackshare.io`, `"[Company Name]" uses OR "built with"`.
@@ -68,4 +71,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/COMPETITIVE-INTEL.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPETITIVE-INTEL.md` using `view_file(".agents/skills/sales-competitors/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

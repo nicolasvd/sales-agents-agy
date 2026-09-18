@@ -57,4 +57,4 @@ Every execution must strictly load and enforce:
 - `.agents/rules/scoring.md` (deterministic BANT, MEDDIC, Urgency scorecards)
 - `.agents/rules/product-context.md` (product offering, fixed pricing, scope exclusions)
 - `.agents/rules/customer-context.md` (ICP definition, target personas, qualification thresholds)
-- `.agents/rules/output-formatting.md` (terminal summary block, Dual Output, 3-link completion block)
+- `.agents/rules/output-formatting.md` (Executive Briefing Card, Dual Output, 3-link completion block)

@@ -387,12 +387,12 @@
 
       <!-- Breakdown Bars -->
       <div class="metrics-card">
-        <h3>Component Breakdown</h3>
+        <h3>Component Breakdown (Deterministic Formula)</h3>
         <div class="progress-group">
           <div class="progress-item">
             <div class="progress-header">
               <span>BANT Qualification</span>
-              <span>{{BANT_SCORE}} / 100 (50%)</span>
+              <span>{{BANT_SCORE}} / 100 (50% &rarr; {{BANT_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{BANT_SCORE}}%;"></div>
@@ -402,7 +402,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>MEDDIC Completeness</span>
-              <span>{{MEDDIC_PERCENT}}% (30%)</span>
+              <span>{{MEDDIC_PERCENT}}% (30% &rarr; {{MEDDIC_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{MEDDIC_PERCENT}}%; background: #0ea5e9;"></div>
@@ -412,7 +412,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>Urgency Modifier</span>
-              <span>{{URGENCY_SCORE}} / 100 (20%)</span>
+              <span>{{URGENCY_SCORE}} / 100 (20% &rarr; {{URGENCY_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{URGENCY_SCORE}}%; background: #10b981;"></div>

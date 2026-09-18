@@ -10,7 +10,7 @@ slug: "[slug]"
 company: "[Company Name]"
 url: "[url]"
 type: "contacts"
-date: "[current date]"
+audit_date: "YYYY-MM-DD"
 contact_access_score: [X]
 committee_size: [X]
 email_pattern: "[pattern or Unknown]"
@@ -155,35 +155,24 @@ Include channel, messaging angle, and expected response.]
 
 ---
 
-## Terminal Output
+## Executive Briefing Card (Modern Markdown Chat Output)
 
-Display a condensed summary in the terminal:
+Display a clean executive card in chat at the start of your response:
 
-```
-=== DECISION MAKER INTELLIGENCE COMPLETE ===
+### 👥 Decision Maker Intelligence: [Company Name]
 
-Company: [name]
-Buying Committee Size: [X] contacts identified
+> [!TIP]
+> **Contact Access Score:** **[X]/100** | **Buying Committee:** [X] identified stakeholders | **Email Pattern:** `[pattern]`
 
-Contact Access Score: [X]/100
-  Decision Makers:     [XX]/25 ████████░░
-  Contact Info:        [XX]/25 ██████░░░░
-  Personalization:     [XX]/25 ███████░░░
-  Warm Paths:          [XX]/25 █████░░░░░
+| Committee Role | Name & Title | Priority | Recommended Channel & Strategy |
+|---|---|---|---|
+| **Economic Buyer** | **[Name]**, [Title] | P1 | [Channel] → [Strategic ROI angle] |
+| **Champion** | **[Name]**, [Title] | P2 | [Channel] → [Operational pain relief angle] |
+| **Technical Evaluator**| **[Name]**, [Title] | P3 | [Channel] → [Security & integration angle] |
 
-Buying Committee:
-  Economic Buyer:      [Name], [Title]
-  Champion:            [Name], [Title]
-  Technical Eval:      [Name], [Title]
-  End User:            [Name], [Title]
-
-Email Pattern: [pattern]
-
-Recommended First Contact: [Name] ([Role])
-Recommended Channel: [Email/LinkedIn/Both]
-
-Full report saved to: reports/{slug}/markdown/DECISION-MAKERS.md
-```
+- **🎯 Recommended First Contact:** **[Name]** ([Role]) via [Email/LinkedIn]
+- **🔑 Key Personalization Anchor:** [Strongest verified public anchor]
+- **⚡ Recommended Next Action:** Run `outreach <url>` to generate the 5-touch outreach sequence.
 
 ---
 
