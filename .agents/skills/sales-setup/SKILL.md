@@ -70,23 +70,10 @@ Ask the user the following 2 targeted questions in chat:
 
 ## Output & Completion Standard
 
-Conclude the onboarding session with the Executive Briefing Card and Browser First completion block per `output-formatting.md`:
+Conclude the onboarding session by delivering a clear executive briefing of the configured workspace in fluid Markdown per `output-formatting.md` (highlighting configuration status, core value proposition, ICP boundaries, and recommended next steps). Conclude your response with the standard deliverables completion block:
 
-### 🏢 Setup Completed: [Company Name]
-
-> [!TIP]
-> **Configuration Status:** **Active & Calibrated** | **Rules Integrity:** Strictly `< 5,120 bytes` each  
-> **Executive Positioning:** [1-line offering synthesis]
-
-| Configuration Dimension | Status & Grounding | Calibrated Settings |
-|---|---|---|
-| **Product Context** | `product-context.md` | [Core value proposition & solutions mapped] |
-| **Customer Context** | `customer-context.md` | [Target ICP, priority tiers, headcount, sectors] |
-| **Pricing & Contract** | Documented | [Calibrated model or average contract value / Not public] |
-| **Interactive Dashboard** | `company-dna.html` | Accessible via top navigation in Portal Index |
-
-- **🚫 Strict Exclusions:** [Key service exclusions applied]
-- **⚠️ ICP Disqualifiers:** [Key disqualification thresholds]
-- **⚡ Recommended Next Step:** Run `prospect <url>` to audit a target company or `radar` to discover event-driven opportunities.
-
-Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+### 📦 Deliverables Generated
+- **Web (Interactive):** `reports/my-company/company-dna.html`
+- **Product Rules:** `.agents/rules/product-context.md`
+- **Customer Rules:** `.agents/rules/customer-context.md`
+- **Portal Updated:** `reports/index.html`
