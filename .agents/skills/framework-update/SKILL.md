@@ -127,8 +127,7 @@ Emit the final standardized Executive Briefing Card:
 
 - **UI Refresh Recommendation (Conditional):**
   - Check whether any HTML templates under `.agents/rules/references/` (e.g., `index-template.html`, `context-template.html`, `radar-template.html`, `pipeline-summary-template.html`) were in the list of `🟢 Added` or `🟡 Modified` files during the update.
-  - **If at least one template was updated:** append the following callout directly below the Executive Briefing Card:
-    ```text
-    💡 Global UI templates were updated. Run 'report' to refresh your portal, Company DNA, and pipeline views with the latest layout.
-    ```
+  - **If at least one template was updated:** append the following native Markdown callout directly below the Executive Briefing Card:
+    > [!TIP]
+    > Global UI templates were updated. Run `report` to refresh your portal, Company DNA, and pipeline views with the latest layout.
   - **If no templates were updated:** omit this callout entirely.

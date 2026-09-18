@@ -1,33 +1,16 @@
 # Rule: Output Formatting & Modern Markdown Chat Standard
 
 > [!IMPORTANT]
-> **Linguistic Hierarchy:** UI Shell 100% English. Analysis copy adapts to user prompt language (French/English). Internal reasoning strictly English.
+> **Linguistic Hierarchy & Chat Mirroring:**
+> - **Internal Engine (100% Technical English):** All `SKILL.md` instructions, declarative rules, HTML templates, scratchpads, and execution logs operate strictly in technical English.
+> - **Conversational Chat (Strict Language Mirroring):** Conversational chat responses systematically mirror the user's prompt language (French for French, English for English), regardless of the audited prospect's country or language.
+> - **Report Deliverables (`reports/`):** Universal English UI shell and frontmatter schema. Analytical deliverable copy adapts to the target market's business language.
 
-## Executive Briefing Card (Modern Chat Response Standard)
+## Conversational Chat Standard (Direct Markdown)
 
-Every skill response begins with a modern Executive Briefing Card in rich GitHub Markdown. Never use legacy CLI monospace banners (`=== COMPLETE ===`) or ASCII progress bars (`████░░`):
-
-### 🎯 [Skill Name] : [Company Name / Subject]
-
-> [!TIP]
-> **Verdict:** **[Grade / Classification]** (Score: [XX]/100) | **Core Opportunity:** [1-sentence strategic synthesis]
-
-| Dimension / KPI | Score / Value | Weight & Contribution | Verified Key Signal |
-|---|---|---|---|
-| **[Dimension 1]** | **[Score]** | [Weight]% → **[Contribution] pts** | [Key factual evidence with source] |
-| **[Dimension 2]** | **[Score]** | [Weight]% → **[Contribution] pts** | [Key factual evidence with source] |
-
-- **💡 Strategic Angle:** [Hook connecting trigger to solution pillar]
-- **⚠️ Point of Vigilance:** [Primary risk, blocker, or landmine]
-- **⚡ Next Action:** `[skill] [url]` targeting [Role / Contact].
-
-## Typography & HTML Sanitation Standard (Zero-LaTeX)
-
-- ❌ **Zero LaTeX in Deliverables:** NEVER use LaTeX syntax (`$\rightarrow$`, `\times`, `$$...$$`, `\approx`, `\le`, `\ge`, `\$`) in HTML or Markdown deliverables.
-- **Universal Characters & Entities:**
-  - Arrows: Use `→` in Markdown or `&rarr;` / `→` in HTML (never `$\rightarrow$` or `->`).
-  - Multiplication: Use `×` in Markdown or `&times;` / `×` in HTML (never `\times` or `*`).
-  - Inequalities: Use `≤` / `&le;` and `≥` / `&ge;`. Currency: Raw `$` or `€` (never `\$`).
+Deliver executive insights directly in natural, clean Markdown (bold headings, bullet points, inline bold for metrics, inline code for commands). Do not wrap conversational text in text code blocks or monospace delimiters.
+- **Tone & Structure:** Start with a concise executive summary (verdict/grade, key signals with cited sources, points of vigilance, and actionable next steps).
+- **Flexibility:** Adapt the presentation structure to the specific sales domain (e.g., MEDDIC breakdown, A-R-C objection handling, or chronological outreach sequence).
 
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
@@ -80,14 +63,11 @@ top_triggers: ["{Verified Trigger (< 90 days)}"]
 ---
 ```
 
-## Navigation Standard & Deliverables Generated
+## Universal Cockpit Navigation & Deliverables Generated
 
-Every report includes the return button in `<header>`:
-```html
-<nav class="nav-actions"><a href="../index.html" class="btn-back">← Back to Portal</a></nav>
-```
+Every report generated within the workspace links back to `reports/index.html` via the standard navigation button defined in the reference templates.
 
-Every skill concludes with the completion block:
+Every skill concludes its response with the standardized completion block:
 
 ### 📦 Deliverables Generated
 - **Web (Interactive):** `reports/{slug}/{DELIVERABLE}.html`

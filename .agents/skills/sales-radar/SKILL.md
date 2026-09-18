@@ -63,16 +63,7 @@ Execute targeted search queries covering both temporal horizons:
 
 ## Output & Completion Standard
 
-Conclude the execution with the standardized Executive Summary and standard completion block per `output-formatting.md`:
-
-### 📊 Executive Summary — Opportunity Radar: [Target Focus]
-- **Verdict / Scope:** 5 Verified Accounts (Dual Window: Forward J+15..90 & Retrospective J-60..0)
-- **Key Signals:**
-  - Forward Catalysts: [Key forward event surfaced]
-  - Retrospective Accelerations: [Key retrospective signal surfaced]
-- **Points of Vigilance:**
-  - [Disqualification or ICP guardrail noted]
-- **Recommended Action:** Run `prospect <url>` on priority account #1.
+Deliver the executive synthesis and the list of surfaced opportunities directly in fluid Markdown per `output-formatting.md`. Conclude your response with the standard deliverables completion block:
 
 ### 📦 Deliverables Generated
 - **Web:** `reports/radar/RADAR-DISCOVERY.html`
