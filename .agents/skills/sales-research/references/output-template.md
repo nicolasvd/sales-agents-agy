@@ -115,38 +115,26 @@ Written for a sales rep who needs to get up to speed in 60 seconds.]
 
 ---
 
-## Terminal Output
+## Executive Briefing Card (Modern Markdown Chat Output)
 
-Display a condensed summary in the terminal:
+Display a clean executive card in chat at the start of your response:
 
-```
-=== COMPANY RESEARCH COMPLETE ===
+### 🏢 Company Research: [Company Name]
 
-Company: [name] ([type])
-Industry: [vertical]
-Stage: [Startup/Growth/Mature/Public]
-Employees: [count]
-Funding: [total]
-Revenue Est.: [range]
+> [!TIP]
+> **Company Fit Score:** **[X]/100** ([Grade / Level]) | **Stage:** [Startup/Growth/Mature/Public] — [Employees count] employees
 
-Company Fit Score: [X]/100
-  Size Fit:           [XX]/20 ████████░░
-  Industry Fit:       [XX]/20 ██████░░░░
-  Growth Trajectory:  [XX]/20 ███████░░░
-  Tech Sophistication:[XX]/20 █████░░░░░
-  Budget Signals:     [XX]/20 ████████░░
+| Sub-Dimension | Score | Weight / Max | Key Grounding Signal |
+|---|---|---|---|
+| **Size Fit** | **[X]** | /20 pts | [Headcount signal with source] |
+| **Industry Fit** | **[X]** | /20 pts | [Vertical alignment with customer-context] |
+| **Growth Trajectory** | **[X]** | /20 pts | [Hiring / expansion signals] |
+| **Tech Sophistication** | **[X]** | /20 pts | [Detected stack maturity] |
+| **Budget Signals** | **[X]** | /20 pts | [Revenue / funding evidence] |
 
-Top Strengths:
-  1. [strength]
-  2. [strength]
-  3. [strength]
-
-Top Risks:
-  1. [risk]
-  2. [risk]
-
-Full report saved to: reports/{slug}/markdown/COMPANY-RESEARCH.md
-```
+- **💪 Top Strengths:** [Key strength 1] · [Key strength 2]
+- **⚠️ Key Risk:** [Primary vulnerability or data gap]
+- **⚡ Recommended Next Action:** Run `contacts <url>` to map the buying committee.
 
 ---
 

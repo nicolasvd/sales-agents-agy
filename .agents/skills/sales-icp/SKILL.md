@@ -56,7 +56,7 @@ Save both deliverables simultaneously strictly within `reports/my-company/`:
 > [!CAUTION]
 > **Strict Prohibition:** Never write any file directly at the root of `reports/` (e.g., `reports/IDEAL-CUSTOMER-PROFILE.html` is strictly forbidden).
 
-Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
 
 ### Post-Execution Interaction
 After providing the completion block, optionally prompt the user:

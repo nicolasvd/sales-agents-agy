@@ -101,7 +101,7 @@ Personal Triggers Found:
   2. [Trigger] — [date] — Quality: [Hot/Warm/Cool]
 
 Industry Triggers Found:
-  1. [Trigger] — Quality: [Hot/Warm/Cool]
+  1. [Trigger] — [date] — Quality: [Hot/Warm/Cool]
 
 Best Opening Angle: [which trigger to lead with and why]
 Secondary Angle: [backup approach for follow-up emails]
@@ -349,37 +349,27 @@ based on the available personalization data and prospect context]
 
 ---
 
-## Terminal Output
+## Executive Briefing Card (Modern Markdown Chat Output)
 
-Display a condensed summary in the terminal:
+Display a clean executive card in chat at the start of your response:
 
-```
-=== OUTREACH SEQUENCE GENERATED ===
+### ✉️ Outreach Campaign: [Company Name]
 
-Prospect:  [company name]
-Contact:   [name], [title]
-Framework: [selected framework]
+> [!TIP]
+> **Target Decision Maker:** **[Name]**, [Title] | **Framework:** [Selected Framework, e.g., Agitate-Solve]  
+> **Outreach Readiness:** **[X]/100** | **Estimated Response Potential:** [High / Moderate]
 
-Outreach Readiness Score: [X]/100
-  Personalization:    [XX]/25 ████████░░
-  Trigger Events:     [XX]/25 ██████░░░░
-  Channel Strategy:   [XX]/25 ███████░░░
-  Message-Market Fit: [XX]/25 █████░░░░░
+| Component | Score / 25 | Key Driver / Strategic Angle |
+|---|---|---|
+| **Personalization Anchor** | **[XX]** | [Specific trigger, news, or pain point used] |
+| **Trigger Events** | **[XX]** | [Identified hiring, product launch, or regulatory catalyst] |
+| **Channel Strategy** | **[XX]** | [Omnichannel mix: 5 Emails + 4 LinkedIn touchpoints] |
+| **Message-Market Fit** | **[XX]** | [Direct alignment with solution value proposition] |
 
-Sequence Overview:
-  Email 1 (Day 1):  The Hook — [subject line A]
-  Email 2 (Day 3):  The Value Add — [subject line A]
-  Email 3 (Day 7):  The Social Proof — [subject line A]
-  Email 4 (Day 14): The Different Angle — [subject line A]
-  Email 5 (Day 21): The Breakup — [subject line A]
-
-LinkedIn Touchpoints: 4 (Day 0, 5, 10, 18)
-
-Best Send Time: [day/time recommendation]
-Email Pattern: [detected pattern]
-
-Full sequence saved to: reports/{slug}/markdown/OUTREACH-SEQUENCE.md
-```
+- **📬 Sequence Architecture:** 5 Emails (Days 1, 3, 7, 14, 21) + 4 LinkedIn Touches (Days 0, 5, 10, 18)
+- **⏰ Optimal Timing & Delivery:** [Day/time recommendation] · Pattern: `[first].[last]@[domain]`
+- **⚡ Next Action:** Run `followup <url>` to plan objection responses or `prep <url>` for meeting brief.
+- 📁 **Deliverables:** `reports/{slug}/OUTREACH-SEQUENCE.html` | `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`
 
 ---
 

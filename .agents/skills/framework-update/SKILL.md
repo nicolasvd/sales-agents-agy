@@ -110,24 +110,24 @@ Upon receiving explicit user confirmation:
    - Set `"version"` to target release tag without leading `v`.
    - Write updated `framework.json` via `write_to_file`.
 
-### Phase 5: Terminal Summary Block
-Emit the final standardized terminal summary block:
+### Phase 5: Executive Briefing Card & Completion
+Emit the final standardized Executive Briefing Card:
 
-```
-================================================================================
-FRAMEWORK UPDATE APPLIED: v{old_version} → v{new_version}
-================================================================================
-Repository: {owner}/{repo}
-Release Tag: {tag}
-Files Updated: {count_modified} modified, {count_added} added
-Sanctuary Files Preserved: {count_preserved} protected
-Current Status: Operational & Up-to-date
-================================================================================
-```
+### 🚀 Framework Update Applied: v{old_version} → v{new_version}
+
+> [!TIP]
+> **Repository:** `{owner}/{repo}` | **Release Tag:** `{tag}`  
+> **Status:** Operational & Up-to-date
+
+| Dimension | Count | Details |
+|---|---|---|
+| **Files Updated** | **{count_modified + count_added}** | {count_modified} modified, {count_added} added |
+| **Sanctuary Files Preserved** | **{count_preserved}** | Protected against overwrite |
+| **Framework Version** | `v{new_version}` | Synced with upstream |
 
 - **UI Refresh Recommendation (Conditional):**
   - Check whether any HTML templates under `.agents/rules/references/` (e.g., `index-template.html`, `context-template.html`, `radar-template.html`, `pipeline-summary-template.html`) were in the list of `🟢 Added` or `🟡 Modified` files during the update.
-  - **If at least one template was updated:** append the following callout directly below the Terminal Summary Block:
+  - **If at least one template was updated:** append the following callout directly below the Executive Briefing Card:
     ```text
     💡 Global UI templates were updated. Run 'report' to refresh your portal, Company DNA, and pipeline views with the latest layout.
     ```

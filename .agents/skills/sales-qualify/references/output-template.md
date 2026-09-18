@@ -160,46 +160,25 @@ timeline expectations, and deal size estimate.]
 
 ---
 
-## Terminal Output
+## Executive Briefing Card (Modern Markdown Chat Output)
 
-Display a condensed summary in the terminal:
+Display a clean executive card in chat at the start of your response:
 
-```
-=== LEAD QUALIFICATION COMPLETE ===
+### 🎯 Lead Qualification: [Company Name]
 
-Company:  [name]
-Industry: [vertical]
+> [!TIP]
+> **Lead Grade:** **Grade [A/B/C/D] — [SQL/MQL/IQL/Unqualified]** (Score: **[X]/100**)  
+> **Commercial Verdict:** [1-line executive qualification takeaway]
 
-BANT Score: [X]/100
-  Budget:    [XX]/25 ████████░░
-  Authority: [XX]/25 ██████░░░░
-  Need:      [XX]/25 ███████░░░
-  Timeline:  [XX]/25 █████░░░░░
+| Qualification Component | Score / Conf. | Weight & Contribution | Grounding Evidence |
+|---|---|---|---|
+| **BANT Score** | **[X] / 100** | 50% → **[X.X] pts** | B: [X]/25 · A: [X]/25 · N: [X]/25 · T: [X]/25 |
+| **MEDDIC Completeness** | **[X]%** ([N]/6) | 30% → **[X.X] pts** | [Key identified personas and process] |
+| **Urgency Modifier** | **[X] / 100** | 20% → **[X.X] pts** | [Temporal trigger and catalyst freshness] |
 
-MEDDIC Completeness: [X]%
-  Metrics:          [Found/Partial/Missing]
-  Economic Buyer:   [Found/Partial/Missing]
-  Decision Criteria:[Found/Partial/Missing]
-  Decision Process: [Found/Partial/Missing]
-  Identify Pain:    [Found/Partial/Missing]
-  Champion:         [Found/Partial/Missing]
-
-Opportunity Quality Score: [X]/100
-Lead Grade: [letter] — [label]
-
-Top Buying Signals:
-  1. [signal]
-  2. [signal]
-  3. [signal]
-
-Red Flags:
-  1. [flag]
-  2. [flag]
-
-Recommended Action: [one-line recommendation]
-
-Full report saved to: reports/{slug}/markdown/LEAD-QUALIFICATION.md
-```
+- **🔥 Top Buying Signals:** [Signal 1] · [Signal 2]
+- **🚩 Red Flags & Landmines:** [Identified blocker or friction]
+- **⚡ Recommended Action:** Run `prospect <url>` for full 360° audit or `outreach <url>`.
 
 ---
 

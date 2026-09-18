@@ -1,28 +1,44 @@
-# Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
+# Rule: Output Formatting & Modern Markdown Chat Standard
 
 > [!IMPORTANT]
-> **Linguistic Hierarchy:** 1. UI Shell 100% English (headers, labels, accordions). 2. Analysis copy adapts to user prompt language (French/English). 3. Internal reasoning, logs, and schemas strictly English.
+> **Linguistic Hierarchy:** UI Shell 100% English. Analysis copy adapts to user prompt language (French/English). Internal reasoning strictly English.
 
-## Executive Summary (Start of Chat Response)
+## Executive Briefing Card (Modern Chat Response Standard)
 
-Every skill response begins with a concise executive summary before any deep narrative:
+Every skill response begins with a modern Executive Briefing Card in rich GitHub Markdown. Never use legacy CLI monospace banners (`=== COMPLETE ===`) or ASCII progress bars (`████░░`):
 
-### 📊 Executive Summary — [Company / Subject]
-- **Verdict / Score:** [Primary score/grade, e.g., 78/100 (Tier 1)]
-- **Key Signals:** [Strongest signals with source in parentheses]
-- **Points of Vigilance:** [Primary risk, blocker, or landmine]
-- **Recommended Action:** [Single concrete next step]
+### 🎯 [Skill Name] : [Company Name / Subject]
+
+> [!TIP]
+> **Verdict:** **[Grade / Classification]** (Score: [XX]/100) | **Core Opportunity:** [1-sentence strategic synthesis]
+
+| Dimension / KPI | Score / Value | Weight & Contribution | Verified Key Signal |
+|---|---|---|---|
+| **[Dimension 1]** | **[Score]** | [Weight]% → **[Contribution] pts** | [Key factual evidence with source] |
+| **[Dimension 2]** | **[Score]** | [Weight]% → **[Contribution] pts** | [Key factual evidence with source] |
+
+- **💡 Strategic Angle:** [Hook connecting trigger to solution pillar]
+- **⚠️ Point of Vigilance:** [Primary risk, blocker, or landmine]
+- **⚡ Next Action:** `[skill] [url]` targeting [Role / Contact].
+
+## Typography & HTML Sanitation Standard (Zero-LaTeX)
+
+- ❌ **Zero LaTeX in Deliverables:** NEVER use LaTeX syntax (`$\rightarrow$`, `\times`, `$$...$$`, `\approx`, `\le`, `\ge`, `\$`) in HTML or Markdown deliverables.
+- **Universal Characters & Entities:**
+  - Arrows: Use `→` in Markdown or `&rarr;` / `→` in HTML (never `$\rightarrow$` or `->`).
+  - Multiplication: Use `×` in Markdown or `&times;` / `×` in HTML (never `\times` or `*`).
+  - Inequalities: Use `≤` / `&le;` and `≥` / `&ge;`. Currency: Raw `$` or `€` (never `\$`).
 
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
-For each analysis, two distinct deliverables are created under `reports/`:
-- **Visual Version (For Humans):** `reports/{slug}/{DELIVERABLE}.html` (clean SaaS UI, SVG gauges, print styling).
-- **Raw Data Version (For AI):** `reports/{slug}/markdown/{DELIVERABLE}.md` (machine context). AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
-- **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospect accounts populate `companyGrid`.
+For each analysis, two deliverables are generated under `reports/`:
+- **Visual Version (Humans):** `reports/{slug}/{DELIVERABLE}.html` (clean SaaS UI, SVG gauges, print styling).
+- **Raw Data Version (AI):** `reports/{slug}/markdown/{DELIVERABLE}.md` (AI skills ingest Markdown exclusively).
+- **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospects populate `companyGrid`.
 
 ### Folder Segregation: System Views vs. Prospect Cards
-- **System Reserved Folders:** `reports/my-company/`, `reports/radar/`, and `reports/pipeline/`. Linked exclusively in header buttons. NEVER add cards for them in `companyGrid`.
-- **Prospect Folders:** `reports/{slug}/` (where `{slug}` is an audited target account). Only audited prospects generate cards in `companyGrid`. When no prospects exist, `companyGrid` displays the empty state.
+- **System Reserved:** `reports/my-company/`, `reports/radar/`, `reports/pipeline/` (linked in header buttons only, never in `companyGrid`).
+- **Prospect Folders:** `reports/{slug}/` (only audited target accounts generate cards in `companyGrid`).
 
 | Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
 |---|---|---|---|
@@ -41,9 +57,9 @@ For each analysis, two distinct deliverables are created under `reports/`:
 | `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `radar-template.html` |
 | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | System | `pipeline-summary-template.html` |
 
-## Mandatory Machine Metadata Standard (YAML Frontmatter)
+## Machine Metadata Standard (YAML Frontmatter)
 
-Every Markdown deliverable written to `reports/{slug}/markdown/{DELIVERABLE}.md` MUST begin with a standardized YAML frontmatter header containing verified machine metadata:
+Every Markdown deliverable begins with standard frontmatter:
 
 ```yaml
 ---
@@ -59,30 +75,21 @@ scoring:
 primary_contacts:
   economic_buyer: "{Name or Not publicly available}"
   champion: "{Name or Not publicly available}"
-competitive_context:
-  incumbent_tools: ["{Tool1}", "{Tool2}"]
-  switching_cost: "Low|Medium|High"
-top_triggers:
-  - "{Verified Trigger 1 (< 90 days)}"
+competitive_context: { incumbent_tools: ["{Tool1}"], switching_cost: "Low|Med|High" }
+top_triggers: ["{Verified Trigger (< 90 days)}"]
 ---
 ```
 
-## Universal Hub & Spoke Navigation Standard (HTML Deliverables)
+## Navigation Standard & Deliverables Generated
 
-Every report (except root `reports/index.html`) MUST include the cockpit return button in its `<header>`:
-
+Every report includes the return button in `<header>`:
 ```html
-<nav class="nav-actions">
-  <a href="../index.html" class="btn-back">← Back to Portal</a>
-</nav>
+<nav class="nav-actions"><a href="../index.html" class="btn-back">← Back to Portal</a></nav>
 ```
-*(All deliverables reside in 1-level subdirectories like `reports/{slug}/` and use `href="../index.html"`. Styling is handled natively by the reference templates).*
 
-## Deliverables Generated (Completion Standard)
-
-Every skill response MUST conclude with a clean, sober block listing the created file paths and confirming that `reports/index.html` has been updated:
+Every skill concludes with the completion block:
 
 ### 📦 Deliverables Generated
-- **Web:** `reports/{slug}/{DELIVERABLE}.html`
-- **AI Data:** `reports/{slug}/markdown/{DELIVERABLE}.md`
+- **Web (Interactive):** `reports/{slug}/{DELIVERABLE}.html`
+- **AI Data (Markdown):** `reports/{slug}/markdown/{DELIVERABLE}.md`
 - **Portal Updated:** `reports/index.html`

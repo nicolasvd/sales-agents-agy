@@ -70,25 +70,23 @@ Ask the user the following 2 targeted questions in chat:
 
 ## Output & Completion Standard
 
-Conclude the onboarding session with the mandatory Terminal Summary Block and Browser First completion block per `output-formatting.md`:
+Conclude the onboarding session with the Executive Briefing Card and Browser First completion block per `output-formatting.md`:
 
-```text
-=== SALES-SETUP : [COMPANY NAME] ===
+### 🏢 Setup Completed: [Company Name]
 
-Status : ACTIVE CONFIGURATION  Size : < 5 KB per rule
-Configured Rules : product-context.md · customer-context.md
-Visual Dashboard : reports/my-company/company-dna.html
+> [!TIP]
+> **Configuration Status:** **Active & Calibrated** | **Rules Integrity:** Strictly `< 5,120 bytes` each  
+> **Executive Positioning:** [1-line offering synthesis]
 
-Top Configurations:
-  1. Offering & Positioning: [1-line offering synthesis]
-  2. Ideal Customer Profile (ICP): [Priority targets, headcount, sectors]
-  3. Pricing Model: [Calibrated pricing grid or average contract value]
+| Configuration Dimension | Status & Grounding | Calibrated Settings |
+|---|---|---|
+| **Product Context** | `product-context.md` | [Core value proposition & solutions mapped] |
+| **Customer Context** | `customer-context.md` | [Target ICP, priority tiers, headcount, sectors] |
+| **Pricing & Contract** | Documented | [Calibrated model or average contract value / Not public] |
+| **Interactive Dashboard** | `company-dna.html` | Accessible via top navigation in Portal Index |
 
-Watchpoints:
-  1. Strict Exclusions: [Key service exclusions applied]
-  2. ICP Disqualifiers: [Key disqualification thresholds]
-
-Recommended Action: Workspace fully calibrated! You can now run a prospect audit with `prospect <url>` or qualify a lead with `qualify <url>`.
-```
+- **🚫 Strict Exclusions:** [Key service exclusions applied]
+- **⚠️ ICP Disqualifiers:** [Key disqualification thresholds]
+- **⚡ Recommended Next Step:** Run `prospect <url>` to audit a target company or `radar` to discover event-driven opportunities.
 
 Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

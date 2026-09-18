@@ -219,52 +219,28 @@ personalized with real data from the research]
 
 ---
 
-## Terminal Output
+## Executive Briefing Card (Modern Markdown Chat Output)
 
-In addition to the file, display a condensed scorecard in the terminal:
+Display a clean executive card in chat at the start of your response:
 
-```
-============================================
-  PROSPECT ANALYSIS COMPLETE
-============================================
+### 🏢 Prospect 360° Audit: [Company Name]
 
-Company:  [name] ([type])
-Industry: [vertical]
-URL:      [url]
+> [!TIP]
+> **Prospect Score:** **[X]/100** (Grade **[letter]** — **[label]**) | **Confidence:** [High/Medium/Low]  
+> **Executive Summary:** [1-2 sentences summarizing fit, key opportunity, and engagement priority]
 
-Prospect Score: [X]/100 (Grade: [letter] — [label])
-Confidence:     [High/Medium/Low]
+| Dimension | Score / 100 | Key Driver / Grounding Detail |
+|---|---|---|
+| **Company Fit** | **[XX]** | [Industry alignment, size, growth signals] |
+| **Contact Access** | **[XX]** | [Key Decision Maker identified: Name, Title] |
+| **Opportunity Quality** | **[XX]** | [BANT / MEDDIC strength and budget urgency] |
+| **Competitive Position** | **[XX]** | [Displacement angle or incumbent tool stack] |
+| **Outreach Readiness** | **[XX]** | [Trigger events, tailored hooks, timing] |
 
-Score Breakdown:
-  Company Fit:         [XX]/100 ████████░░
-  Contact Access:      [XX]/100 ██████░░░░
-  Opportunity Quality: [XX]/100 ███████░░░
-  Competitive Position:[XX]/100 █████░░░░░
-  Outreach Readiness:  [XX]/100 ████████░░
-
-Key Decision Maker: [Name], [Title]
-
-Top 3 Opportunities:
-  1. [opportunity]
-  2. [opportunity]
-  3. [opportunity]
-
-Top 3 Risks:
-  1. [risk]
-  2. [risk]
-  3. [risk]
-
-Next Step: [single most important action]
-
-Full report saved to: reports/{slug}/markdown/PROSPECT-ANALYSIS.md
-============================================
-```
-
-**Bar chart rendering rules:**
-- Each bar is 10 characters wide
-- Score 0-10 = 1 filled block, 11-20 = 2 filled blocks, etc.
-- Use Unicode block characters: filled = `\u2588`, empty = `\u2591`
-- Align all bars and labels for clean terminal display
+- **🎯 Top Opportunities:** [Opportunity 1] · [Opportunity 2] · [Opportunity 3]
+- **⚠️ Key Risks / Red Flags:** [Risk 1] · [Risk 2]
+- **⚡ Next Action:** Run `outreach <url>` to launch outreach sequence or `prep <url>` for meeting brief.
+- 📁 **Deliverables:** `reports/{slug}/PROSPECT-ANALYSIS.html` | `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 
 ---
 

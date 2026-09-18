@@ -64,4 +64,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

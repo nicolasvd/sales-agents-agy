@@ -92,7 +92,7 @@ Verify `meta.status == "wave2_complete"`.
    `view_file(".agents/skills/sales-prospect/references/output-template.md")`.
 4. **Generate Standalone Interactive HTML:** `create_file("reports/{slug}/PROSPECT-ANALYSIS.html")` instantiating:
    `view_file(".agents/rules/references/report-template.html")` (substitute placeholders with verified data and inline SVG gauges).
-5. Output terminal summary block and Browser First completion block per `output-formatting.md`.
+5. Output Executive Briefing Card (Modern Markdown) and Browser First completion block per `output-formatting.md`.
 
 ## Constraints
 - Zero direct browsing: all factual data originates strictly from subagents via scratchpad.
