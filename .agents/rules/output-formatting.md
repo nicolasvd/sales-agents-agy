@@ -1,47 +1,45 @@
 # Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
 
 > [!IMPORTANT]
-> **Linguistic Precedence (Strict Hierarchy):**
-> 1. **HTML Shell & UI Structure:** Always 100% in English (headers, navigation, labels, table headers, gauges, metric names, accordions).
-> 2. **Generated Analysis & Copy:** Strictly adapts to the language of the user prompt (e.g., French prompt = content drafted in French inside the English UI shell; English prompt = 100% English).
-> 3. **Internal Reasoning & Logs:** Scratchpad schemas, internal deliberation, subagent delegation, and tool arguments operate strictly in English.
+> **Linguistic Hierarchy:** 1. UI Shell 100% English (headers, labels, accordions). 2. Analysis copy adapts to user prompt language (French/English). 3. Internal reasoning, logs, and schemas strictly English.
 
 ## Executive Summary (Start of Chat Response)
 
-Every skill response begins directly with a concise executive summary in natural Markdown before any in-depth narrative:
+Every skill response begins with a concise executive summary before any deep narrative:
 
 ### 📊 Executive Summary — [Company / Subject]
-- **Verdict / Score:** [Primary score, rating or qualification grade, e.g., 78/100 (Tier 1)]
-- **Key Signals:**
-  - [Strongest signal — source in parentheses]
-  - [Secondary signal — source]
-- **Points of Vigilance:**
-  - [Primary risk, blocker, or landmine]
-- **Recommended Action:** [Single concrete, actionable next step]
+- **Verdict / Score:** [Primary score/grade, e.g., 78/100 (Tier 1)]
+- **Key Signals:** [Strongest signals with source in parentheses]
+- **Points of Vigilance:** [Primary risk, blocker, or landmine]
+- **Recommended Action:** [Single concrete next step]
 
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
 For each analysis, two distinct deliverables are created under `reports/`:
-- **Visual Version (For Humans):** Written to `reports/{slug}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` styles.
-- **Raw Data Version (For AI):** Stored in `reports/{slug}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions. Downstream AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
-- **Central Dashboard:** `reports/index.html` aggregates and links all generated HTML deliverables.
+- **Visual Version (For Humans):** `reports/{slug}/{DELIVERABLE}.html` (clean SaaS UI, SVG gauges, print styling).
+- **Raw Data Version (For AI):** `reports/{slug}/markdown/{DELIVERABLE}.md` (machine context). AI skills MUST ingest Markdown files exclusively — NEVER ingest `.html` files when `.md` is available.
+- **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospect accounts populate `companyGrid`.
 
-| Skill | Deliverable Base (.html & markdown/.md) | Reference Template |
-|---|---|---|
-| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | `report-template.html` |
-| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | `outreach-template.html` |
-| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | `outreach-template.html` |
-| `sales-prep` | `reports/{slug}/MEETING-PREP` | `meeting-prep-template.html` |
-| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | `proposal-template.html` |
-| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | `report-template.html` |
-| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | `report-template.html` |
-| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | `report-template.html` |
-| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | `report-template.html` |
-| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | `battle-card-template.html` |
-| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | `context-template.html` |
-| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | `pipeline-summary-template.html` |
-| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | `radar-template.html` |
-| `sales-setup` | `reports/my-company/company-dna` | `context-template.html` |
+### Folder Segregation: System Views vs. Prospect Cards
+- **System Reserved Folders:** `reports/my-company/`, `reports/radar/`, and `reports/pipeline/`. Linked exclusively in header buttons. NEVER add cards for them in `companyGrid`.
+- **Prospect Folders:** `reports/{slug}/` (where `{slug}` is an audited target account). Only audited prospects generate cards in `companyGrid`. When no prospects exist, `companyGrid` displays the empty state.
+
+| Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
+|---|---|---|---|
+| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | Prospect | `report-template.html` |
+| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | Prospect | `outreach-template.html` |
+| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | Prospect | `outreach-template.html` |
+| `sales-prep` | `reports/{slug}/MEETING-PREP` | Prospect | `meeting-prep-template.html` |
+| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | Prospect | `proposal-template.html` |
+| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | Prospect | `report-template.html` |
+| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | Prospect | `report-template.html` |
+| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | Prospect | `report-template.html` |
+| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | Prospect | `report-template.html` |
+| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | Prospect | `battle-card-template.html` |
+| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | System | `context-template.html` |
+| `sales-setup` | `reports/my-company/company-dna` | System | `context-template.html` |
+| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `radar-template.html` |
+| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | System | `pipeline-summary-template.html` |
 
 ## Mandatory Machine Metadata Standard (YAML Frontmatter)
 
@@ -71,14 +69,14 @@ top_triggers:
 
 ## Universal Hub & Spoke Navigation Standard (HTML Deliverables)
 
-No HTML deliverable is a dead end. Every report generated within the workspace (except the root portal `reports/index.html`) MUST include the standard cockpit return button in its `<header>`:
+Every report (except root `reports/index.html`) MUST include the cockpit return button in its `<header>`:
 
 ```html
 <nav class="nav-actions">
   <a href="../index.html" class="btn-back">← Back to Portal</a>
 </nav>
 ```
-*(All deliverables reside in subdirectories like `reports/{slug}/`, `reports/my-company/`, `reports/radar/`, or `reports/pipeline/` and use `href="../index.html"`. Styling is handled natively by the reference templates).*
+*(All deliverables reside in 1-level subdirectories like `reports/{slug}/` and use `href="../index.html"`. Styling is handled natively by the reference templates).*
 
 ## Deliverables Generated (Completion Standard)
 

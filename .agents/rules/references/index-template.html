@@ -88,10 +88,38 @@
       color: #0f172a;
     }
 
+    /* Empty State */
+    .empty-state {
+      grid-column: 1 / -1;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .empty-icon { font-size: 2.75rem; line-height: 1; }
+    .empty-title { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .empty-desc { color: var(--text-muted); font-size: 0.9375rem; max-width: 520px; line-height: 1.6; }
+    .empty-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .empty-action-tag {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8125rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
     /* Print */
     @media print {
       body { background: #fff; padding: 0; }
-      .header, .company-card { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
+      .header, .company-card, .empty-state { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
       .filter-bar { display: none; }
     }
   </style>
@@ -107,7 +135,7 @@
         <a href="my-company/company-dna.html" class="header-btn">
           <span>🏢 My Company DNA</span>
         </a>
-        <a href="pipeline/RADAR-DISCOVERY.html" class="header-btn">
+        <a href="radar/RADAR-DISCOVERY.html" class="header-btn">
           <span>📡 Opportunity Radar</span>
         </a>
         <a href="pipeline/PIPELINE-SUMMARY.html" class="header-btn">

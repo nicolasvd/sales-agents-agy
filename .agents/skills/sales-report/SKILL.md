@@ -23,8 +23,8 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 ## Workflow (3 Sequential Steps)
 
 1. **Workspace Audit Discovery & Inventory:**
-   - Recursively inspect `reports/` to discover all prospect subdirectories (`reports/{slug}/`).
-   - Check radar-level intelligence files (`reports/radar/RADAR-DISCOVERY.html`, `reports/radar/markdown/RADAR-DISCOVERY.md`).
+   - Recursively inspect `reports/` to discover target prospect subdirectories (`reports/{slug}/`).
+   - **System Reserved Folders Exclusion:** Formally ignore `reports/my-company/`, `reports/radar/`, and `reports/pipeline/` when building the prospect list. These system folders represent cockpit views and are NOT commercial prospects.
    - Ingest raw data exclusively from Markdown files (`reports/{slug}/markdown/*.md`) — NEVER parse `.html` files for metric extraction.
    - For each prospect, inspect available deliverables:
      `PROSPECT-ANALYSIS.md`, `LEAD-QUALIFICATION.md`, `COMPANY-RESEARCH.md`, `DECISION-MAKERS.md`, `OUTREACH-SEQUENCE.md`, `MEETING-PREP.md`, `CLIENT-PROPOSAL.md`, `COMPETITIVE-INTEL.md`.
@@ -40,12 +40,11 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 
 3. **Pipeline Report Generation & Portal Sync:**
    - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` using `view_file(".agents/rules/references/pipeline-summary-template.html")` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
-   - **Master Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
-     - Company Name, Slug, and Grade Badge (A/B/C/D).
-     - Direct links to every generated HTML deliverable.
-     - Direct link to the raw machine data folder (`reports/{slug}/markdown/`).
-     - Client-side search and filtering compatibility (`filterCards()`).
-   - **Satellite Views Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")`. If `reports/radar/markdown/RADAR-DISCOVERY.md` exists, recompile `reports/radar/RADAR-DISCOVERY.html` using `view_file(".agents/rules/references/radar-template.html")` and its source signals. Ensure both views remain accessible and linked from the portal header.
+   - **Master Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered target prospect account into `{{COMPANIES_CARDS_HTML}}`:
+     - System views (`reports/my-company/`, `reports/radar/`, `reports/pipeline/`) are linked in the top header buttons (`.header-actions`) and MUST NEVER be added as cards in `companyGrid`.
+     - Each prospect card features: Company Name, Slug, Grade Badge (A/B/C/D), direct links to HTML deliverables, and link to raw Markdown data.
+     - **Empty State Fallback:** If zero prospect accounts have been audited, inject the `.empty-state` container into `{{COMPANIES_CARDS_HTML}}` with prompt commands (`radar [topic]`, `prospect <url>`, `qualify <url>`).
+   - **Satellite Views Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")`. If `reports/radar/markdown/RADAR-DISCOVERY.md` exists, recompile `reports/radar/RADAR-DISCOVERY.html` using `view_file(".agents/rules/references/radar-template.html")`. Ensure all views remain linked from the portal header.
 
 ## Strict Guardrails
 
