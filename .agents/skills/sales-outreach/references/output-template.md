@@ -101,7 +101,7 @@ Personal Triggers Found:
   2. [Trigger] — [date] — Quality: [Hot/Warm/Cool]
 
 Industry Triggers Found:
-  1. [Trigger] — [date] — Quality: [Hot/Warm/Cool]
+  1. [Trigger] — Quality: [Hot/Warm/Cool]
 
 Best Opening Angle: [which trigger to lead with and why]
 Secondary Angle: [backup approach for follow-up emails]
