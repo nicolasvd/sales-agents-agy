@@ -32,6 +32,9 @@ Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** fir
 
 ## Workflow (5 Sequential Steps)
 
+> [!IMPORTANT]
+> **Re-run & Refresh Policy:** When explicitly invoked with a target prospect URL or topic, systematically execute a fresh web exploration. Overwrite existing local reports with updated findings and today's date (`audit_date`). Never use existing local markdown files as a substitute for an explicit user re-run.
+
 1. **Current Tooling Detection:**
    - Execute `read_url_content` across integration and partner directories: `/integrations`, `/partners`, `/ecosystem`.
    - Query `search_web` for stack disclosures: `"[Company Name]" site:stackshare.io`, `"[Company Name]" uses OR "built with"`.

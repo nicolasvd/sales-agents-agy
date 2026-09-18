@@ -10,7 +10,7 @@ slug: "[slug]"
 company: "[Company Name]"
 url: "[url]"
 type: "research"
-date: "[current date]"
+audit_date: "YYYY-MM-DD"
 company_fit_score: [X]
 industry: "[vertical]"
 stage: "[Startup/Growth/Mature/Public]"

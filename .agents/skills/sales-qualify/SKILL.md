@@ -31,6 +31,9 @@ Invoked via `qualify <url>`. Apply the **Contextual Resolution Gateway** first. 
 
 ## Workflow (4 Sequential Steps)
 
+> [!IMPORTANT]
+> **Re-run & Refresh Policy:** When explicitly invoked with a target prospect URL or topic, systematically execute a fresh web exploration. Overwrite existing local reports with updated findings and today's date (`audit_date`). Never use existing local markdown files as a substitute for an explicit user re-run.
+
 1. **Web Intelligence Gathering:**
    - Run `read_url_content` across core pages: `/` → `/about` → `/pricing` → `/careers` → `/blog`.
    - Execute 5 systematic `search_web` queries per `fact-checking.md` (news, leadership, hiring, financials, tech).

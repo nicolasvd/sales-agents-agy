@@ -10,7 +10,7 @@ slug: "[slug or topic]"
 company: "[Prospect Company or Universal]"
 url: "[URL or Not publicly available]"
 type: "objections"
-date: "[Date]"
+audit_date: "YYYY-MM-DD"
 industry: "[Industry]"
 primary_framework: "A-R-C (Acknowledge, Reframe, Clarify) & FFR"
 total_objections: 20
@@ -30,7 +30,7 @@ Customized For: [Prospect company if applicable]
 |---|-----------|-------------|----------------|--------------|
 | 1 | Too expensive | Value not proven | A-R-C | Show ROI math |
 | 2 | Happy with current | Status quo bias | FFR | Gap analysis offer |
-[...continue for all 15...]
+| [...continue for all 15...]
 
 ---
 

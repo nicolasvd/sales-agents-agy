@@ -9,8 +9,8 @@ Write the complete report to `reports/pipeline/markdown/PIPELINE-SUMMARY.md`.
 slug: "pipeline"
 company: "Pipeline Summary"
 type: "pipeline"
-date: "[date]"
-prospects_count: [count]
+audit_date: "YYYY-MM-DD"
+prospect_count: [count]
 average_score: [X]
 pipeline_health: "[Healthy / Warning / Stalled]"
 ---

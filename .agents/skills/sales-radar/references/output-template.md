@@ -7,7 +7,7 @@ Use this template to generate `reports/radar/markdown/RADAR-DISCOVERY.md`.
 slug: "radar"
 company: "Opportunity Radar"
 type: "radar"
-date: "{{SCAN_DATE}}"
+audit_date: "{{SCAN_DATE}}"
 target_focus: "{{TARGET_FOCUS}}"
 accounts_surfaced: 5
 ---

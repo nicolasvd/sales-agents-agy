@@ -14,7 +14,7 @@ slug: "my-company"
 company: "[Business/Product Name]"
 url: "[URL or Not publicly available]"
 type: "icp"
-date: "[date]"
+audit_date: "YYYY-MM-DD"
 target_segment: "[Primary Segment]"
 fit_threshold: 70
 ---

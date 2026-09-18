@@ -10,7 +10,7 @@ slug: "[slug]"
 company: "[Prospect Company Name]"
 url: "[URL]"
 type: "competitors"
-date: "[Date]"
+audit_date: "YYYY-MM-DD"
 competitors_detected: ["[Competitor 1]", "[Competitor 2]"]
 primary_displacement_angle: "[1-line angle]"
 switching_cost_level: "[High/Medium/Low]"

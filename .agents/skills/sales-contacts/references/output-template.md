@@ -10,7 +10,7 @@ slug: "[slug]"
 company: "[Company Name]"
 url: "[url]"
 type: "contacts"
-date: "[current date]"
+audit_date: "YYYY-MM-DD"
 contact_access_score: [X]
 committee_size: [X]
 email_pattern: "[pattern or Unknown]"

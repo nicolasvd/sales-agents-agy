@@ -25,6 +25,9 @@ description: >-
 
 ## Workflow (4 Sequential Steps)
 
+> [!IMPORTANT]
+> **Re-run & Refresh Policy:** When explicitly invoked with a target prospect URL or topic, systematically execute a fresh web exploration. Overwrite existing local reports with updated findings and today's date (`audit_date`). Never use existing local markdown files as a substitute for an explicit user re-run.
+
 ### Step 1: Context Ingestion & Workspace Guardrail Verification
 1. **Demo Profile Check:** Inspect `.agents/rules/fact-checking.md`. If the demo marker (`Acme AI Automation Inc.` or default Acme profile) is active, prepend the canonical warning banner in chat.
 2. **ICP Band-Pass Filter Loading:** Read `.agents/rules/customer-context.md`:
