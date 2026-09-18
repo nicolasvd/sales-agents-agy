@@ -1,62 +1,75 @@
-# Rule: Output Formatting & Dual Output Standard (HTML Humans + MD AI)
+# Rule: Output Formatting & Modern Markdown Chat Standard
 
 > [!IMPORTANT]
-> **Linguistic Precedence (Strict Hierarchy):**
-> 1. **HTML Shell & UI Structure:** Always 100% in English (headers, navigation, labels, table headers, gauges, metric names, accordions).
-> 2. **Generated Analysis & Copy:** Strictly adapts to the language of the user prompt (e.g., French prompt = content drafted in French inside the English UI shell; English prompt = 100% English).
-> 3. **Internal Reasoning & Logs:** Scratchpad schemas, internal deliberation, subagent delegation, and tool arguments operate strictly in English.
+> **Linguistic Hierarchy & Chat Mirroring:**
+> - **Internal Engine (100% Technical English):** All `SKILL.md` instructions, declarative rules, HTML templates, scratchpads, and execution logs operate strictly in technical English.
+> - **Conversational Chat (Strict Language Mirroring):** Conversational chat responses systematically mirror the user's prompt language (French for French, English for English), regardless of the audited prospect's country or language.
+> - **Report Deliverables (`reports/`):** Universal English UI shell and frontmatter schema. Analytical deliverable copy adapts to the target market's business language.
 
-## Terminal Summary Block (Mandatory at Start of Chat Response)
+## Conversational Chat Standard (Direct Markdown)
 
-This block appears FIRST in the conversational response before any in-depth narrative:
-
-```text
-=== [SKILL NAME IN UPPERCASE] : [COMPANY NAME] ===
-
-[PRIMARY SCORE] : [X]/100  Grade : [A/B/C/D]
-[Sub-scores if applicable, e.g.: Budget: 18/25  Authority: 20/25]
-
-Top Signals:
-  1. [Strongest signal — factual source in parentheses]
-  2. [Signal 2 — source]
-  3. [Signal 3 — source]
-
-Red Flags:
-  1. [Primary point of vigilance]
-  2. [Secondary point of vigilance if applicable]
-
-Recommended Action: [Concrete action statement, single concise line]
-```
+Deliver executive insights directly in natural, clean Markdown (bold headings, bullet points, inline bold for metrics, inline code for commands). Do not wrap conversational text in text code blocks or monospace delimiters.
+- **Tone & Structure:** Start with a concise executive summary (verdict/grade, key signals with cited sources, points of vigilance, and actionable next steps).
+- **Flexibility:** Adapt the presentation structure to the specific sales domain (e.g., MEDDIC breakdown, A-R-C objection handling, or chronological outreach sequence).
 
 ## Storage Architecture: HTML for Humans & Markdown for AI
 
-For each prospect analysis, two distinct deliverables are created under `reports/`:
-- **Visual Version (For Humans):** Written directly to `reports/{slug}/{DELIVERABLE}.html`. Polished typography, interactive cards, inline SVG score gauges, and `@media print` optimized A4 styles.
-- **Raw Data Version (For AI):** Stored in `reports/{slug}/markdown/{DELIVERABLE}.md` to serve as clean machine context for future agent sessions.
-- **Central Dashboard:** `reports/index.html` aggregates and links all generated HTML deliverables.
+For each analysis, two deliverables are generated under `reports/`:
+- **Visual Version (Humans):** `reports/{slug}/{DELIVERABLE}.html` (clean SaaS UI, SVG gauges, print styling).
+- **Raw Data Version (AI):** `reports/{slug}/markdown/{DELIVERABLE}.md` (AI skills ingest Markdown exclusively).
+- **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospects populate `companyGrid`.
 
-| Skill | Web Version (Humans) | Raw Version (AI) | Reference Template |
+### Folder Segregation: System Views vs. Prospect Cards
+- **System Reserved:** `reports/my-company/`, `reports/radar/`, `reports/pipeline/` (linked in header buttons only, never in `companyGrid`).
+- **Prospect Folders:** `reports/{slug}/` (only audited target accounts generate cards in `companyGrid`).
+
+| Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
 |---|---|---|---|
-| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS.html` | `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` | `report-template.html` |
-| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE.html` | `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` | `outreach-template.html` |
-| `sales-prep` | `reports/{slug}/MEETING-PREP.html` | `reports/{slug}/markdown/MEETING-PREP.md` | `meeting-prep-template.html` |
-| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL.html` | `reports/{slug}/markdown/CLIENT-PROPOSAL.md` | `proposal-template.html` |
-| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` | `reports/{slug}/markdown/LEAD-QUALIFICATION.md` | `report-template.html` |
-| `sales-research` | `reports/{slug}/COMPANY-RESEARCH.html` | `reports/{slug}/markdown/COMPANY-RESEARCH.md` | `report-template.html` |
-| `sales-contacts` | `reports/{slug}/DECISION-MAKERS.html` | `reports/{slug}/markdown/DECISION-MAKERS.md` | `report-template.html` |
-| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL.html` | `reports/{slug}/markdown/COMPETITIVE-INTEL.md` | `report-template.html` |
-| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | `reports/pipeline/markdown/PIPELINE-SUMMARY.md` | `index-template.html` |
+| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | Prospect | `report-template.html` |
+| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | Prospect | `outreach-template.html` |
+| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | Prospect | `outreach-template.html` |
+| `sales-prep` | `reports/{slug}/MEETING-PREP` | Prospect | `meeting-prep-template.html` |
+| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | Prospect | `proposal-template.html` |
+| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | Prospect | `report-template.html` |
+| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | Prospect | `report-template.html` |
+| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | Prospect | `report-template.html` |
+| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | Prospect | `report-template.html` |
+| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | Prospect | `battle-card-template.html` |
+| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | System | `context-template.html` |
+| `sales-setup` | `reports/my-company/company-dna` | System | `context-template.html` |
+| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `radar-template.html` |
+| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | System | `pipeline-summary-template.html` |
 
-## Completion Block Standard (Browser First)
+## Machine Metadata Standard (YAML Frontmatter)
 
-Every skill response MUST conclude with this standardized closing block. Execute the command `open reports/{slug}/{REPORT_NAME}.html` via the shell if context allows, or display the block below:
+Every Markdown deliverable begins with standard frontmatter:
 
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/{REPORT_NAME}.html
-🤖 Données IA  : reports/{slug}/markdown/{REPORT_NAME}.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/{REPORT_NAME}.html
+```yaml
+---
+slug: "{slug}"
+company_name: "{company_name}"
+domain: "{domain}"
+audit_date: "YYYY-MM-DD"
+scoring:
+  prospect_score: {0-100}
+  lead_grade: "A|B|C|D"
+  bant_total: {0-100}
+  meddic_completeness_pct: {0-100}
+primary_contacts:
+  economic_buyer: "{Name or Not publicly available}"
+  champion: "{Name or Not publicly available}"
+competitive_context: { incumbent_tools: ["{Tool1}"], switching_cost: "Low|Med|High" }
+top_triggers: ["{Verified Trigger (< 90 days)}"]
+---
 ```
 
+## Universal Cockpit Navigation & Deliverables Generated
+
+Every report generated within the workspace links back to `reports/index.html` via the standard navigation button defined in the reference templates.
+
+Every skill concludes its response with the standardized completion block:
+
+### 📦 Deliverables Generated
+- **Web (Interactive):** `reports/{slug}/{DELIVERABLE}.html`
+- **AI Data (Markdown):** `reports/{slug}/markdown/{DELIVERABLE}.md`
+- **Portal Updated:** `reports/index.html`

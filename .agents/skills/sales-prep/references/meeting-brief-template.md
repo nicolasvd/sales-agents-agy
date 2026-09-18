@@ -1,6 +1,6 @@
-# Template du Brief de Réunion — 10 Sections
+# Meeting Brief Template — 10 Sections
 
-Lire via : view_file(".agents/skills/sales-prep/references/meeting-brief-template.md")
+Read via: `view_file(".agents/skills/sales-prep/references/meeting-brief-template.md")`
 
 ## CHEAT SHEET — [Company Name] Meeting
 
@@ -195,4 +195,3 @@ Generate a suggested meeting structure based on the meeting type and duration:
 | 55:00-60:00 | Align on next steps | [Proposed next step with specific date] |
 
 ---
-

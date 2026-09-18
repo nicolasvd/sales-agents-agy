@@ -1,21 +1,21 @@
 ---
 name: sales-icp
 description: >-
-  Ideal Customer Profile (ICP) builder. Establishes firmographic, technographic, behavioral, and negative qualification criteria with a scoring rubric, saving IDEAL-CUSTOMER-PROFILE.md.
+  Ideal Customer Profile (ICP) builder. Explores a new target segment or refines the buyer profile without overwriting product positioning, saving ICP-FRAMEWORK.md.
 ---
 
 # Skill: sales-icp
 
-**Role:** Define and calibrate the Ideal Customer Profile (ICP), negative disqualification rules, and deterministic scoring rubrics for the workspace.  
-**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
-**Deliverables:** `reports/IDEAL-CUSTOMER-PROFILE.html` and `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`.
+**Role:** Explore a new target segment or refine buyer personas and scoring rubrics without overwriting overall product positioning.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Deliverables:** `reports/my-company/ICP-FRAMEWORK.html` and `reports/my-company/markdown/ICP-FRAMEWORK.md`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal market analysis, scoring matrices, and logic operate in English. Deliverable content adapts to the primary business language of the target market.
 
 ## Trigger
 
-Invoked via `icp <description>`. The `<description>` argument is a freeform summary of the target market or solution focus provided by the user.
+Invoked via `icp [segment]*`. Used to explore a new target segment or refine the buyer profile without overwriting the rest of the product positioning. Mandatorily inspect `.agents/rules/customer-context.md` as the baseline for deep sector analysis and ICP refinement. The `[segment]` argument is an optional description of the target market, vertical, or buyer persona provided by the user.
 
 ## Workflow (3 Sequential Steps)
 
@@ -49,17 +49,15 @@ Invoked via `icp <description>`. The `<description>` argument is a freeform summ
 
 ## Mandatory Dual Output
 
-Save both deliverables simultaneously within `reports/`:
-1. **Web HTML (Humans):** `reports/IDEAL-CUSTOMER-PROFILE.html` using `view_file(".agents/rules/references/report-template.html")`.
-2. **Raw Markdown (AI Memory):** `reports/markdown/IDEAL-CUSTOMER-PROFILE.md` using `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`.
+Save both deliverables simultaneously strictly within `reports/my-company/`:
+1. **Web HTML (Humans):** `reports/my-company/ICP-FRAMEWORK.html` using `view_file(".agents/rules/references/context-template.html")`.
+2. **Raw Markdown (AI Memory):** `reports/my-company/markdown/ICP-FRAMEWORK.md` using `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
+> [!CAUTION]
+> **Strict Prohibition:** Never write any file directly at the root of `reports/` (e.g., `reports/IDEAL-CUSTOMER-PROFILE.html` is strictly forbidden).
 
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/IDEAL-CUSTOMER-PROFILE.html
-🤖 Données IA  : reports/markdown/IDEAL-CUSTOMER-PROFILE.md
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
 
-🚀 Ouvrir dans le navigateur :
-open reports/IDEAL-CUSTOMER-PROFILE.html
-```
+### Post-Execution Interaction
+After providing the completion block, optionally prompt the user:
+> *"Would you like to apply these criteria as the active target profile in `.agents/rules/customer-context.md`?"*

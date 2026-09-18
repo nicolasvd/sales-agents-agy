@@ -6,24 +6,30 @@
 ## BANT Framework — 100 Total Points (25 pts per dimension)
 
 ### Budget (0–25 pts) — Willingness & Capacity to Spend
+*(Score is strictly capped: $\text{Budget} = \max(0, \min(25, \sum \text{Points}))$)*
+
 | Detected Signal | Points |
 |---|---|
 | Recent Series C+ / IPO (< 18 months) | +20 |
+| Confirmed high ARR (> $10M) or confirmed profitable enterprise | +18 |
 | Recent Series B (< 18 months) | +16 |
+| Confirmed recurring revenue (ARR $2M–$10M) | +12 |
 | Recent Series A (< 18 months) | +12 |
-| Confirmed recurring revenue (explicit ARR mentioned) | +10 |
-| Confirmed multi-tool SaaS stack | +8 |
 | Active hiring in relevant product/functional category | +10 |
+| Confirmed multi-tool enterprise SaaS stack | +8 |
 | Headcount > 200 | +6 |
 | Headcount 50–200 | +4 |
 | Cost-cutting signals, downsizings, or layoffs | −10 |
 
 ### Authority (0–25 pts) — Access to Decision-Makers
+*(Score is strictly capped: $\text{Authority} = \max(0, \min(25, \sum \text{Points}))$)*
+
 | Detected Signal | Points |
 |---|---|
-| Economic Buyer identified (verified name + title) | +20 |
-| C-suite / VP organizational structure publicly visible | +12 |
+| Economic Buyer identified with confirmed decision process line | +20 |
 | Flat structure (founder = sole primary decision-maker) | +15 |
+| C-suite / VP organizational structure publicly visible | +12 |
+| Named executive found on LinkedIn without confirmed buying role | +8 |
 | Multiple complex approval layers detected | +5 |
 
 ### Need (0–25 pts) — Intensity of the Problem
@@ -55,7 +61,7 @@
 | **I** dentify Pain | Specific operational pain point documented with source |
 | **C** hampion | Potential internal champion identified (name or role) |
 
-$$\text{MEDDIC Completeness (\%)} = \left(\frac{\text{Dimensions with Medium+ Confidence}}{6}\right) \times 100$$
+$$\text{MEDDIC Completeness (\%)} = \left(\frac{\text{Dimensions} \text{ with Medium+ Confidence}}{6}\right) \times 100$$
 
 ## Composite Formula — Prospect Score
 

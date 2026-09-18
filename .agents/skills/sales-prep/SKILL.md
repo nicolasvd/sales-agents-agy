@@ -7,37 +7,48 @@ description: >-
 # Skill: sales-prep
 
 **Role:** Synthesize comprehensive, tactical meeting preparation briefs for high-stakes sales conversations.  
-**Mandatory Rules:** `product-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/MEETING-PREP.html` and `reports/{slug}/markdown/MEETING-PREP.md`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal reasoning, participant research, and analysis operate in English. Brief content automatically adapts to the primary language of the audited company.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Explicit argument provided:** Use the prospect slug (`reports/{slug}/`).
+2. **Omitted argument (`*`):** Analyze recent conversation history. If a prospect account is already active in the exchange, deduce and reuse its slug without prompting for confirmation.
+3. **Complete absence of context:** STOP IMMEDIATELY. Write NO files to disk. Prompt the user clearly for clarification:
+   > *"Which prospect account would you like to analyze? (e.g., `prep prospect-slug`)"*
+
+> [!CAUTION]
+> **Strict Prohibition:** Never create any deliverable directly at the root of `reports/`.
+
 ## Trigger
 
-Invoked via `prep <url>`. Read all available reports in the workspace:
-- `reports/{slug}/PROSPECT-ANALYSIS.html` or `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
-- `reports/{slug}/DECISION-MAKERS.html` or `reports/{slug}/markdown/DECISION-MAKERS.md`
-- `reports/{slug}/LEAD-QUALIFICATION.html` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
-- `reports/{slug}/COMPETITIVE-INTEL.html` or `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
+Invoked via `prep [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (target persona pains and buying criteria) and `.agents/rules/product-context.md`. Then read all available reports strictly in Markdown:
+- `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+- `reports/{slug}/markdown/DECISION-MAKERS.md`
+- `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
+- `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
 
 ## Workflow (2 Sequential Steps)
 
-1. **Targeted Research Gap Fill:**
-   - Execute `search_web` for recent updates (< 30 days) regarding the account and key meeting participants.
-   - Run `read_url_content` on newly discovered public pages or product releases.
-   - Map attendee roles, tenure, and public perspectives via search.
+1. **Upstream Ingestion & Targeted Gap Fill:**
+   - Ingest confirmed attendees from `DECISION-MAKERS.md` and competitor gaps from `COMPETITIVE-INTEL.md`.
+   - DO NOT re-research baseline company or competitor data already in Markdown files.
+   - Restrict `search_web` strictly to breaking updates (< 15 days) and specific attendee background not yet captured.
 
 2. **Brief Construction (10 Standardized Sections):**
    1. *Company Snapshot:* 2-minute executive overview (business model, stage, key metrics).
-   2. *Participant Profiles:* Titles, seniority, background, and likely individual priorities.
+   2. *Participant Profiles:* Titles, seniority, background, and likely individual priorities from `DECISION-MAKERS.md`.
    3. *Business Situation:* Verified current context, growth initiatives, and confirmed challenges.
-   4. *Competitive Context:* Existing tooling, lock-in level, and switching friction.
+   4. *Competitive Context:* Existing tooling, lock-in level, and switching friction from `COMPETITIVE-INTEL.md`.
    5. *Key Discussion Angles:* Top 3 prioritized narrative bridges to explore.
-   6. *Strategic Discovery Questions:* 5 open-ended questions based on SPIN/MEDDIC.
+   6. *Strategic Discovery Questions:* 5 open-ended SPIN/MEDDIC questions directly exposing incumbent stack gaps identified in `COMPETITIVE-INTEL.md`.
    7. *Anticipated Objections:* Top 3 likely objections with empathetic acknowledge-and-reframe talk tracks.
    8. *Success Metrics:* Measurable criteria for prospect ROI validation.
-   9. *Competitive Landmines:* Critical topics, legacy sensitivities, and traps to avoid.
+   9. *Competitive Landmines:* Critical topics, legacy sensitivities, and traps to avoid based on competitor battle cards.
    10. *Proposed Next Steps:* 2–3 concrete closing commitments with timelines.
    Template reference: `view_file(".agents/skills/sales-prep/references/meeting-brief-template.md")`.
 
@@ -53,13 +64,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/MEETING-PREP.html
-🤖 Données IA  : reports/{slug}/markdown/MEETING-PREP.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/MEETING-PREP.html
-```
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

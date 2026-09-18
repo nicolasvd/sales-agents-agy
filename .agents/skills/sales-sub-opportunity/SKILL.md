@@ -8,7 +8,7 @@ description: >-
 
 **Role:** Deterministic BANT (0–100) scoring and MEDDIC completeness (%) calculation exclusively grounded in consolidated Wave 1 scratchpad intelligence.  
 **Scope:** Wave 2 of the `sales-prospect` audit.  
-**Required Rules:** `scoring.md` (strict scorecards), `output-formatting.md`.  
+**Required Rules:** `scoring.md` (strict scorecards), `customer-context.md` (target ICP thresholds), `output-formatting.md`.  
 **Invoked By:** `sales-prospect` via `start_subagent`.
 
 ## ⛔ Blocking Rule (Status Condition & Zero Web Tools)
@@ -17,7 +17,7 @@ description: >-
 > **2. Strict Prohibition of Web Tools:** It is STRICTLY FORBIDDEN to call `read_url_content` or `search_web`. You operate EXCLUSIVELY on consolidated scratchpad data.
 
 ### Authorized Tools
-- `view_file` (reading scratchpad and `scoring.md` scorecards)
+- `view_file` (reading scratchpad, `scoring.md` scorecards, and `customer-context.md`)
 - `edit_file` (strict writing to `wave2.opportunity_data` key)
 - ❌ **FORBIDDEN:** `read_url_content`, `search_web`, `start_subagent`, `run_command`
 
@@ -28,17 +28,21 @@ description: >-
    ```
    view_file(".agents/.scratchpad/prospect_{slug}.json")
    ```
-2. Verify `meta.status == "wave1_complete"`.
-3. Ingest:
+2. Read target customer boundaries:
+   ```
+   view_file(".agents/rules/customer-context.md")
+   ```
+3. Verify `meta.status == "wave1_complete"`.
+4. Ingest:
    - `wave1.company_data` (financials, headcount, stack, growth signals)
    - `wave1.contacts_data` (buying committee, confirmed decision-makers)
    - `wave1.competitive_data` (incumbent tools, switching costs, observed gaps)
 
-### 2. Deterministic BANT Scoring (per `.agents/rules/scoring.md`)
-Apply point scorecards mechanically:
-- **Budget (0–25 pts):** Scored on `funding`, `revenue_signals`, `employee_count`, and SaaS stack.
-- **Authority (0–25 pts):** Scored on verified Economic Buyer and organizational clarity.
-- **Need (0–25 pts):** Scored on competitive gaps, incumbent complaints, and active job postings.
+### 2. Deterministic BANT Scoring (per `.agents/rules/scoring.md` & `customer-context.md`)
+Apply point scorecards mechanically, evaluating against `customer-context.md` criteria:
+- **Budget (0–25 pts):** Scored on `funding`, `revenue_signals`, `employee_count`, and SaaS stack vs target sweet spot.
+- **Authority (0–25 pts):** Scored on verified Economic Buyer matching documented target personas.
+- **Need (0–25 pts):** Scored on competitive gaps, incumbent complaints, and operational pain alignment.
 - **Timeline (0–25 pts):** Scored on verified trigger events (< 30 or < 90 days).
 
 ### 3. MEDDIC Completeness (%)
