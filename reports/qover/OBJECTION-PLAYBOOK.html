@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objection Playbook &amp; Battle Cards — Qover (Qover S.A./N.V.)</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-info h1 { font-size: 1.75rem; font-weight: 800; color: var(--text); }
+    .header-info p { color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.35rem; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn-back:hover { background: var(--primary-light); color: var(--primary); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+    .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .objection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+      padding: 1.25rem;
+    }
+    .objection-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+    .real-meaning {
+      background: #f1f5f9;
+      border-left: 4px solid var(--text-muted);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+    /* A-R-C scannable blocks */
+    .arc-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .arc-step { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.5; }
+    .arc-pill { flex-shrink: 0; font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border-radius: 9999px; margin-top: 0.15rem; }
+    .arc-a { background: #ecfdf5; border: 1px solid #6ee7b7; color: #065f46; }
+    .arc-a .arc-pill { background: #6ee7b7; color: #065f46; }
+    .arc-r { background: #fffbeb; border: 1px solid #fcd34d; color: #78350f; }
+    .arc-r .arc-pill { background: #fcd34d; color: #78350f; }
+    .arc-c { background: #eff6ff; border: 1px solid #93c5fd; color: #1e3a8a; }
+    .arc-c .arc-pill { background: #93c5fd; color: #1e3a8a; }
+    .script-proof { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; font-size: 0.875rem; }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .container { max-width: 100%; }
+      .btn-back { display: none !important; }
+      .card, .objection-card { box-shadow: none; border: 1px solid #cbd5e1; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-info">
+        <h1>Objection Playbook &amp; Battle Cards</h1>
+        <p>Qover (Qover S.A./N.V.) — InsurTech / Financial Services AI &amp; Cyber Governance | Generated on 2026-09-19</p>
+      </div>
+      <nav class="nav-actions">
+        <a href="../index.html" class="btn-back">← Back to Portal</a>
+      </nav>
+    </header>
+    <section class="card">
+      <h2>A-R-C Playbook</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
+        <span style="display:inline-flex; align-items:center; gap:0.5rem; background:#ecfdf5; border:1px solid #6ee7b7; color:#065f46; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.8125rem; font-weight:600;"><span style="background:#6ee7b7; color:#065f46; font-size:0.6875rem; font-weight:800; border-radius:9999px; padding:0.15rem 0.45rem;">A</span> Acknowledge — Valider sans céder</span>
+        <span style="display:inline-flex; align-items:center; gap:0.5rem; background:#fffbeb; border:1px solid #fcd34d; color:#78350f; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.8125rem; font-weight:600;"><span style="background:#fcd34d; color:#78350f; font-size:0.6875rem; font-weight:800; border-radius:9999px; padding:0.15rem 0.45rem;">R</span> Reframe — ROI / COI / Différenciation</span>
+        <span style="display:inline-flex; align-items:center; gap:0.5rem; background:#eff6ff; border:1px solid #93c5fd; color:#1e3a8a; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.8125rem; font-weight:600;"><span style="background:#93c5fd; color:#1e3a8a; font-size:0.6875rem; font-weight:800; border-radius:9999px; padding:0.15rem 0.45rem;">C</span> Clarify — Question ouverte</span>
+      </div>
+
+      <div class="objection-card">
+        <h3>1. "Caroline Hanotiau and our legal team already manage all insurance regulatory compliance."</h3>
+        <div class="real-meaning"><strong>Underlying Concern:</strong> Perceived overlap with in-house legal counsel.</div>
+        <div class="arc-steps">
+          <div class="arc-step arc-a"><span class="arc-pill">A</span><span>"Understood — Caroline and your legal team have built an exceptional regulatory foundation for pan-European insurance orchestration."</span></div>
+          <div class="arc-step arc-r"><span class="arc-pill">R</span><span>"However, the EU AI Act mandates technical engineering frameworks (ISO 42001 &amp; NIST AI RMF), model risk registers, and algorithmic transparency for automated claims microservices that extend into Nico's dev workflow."</span></div>
+          <div class="arc-step arc-c"><span class="arc-pill">C</span><span>"How are your engineering teams currently generating technical model risk files when partner carriers like ING or Revolut request proof of AI auditability?"</span></div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <h3>2. "Following our $12M growth capital round, our 100% priority is revenue growth, not consulting audits."</h3>
+        <div class="real-meaning"><strong>Underlying Concern:</strong> Fear that an audit will slow down developer velocity or distract from commercial deliverables.</div>
+        <div class="arc-steps">
+          <div class="arc-step arc-a"><span class="arc-pill">A</span><span>"Makes complete sense — following your $12M growth round from CIBC Innovation Banking, accelerating revenue and partner onboarding is top priority."</span></div>
+          <div class="arc-step arc-r"><span class="arc-pill">R</span><span>"That is exactly why we structured our Combined AI + Cyber Audit as a 2-week sprint (€7,900) — to clear regulatory friction before un-audited AI claims engines cause carrier onboarding delays."</span></div>
+          <div class="arc-step arc-c"><span class="arc-pill">C</span><span>"Would you be open to reviewing a 1-page InsurTech AI Act Readiness Checklist designed specifically for CTOs scaling automated claims?"</span></div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <h3>3. "Our tech stack is built on GCP and Kubernetes with strong security, so our AI infrastructure is already safe."</h3>
+        <div class="real-meaning"><strong>Underlying Concern:</strong> Confusion between infrastructure security (IAM/SOC2) and AI model governance (EU AI Act).</div>
+        <div class="arc-steps">
+          <div class="arc-step arc-a"><span class="arc-pill">A</span><span>"GCP and Kubernetes provide an enterprise-grade cloud security foundation for your microservices."</span></div>
+          <div class="arc-step arc-r"><span class="arc-pill">R</span><span>"Cloud security protects infrastructure access, but the EU AI Act specifically requires model risk registers, training data lineage, and continuous auditing tailored to LLM/OCR claims pipelines."</span></div>
+          <div class="arc-step arc-c"><span class="arc-pill">C</span><span>"How does your technical team currently document model retraining and automated claim decision rules for third-party auditors?"</span></div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <h3>4. "€7,900 for an audit is high when we can review AI Act compliance internally."</h3>
+        <div class="real-meaning"><strong>Underlying Concern:</strong> Viewing the price as a cost rather than an investment with clear ROI.</div>
+        <div class="arc-steps">
+          <div class="arc-step arc-a"><span class="arc-pill">A</span><span>"I respect that — evaluating external investments post-funding requires clear ROI rigor."</span></div>
+          <div class="arc-step arc-r"><span class="arc-pill">R</span><span>"Drafting technical AI Act files manually consumes ~120 developer hours (€12,000+ in engineering cost). Our €7,900 audit combined with our DocThor engine automates compliance files in 48 hours, delivering a 12.5x ROI payback in under 30 days."</span></div>
+          <div class="arc-step arc-c"><span class="arc-pill">C</span><span>"If automating these technical files saves 120 hours of developer time this quarter, would that justify a 2-week audit sprint?"</span></div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <h3>5. "Generative AI is an overhyped bubble, and regulatory compliance around it is premature panic."</h3>
+        <div class="real-meaning"><strong>Underlying Concern:</strong> Fear of wasting capital on hype or premature regulatory gold-plating before laws enforce.</div>
+        <div class="arc-steps">
+          <div class="arc-step arc-a"><span class="arc-pill">A</span><span>"I completely agree that 95% of generic LLM demos and AI hype fail to deliver measurable business ROI."</span></div>
+          <div class="arc-step arc-r"><span class="arc-pill">R</span><span>"However, Qover's claims automation isn't a speculative demo — it's a production core microservice resolving claims 75% faster across 32 EU jurisdictions where EU AI Act &amp; NIS2 enforcement creates direct legal exposure and carrier audit friction."</span></div>
+          <div class="arc-step arc-c"><span class="arc-pill">C</span><span>"How is Qover ensuring that your production AI claims microservices remain audit-ready when partner financial institutions request formal risk verification?"</span></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</body>
+</html>

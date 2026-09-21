@@ -1,7 +1,7 @@
-# Grilles de Scoring Détaillées — BANT & MEDDIC
+# Detailed Scoring Frameworks — BANT & MEDDIC
 
-> Les barèmes officiels sont dans `.agents/rules/scoring.md`.
-> Ce fichier contient les requêtes de collecte signal par signal.
+> Official scoring rubrics are defined in `.agents/rules/scoring.md`.
+> This file contains signal-by-signal collection queries and methodology.
 
 ## Phase 1: Data Collection
 
@@ -362,4 +362,3 @@ Based on the qualification data, recommend the sales approach:
 - Do not invest individual sales rep time
 
 ---
-

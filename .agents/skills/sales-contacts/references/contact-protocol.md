@@ -1,4 +1,4 @@
-# Protocole Détaillé — Identification des Contacts
+# Detailed Protocol — Contact Identification
 
 ## Phase 1: Contact Identification
 
@@ -420,4 +420,3 @@ Multi-threading means engaging multiple stakeholders within the prospect organiz
 - Track all touchpoints in CRM to avoid over-contacting
 
 ---
-

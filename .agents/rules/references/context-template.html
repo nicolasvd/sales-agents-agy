@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PAGE_TITLE}} — Company DNA & Target ICP</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #0284c7;
+      --accent-light: #e0f2fe;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --success-border: #a7f3d0;
+      --warning: #b45309;
+      --warning-bg: #fffbeb;
+      --warning-border: #fde68a;
+      --danger: #b91c1c;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .header-info h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .header-info p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin-top: 0.35rem;
+    }
+    .header-badges {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .badge-warning {
+      background: var(--warning-bg);
+      color: var(--warning);
+      border: 1px solid var(--warning-border);
+    }
+    .badge-success {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid var(--success-border);
+    }
+    .badge-neutral {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* Navigation buttons */
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn-back, .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+    .btn-back:hover, .nav-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* 2-Column Responsive Layout */
+    .dna-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .dna-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Column Styles */
+    .dna-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .column-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .column-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+    .card-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .highlight-box {
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      font-size: 0.9375rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    th {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    /* Lists */
+    .pill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .pill-item {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+    }
+    .pill-item strong {
+      color: #1e40af;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .exclusion-item {
+      border-left: 3px solid var(--danger);
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+    .trigger-item {
+      border-left: 3px solid var(--success);
+      background: var(--success-bg);
+    }
+    .trigger-item strong {
+      color: #065f46;
+    }
+
+    /* Persona cards */
+    .persona-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .persona-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.875rem;
+    }
+    .persona-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Print */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .header, .card { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
+      .nav-actions, .btn-back { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-info">
+        <h1>
+          <span>🏢 {{COMPANY_NAME}}</span>
+        </h1>
+        <p>Unified Commercial Intelligence & Operational ICP Boundaries</p>
+        <div class="header-badges">
+          {{STATUS_BADGE_HTML}}
+          <span class="badge badge-neutral">Single Source of Truth</span>
+          <span class="badge badge-neutral">Compiled: {{COMPILED_DATE}}</span>
+        </div>
+      </div>
+      <nav class="nav-actions">
+        <a href="../index.html" class="btn-back">← Back to Portal</a>
+      </nav>
+    </header>
+
+    <main class="dna-grid">
+      <!-- Left Column: Product Context & Company DNA -->
+      <section class="dna-column">
+        <div class="column-header">
+          <h2>📦 Company DNA & Offering</h2>
+          <span class="column-tag">.agents/rules/product-context.md</span>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">💡 Commercial Positioning</h3>
+          <div class="highlight-box">
+            {{VALUE_PROPOSITION}}
+          </div>
+          <div style="font-size: 0.875rem; color: var(--text-muted);">
+            <p><strong>Profile:</strong> {{COMPANY_PROFILE}}</p>
+            <p style="margin-top: 0.4rem;"><strong>Positioning:</strong> {{POSITIONING_STATEMENT}}</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">💰 Official Pricing Grid</h3>
+          <div class="table-wrapper">
+            {{PRICING_GRID_TABLE_HTML}}
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">⚡ Core Practice Pillars</h3>
+          <ul class="pill-list">
+            {{PILLARS_LIST_HTML}}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="color: var(--danger);">⛔ Strictly Excluded Scopes</h3>
+          <ul class="pill-list">
+            {{EXCLUSIONS_LIST_HTML}}
+          </ul>
+        </div>
+      </section>
+
+      <!-- Right Column: Customer Context & Ideal Customer Profile -->
+      <section class="dna-column">
+        <div class="column-header">
+          <h2>🎯 Ideal Customer Profile (ICP)</h2>
+          <span class="column-tag">.agents/rules/customer-context.md</span>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">🌐 Target Market & Scope</h3>
+          <div style="font-size: 0.875rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+            <p><strong>Target Segment:</strong> <span style="color: var(--text); font-weight: 500;">{{ICP_TARGET_SEGMENT}}</span></p>
+            <p><strong>Maturity Stage:</strong> <span style="color: var(--text); font-weight: 500;">{{ICP_MATURITY_STAGE}}</span></p>
+            <p><strong>Geographic Footprint:</strong> <span style="color: var(--text); font-weight: 500;">{{ICP_GEOGRAPHY}}</span></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">📐 Firmographic & Technographic Sweet Spot</h3>
+          <div class="table-wrapper">
+            {{BOUNDARIES_TABLE_HTML}}
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">👥 Buying Committee & Target Personas</h3>
+          <div class="persona-grid">
+            {{PERSONAS_CARDS_HTML}}
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="color: #059669;">🚀 High-Leverage Buying Triggers</h3>
+          <ul class="pill-list">
+            {{TRIGGERS_LIST_HTML}}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="color: var(--danger);">🚫 Disqualification & Exclusion Criteria</h3>
+          <ul class="pill-list">
+            {{DISQUALIFICATION_LIST_HTML}}
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      AI Sales Team Autonomous Platform — Built with Google Antigravity. Inspects live rules from <code>.agents/rules/</code>.
+    </footer>
+  </div>
+</body>
+</html>

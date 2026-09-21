@@ -1,6 +1,6 @@
-# Outreach Frameworks — Référence Détaillée
+# Outreach Frameworks — Detailed Reference
 
-Lire ce fichier via `view_file` uniquement si tu as besoin de rédiger les emails.
+Read this file via `view_file` only when drafting email copies.
 
 Phase 2: Outreach Framework Selection
 

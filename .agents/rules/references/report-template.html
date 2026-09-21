@@ -59,6 +59,34 @@
       gap: 1rem;
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+
+    .btn-back:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
     .header-info h1 {
       font-size: 1.75rem;
       font-weight: 700;
@@ -317,6 +345,10 @@
         break-inside: avoid;
       }
 
+      .nav-actions, .btn-back {
+        display: none !important;
+      }
+
       .card {
         margin-bottom: 1.25rem;
       }
@@ -335,8 +367,9 @@
         <h1>{{COMPANY_NAME}}</h1>
         <p>URL: <a href="{{URL}}" target="_blank">{{URL}}</a> | Analyzed on {{DATE}}</p>
       </div>
-      <div>
+      <div class="nav-actions">
         <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
+        <a href="../index.html" class="btn-back">← Back to Portal</a>
       </div>
     </header>
 
@@ -354,12 +387,12 @@
 
       <!-- Breakdown Bars -->
       <div class="metrics-card">
-        <h3>Component Breakdown</h3>
+        <h3>Component Breakdown (Deterministic Formula)</h3>
         <div class="progress-group">
           <div class="progress-item">
             <div class="progress-header">
               <span>BANT Qualification</span>
-              <span>{{BANT_SCORE}} / 100 (50%)</span>
+              <span>{{BANT_SCORE}} / 100 (50% &rarr; {{BANT_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{BANT_SCORE}}%;"></div>
@@ -369,7 +402,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>MEDDIC Completeness</span>
-              <span>{{MEDDIC_PERCENT}}% (30%)</span>
+              <span>{{MEDDIC_PERCENT}}% (30% &rarr; {{MEDDIC_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{MEDDIC_PERCENT}}%; background: #0ea5e9;"></div>
@@ -379,7 +412,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>Urgency Modifier</span>
-              <span>{{URGENCY_SCORE}} / 100 (20%)</span>
+              <span>{{URGENCY_SCORE}} / 100 (20% &rarr; {{URGENCY_WEIGHTED_SCORE}} pts)</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" style="width: {{URGENCY_SCORE}}%; background: #10b981;"></div>

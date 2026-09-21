@@ -1,7 +1,7 @@
-# Les 8 Dimensions de Recherche — Protocole Détaillé
+# The 8 Research Dimensions — Detailed Protocol
 
-Lire via : view_file(".agents/skills/sales-research/references/research-dimensions.md")
-Quand : tu as besoin du protocole exact pour une dimension spécifique.
+Read via: `view_file(".agents/skills/sales-research/references/research-dimensions.md")`
+When: you need the exact research protocol for a specific dimension.
 
 ## Phase 3: The 8 Research Dimensions
 
@@ -159,4 +159,3 @@ Always state the estimation method and confidence level (High/Medium/Low/Specula
 7. Check their social media for announcements
 
 ---
-

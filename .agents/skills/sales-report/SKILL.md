@@ -7,8 +7,10 @@ description: >-
 # Skill: sales-report
 
 **Role:** Aggregate workspace intelligence into an executive pipeline report and dynamically generate/update the global visual portal (`reports/index.html`).  
-**Mandatory Rules:** `scoring.md` (mandatory), `output-formatting.md`.  
-**Deliverables:** `reports/pipeline/PIPELINE-SUMMARY.html`, `reports/pipeline/markdown/PIPELINE-SUMMARY.md`, and master portal `reports/index.html`.
+**Mandatory Rules:** `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Deliverables:**
+- **Primary:** `reports/pipeline/PIPELINE-SUMMARY.html` & `reports/pipeline/markdown/PIPELINE-SUMMARY.md`
+- **Master Hub:** `reports/index.html` (auto-synced with `reports/my-company/company-dna.html` & `reports/radar/RADAR-DISCOVERY.html`)
 
 > [!IMPORTANT]
 > **Language Governance:** Internal aggregation, mathematical rollups, and logs operate in English. Deliverable executive summaries and notes adapt to the user's primary operating language.
@@ -16,28 +18,33 @@ description: >-
 ## Trigger
 
 Invoked via `report` (standalone, without arguments). Aggregates all prospect directories and audit files generated across the entire workspace.
+- **Demo Profile Guardrail:** Verify context files per `fact-checking.md`. If demo marker (`Acme AI Automation Inc.` or unconfigured `customer-context.md`) is detected, prepend the canonical warning banner in chat and display a visible warning badge in `reports/index.html` and pipeline summary.
 
 ## Workflow (3 Sequential Steps)
 
 1. **Workspace Audit Discovery & Inventory:**
-   - Recursively inspect the `reports/` directory to discover all prospect subdirectories (`reports/{slug}/`) and root reports (`IDEAL-CUSTOMER-PROFILE.*`, `OBJECTION-PLAYBOOK.*`).
-   - For each prospect directory, inspect available deliverables:
-     `PROSPECT-ANALYSIS.*`, `LEAD-QUALIFICATION.*`, `COMPANY-RESEARCH.*`, `DECISION-MAKERS.*`, `OUTREACH-SEQUENCE.*`, `MEETING-PREP.*`, `CLIENT-PROPOSAL.*`, `COMPETITIVE-INTEL.*`.
+   - Recursively inspect `reports/` to discover target prospect subdirectories (`reports/{slug}/`).
+   - **System Reserved Folders Exclusion:** Formally ignore `reports/my-company/`, `reports/radar/`, and `reports/pipeline/` when building the prospect list. These system folders represent cockpit views and are NOT commercial prospects.
+   - Ingest raw data exclusively from Markdown files (`reports/{slug}/markdown/*.md`) — NEVER parse `.html` files for metric extraction.
+   - For each prospect, inspect available deliverables:
+     `PROSPECT-ANALYSIS.md`, `LEAD-QUALIFICATION.md`, `COMPANY-RESEARCH.md`, `DECISION-MAKERS.md`, `OUTREACH-SEQUENCE.md`, `MEETING-PREP.md`, `CLIENT-PROPOSAL.md`, `COMPETITIVE-INTEL.md`.
 
-2. **Metric Extraction & Pipeline Rollup:**
-   - Extract key data per audited company:
-     - Composite Prospect Score, BANT Total (/100), MEDDIC Completeness (%), Assigned Grade (A/B/C/D).
-     - Top identified trigger events and primary buying committee contacts.
-     - Sequence readiness score and recommended immediate next step.
+2. **Deterministic YAML Frontmatter Extraction & Pipeline Rollup:**
+   - Parse the structured YAML frontmatter block at the top of each Markdown file directly:
+     - `scoring.prospect_score`, `scoring.lead_grade`, `scoring.bant_total`, `scoring.meddic_completeness_pct`.
+     - `primary_contacts.economic_buyer`, `primary_contacts.champion`.
+     - `competitive_context.incumbent_tools`, `competitive_context.switching_cost`.
+     - `top_triggers`.
+   - Do NOT rely on fragile text heuristics or table regexes when YAML metadata is present.
    - Calculate aggregate metrics: Total audited accounts, average qualification score, grade distribution breakdown, and priority deal ranking.
 
-3. **Dual Reporting & Master Portal Maintenance:**
-   - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
-   - **Central Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered account into `{{COMPANIES_CARDS_HTML}}`. Each card features:
-     - Company Name, Slug, and Grade Badge (A/B/C/D).
-     - Direct links to every generated HTML deliverable.
-     - Direct link to the raw machine data folder (`reports/{slug}/markdown/`).
-     - Client-side search and filtering compatibility (`filterCards()`).
+3. **Pipeline Report Generation & Portal Sync:**
+   - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` using `view_file(".agents/rules/references/pipeline-summary-template.html")` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
+   - **Master Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered target prospect account into `{{COMPANIES_CARDS_HTML}}`:
+     - System views (`reports/my-company/`, `reports/radar/`, `reports/pipeline/`) are linked in the top header buttons (`.header-actions`) and MUST NEVER be added as cards in `companyGrid`.
+     - Each prospect card features: Company Name, Slug, Grade Badge (A/B/C/D), direct links to HTML deliverables, and link to raw Markdown data.
+     - **Empty State Fallback:** If zero prospect accounts have been audited, inject the `.empty-state` container into `{{COMPANIES_CARDS_HTML}}` with prompt commands (`radar [topic]`, `prospect <url>`, `qualify <url>`).
+   - **Satellite Views Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")`. If `reports/radar/markdown/RADAR-DISCOVERY.md` exists, recompile `reports/radar/RADAR-DISCOVERY.html` using `view_file(".agents/rules/references/radar-template.html")`. Ensure all views remain linked from the portal header.
 
 ## Strict Guardrails
 
@@ -51,13 +58,4 @@ Save all deliverables simultaneously within `reports/`:
 1. **Web HTML (Humans):** `reports/pipeline/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
 2. **Raw Markdown (AI Memory):** `reports/pipeline/markdown/PIPELINE-SUMMARY.md`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/pipeline/PIPELINE-SUMMARY.html
-🤖 Données IA  : reports/pipeline/markdown/PIPELINE-SUMMARY.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/pipeline/PIPELINE-SUMMARY.html
-```
+Conclude your response with the executive summary and standard completion block per `output-formatting.md`.

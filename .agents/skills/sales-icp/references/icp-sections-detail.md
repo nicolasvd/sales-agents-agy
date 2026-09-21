@@ -1,14 +1,24 @@
-# Détail des Sections ICP — Protocole Complet
+# Detailed ICP Sections — Complete Protocol
 
-Lire via : view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")
+Read via: `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`
 
 ## Output Format
 
-Write the complete ICP to `IDEAL-CUSTOMER-PROFILE.md` in the current working directory.
+Write the complete ICP to `reports/my-company/markdown/ICP-FRAMEWORK.md`.
 
 Structure the output file with these sections in order:
 
 ```markdown
+---
+slug: "my-company"
+company: "[Business/Product Name]"
+url: "[URL or Not publicly available]"
+type: "icp"
+audit_date: "YYYY-MM-DD"
+target_segment: "[Primary Segment]"
+fit_threshold: 70
+---
+
 # Ideal Customer Profile: [Business/Product Name]
 
 > Generated on [date] | Based on: [brief description of the business]
@@ -78,7 +88,7 @@ Include a brief section at the end of the output file that advises on ICP mainte
   - Your product adds a major new feature or enters a new market
   - Your pricing model changes significantly
   - A major competitor enters or exits the market
-- **Feedback Loop:** After running `/sales prospect` on 10+ companies, review which scores correlated with actual deal outcomes. Adjust ICP criteria and scoring weights accordingly.
+- **Feedback Loop:** After running `prospect <url>` on 10+ companies, review which scores correlated with actual deal outcomes. Adjust ICP criteria and scoring weights accordingly.
 - **Version Control:** Encourage the user to date-stamp ICPs and keep previous versions for comparison.
 
 ---
@@ -107,4 +117,4 @@ Include a brief section at the end of the output file that advises on ICP mainte
 4. Do NOT use filler content. Every sentence should add value.
 5. The output file should be 300-400 lines of substantive content.
 6. Write the file to disk using the Write tool. Confirm to the user what was written and where.
-7. After writing, give the user a brief summary of the ICP highlights and suggest next steps (e.g., "Run `/sales prospect <url>` to analyze a specific company against this ICP").
+7. After writing, give the user a brief summary of the ICP highlights and suggest next steps (e.g., "Run `prospect <url>` to analyze a specific company against this ICP").

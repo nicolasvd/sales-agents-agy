@@ -7,19 +7,33 @@ description: >-
 # Skill: sales-contacts
 
 **Role:** Identify and map the target account's buying committee, key decision-makers, and public personalization anchors.  
-**Mandatory Rules:** `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Mandatory Rules:** `customer-context.md` (mandatory), `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
 **Deliverables:** `reports/{slug}/DECISION-MAKERS.html` and `reports/{slug}/markdown/DECISION-MAKERS.md`.
 
 > [!IMPORTANT]
 > **Language Governance:** Internal search queries, reasoning, and role classifications operate in English. Deliverable content automatically adapts to the primary language of the prospect.
 
+## Contextual Resolution Gateway (Mandatory Step 0)
+
+Before generating any output, resolve the target prospect:
+1. **Explicit argument provided:** Extract the domain and prospect slug (`reports/{slug}/`).
+2. **Omitted argument (`*`):** Analyze recent conversation history. If a prospect account is already active in the exchange, deduce and reuse its slug without prompting for confirmation.
+3. **Complete absence of context:** STOP IMMEDIATELY. Write NO files to disk. Prompt the user clearly for clarification:
+   > *"Which prospect account or URL would you like to analyze? (e.g., `contacts https://example.com`)"*
+
+> [!CAUTION]
+> **Strict Prohibition:** Never create any deliverable directly at the root of `reports/`.
+
 ## Trigger
 
-Invoked via `contacts <url>`. If available, inspect:
-- `reports/{slug}/COMPANY-RESEARCH.html` or `reports/{slug}/markdown/COMPANY-RESEARCH.md`
-- `reports/IDEAL-CUSTOMER-PROFILE.html` or `reports/markdown/IDEAL-CUSTOMER-PROFILE.md`
+Invoked via `contacts <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
+- `reports/{slug}/markdown/COMPANY-RESEARCH.md` (or `.html` version)
+- `reports/my-company/markdown/ICP-FRAMEWORK.md` (or `.html` version)
 
 ## Workflow (4 Sequential Steps)
+
+> [!IMPORTANT]
+> **Re-run & Refresh Policy:** When explicitly invoked with a target prospect URL or topic, systematically execute a fresh web exploration. Overwrite existing local reports with updated findings and today's date (`audit_date`). Never use existing local markdown files as a substitute for an explicit user re-run.
 
 1. **Targeted Leadership Identification:**
    - Execute `read_url_content` across company leadership pages: `/team`, `/about`, `/leadership`, `/board`.
@@ -54,13 +68,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/DECISION-MAKERS.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/DECISION-MAKERS.md` using `view_file(".agents/skills/sales-contacts/references/output-template.md")`.
 
-Display the Terminal Summary Block at the start of your chat response, and conclude with the mandatory Browser First completion block per `output-formatting.md`:
-
-```text
-=== LIVRABLES GÉNÉRÉS ===
-📄 Fichier Web : reports/{slug}/DECISION-MAKERS.html
-🤖 Données IA  : reports/{slug}/markdown/DECISION-MAKERS.md
-
-🚀 Ouvrir dans le navigateur :
-open reports/{slug}/DECISION-MAKERS.html
-```
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
