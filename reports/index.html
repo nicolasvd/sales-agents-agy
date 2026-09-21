@@ -49,7 +49,8 @@
     /* Deliverables list */
     .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
     .doc-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.85rem; border-radius: 8px; background: #f8fafc; border: 1px solid #f1f5f9; text-decoration: none; color: var(--text); font-size: 0.875rem; font-weight: 600; transition: background 0.15s, border-color 0.15s; }
-    .doc-link > span:first-child { flex: 1; min-width: 0; }
+    .doc-link > span:first-child { flex-shrink: 0; }
+    .doc-link > span:nth-child(2) { flex: 1; min-width: 0; }
     .doc-link:hover { background: var(--primary-light); border-color: #bfdbfe; color: var(--primary); }
     .doc-icon { font-size: 1.1rem; margin-right: 0.5rem; }
 
