@@ -86,9 +86,17 @@
       margin-bottom: 1rem;
       font-size: 0.875rem;
     }
-    .script-box { border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; font-size: 0.875rem; }
-    .script-arc { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .script-box { border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; font-size: 0.875rem; }
     .script-proof { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+    .arc-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .arc-step { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.5; }
+    .arc-pill { flex-shrink: 0; font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border-radius: 9999px; margin-top: 0.15rem; }
+    .arc-a { background: #ecfdf5; border: 1px solid #6ee7b7; color: #065f46; }
+    .arc-a .arc-pill { background: #6ee7b7; color: #065f46; }
+    .arc-r { background: #fffbeb; border: 1px solid #fcd34d; color: #78350f; }
+    .arc-r .arc-pill { background: #fcd34d; color: #78350f; }
+    .arc-c { background: #eff6ff; border: 1px solid #93c5fd; color: #1e3a8a; }
+    .arc-c .arc-pill { background: #93c5fd; color: #1e3a8a; }
     @media print {
       body { padding: 0; background: #fff; }
       .container { max-width: 100%; }
