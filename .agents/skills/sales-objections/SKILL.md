@@ -65,4 +65,9 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/OBJECTION-PLAYBOOK.html` using `view_file(".agents/rules/references/battle-card-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/OBJECTION-PLAYBOOK.md` using `view_file(".agents/skills/sales-objections/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card at the start of your chat response. Under **Key Signals**, include the top-priority A-R-C script on three distinct lines:
+- **A — Acknowledge:** [Empathetic validation of the prospect concern, without conceding value]
+- **R — Reframe:** [Challenger reframe toward ROI, differentiation, or Cost of Inaction]
+- **C — Clarify:** [Open diagnostic question to retain dialogue initiative]
+
+Conclude your response with the clickable Browser First completion block per `output-formatting.md`.

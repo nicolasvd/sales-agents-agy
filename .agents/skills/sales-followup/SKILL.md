@@ -28,8 +28,8 @@ Before generating any output, resolve the target prospect:
 
 Invoked via `followup [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (persona priorities, target deal velocity) and `.agents/rules/product-context.md`. Then inspect available workspace context strictly in Markdown:
 - Initial Sequence & Touches: `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`
-- Meeting Notes & Engagements: `reports/{slug}/markdown/MEETING-PREP.md`
-- Proposal Terms & Scope: `reports/{slug}/markdown/CLIENT-PROPOSAL.md`
+- Meeting Notes & Engagements: `reports/{slug}/markdown/MEETING-PREP.md` *(if available)*
+- Proposal Terms & Scope: `reports/{slug}/markdown/CLIENT-PROPOSAL.md` *(if available)*
 - Contact Coordinates: `reports/{slug}/markdown/DECISION-MAKERS.md`
 - Core Prospect Diagnostic: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 
