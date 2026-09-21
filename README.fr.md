@@ -40,7 +40,7 @@ Aucun terminal, aucun environnement de développement (`npm`, `pip`, `venv`) ni 
 
 ```bash
 # Cloner le dépôt et entrer dans le workspace
-git clone https://github.com/nicolasvd/sales-agents-agy.git mon-projet-sales
+git clone [https://github.com/nicolasvd/sales-agents-agy.git](https://github.com/nicolasvd/sales-agents-agy.git) mon-projet-sales
 cd mon-projet-sales
 
 # Lancer Antigravity CLI

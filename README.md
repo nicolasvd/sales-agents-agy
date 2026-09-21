@@ -40,10 +40,10 @@ Zero technical setup, terminal commands, or runtime environments (`npm`, `pip`, 
 
 ```bash
 # Clone repository and enter workspace
-git clone https://github.com/nicolasvd/sales-agents-agy.git my-sales-agency
+git clone [https://github.com/nicolasvd/sales-agents-agy.git](https://github.com/nicolasvd/sales-agents-agy.git) my-sales-agency
 cd my-sales-agency
 
-# Launch Antigravity CLI
+# Launch Antigravity
 agy
 ```
 
