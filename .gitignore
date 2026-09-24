@@ -1,5 +1,6 @@
 # Generated reports & prospect audits (100% local, never committed)
-reports/*
+reports/**
+!reports/
 !reports/.gitkeep
 
 # IDE & OS
@@ -10,5 +11,6 @@ reports/*
 .idea/
 
 # Ephemeral scratchpad data
-.agents/.scratchpad/*
+.agents/.scratchpad/**
+!.agents/.scratchpad/
 !.agents/.scratchpad/README.md
