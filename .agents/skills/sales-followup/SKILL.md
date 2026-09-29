@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-followup
 
 **Role:** Generate adaptive multi-touch follow-up cadences across email, LinkedIn, and phone for stalled deals, unanswered outreach, or engaged leads.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/product-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/FOLLOWUP-SEQUENCE.html` and `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md`.
 
 > [!IMPORTANT]
@@ -26,12 +27,12 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `followup [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (persona priorities, target deal velocity) and `.agents/rules/product-context.md`. Then inspect available workspace context strictly in Markdown:
+Invoked via `followup [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (persona priorities, target deal velocity) and `.agents/context/product-context.md`. Then inspect available workspace context strictly in Markdown:
 - Initial Sequence & Touches: `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`
 - Meeting Notes & Engagements: `reports/{slug}/markdown/MEETING-PREP.md` *(if available)*
 - Proposal Terms & Scope: `reports/{slug}/markdown/CLIENT-PROPOSAL.md` *(if available)*
 - Contact Coordinates: `reports/{slug}/markdown/DECISION-MAKERS.md`
-- Core Prospect Diagnostic: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+- Core Prospect Diagnostic: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` (or `.agents/.scratchpad/{slug}/w2-draft.md`, `w1-*.md`)
 
 ## Workflow (4 Sequential Steps)
 
@@ -66,4 +67,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/FOLLOWUP-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md` using `view_file(".agents/skills/sales-followup/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

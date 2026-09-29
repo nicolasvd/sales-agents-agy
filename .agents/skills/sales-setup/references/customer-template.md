@@ -1,6 +1,6 @@
 # Template: Customer Context File Generator
 
-Use this template to generate `.agents/rules/customer-context.md`. The resulting file must remain strictly < 5,120 bytes.
+Use this template to generate `.agents/context/customer-context.md`. The resulting file must remain strictly < 5,120 bytes.
 
 ```markdown
 # Rule: Customer Context & Ideal Customer Profile (ICP)

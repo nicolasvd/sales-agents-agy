@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-qualify
 
 **Role:** Qualify prospects using BANT + MEDDIC frameworks exclusively from public web intelligence.  
-**Mandatory Rules:** `scoring.md` (mandatory), `customer-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/scoring.md` (mandatory), `.agents/context/customer-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md`.  
 **Deliverables:** `reports/{slug}/LEAD-QUALIFICATION.html` and `reports/{slug}/markdown/LEAD-QUALIFICATION.md`.
 
 > [!IMPORTANT]
@@ -26,7 +27,7 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `qualify <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` for target ICP parameters and disqualification filters. If available, inspect also:
+Invoked via `qualify <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` for target ICP parameters and disqualification filters. If available, inspect also:
 - `reports/my-company/markdown/ICP-FRAMEWORK.md` (or `.html` version).
 
 ## Workflow (4 Sequential Steps)
@@ -40,7 +41,7 @@ Invoked via `qualify <url>`. Apply the **Contextual Resolution Gateway** first. 
    - Detailed signal mapping protocol: `view_file(".agents/skills/sales-qualify/references/scoring-protocol.md")`.
 
 2. **Deterministic BANT Scoring:**
-   - Mechanically apply scorecards from `scoring.md`:
+   - Mechanically apply scorecards from `.agents/context/scoring.md`:
      Budget (/25) · Authority (/25) · Need (/25) · Timeline (/25) = BANT Score (/100).
 
 3. **MEDDIC Completeness Assessment:**
@@ -63,4 +64,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/LEAD-QUALIFICATION.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/LEAD-QUALIFICATION.md` using `view_file(".agents/skills/sales-qualify/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

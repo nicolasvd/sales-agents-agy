@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-proposal
 
 **Role:** Generate tailored, value-driven commercial proposals and post-proposal follow-up cadences.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/product-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/CLIENT-PROPOSAL.html` and `reports/{slug}/markdown/CLIENT-PROPOSAL.md`.
 
 > [!IMPORTANT]
@@ -26,8 +27,8 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (budget sweet spot, ICP pains) and `.agents/rules/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence strictly in Markdown:
-- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
+Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (budget sweet spot, ICP pains) and `.agents/context/product-context.md` (packages, pricing tiers, authorized scope). Then read available workspace intelligence strictly in Markdown:
+- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` (or `.agents/.scratchpad/{slug}/w2-draft.md`, `w1-*.md`) or `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
 - Buying Committee: `reports/{slug}/markdown/DECISION-MAKERS.md`
 - Meeting Intelligence & Discovery: `reports/{slug}/markdown/MEETING-PREP.md`
 - Competitive Intel & Displacement: `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
@@ -42,14 +43,14 @@ Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** 
 2. **Proposal Architecture (Mandatory Standard Order):**
    1. *Executive Summary:* 1-page C-level brief (metrics and bottom-line outcomes first).
    2. *Situation Analysis:* Confirmed operational bottlenecks with factual sources.
-   3. *Recommended Solution:* Architecture and methodology strictly referencing `product-context.md`.
+   3. *Recommended Solution:* Architecture and methodology strictly referencing `.agents/context/product-context.md`.
    4. *Scope & Milestones:* Concrete phased breakdown of deliverables and exclusions.
    5. *Delivery Timeline:* Realistic implementation schedule with built-in validation buffers.
-   6. *Investment & Commercial Terms:* Pricing structure faithfully reflecting `product-context.md` (Dynamic CPM, custom SaaS per screen, or project quote — DO NOT force 3 artificial tiers if absent from product context).
+   6. *Investment & Commercial Terms:* Pricing structure faithfully reflecting `.agents/context/product-context.md` (Dynamic CPM, custom SaaS per screen, or project quote — DO NOT force 3 artificial tiers if absent from product context).
    7. *Financial Business Case (ROI & Cost of Inaction):*
       - **Conservative Upside ROI:** Transparent financial model showing payback period and value multiplier.
       - **Quantified Cost of Inaction (COI):** Monthly and annual compounding cost of maintaining status quo ($\text{Identified Waste} + \text{Yield Loss} + \text{Excess Legacy Cost}$).
-   8. *Delivery Team & Case Studies:* Verified proof points documented in `product-context.md`.
+   8. *Delivery Team & Case Studies:* Verified proof points documented in `.agents/context/product-context.md`.
    9. *Immediate Next Steps:* 3 concrete actions with target decision milestones.
    Template reference: `view_file(".agents/skills/sales-proposal/references/proposal-template.md")`.
 
@@ -58,7 +59,7 @@ Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** 
 
 ## Strict Guardrails
 
-- ❌ Never invent pricing tiers, daily rates, or discount structures absent from `product-context.md`.
+- ❌ Never invent pricing tiers, daily rates, or discount structures absent from `.agents/context/product-context.md`.
 - ❌ Never commit to unlisted technical capabilities, custom integrations, or unverified SLAs.
 - ✅ ROI projections must remain conservative with explicit, documented underlying assumptions.
 
@@ -68,4 +69,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/rules/references/proposal-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/CLIENT-PROPOSAL.md` using `view_file(".agents/skills/sales-proposal/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

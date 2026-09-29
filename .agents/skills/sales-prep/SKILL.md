@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-prep
 
 **Role:** Synthesize comprehensive, tactical meeting preparation briefs for high-stakes sales conversations.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/product-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/MEETING-PREP.html` and `reports/{slug}/markdown/MEETING-PREP.md`.
 
 > [!IMPORTANT]
@@ -26,8 +27,8 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `prep [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (target persona pains and buying criteria) and `.agents/rules/product-context.md`. Then read all available reports strictly in Markdown:
-- `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+Invoked via `prep [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (target persona pains and buying criteria) and `.agents/context/product-context.md`. Then read all available reports strictly in Markdown:
+- `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` (or `.agents/.scratchpad/{slug}/w2-draft.md`, `w1-*.md`)
 - `reports/{slug}/markdown/DECISION-MAKERS.md`
 - `reports/{slug}/markdown/LEAD-QUALIFICATION.md`
 - `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
@@ -55,7 +56,7 @@ Invoked via `prep [prospect]*`. Apply the **Contextual Resolution Gateway** firs
 ## Strict Guardrails
 
 - Discovery questions must be exploratory and open-ended, never premature sales pitches.
-- All product and pricing references must strictly adhere to `product-context.md`.
+- All product and pricing references must strictly adhere to `.agents/context/product-context.md`.
 - Keep the brief concise and actionable (≤ 2 pages equivalent for quick pre-meeting review).
 
 ## Mandatory Dual Output
@@ -64,4 +65,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

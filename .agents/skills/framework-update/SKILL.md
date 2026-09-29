@@ -30,17 +30,15 @@ description: >-
 The following paths and patterns are strictly sanctuarized. Under no circumstances may they be modified, overwritten, or deleted by an update:
 - `reports/**` (all generated HTML, Markdown, and custom prospect dossiers)
 - `*scratchpad/**` (all ephemeral and persisted analysis scratchpads)
-- `.agents/rules/product-context.md` (Company DNA & offering rules)
-- `.agents/rules/customer-context.md` (Target ICP & persona definitions)
+- `.agents/context/**` (Company DNA, target ICP, scoring rubrics, and passive context)
 
 ### 2. Updatable Allowlist
 Only files matching the following paths are eligible for upstream synchronization:
+- `.agents/agents/**` (all agent definitions and orchestrator specifications)
 - `.agents/skills/**` (all skills, instruction files, scripts, and references)
 - `.agents/rules/references/**` (HTML templates, index templates, format references)
-- `.agents/rules/scoring.md` (deterministic scoring rubrics)
 - `.agents/rules/fact-checking.md` (verification and primary source rules)
-- `.agents/rules/output-formatting.md` (terminal and deliverable standards)
-- `AGENTS.md` (system manifest and command index)
+- `AGENTS.md` (system manifest and invariant workspace rules)
 - `.agents/skills.json` (skill registry)
 - `framework.json` (version tracking metadata)
 
@@ -88,10 +86,10 @@ Present a structured update proposal in chat:
 3. **Proposed File Delta Table:**
    | Status | File Path | Category / Impact |
    |---|---|---|
-   | `🟢 Added` | `.agents/skills/sales-example/SKILL.md` | New Skill |
-   | `🟡 Modified` | `.agents/rules/scoring.md` | Core Rule Update |
-   | `🛡️ Preserved` | `.agents/rules/product-context.md` | Sanctuary (Company DNA) |
-   | `🛡️ Preserved` | `.agents/rules/customer-context.md` | Sanctuary (Target ICP) |
+   | `🟢 Added` | `.agents/agents/sales-lead.md` | Core Orchestrator |
+   | `🟡 Modified` | `.agents/context/scoring.md` | Core Rubric Update |
+   | `🛡️ Preserved` | `.agents/context/product-context.md` | Sanctuary (Company DNA) |
+   | `🛡️ Preserved` | `.agents/context/customer-context.md` | Sanctuary (Target ICP) |
    | `🛡️ Preserved` | `reports/**` | Sanctuary (Generated Reports) |
 4. **Mandatory Overwrite Warning:**
    > [!WARNING]

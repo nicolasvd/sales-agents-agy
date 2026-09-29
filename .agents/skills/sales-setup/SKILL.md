@@ -1,15 +1,15 @@
 ---
 name: sales-setup
 description: >-
-  Conversational onboarding skill. Guides user through interactive workspace setup, extracts product context from company website, abstracts ICP from reference client, and persists .agents/rules/product-context.md and .agents/rules/customer-context.md (< 5 KB each).
+  Conversational onboarding skill. Guides user through interactive workspace setup, extracts product context from company website, abstracts ICP from reference client, and persists .agents/context/product-context.md and .agents/context/customer-context.md (< 5 KB each).
 ---
 
 # Skill: sales-setup
 
-**Role:** Autonomous conversational onboarding and workspace configuration engine. Calibrates product offering and customer ICP rules directly from public web intelligence and targeted user feedback.  
+**Role:** Autonomous conversational onboarding and workspace configuration engine. Calibrates product offering and customer ICP context files directly from public web intelligence and targeted user feedback.  
 **Autonomy:** 100% autonomous standalone skill. Never delegates to sub-agents (e.g., does not invoke `sales-icp`). Orchestrates the complete discovery dialogue, web scraping, and file persistence directly.  
 **Mandatory Rules:** `output-formatting.md` (mandatory).  
-**Generated Deliverables:** `.agents/rules/product-context.md` (< 5 KB), `.agents/rules/customer-context.md` (< 5 KB), and `reports/my-company/company-dna.html`.
+**Generated Deliverables:** `.agents/context/product-context.md` (< 5 KB), `.agents/context/customer-context.md` (< 5 KB), and `reports/my-company/company-dna.html`.
 
 > [!IMPORTANT]
 > **Language Governance:** The skill specification, internal prompts, and schemas remain strictly in English. During execution, the agent converses in the user's input language (French/English) and populates the rule files in that same language.
@@ -39,7 +39,7 @@ description: >-
    - **Initial Pricing Indicators & Exclusions:**
      > [!IMPORTANT]
      > **Strict Pricing Guardrail (Anti-Hallucination):** If the audited website does not explicitly publish public pricing (very common in Enterprise B2B), **DO NOT invent or extrapolate pricing tiers, hourly rates, or figures**. Explicitly set the initial pricing in `product-context.md` to `"Custom Enterprise / To be calibrated with user"` and freeze it until the user provides their real pricing model in Step 4.
-3. Generate initial `.agents/rules/product-context.md` using `.agents/skills/sales-setup/references/product-template.md`. Ensure strict compliance with the `< 5,120 bytes` limit.
+3. Generate initial `.agents/context/product-context.md` using `write_to_file` and template `.agents/skills/sales-setup/references/product-template.md`. Ensure strict compliance with the `< 5,120 bytes` limit.
 
 ### Step 2: Reference Client Inquiry
 Ask the user directly in chat for an ideal or past reference client:  
@@ -60,10 +60,10 @@ Ask the user the following 2 targeted questions in chat:
    *Prompt Example:* "What are your strict disqualification criteria (e.g., excluded industries, minimum or maximum company headcount, out-of-scope geographies, forbidden technologies)?"
 
 ### Step 5: Persistence, Visual Scaffolding & Guardrail Clearing
-1. Write `.agents/rules/customer-context.md` using `.agents/skills/sales-setup/references/customer-template.md` incorporating the abstracted ICP, triggers, and calibrated disqualification rules.
-2. Update `.agents/rules/product-context.md` if the user provided specific pricing packages or exclusions during Step 4.
-3. Verify file sizes: both `.agents/rules/product-context.md` and `.agents/rules/customer-context.md` must be strictly `< 5,120 bytes` (target ~3 KB).
-4. Compile the visual HTML dashboard: instantiate `.agents/rules/references/context-template.html` and write `reports/my-company/company-dna.html` with a dynamic state badge (`Demo Profile` or `Production Profile`). Do NOT create duplicate Markdown files in `reports/my-company/`.
+1. Write `.agents/context/customer-context.md` via `write_to_file` using `.agents/skills/sales-setup/references/customer-template.md` incorporating the abstracted ICP, triggers, and calibrated disqualification rules.
+2. Update `.agents/context/product-context.md` via `write_to_file` if the user provided specific pricing packages or exclusions during Step 4.
+3. Verify file sizes: both `.agents/context/product-context.md` and `.agents/context/customer-context.md` must be strictly `< 5,120 bytes` (target ~3 KB).
+4. Compile the visual HTML dashboard: instantiate `.agents/rules/references/context-template.html` and write `reports/my-company/company-dna.html` via `write_to_file` with a dynamic state badge (`Demo Profile` or `Production Profile`). Do NOT create duplicate Markdown files in `reports/my-company/`.
 5. Portal Navigation Check: Ensure `reports/index.html` links to `my-company/company-dna.html` via the top header button `🏢 My Company DNA`. NEVER add a card for the user's company into `companyGrid` in `reports/index.html`.
 
 ---
@@ -74,6 +74,6 @@ Conclude the onboarding session by delivering a clear executive briefing of the 
 
 ### 📦 Deliverables Generated
 - **Web (Interactive):** `reports/my-company/company-dna.html`
-- **Product Rules:** `.agents/rules/product-context.md`
-- **Customer Rules:** `.agents/rules/customer-context.md`
+- **Product Context:** `.agents/context/product-context.md`
+- **Customer Context:** `.agents/context/customer-context.md`
 - **Portal Updated:** `reports/index.html`

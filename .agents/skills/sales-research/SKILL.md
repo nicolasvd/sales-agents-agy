@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-research
 
 **Role:** In-depth firmographic and growth signal analysis of target B2B accounts across 8 standardized dimensions.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/scoring.md`, `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/COMPANY-RESEARCH.html` and `reports/{slug}/markdown/COMPANY-RESEARCH.md`.
 
 > [!IMPORTANT]
@@ -26,7 +27,7 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `research <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` to benchmark prospect firmographics and filter relevant signals against target sweet spots. If available, inspect also:
+Invoked via `research <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` to benchmark prospect firmographics and filter relevant signals against target sweet spots. If available, inspect also:
 - `reports/my-company/markdown/ICP-FRAMEWORK.md` (or `.html` version).
 
 ## Workflow (4 Sequential Steps)
@@ -57,7 +58,7 @@ Invoked via `research <url>`. Apply the **Contextual Resolution Gateway** first.
    Specification reference: `view_file(".agents/skills/sales-research/references/research-dimensions.md")`.
 
 4. **Synthesis & Company Fit Score:**
-   - Mechanically derive the Company Fit Score (0–25) using the Budget scorecard in `scoring.md`.
+   - Mechanically derive the Company Fit Score (0–25) using the Budget scorecard in `.agents/context/scoring.md`.
 
 ## Strict Guardrails
 
@@ -71,4 +72,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/COMPANY-RESEARCH.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPANY-RESEARCH.md` using `view_file(".agents/skills/sales-research/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.
