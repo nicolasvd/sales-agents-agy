@@ -99,15 +99,54 @@ description: Pure 2-wave prospect 360° audit orchestrator. Coordinates Wave 1 r
 
 ---
 
-### Step 4 — Publication & Deferred Dual Output
+### Step 4 — Publication & Async HTML Rendering (Non-Blocking)
+
+> [!IMPORTANT]
+> Step 4 is split into two independent tracks. The Markdown briefing is published **synchronously** and shown to the user immediately. The HTML compilation is delegated **asynchronously** to `sales-sub-styler` — the orchestrator does NOT wait for it.
+
+#### Step 4a — Synchronous: Publish Markdown & Invoke HTML Styler
 
 1. **Promote Machine-Readable Markdown:**
    - Write `.agents/.scratchpad/{slug}/w2-draft.md` content strictly to `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` via `write_to_file`.
-2. **Generate Interactive HTML Deliverable:**
-   - Read `.agents/skills/sales-prospect/references/report-template.html` via `view_file`.
-   - Populate template placeholders with verified facts, scoring gauges, and strategy sections formatted according to `.agents/context/output-formatting.md`.
-   - Write output strictly to `reports/{slug}/PROSPECT-ANALYSIS.html` via `write_to_file`.
+
+2. **Delegate HTML Rendering (Non-Blocking):**
+   - Invoke `sales-sub-styler` via `invoke_subagent` with the following prompt parameters:
+     ```
+     slug: {slug}
+     deliverable: PROSPECT-ANALYSIS
+     markdown_source: reports/{slug}/markdown/PROSPECT-ANALYSIS.md
+     html_template: .agents/skills/sales-prospect/references/report-template.html
+     ```
+   - **Do NOT wait for the styler to complete.** Proceed immediately to Step 4b.
+   - The styler runs asynchronously in the background. It will compile `reports/{slug}/PROSPECT-ANALYSIS.html` and update `reports/index.html` independently. The Antigravity messaging system will notify the orchestrator when it finishes.
+
 3. **Scratchpad Housekeeping:**
    - Remove ephemeral intermediate files in `.agents/.scratchpad/{slug}/` to maintain workspace hygiene.
-4. **User Delivery:**
-   - Present executive briefing card and clickable local report links in the final conversation message.
+
+#### Step 4b — Immediate: User Delivery
+
+Present the executive briefing card directly in the conversation **without waiting for HTML compilation**. Use the following Markdown format:
+
+```markdown
+## 📊 Prospect Analysis — {COMPANY_NAME}
+
+**Grade: {GRADE} — {GRADE_LABEL}** | Score: **{PROSPECT_SCORE}/100**
+
+| Dimension | Score | Weighted |
+|---|---|---|
+| BANT | {BANT_SCORE}/100 | {BANT_WEIGHTED_SCORE} pts (×50%) |
+| MEDDIC | {MEDDIC_PERCENT}% | {MEDDIC_WEIGHTED_SCORE} pts (×30%) |
+| Urgency | {URGENCY_SCORE}/100 | {URGENCY_WEIGHTED_SCORE} pts (×20%) |
+
+**Primary Contact:** {PRIMARY_CONTACT} via {PRIMARY_CHANNEL}
+**Outreach Hook:** {MESSAGE_HOOK_SUMMARY}
+
+---
+
+📄 **Markdown source:** `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+🎨 **HTML report:** `reports/{slug}/PROSPECT-ANALYSIS.html` *(en cours de compilation — disponible dans quelques instants)*
+🏠 **Portal:** `reports/index.html`
+```
+
+> [!NOTE]
+> The HTML file path is displayed immediately so the user can open it as soon as the styler finishes. The styler will send a `STYLER_DONE` confirmation message when compilation is complete.
