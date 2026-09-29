@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-outreach
 
 **Role:** Generate highly personalized 5-touch omnichannel outreach sequences (Email + LinkedIn) strictly grounded in verified public trigger events.  
-**Mandatory Rules:** `product-context.md` (mandatory), `customer-context.md` (mandatory), `fact-checking.md`, `output-formatting.md`, `scoring.md`.  
+**Mandatory Context:** `.agents/context/product-context.md` (mandatory), `.agents/context/customer-context.md` (mandatory), `.agents/context/scoring.md`, `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md`.  
 **Deliverables:** `reports/{slug}/OUTREACH-SEQUENCE.html` and `reports/{slug}/markdown/OUTREACH-SEQUENCE.md`.
 
 > [!IMPORTANT]
@@ -26,9 +27,9 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `outreach [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (ICP persona pains) and `.agents/rules/product-context.md` (product offering), then inspect available workspace intelligence (prioritizing Markdown files over HTML):
-- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
-- Contacts: `reports/{slug}/markdown/DECISION-MAKERS.md`
+Invoked via `outreach [prospect]*`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (ICP persona pains) and `.agents/context/product-context.md` (product offering), then inspect available workspace intelligence (prioritizing Markdown files over HTML):
+- Primary: `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` (or `.agents/.scratchpad/{slug}/w2-draft.md`, `w1-*.md`)
+- Contacts: `reports/{slug}/markdown/DECISION-MAKERS.md` (or `.agents/.scratchpad/{slug}/w1-contacts.md`)
 - Diagnostic & Stack: `reports/{slug}/markdown/LEAD-QUALIFICATION.md`, `reports/{slug}/markdown/COMPANY-RESEARCH.md`, `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
 - ICP Context: `reports/my-company/markdown/ICP-FRAMEWORK.md`
 
@@ -40,16 +41,16 @@ Invoked via `outreach [prospect]*`. Apply the **Contextual Resolution Gateway** 
 4. **5-Touch Sequence Drafting:**
    - Day 1: Email (Trigger hook + Pain bridge + Soft CTA)
    - Day 3: LinkedIn (Engage-first profile connection note < 300 chars)
-   - Day 7: Email (Value proposition grounded in `product-context.md`)
+   - Day 7: Email (Value proposition grounded in `.agents/context/product-context.md`)
    - Day 14: Email (Case study or relevant insight)
    - Day 21: Email (Graceful break-up touch)
 5. **LinkedIn Strategy:** Craft tailored connection request (Day 0/3) and Day 10 message (if connection accepted, or LinkedIn InMail alternative).
-6. **Outreach Readiness Scoring:** Score sequence readiness (0–100) per `scoring.md` criteria.
+6. **Outreach Readiness Scoring:** Score sequence readiness (0–100) per `.agents/context/scoring.md` criteria.
 
 ## Strict Guardrails
 
 - ❌ Never draft an outreach sequence without at least one verified trigger event.
-- ❌ Never mention features, capabilities, or pricing absent from `product-context.md`.
+- ❌ Never mention features, capabilities, or pricing absent from `.agents/context/product-context.md`.
 - ❌ Absolute passivity: all outputs are drafts for human review. Never send messages externally.
 - ✅ Keep all cold emails strictly under 100 words with a single open-ended question CTA.
 
@@ -59,4 +60,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/OUTREACH-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/OUTREACH-SEQUENCE.md` using `view_file(".agents/skills/sales-outreach/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

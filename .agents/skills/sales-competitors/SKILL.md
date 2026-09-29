@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-competitors
 
 **Role:** Analyze the prospect's incumbent technology stack, map competitive presence, and produce actionable battle cards.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/product-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/COMPETITIVE-INTEL.html` and `reports/{slug}/markdown/COMPETITIVE-INTEL.md`.
 
 > [!IMPORTANT]
@@ -26,7 +27,7 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (ICP core pains and tech stack sweet spot) and `.agents/rules/product-context.md` (authorized positioning). If available, inspect also:
+Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (ICP core pains and tech stack sweet spot) and `.agents/context/product-context.md` (authorized positioning). If available, inspect also:
 - `reports/{slug}/markdown/COMPANY-RESEARCH.md` or `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
 - `reports/my-company/markdown/ICP-FRAMEWORK.md` (technographic profile & baseline tools)
 
@@ -62,7 +63,7 @@ Invoked via `competitors <url>`. Apply the **Contextual Resolution Gateway** fir
 ## Strict Guardrails
 
 - ❌ Never disparage a competitor without cited, public factual proof.
-- ❌ Zero unverified product claims: capabilities and differentiators must strictly originate from `product-context.md`.
+- ❌ Zero unverified product claims: capabilities and differentiators must strictly originate from `.agents/context/product-context.md`.
 - Every identified product gap must reference a verifiable public review or job spec in parentheses.
 
 ## Mandatory Dual Output
@@ -71,4 +72,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/COMPETITIVE-INTEL.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPETITIVE-INTEL.md` using `view_file(".agents/skills/sales-competitors/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

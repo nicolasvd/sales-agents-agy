@@ -1,70 +1,27 @@
-# Antigravity Scratchpad Specification & Canonical Schema
+# Antigravity Scratchpad Specification & Architecture
 
 Transient inter-agent buffer for multi-agent workflows orchestrated by `sales-prospect`.
 
 > [!IMPORTANT]
-> **Ephemeral Storage:** Files (`prospect_{slug}.json`) are ephemeral session buffers ignored by Git. Coordination metadata, reasoning, and JSON schemas operate strictly in English.
+> **Ephemeral Storage:** Files under `.agents/.scratchpad/{slug}/` (`w1-*.md`, `w2-draft.md`) are ephemeral session buffers ignored by Git. Coordination, reasoning, and synthesis schemas operate strictly in Markdown.
 
-## Canonical JSON Schema
+## Directory Structure
 
-```json
-{
-  "meta": {
-    "url": "https://target-company.com",
-    "slug": "target-company",
-    "status": "wave1_started | wave1_complete | opportunity_done | wave2_complete",
-    "created_at": "ISO-8601 UTC timestamp",
-    "updated_at": "ISO-8601 UTC timestamp"
-  },
-  "wave1": {
-    "company_data": {
-      "company_name": "string", "hq_location": "string", "employee_count": "string",
-      "founded": "string", "business_model": "string", "revenue_signals": "string",
-      "funding": { "stage": "string", "amount": "string", "date": "string" },
-      "tech_stack": [], "growth_signals": [], "sources": []
-    },
-    "contacts_data": {
-      "buying_committee": [{
-        "name": "string", "title": "string", "role": "Economic Buyer | Champion | Influencer | Gatekeeper",
-        "email": "string", "linkedin": "string", "personalization_anchor": "string"
-      }],
-      "email_pattern": "string", "decision_process_signals": "string", "sources": []
-    },
-    "competitive_data": {
-      "current_tools": [], "switching_cost": "Low | Medium | High",
-      "switching_cost_rationale": "string", "competitive_gaps": [], "sources": []
-    }
-  },
-  "wave2": {
-    "opportunity_data": {
-      "bant": {
-        "budget": { "score": 0, "signals": [], "rationale": "" },
-        "authority": { "score": 0, "signals": [], "rationale": "" },
-        "need": { "score": 0, "signals": [], "rationale": "" },
-        "timeline": { "score": 0, "signals": [], "rationale": "" }
-      },
-      "bant_total": 0,
-      "meddic": {
-        "metrics": "Identified | Absent", "economic_buyer": "Identified | Absent",
-        "decision_criteria": "Identified | Absent", "decision_process": "Identified | Absent",
-        "identify_pain": "Identified | Absent", "champion": "Identified | Absent",
-        "completeness_pct": 0
-      },
-      "opportunity_quality_score": 0
-    },
-    "strategy_data": {
-      "primary_channel": "LinkedIn | Email | Phone | Warm intro",
-      "primary_contact": { "name": "", "title": "", "rationale": "" },
-      "top_triggers": [], "message_angle": { "hook": "", "pain_to_value_bridge": "", "cta": "" },
-      "likely_objections": [], "outreach_readiness_score": 0
-    }
-  }
-}
+For each target prospect slug `{slug}`:
+
+```text
+.agents/.scratchpad/{slug}/
+├── w1-company.md       # Firmographics, financials, stack, growth signals (sales-sub-company)
+├── w1-contacts.md      # Buying committee, decision-makers, email patterns (sales-sub-contacts)
+├── w1-competitive.md   # Incumbent tooling, switching costs, capability gaps (sales-sub-competitive)
+└── w2-draft.md         # Deterministic scoring, account strategy & draft report (sales-sub-analyst)
 ```
 
-## Lifecycle State Machine (`meta.status`)
+## Lifecycle State Machine
 
-1. `wave1_started`: Set by `sales-prospect`. Wave 1 subagents launched.
-2. `wave1_complete`: Set when Wave 1 data is populated. **Barrier:** Required before Wave 2 starts.
-3. `opportunity_done`: Set by `sales-sub-opportunity` after deterministic BANT/MEDDIC scoring.
-4. `wave2_complete`: Set by `sales-sub-strategy`. Triggers final report rendering by `sales-prospect`.
+1. **Scratchpad Initialization:** Directory created by `sales-prospect` (`.agents/.scratchpad/{slug}/`).
+2. **Wave 1 (Parallel Research):** Subagents `sales-sub-company`, `sales-sub-contacts`, and `sales-sub-competitive` write their respective `w1-*.md` Markdown files.
+3. **Synchronization Barrier:** Wave 2 triggers only after all 3 Wave 1 Markdown files are populated.
+4. **Wave 2 (Analyst Synthesis):** `sales-sub-analyst` ingests Wave 1 files and `.agents/context/` rubrics, computes deterministic scores, and writes `w2-draft.md`.
+5. **QA Gate Review:** `sales-sub-reviewer` inspects `w2-draft.md` in read-only mode against the 3 invariants (Zero Hallucination, Product Conformity, Mathematical Rigor).
+6. **Publication & Cleanup:** Final reports promoted to `reports/{slug}/`, and the ephemeral scratchpad folder is purged.

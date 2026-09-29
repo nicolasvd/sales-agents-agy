@@ -26,7 +26,7 @@ accounts_surfaced: 5
 
 - **Surfaced Accounts:** 5 verified accounts matching ICP criteria.
 - **Trigger Distribution:** {{TRIGGER_DISTRIBUTION}} (e.g., 3 Forward Catalysts, 2 Retrospective Accelerations).
-- **Core Value Proposition Alignment:** Grounded in `.agents/rules/product-context.md`.
+- **Core Value Proposition Alignment:** Grounded in `.agents/context/product-context.md`.
 
 ---
 
@@ -102,5 +102,5 @@ accounts_surfaced: 5
 ## Methodological Guardrails
 - All domains verified reachable via web extraction.
 - Zero speculative signals: every event is explicitly dated and sourced.
-- Strictly filtered against ICP boundaries from `.agents/rules/customer-context.md`.
+- Strictly filtered against ICP boundaries from `.agents/context/customer-context.md`.
 ```

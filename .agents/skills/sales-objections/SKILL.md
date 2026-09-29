@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-objections
 
 **Role:** Generate tactical objection handling playbooks grounded in the A-R-C framework (Acknowledge, Reframe, Clarify).  
-**Mandatory Rules:** `customer-context.md` (mandatory), `product-context.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/product-context.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/OBJECTION-PLAYBOOK.html` and `reports/{slug}/markdown/OBJECTION-PLAYBOOK.md`.
 
 > [!IMPORTANT]
@@ -26,8 +27,8 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `objections [prospect]* <topic>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` (core persona friction points and exclusion criteria) and `.agents/rules/product-context.md` (authorized commercial offering, pricing, proof points). Then inspect available workspace context strictly in Markdown:
-- `reports/{slug}/markdown/PROSPECT-ANALYSIS.md`
+Invoked via `objections [prospect]* <topic>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` (core persona friction points and exclusion criteria) and `.agents/context/product-context.md` (authorized commercial offering, pricing, proof points). Then inspect available workspace context strictly in Markdown:
+- `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` (or `.agents/.scratchpad/{slug}/w2-draft.md`, `w1-*.md`)
 - `reports/{slug}/markdown/COMPETITIVE-INTEL.md`
 - `reports/{slug}/markdown/LEAD-QUALIFICATION.md` (red flags and budget signals)
 - `reports/{slug}/markdown/COMPANY-RESEARCH.md` (financial trajectory and stack)
@@ -51,12 +52,12 @@ Invoked via `objections [prospect]* <topic>`. Apply the **Contextual Resolution 
      - **C — Clarify (Diagnostic Question):** Conclude with a targeted, open-ended discovery question to deepen dialogue. STRICTLY FORBIDDEN to push for a closing or signature while an objection is active.
 
 4. **Product Alignment:**
-   - Explicitly tie each reframe to confirmed capabilities, case studies, or economic metrics documented in `product-context.md`.
+   - Explicitly tie each reframe to confirmed capabilities, case studies, or economic metrics documented in `.agents/context/product-context.md`.
 
 ## Strict Guardrails
 
 - ❌ Never disparage a competitor by name — highlight architectural and functional differences objectively.
-- ❌ Never invent features, SLAs, or capabilities absent from `product-context.md`.
+- ❌ Never invent features, SLAs, or capabilities absent from `.agents/context/product-context.md`.
 - ✅ Empathy first, logic second: never argue or get defensive in objection talk tracks.
 
 ## Mandatory Dual Output
@@ -70,4 +71,4 @@ Display the Executive Briefing Card at the start of your chat response. Under **
 - **R — Reframe:** [Challenger reframe toward ROI, differentiation, or Cost of Inaction]
 - **C — Clarify:** [Open diagnostic question to retain dialogue initiative]
 
-Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

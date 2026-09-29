@@ -1,6 +1,6 @@
 # Template: Product Context File Generator
 
-Use this template to generate `.agents/rules/product-context.md`. The resulting file must remain strictly < 5,120 bytes.
+Use this template to generate `.agents/context/product-context.md`. The resulting file must remain strictly < 5,120 bytes.
 
 ```markdown
 # Rule: Strict Product Context

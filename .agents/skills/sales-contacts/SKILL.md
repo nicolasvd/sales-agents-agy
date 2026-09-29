@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-contacts
 
 **Role:** Identify and map the target account's buying committee, key decision-makers, and public personalization anchors.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `fact-checking.md` (mandatory), `scoring.md`, `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/scoring.md`, `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/{slug}/DECISION-MAKERS.html` and `reports/{slug}/markdown/DECISION-MAKERS.md`.
 
 > [!IMPORTANT]
@@ -26,7 +27,7 @@ Before generating any output, resolve the target prospect:
 
 ## Trigger
 
-Invoked via `contacts <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/rules/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
+Invoked via `contacts <url>`. Apply the **Contextual Resolution Gateway** first. Mandatorily inspect `.agents/context/customer-context.md` to identify target Buying Committee personas (Economic Buyer, Champion, Technical Evaluator). If available, inspect also:
 - `reports/{slug}/markdown/COMPANY-RESEARCH.md` (or `.html` version)
 - `reports/my-company/markdown/ICP-FRAMEWORK.md` (or `.html` version)
 
@@ -54,7 +55,7 @@ Invoked via `contacts <url>`. Apply the **Contextual Resolution Gateway** first.
      - Stated professional priorities and public initiatives
 
 4. **Contact Access Scoring (0–25 pts):**
-   - Apply the Authority scorecard from `scoring.md` to compute the deterministic Contact Access score.
+   - Apply the Authority scorecard from `.agents/context/scoring.md` to compute the deterministic Contact Access score.
 
 ## Strict Guardrails
 
@@ -68,4 +69,4 @@ Save both deliverables simultaneously within `reports/{slug}/`:
 1. **Web HTML (Humans):** `reports/{slug}/DECISION-MAKERS.html` using `view_file(".agents/rules/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/DECISION-MAKERS.md` using `view_file(".agents/skills/sales-contacts/references/output-template.md")`.
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

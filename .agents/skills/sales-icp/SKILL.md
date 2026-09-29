@@ -7,7 +7,8 @@ description: >-
 # Skill: sales-icp
 
 **Role:** Explore a new target segment or refine buyer personas and scoring rubrics without overwriting overall product positioning.  
-**Mandatory Rules:** `customer-context.md` (mandatory), `scoring.md` (mandatory), `fact-checking.md` (mandatory), `output-formatting.md`.  
+**Mandatory Context:** `.agents/context/customer-context.md` (mandatory), `.agents/context/scoring.md` (mandatory), `.agents/context/output-formatting.md`.  
+**Mandatory Rules:** `.agents/rules/fact-checking.md` (mandatory).  
 **Deliverables:** `reports/my-company/ICP-FRAMEWORK.html` and `reports/my-company/markdown/ICP-FRAMEWORK.md`.
 
 > [!IMPORTANT]
@@ -15,7 +16,7 @@ description: >-
 
 ## Trigger
 
-Invoked via `icp [segment]*`. Used to explore a new target segment or refine the buyer profile without overwriting the rest of the product positioning. Mandatorily inspect `.agents/rules/customer-context.md` as the baseline for deep sector analysis and ICP refinement. The `[segment]` argument is an optional description of the target market, vertical, or buyer persona provided by the user.
+Invoked via `icp [segment]*`. Used to explore a new target segment or refine the buyer profile without overwriting the rest of the product positioning. Mandatorily inspect `.agents/context/customer-context.md` as the baseline for deep sector analysis and ICP refinement. The `[segment]` argument is an optional description of the target market, vertical, or buyer persona provided by the user.
 
 ## Workflow (3 Sequential Steps)
 
@@ -31,7 +32,7 @@ Invoked via `icp [segment]*`. Used to explore a new target segment or refine the
    5. *Budget Qualifiers:* Indicators of purchasing power and commercial viability.
    6. *Channel Strategy:* Most effective engagement channels (LinkedIn, email, partner introductions).
    7. *Negative ICP (Mandatory):* Minimum 3 strict disqualifying criteria (e.g., inadequate size, incompatible stack).
-   8. *Scoring Rubric (0–100):* Weighted criteria mechanically compatible with `scoring.md`.
+   8. *Scoring Rubric (0–100):* Weighted criteria mechanically compatible with `.agents/context/scoring.md`.
    9. *Buyer Personas:* 2–3 granular profiles (Economic Buyer, Champion, Influencer).
    10. *Prospecting Playbook:* Tactical qualification cues and recommended outreach angles.
    11. *Competitive Positioning:* Incumbent presence and switching barrier dynamics.
@@ -44,7 +45,7 @@ Invoked via `icp [segment]*`. Used to explore a new target segment or refine the
 ## Strict Guardrails
 
 - All criteria must be derived from verifiable industry benchmarks, never ungrounded assumptions.
-- Rubric weights must strictly align with the arithmetic scoring baselines of `scoring.md`.
+- Rubric weights must strictly align with the arithmetic scoring baselines of `.agents/context/scoring.md`.
 - Negative ICP is mandatory: a profile without clear exclusion criteria is rejected.
 
 ## Mandatory Dual Output
@@ -56,8 +57,8 @@ Save both deliverables simultaneously strictly within `reports/my-company/`:
 > [!CAUTION]
 > **Strict Prohibition:** Never write any file directly at the root of `reports/` (e.g., `reports/IDEAL-CUSTOMER-PROFILE.html` is strictly forbidden).
 
-Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `output-formatting.md`.
+Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.
 
 ### Post-Execution Interaction
 After providing the completion block, optionally prompt the user:
-> *"Would you like to apply these criteria as the active target profile in `.agents/rules/customer-context.md`?"*
+> *"Would you like to apply these criteria as the active target profile in `.agents/context/customer-context.md`?"*

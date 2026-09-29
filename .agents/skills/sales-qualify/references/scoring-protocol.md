@@ -1,6 +1,6 @@
 # Detailed Scoring Frameworks — BANT & MEDDIC
 
-> Official scoring rubrics are defined in `.agents/rules/scoring.md`.
+> Official scoring rubrics are defined in `.agents/context/scoring.md`.
 > This file contains signal-by-signal collection queries and methodology.
 
 ## Phase 1: Data Collection
