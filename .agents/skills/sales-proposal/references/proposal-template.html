@@ -6,14 +6,72 @@
   <title>{{PAGE_TITLE}} — {{CLIENT_NAME}}</title>
   <style>
     :root {
-      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-      --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-muted: #64748b;
-      --border: #e2e8f0; --primary: #2563eb; --primary-light: #eff6ff;
-      --success: #10b981; --success-light: #ecfdf5;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #0ea5e9;
+      --accent-light: #e0f2fe;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --success-border: #a7f3d0;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --warning-border: #fde68a;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
       --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --surface-subtle: #334155;
+        --surface-2: #334155;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-dim: #64748b;
+        --border: #334155;
+        --border-subtle: #1e293b;
+        --primary: #60a5fa;
+        --primary-light: rgba(96, 165, 250, 0.15);
+        --primary-border: rgba(96, 165, 250, 0.3);
+        --accent: #38bdf8;
+        --accent-light: rgba(56, 189, 248, 0.15);
+        --success: #34d399;
+        --success-bg: rgba(16, 185, 129, 0.18);
+        --success-border: rgba(52, 211, 153, 0.3);
+        --warning: #fbbf24;
+        --warning-bg: rgba(245, 158, 11, 0.18);
+        --warning-border: rgba(251, 191, 36, 0.3);
+        --danger: #f87171;
+        --danger-bg: rgba(239, 68, 68, 0.18);
+        --danger-border: rgba(248, 113, 113, 0.3);
+        --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.25);
+      }
+      .roi-card { background: rgba(16, 185, 129, 0.15) !important; border-color: rgba(52, 211, 153, 0.3) !important; }
+      .roi-card h3 { color: #34d399 !important; }
+      .roi-stat { background: var(--surface) !important; border-color: rgba(52, 211, 153, 0.3) !important; }
+      .roi-number { color: #34d399 !important; }
+      .roi-label { color: #6ee7b7 !important; }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; -webkit-font-smoothing: antialiased; }
     .container { max-width: 900px; margin: 0 auto; }
     .header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
     .header-info h1 { font-size: 1.75rem; font-weight: 700; color: var(--text); }
@@ -38,34 +96,73 @@
     }
     .btn-back:hover {
       background: var(--primary-light);
-      border-color: #bfdbfe;
+      border-color: var(--primary-border);
       color: var(--primary);
       transform: translateY(-1px);
     }
 
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); }
-    .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; }
+    .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; color: var(--text); }
 
     /* Tables */
     table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin-top: 0.5rem; }
-    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
-    td { padding: 0.875rem 1rem; border-bottom: 1px solid #f1f5f9; }
+    th { background: var(--surface-subtle); color: var(--text-muted); font-weight: 600; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+    td { padding: 0.875rem 1rem; border-bottom: 1px solid var(--border-subtle); color: var(--text); }
     tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface-subtle); }
     .price-col { text-align: right; font-weight: 700; color: var(--primary); }
 
     /* ROI Calculation Highlight */
-    .roi-card { background: var(--success-light); border: 1px solid #a7f3d0; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .roi-card { background: var(--success-bg); border: 1px solid var(--success-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
     .roi-card h3 { color: #065f46; font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
     .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
-    .roi-stat { background: #ffffff; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5; }
+    .roi-stat { background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--success-border); }
     .roi-number { font-size: 1.5rem; font-weight: 800; color: var(--success); }
     .roi-label { font-size: 0.75rem; font-weight: 600; color: #047857; text-transform: uppercase; margin-top: 0.25rem; }
 
+    .badge-na {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px dashed var(--border);
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .btn-copy:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+    .btn-copy.copied {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--success);
+    }
+
     @media print {
       @page { margin: 12mm 15mm; size: A4; }
-      body { background: #fff; padding: 0; }
+      body { background: #fff; padding: 0; color: #000; }
       .card, .roi-card { break-inside: avoid; border: 1px solid #cbd5e1; }
-      .nav-actions, .btn-back { display: none !important; }
+      .nav-actions, .btn-back, .btn-copy { display: none !important; }
     }
   </style>
 </head>
@@ -90,7 +187,7 @@
     <!-- Executive Summary & Architecture -->
     <section class="card">
       <h2>🎯 Executive Summary & Architecture</h2>
-      <p style="font-size: 0.9375rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
+      <p style="font-size: 0.9375rem; line-height: 1.6; color: var(--text); margin-bottom: 1rem;">
         {{EXECUTIVE_SUMMARY}}
       </p>
     </section>
@@ -142,10 +239,44 @@
     <!-- Terms & Next Steps -->
     <section class="card">
       <h2>✍️ Terms of Engagement & Activation</h2>
-      <p style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
+      <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
         {{TERMS_AND_NEXT_STEPS}}
       </p>
     </section>
   </div>
+
+  <script>
+    function copyText(btn, text) {
+      if (!navigator.clipboard) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          markCopied(btn);
+        } catch(e) {}
+        document.body.removeChild(ta);
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        markCopied(btn);
+      }).catch(function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    function markCopied(btn) {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '✓ Copié';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.innerHTML = orig;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  </script>
 </body>
 </html>

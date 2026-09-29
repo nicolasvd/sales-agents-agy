@@ -6,42 +6,42 @@
 
 ## Offering Identification
 
-**Commercial Name:** My Company  
-**Profile:** [Insert 1-2 sentences summarizing your company profile, core domain of expertise, and operational track record].  
-**Positioning:** [Insert your market positioning statement: who you serve, your unique angle, and the high-level business transformation you deliver].
+**Commercial Name:** Google Antigravity  
+**Profile:** Next-generation agent development and orchestration platform by Google, empowering engineering teams and enterprises to design, deploy, and manage autonomous AI agents co-optimized with Gemini models.  
+**Positioning:** Enterprise-grade autonomous agent platform bridging developer cockpits, CLI harnesses, and cloud orchestration to scale mission-critical agentic workflows with unified security and governance.
 
 ## Value Proposition (Verbatim)
 
-[Insert your core value proposition verbatim: the primary business problem solved, the measurable outcome achieved, and why your approach differs from existing market alternatives].
+Experience liftoff with the next-gen agent platform: move beyond simple code completion toward autonomous agents capable of researching codebases, running local builds, actuating tools, and executing end-to-end tasks with enterprise governance.
 
-## Official Pricing Grid (Strict Boundaries)
+## Official Pricing Grid (Base Daily Rate: Custom Enterprise / To be calibrated with user)
 
-| Package / Engagement | Format & Duration | Pricing (excl. tax) | Inclusions |
+| Package | Format & Duration | Pricing (excl. tax) | Inclusions |
 |---|:---:|:---:|---|
-| **Core Advisory / Daily Rate** | Daily / Retainer | **[e.g., €800 / day]** | [Key deliverables, meeting cadence, strategic scope]. |
-| **Diagnostic Audit / Sprint** | Fixed-scope Sprint | **[e.g., €5,000 flat]** | [Comprehensive diagnostic, benchmark, actionable 12-month roadmap]. |
-| **Custom Enterprise Delivery** | Tailored contract | **Custom Enterprise / To be calibrated with user** | [High-touch implementation, governance, custom SLAs]. |
+| **Developer / Pro Tier** | Subscription / Individual | **Google AI Pro / Ultra or Eligible Subscription** | Desktop app, Antigravity CLI, Gemini co-optimized harness, local execution. |
+| **Enterprise Platform Pilot** | Fixed-scope evaluation | **Custom Enterprise / To be calibrated with user** | Dedicated enterprise sandbox, ADC/WIF integration, pilot enablement & support. |
+| **Gemini Enterprise Agent License** | Annual contract / Capacity | **Custom Enterprise / To be calibrated with user** | Full Google Cloud integration, enterprise data governance, custom SLAs, volume scale. |
 
 ## Core Practice Pillars
 
-- **[Pillar 1 - Strategy & Diagnosis]:** [Description of primary strategic capability and deliverables].
-- **[Pillar 2 - Execution & Orchestration]:** [Description of hands-on delivery, methodology, or governance frameworks].
-- **[Pillar 3 - Measurement & Optimization]:** [Description of impact tracking, KPIs, and long-term optimization].
+- **Antigravity Desktop & CLI:** Developer cockpit and terminal harness for orchestrating, debugging, and observing autonomous agents running local builds and tool actuation.
+- **Antigravity SDK & Agent Harness:** Software development framework co-optimized with Gemini models for constructing specialized multi-agent architectures, MCP tools, and skills.
+- **Gemini Enterprise Agent Platform:** Enterprise deployment engine with unified security, Workforce Identity Federation (WIF), Application Default Credentials (ADC), and Google Cloud compliance.
 
 ## STRICTLY Excluded Scopes
 
-- [Excluded Scope 1: e.g., Low-cost operational execution without strategic oversight].
-- [Excluded Scope 2: e.g., Unrelated software development or technical maintenance].
-- [Excluded Scope 3: e.g., Services outside core geographic or regulatory boundaries].
+- Bespoke manual outsourcing or low-level custom coding without autonomous agent systems.
+- Unmanaged, brittle single-purpose scraping or automation scripts lacking security governance.
+- Legacy proprietary platforms incompatible with modern agentic MCP standards and Gemini infrastructure.
 
 ## Target Personas
 
-- **Economic Buyer:** [Primary Title: e.g., CEO, CMO, VP Sales, Managing Director].
-  * *Pain point:* [High-level strategic risk, revenue loss, operational friction, or lack of ROI clarity].
-- **Internal Champion:** [Operational Title: e.g., Head of Growth, Operations Lead, Brand Strategist].
-  * *Pain point:* [Bandwidth constraints, internal misalignment, lack of tooling, or legacy workflow friction].
+- **Economic Buyer:** VP of Engineering, Chief Technology Officer (CTO), Head of AI Platform
+  * *Pain point:* Engineering productivity bottlenecks, lack of unified governance for autonomous agents, security and compliance risks in enterprise agent deployments.
+- **Internal Champion:** Staff Software Engineer, Lead AI Architect, Head of Developer Experience (DevEx)
+  * *Pain point:* Brittle tooling for multi-step reasoning, friction connecting agents to local dev environments, lack of robust SDKs co-optimized with frontier LLMs.
 
 ## Security & Operational Constraints
 
-- **Absolute Passivity:** The system generates drafts, battle cards, and analytical playbooks only. Zero external automated sending or publishing.
-- **Human-in-the-Loop:** All strategic recommendations, proposals, and communication sequences require explicit human validation before execution.
+- **Absolute Passivity:** The system generates drafts and analysis reports only. Zero automated sending of emails or external API mutations.
+- **Human-in-the-Loop:** All deliverables, proposals, and outreach sequences require explicit human review and approval prior to execution.

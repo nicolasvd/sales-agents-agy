@@ -39,12 +39,12 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
    - Calculate aggregate metrics: Total audited accounts, average qualification score, grade distribution breakdown, and priority deal ranking.
 
 3. **Pipeline Report Generation & Portal Sync:**
-   - **Executive Pipeline Deliverable:** Generate `reports/pipeline/PIPELINE-SUMMARY.html` using `view_file(".agents/rules/references/pipeline-summary-template.html")` and `reports/pipeline/markdown/PIPELINE-SUMMARY.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
-   - **Master Portal Hub (`reports/index.html`):** Read `view_file(".agents/rules/references/index-template.html")` and inject company cards for each discovered target prospect account into `{{COMPANIES_CARDS_HTML}}`:
-     - System views (`reports/my-company/`, `reports/radar/`, `reports/pipeline/`) are linked in the top header buttons (`.header-actions`) and MUST NEVER be added as cards in `companyGrid`.
+   - **Executive Pipeline Deliverable:** Generate `reports/my-company/pipeline.html` using `view_file(".agents/context/templates/pipeline-summary-template.html")` and `reports/my-company/markdown/pipeline.md` using `view_file(".agents/skills/sales-report/references/output-template.md")`.
+   - **Master Portal Hub (`reports/index.html`):** Read `view_file(".agents/context/templates/index-template.html")` and inject company cards for each discovered target prospect account into `{{COMPANIES_CARDS_HTML}}`:
+     - System views (`reports/my-company/`, `reports/radar/`) are linked in the top header buttons (`.header-actions`) and MUST NEVER be added as cards in `companyGrid`.
      - Each prospect card features: Company Name, Slug, Grade Badge (A/B/C/D), direct links to HTML deliverables, and link to raw Markdown data.
      - **Empty State Fallback:** If zero prospect accounts have been audited, inject the `.empty-state` container into `{{COMPANIES_CARDS_HTML}}` with prompt commands (`radar [topic]`, `prospect <url>`, `qualify <url>`).
-   - **Satellite Views Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/rules/references/context-template.html")`. If `reports/radar/markdown/RADAR-DISCOVERY.md` exists, recompile `reports/radar/RADAR-DISCOVERY.html` using `view_file(".agents/rules/references/radar-template.html")`. Ensure all views remain linked from the portal header.
+   - **Satellite Views Sync:** Refresh `reports/my-company/company-dna.html` using `view_file(".agents/context/templates/context-template.html")`. If `reports/radar/markdown/RADAR-DISCOVERY.md` exists, recompile `reports/radar/RADAR-DISCOVERY.html` using `view_file(".agents/skills/sales-radar/references/radar-template.html")`. Ensure all views remain linked from the portal header.
 
 ## Strict Guardrails
 
@@ -55,7 +55,7 @@ Invoked via `report` (standalone, without arguments). Aggregates all prospect di
 ## Mandatory Dual Output
 
 Save all deliverables simultaneously within `reports/`:
-1. **Web HTML (Humans):** `reports/pipeline/PIPELINE-SUMMARY.html` and portal hub `reports/index.html`.
-2. **Raw Markdown (AI Memory):** `reports/pipeline/markdown/PIPELINE-SUMMARY.md`.
+1. **Web HTML (Humans):** `reports/my-company/pipeline.html` and portal hub `reports/index.html`.
+2. **Raw Markdown (AI Memory):** `reports/my-company/markdown/pipeline.md`.
 
 Conclude your response with the executive summary and standard completion block per `output-formatting.md`.

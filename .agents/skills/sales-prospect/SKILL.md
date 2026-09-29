@@ -104,7 +104,7 @@ description: Pure 2-wave prospect 360° audit orchestrator. Coordinates Wave 1 r
 1. **Promote Machine-Readable Markdown:**
    - Write `.agents/.scratchpad/{slug}/w2-draft.md` content strictly to `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` via `write_to_file`.
 2. **Generate Interactive HTML Deliverable:**
-   - Read `.agents/rules/references/report-template.html` via `view_file`.
+   - Read `.agents/skills/sales-prospect/references/report-template.html` via `view_file`.
    - Populate template placeholders with verified facts, scoring gauges, and strategy sections formatted according to `.agents/context/output-formatting.md`.
    - Write output strictly to `reports/{slug}/PROSPECT-ANALYSIS.html` via `write_to_file`.
 3. **Scratchpad Housekeeping:**

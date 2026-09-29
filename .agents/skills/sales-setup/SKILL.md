@@ -63,7 +63,7 @@ Ask the user the following 2 targeted questions in chat:
 1. Write `.agents/context/customer-context.md` via `write_to_file` using `.agents/skills/sales-setup/references/customer-template.md` incorporating the abstracted ICP, triggers, and calibrated disqualification rules.
 2. Update `.agents/context/product-context.md` via `write_to_file` if the user provided specific pricing packages or exclusions during Step 4.
 3. Verify file sizes: both `.agents/context/product-context.md` and `.agents/context/customer-context.md` must be strictly `< 5,120 bytes` (target ~3 KB).
-4. Compile the visual HTML dashboard: instantiate `.agents/rules/references/context-template.html` and write `reports/my-company/company-dna.html` via `write_to_file` with a dynamic state badge (`Demo Profile` or `Production Profile`). Do NOT create duplicate Markdown files in `reports/my-company/`.
+4. Compile the visual HTML dashboard: instantiate `.agents/context/templates/context-template.html` and write `reports/my-company/company-dna.html` via `write_to_file` with a dynamic state badge (`Demo Profile` or `Production Profile`). Do NOT create duplicate Markdown files in `reports/my-company/`.
 5. Portal Navigation Check: Ensure `reports/index.html` links to `my-company/company-dna.html` via the top header button `🏢 My Company DNA`. NEVER add a card for the user's company into `companyGrid` in `reports/index.html`.
 
 ---

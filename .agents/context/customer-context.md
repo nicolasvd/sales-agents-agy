@@ -6,40 +6,44 @@
 
 ## Ideal Customer Profile (ICP) Overview
 
-**Target Segment:** My Perfect Customer — [Insert primary industry verticals, e.g., Enterprise B2B SaaS, Luxury Brands, Financial Institutions, Retail Chains].  
-**Maturity Stage:** [Insert target operational stage: e.g., Scale-ups Series B+, established mid-market enterprises, legacy groups undergoing transformation].  
-**Geographic Footprint:** [Insert target geographies: e.g., Western Europe, North America, Benelux, DACH].
+**Target Segment:** Cross-functional teams & modern enterprises adopting autonomous AI agents — spanning seasoned software engineers to non-technical business professionals (marketing, operations, knowledge workers) who do not use command-line tools.  
+**Maturity Stage:** From exploratory AI adoption to scaled autonomous agent orchestration in production.  
+**Geographic Footprint:** Global (North America, Western Europe, Benelux, DACH, APAC).
 
-## Firmographic & Positioning Boundaries
+## Firmographic & Technographic Boundaries
 
 | Dimension | Target Sweet Spot | Disqualification Threshold |
 |---|---|---|
-| **Company Size / Headcount** | [e.g., 50 – 1,000+ employees] | [e.g., < 15 employees (unless venture-backed)] |
-| **Revenue / Annual Budget** | [e.g., > €10M annual turnover] | [e.g., < €2M annual turnover] |
-| **Tech Stack & Operations** | [e.g., Modern CRM, established tools] | [e.g., Zero digital infrastructure, pure manual spreadsheets] |
-| **Budget Willingness** | [e.g., Ability to invest €5k+ on audits or €800+/day] | [e.g., Micro-budget tenders, price-driven commodity bidding] |
+| **Headcount** | 50 – 5,000+ employees (or high-leverage agile teams) | Solitary hobbyists without business intent or commercial budget |
+| **Revenue / Funding** | Funded startups (Seed+), Scale-ups, Mid-Market & Enterprise | Pre-revenue entities with zero operational software budget |
+| **Tech Stack** | Modern cloud (Google Cloud, AWS, hybrid), SaaS stack, dev workflows | Zero digital infrastructure, strictly air-gapped legacy on-prem without cloud intent |
+| **Operating Model** | High-velocity collaborative culture with engineering or knowledge work | Strictly manual, paper-based or non-digital operations |
 
 ## Buying Committee & Target Personas
 
 ### 1. Economic Buyer (Decision Maker)
-- **Titles:** [e.g., Chief Executive Officer (CEO), Chief Marketing Officer (CMO), VP Operations].
-- **Strategic Priorities:** [Top business objectives: ROI, market share, risk mitigation, margin growth].
-- **Core Pains:** [Executive vulnerabilities: wasted budgets, organizational silos, slow cycle times].
+- **Titles:** VP of Engineering, Chief Technology Officer (CTO), Head of AI Platform, Chief Digital Officer (CDO)
+- **Strategic Priorities:** Maximize engineering & organizational leverage, accelerate delivery cycles, maintain enterprise governance and security.
+- **Core Pains:** Engineering bandwidth bottlenecks, proliferation of ungoverned shadow AI tools, high costs of custom internal agent infrastructure.
 
 ### 2. Internal Champion (Day-to-Day Catalyst)
-- **Titles:** [e.g., Head of Digital, Strategy Director, Growth Lead].
-- **Strategic Priorities:** [Operational speed, team leverage, modern playbooks, executive alignment].
-- **Core Pains:** [Daily execution overload, friction with legacy processes, lack of leadership mandate].
+- **Titles:** Staff Software Engineer, AI Operations Lead, Marketing Ops Lead, Head of Growth
+- **Strategic Priorities:** Ship faster with autonomous agents, eliminate repetitive tasks, orchestrate agents without complex DevOps or CLI barriers.
+- **Core Pains:** Tool friction, brittle single-prompt chatbots failing at multi-step tasks, inability for non-coders to leverage agents autonomously.
 
-## High-Leverage Business Triggers & Buying Signals
+### 3. Technical & Governance Evaluator
+- **Titles:** Lead Cloud Architect, InfoSec / Compliance Officer, Enterprise Security Lead
+- **Key Criteria:** Data privacy, Google Cloud ADC/WIF integration, compliance with enterprise security posture, zero unintended data leakages.
 
-- **Executive Turnover:** [e.g., New C-level appointment (CEO, CMO, VP) within the last 90 days].
-- **Strategic Pivot / Funding:** [e.g., Recent fundraising round, M&A activity, or corporate rebranding].
-- **Market Catalyst:** [e.g., Upcoming industry summit, regulatory change, or international expansion].
-- **Operational Strain:** [e.g., Rapid headcount growth outstripping existing internal workflows].
+## Business Triggers & High-Leverage Buying Signals
 
-## Strict Exclusions & Disqualification Rules (Anti-ICP)
+- **AI Expansion & Agent Strategy:** Public announcements or job postings related to AI agents, LLM orchestration, or productivity tooling.
+- **Engineering / Ops Scaling:** Rapid headcount expansion or restructuring aimed at boosting developer/knowledge worker productivity.
+- **Modern Stack Adoption:** Active integration of modern APIs, MCP protocols, or Google Cloud / Gemini ecosystems.
+- **Knowledge Worker Automation:** High volume of documentation, content operations, or customer workflows ripe for autonomous execution.
 
-- **Sub-Scale Micro-Entities:** [e.g., Solopreneurs or businesses lacking dedicated budget and execution capacity].
-- **Commodity / Low-Cost Bidders:** [e.g., Prospects prioritizing lowest-cost transactional services over strategic impact].
-- **Ethical / Scope Restrictions:** [e.g., Prohibited verticals, unregulated markets, or misaligned commercial practices].
+## Strict Exclusions & Disqualification Rules
+
+- **Zero-Cloud Air-Gapped Strict Legacy:** Organizations prohibiting all external AI APIs or cloud connections with no path to cloud enablement.
+- **Commodity Bot Arbitrage:** Prospects seeking cheap, unmanaged web scrapers or spam bots violating terms of service.
+- **Sanctioned & Banned Jurisdictions:** Entities located in prohibited regions or violating Google Cloud compliance policies.

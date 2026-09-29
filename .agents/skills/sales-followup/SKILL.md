@@ -64,7 +64,7 @@ Invoked via `followup [prospect]*`. Apply the **Contextual Resolution Gateway** 
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously within `reports/{slug}/`:
-1. **Web HTML (Humans):** `reports/{slug}/FOLLOWUP-SEQUENCE.html` using `view_file(".agents/rules/references/outreach-template.html")`.
+1. **Web HTML (Humans):** `reports/{slug}/FOLLOWUP-SEQUENCE.html` using `view_file(".agents/skills/sales-outreach/references/outreach-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/FOLLOWUP-SEQUENCE.md` using `view_file(".agents/skills/sales-followup/references/output-template.md")`.
 
 Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

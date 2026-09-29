@@ -62,7 +62,7 @@ Invoked via `prep [prospect]*`. Apply the **Contextual Resolution Gateway** firs
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously within `reports/{slug}/`:
-1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/rules/references/meeting-prep-template.html")`.
+1. **Web HTML (Humans):** `reports/{slug}/MEETING-PREP.html` using `view_file(".agents/skills/sales-prep/references/meeting-prep-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/MEETING-PREP.md` using `view_file(".agents/skills/sales-prep/references/output-template.md")`.
 
 Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.
