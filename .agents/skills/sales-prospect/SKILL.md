@@ -102,12 +102,11 @@ description: Pure 2-wave prospect 360° audit orchestrator. Coordinates Wave 1 r
 ### Step 4 — Publication & Deferred Dual Output
 
 1. **Promote Machine-Readable Markdown:**
-   - Write `.agents/.scratchpad/{slug}/w2-draft.md` content to `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` via `write_to_file`.
-   - Also mirror at `reports/{slug}.md` via `write_to_file` for convenient direct access.
+   - Write `.agents/.scratchpad/{slug}/w2-draft.md` content strictly to `reports/{slug}/markdown/PROSPECT-ANALYSIS.md` via `write_to_file`.
 2. **Generate Interactive HTML Deliverable:**
    - Read `.agents/rules/references/report-template.html` via `view_file`.
    - Populate template placeholders with verified facts, scoring gauges, and strategy sections formatted according to `.agents/context/output-formatting.md`.
-   - Write output to `reports/{slug}/PROSPECT-ANALYSIS.html` (and mirror at `reports/{slug}.html`) via `write_to_file`.
+   - Write output strictly to `reports/{slug}/PROSPECT-ANALYSIS.html` via `write_to_file`.
 3. **Scratchpad Housekeeping:**
    - Remove ephemeral intermediate files in `.agents/.scratchpad/{slug}/` to maintain workspace hygiene.
 4. **User Delivery:**

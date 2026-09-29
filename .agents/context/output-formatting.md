@@ -22,6 +22,7 @@ For each analysis, two deliverables are generated under `reports/`:
 ### Folder Segregation: System Views vs. Prospect Cards
 - **System Reserved:** `reports/my-company/`, `reports/radar/`, `reports/pipeline/` (linked in header buttons only, never in `companyGrid`).
 - **Prospect Folders:** `reports/{slug}/` (only audited target accounts generate cards in `companyGrid`).
+- **Root `reports/` Directory Invariant:** Must contain ONLY `index.html`, `.gitkeep`, and account directories (`reports/{slug}/`, `reports/my-company/`, `reports/radar/`, `reports/pipeline/`). Generating flat mirror files directly at the root of `reports/` is strictly prohibited.
 
 | Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
 |---|---|---|---|
