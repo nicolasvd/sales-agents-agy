@@ -6,11 +6,12 @@
   <title>{{PAGE_TITLE}} — Opportunity Radar</title>
   <style>
     :root {
-      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       --bg: #f8fafc;
       --surface: #ffffff;
       --surface-subtle: #f1f5f9;
+      --surface-2: #f1f5f9;
       --text: #0f172a;
       --text-muted: #64748b;
       --text-dim: #94a3b8;
@@ -29,9 +30,47 @@
       --warning-border: #fde68a;
       --danger: #b91c1c;
       --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
       --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
       --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --surface-subtle: #334155;
+        --surface-2: #334155;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-dim: #64748b;
+        --border: #334155;
+        --border-subtle: #1e293b;
+        --primary: #60a5fa;
+        --primary-light: rgba(96, 165, 250, 0.15);
+        --primary-border: rgba(96, 165, 250, 0.3);
+        --accent: #38bdf8;
+        --accent-light: rgba(56, 189, 248, 0.15);
+        --success: #34d399;
+        --success-bg: rgba(16, 185, 129, 0.18);
+        --success-border: rgba(52, 211, 153, 0.3);
+        --warning: #fbbf24;
+        --warning-bg: rgba(245, 158, 11, 0.18);
+        --warning-border: rgba(251, 191, 36, 0.3);
+        --danger: #f87171;
+        --danger-bg: rgba(239, 68, 68, 0.18);
+        --danger-border: rgba(248, 113, 113, 0.3);
+        --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.25);
+      }
+      .signal-box { background: var(--surface-subtle) !important; }
+      .hook-box { color: var(--text) !important; }
+      .badge-neutral { background: var(--surface-subtle) !important; }
+      .badge-forward { background: rgba(59, 130, 246, 0.2) !important; color: #93c5fd !important; border-color: rgba(96, 165, 250, 0.3) !important; }
+      .badge-retro { background: rgba(217, 70, 239, 0.2) !important; color: #f0abfc !important; border-color: rgba(232, 121, 249, 0.3) !important; }
+      .cmd-badge { background: var(--surface-subtle) !important; color: var(--accent) !important; border: 1px solid var(--border) !important; }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-sans);
@@ -41,7 +80,7 @@
       padding: 2.5rem 1.5rem;
       -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 1140px; margin: 0 auto; }
+    .container { max-width: 900px; margin: 0 auto; }
 
     /* Header */
     .header {
@@ -53,9 +92,9 @@
       box-shadow: var(--card-shadow);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
     .header-info h1 {
       font-size: 1.75rem;
@@ -117,10 +156,50 @@
       border: 1px solid #f5d0fe;
     }
 
+    .badge-na {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px dashed var(--border);
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .btn-copy:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+    .btn-copy.copied {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--success);
+    }
+
     /* Navigation buttons */
     .nav-actions {
       display: flex;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
       flex-wrap: wrap;
     }
     .btn-back, .nav-btn {
@@ -178,10 +257,9 @@
     }
     .account-card:hover {
       box-shadow: var(--card-shadow-hover);
-      border-color: var(--primary-border);
     }
 
-    .account-top {
+    .account-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -220,7 +298,7 @@
 
     /* Section Boxes */
     .signal-box {
-      background: #f8fafc;
+      background: var(--surface-subtle);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1rem 1.25rem;
@@ -254,7 +332,7 @@
       border-radius: 0 10px 10px 0;
       padding: 1rem 1.25rem;
       font-size: 0.9375rem;
-      color: #1e3a8a;
+      color: var(--text);
       line-height: 1.5;
     }
 
@@ -282,7 +360,7 @@
 
     /* Print */
     @media print {
-      body { background: #fff; padding: 0; }
+      body { background: #fff; padding: 0; color: #000; }
       .header, .account-card { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
       .nav-actions, .btn-back { display: none !important; }
     }
@@ -303,6 +381,7 @@
         </div>
       </div>
       <nav class="nav-actions">
+        <a href="markdown/RADAR-DISCOVERY.md" class="btn-back" style="font-family: monospace; font-size: 0.8em; opacity: 0.75;">📄 Markdown</a>
         <a href="../index.html" class="btn-back">← Back to Portal</a>
       </nav>
     </header>
@@ -322,5 +401,39 @@
       AI Sales Team Autonomous Platform — Sourced from public business registries, trade shows, and verified web intelligence.
     </footer>
   </div>
+
+  <script>
+    function copyText(btn, text) {
+      if (!navigator.clipboard) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          markCopied(btn);
+        } catch(e) {}
+        document.body.removeChild(ta);
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        markCopied(btn);
+      }).catch(function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    function markCopied(btn) {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '✓ Copié';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.innerHTML = orig;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  </script>
 </body>
 </html>

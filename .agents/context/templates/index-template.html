@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PAGE_TITLE}}</title>
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #0284c7;
+      --accent-light: #e0f2fe;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --success-border: #a7f3d0;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --warning-border: #fde68a;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --surface-subtle: #334155;
+        --surface-2: #334155;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-dim: #64748b;
+        --border: #334155;
+        --border-subtle: #1e293b;
+        --primary: #60a5fa;
+        --primary-light: rgba(96, 165, 250, 0.15);
+        --primary-border: rgba(96, 165, 250, 0.3);
+        --accent: #38bdf8;
+        --accent-light: rgba(56, 189, 248, 0.15);
+        --success: #34d399;
+        --success-bg: rgba(16, 185, 129, 0.18);
+        --success-border: rgba(52, 211, 153, 0.3);
+        --warning: #fbbf24;
+        --warning-bg: rgba(245, 158, 11, 0.18);
+        --warning-border: rgba(251, 191, 36, 0.3);
+        --danger: #f87171;
+        --danger-bg: rgba(239, 68, 68, 0.18);
+        --danger-border: rgba(248, 113, 113, 0.3);
+        --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.25);
+      }
+      .grade-a { background: rgba(16, 185, 129, 0.18); color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+      .grade-b { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
+      .grade-c { background: rgba(239, 68, 68, 0.18); color: #f87171; border-color: rgba(248, 113, 113, 0.3); }
+      .badge-grade-a { background: rgba(16, 185, 129, 0.18); color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+      .badge-grade-b { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+      .badge-neutral { background: rgba(51, 65, 85, 0.6); color: #94a3b8; }
+      .card-link { background: #1e293b; border-color: #334155; color: #cbd5e1; }
+      .card-link:hover { background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.35); color: #60a5fa; }
+      .card-link-md { background: #1e293b; border-color: #334155; color: #94a3b8; }
+      .card-link-md:hover { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
+
+      .filter-bar input { background: #1e293b; color: #f8fafc; border-color: #334155; }
+      .empty-state { background: #1e293b; }
+      .header-btn { background: #1e293b; border-color: #334155; color: #94a3b8; }
+      .header-btn:hover { background: #334155; color: #60a5fa; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.5; padding: 2.5rem 1.5rem; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    /* Header */
+    .header { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .header-info h1 { font-size: 1.75rem; font-weight: 800; color: var(--text); letter-spacing: -0.025em; }
+    .header-info p { color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.35rem; }
+    .badge-hub { background: var(--accent-light); color: var(--accent); border: 1px solid var(--primary-border); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; }
+
+    /* Search & Filter */
+    .filter-bar { margin-bottom: 1.5rem; display: flex; gap: 1rem; }
+    .search-input { flex: 1; padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9375rem; background: var(--surface); color: var(--text); outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--primary); }
+
+    /* Grid of Companies */
+    .company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .company-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .company-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); border-color: var(--primary-border); }
+
+    .company-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .company-title { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .grade-pill { display: inline-flex; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .grade-a { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+    .grade-b { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+    .grade-c { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+
+    /* Deliverables list */
+    .docs-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .doc-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.85rem; border-radius: 8px; background: var(--surface-subtle); border: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: 0.875rem; font-weight: 600; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+    .doc-link > span:first-child { flex: 1; min-width: 0; }
+    .doc-link:hover { background: var(--primary-light); border-color: var(--primary-border); color: var(--primary); }
+    .doc-icon { font-size: 1.1rem; margin-right: 0.5rem; }
+
+    /* Markdown accordion */
+    details.markdown-accordion { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--border); font-size: 0.8125rem; }
+    details.markdown-accordion summary { cursor: pointer; color: var(--text-muted); font-weight: 600; user-select: none; list-style: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
+    details.markdown-accordion summary::-webkit-details-marker { display: none; }
+    details.markdown-accordion summary::before { content: '▸'; display: inline-block; transition: transform 0.15s; }
+    details.markdown-accordion[open] summary::before { transform: rotate(90deg); }
+    details.markdown-accordion summary:hover { color: var(--primary); }
+    .markdown-links { display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.5rem; padding-left: 1rem; }
+    .markdown-links a { color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; transition: color 0.15s; }
+    .markdown-links a:hover { color: var(--primary); text-decoration: underline; }
+
+    /* Header Actions */
+    .header-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .header-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .header-btn:hover {
+      background: var(--surface-subtle);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    /* Empty State */
+    .empty-state {
+      grid-column: 1 / -1;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .empty-icon { font-size: 2.75rem; line-height: 1; }
+    .empty-title { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .empty-desc { color: var(--text-muted); font-size: 0.9375rem; max-width: 520px; line-height: 1.6; }
+    .empty-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .empty-action-tag {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Print */
+    .card-link { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.65rem; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 0.75rem; font-weight: 600; text-decoration: none; transition: all 0.15s ease; }
+    .card-link:hover { background: var(--primary-light); border-color: var(--primary-border); color: var(--primary); transform: translateY(-1px); }
+    .card-link-md { background: var(--surface-subtle); border: 1px solid var(--border); color: var(--text-muted); font-family: var(--font-mono, monospace); font-size: 0.7rem; }
+    .card-link-md:hover { background: var(--surface); color: var(--primary); }
+
+    .card-link[data-optional][style*="opacity"] { display: none; } /* Hide unavailable links cleanly */
+    .card-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border, #e2e8f0); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; }
+    .card-company { font-size: 1.125rem; font-weight: 700; color: var(--text); margin: 0; }
+    .card-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .card-meta { font-size: 0.8125rem; color: var(--text-muted); margin: 0.35rem 0 0; }
+    .card-summary { font-size: 0.875rem; color: var(--text); line-height: 1.55; margin: 0.5rem 0 0; flex: 1; }
+    @media print {
+      body { background: #fff; padding: 0; color: #000; }
+      .header, .company-card, .empty-state { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
+      .filter-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-info">
+        <h1>{{HEADER_TITLE}}</h1>
+        <p>{{HEADER_SUBTITLE}}</p>
+      </div>
+      <div class="header-actions">
+        <a href="my-company/company-dna.html" class="header-btn">
+          <span>🏢 My Company DNA</span>
+        </a>
+        <a href="radar/RADAR-DISCOVERY.html" class="header-btn">
+          <span>📡 Opportunity Radar</span>
+        </a>
+        <a href="my-company/pipeline.html" class="header-btn">
+          <span>📊 Commercial Pipeline</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="filter-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="{{SEARCH_PLACEHOLDER}}" onkeyup="filterCards()">
+    </div>
+
+    <main class="company-grid" id="companyGrid">
+      {{COMPANIES_CARDS_HTML}}
+    </main>
+  </div>
+
+  <script>
+    function filterCards() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.company-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    /* Check optional report links — hide those that return 404 */
+    async function checkReportLink(linkEl) {
+      const href = linkEl.getAttribute('href');
+      if (!href) return;
+      try {
+        const res = await fetch(href, { method: 'HEAD' });
+        if (!res.ok) {
+          linkEl.classList.add('card-link-unavailable');
+          linkEl.setAttribute('title', 'Report not yet generated');
+          linkEl.style.pointerEvents = 'none';
+          linkEl.style.opacity = '0.35';
+        }
+      } catch {
+        /* file:// protocol may throw on CORS — treat as potentially available */
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card-link[data-optional]').forEach(checkReportLink);
+    });
+  </script>
+</body>
+</html>

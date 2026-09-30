@@ -55,7 +55,7 @@ Execute targeted search queries covering both temporal horizons:
 5. **Instant Action Hook:** Pre-format the direct command `prospect <url>` for each account.
 
 ### Step 4: Dual Output Generation & Hub Sync
-1. **Web HTML (Humans):** Write `reports/radar/RADAR-DISCOVERY.html` using `.agents/rules/references/radar-template.html` (Light SaaS theme, responsive cards, direct action commands).
+1. **Web HTML (Humans):** Write `reports/radar/RADAR-DISCOVERY.html` using `.agents/skills/sales-radar/references/radar-template.html` (Light SaaS theme, responsive cards, direct action commands).
 2. **Raw Markdown (AI Memory):** Write `reports/radar/markdown/RADAR-DISCOVERY.md` using `.agents/skills/sales-radar/references/output-template.md`.
 3. **Portal Navigation Check:** Ensure `reports/index.html` links to `radar/RADAR-DISCOVERY.html` via the top header button `📡 Opportunity Radar`. NEVER inject Opportunity Radar as a company card into `companyGrid`.
 4. Conclude with the executive summary and deliverable completion block per `.agents/context/output-formatting.md`.

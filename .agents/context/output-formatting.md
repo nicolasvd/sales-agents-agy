@@ -20,26 +20,26 @@ For each analysis, two deliverables are generated under `reports/`:
 - **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospects populate `companyGrid`.
 
 ### Folder Segregation: System Views vs. Prospect Cards
-- **System Reserved:** `reports/my-company/`, `reports/radar/`, `reports/pipeline/` (linked in header buttons only, never in `companyGrid`).
+- **System Reserved:** `reports/my-company/`, `reports/radar/` (linked in header buttons only, never in `companyGrid`).
 - **Prospect Folders:** `reports/{slug}/` (only audited target accounts generate cards in `companyGrid`).
-- **Root `reports/` Directory Invariant:** Must contain ONLY `index.html`, `.gitkeep`, and account directories (`reports/{slug}/`, `reports/my-company/`, `reports/radar/`, `reports/pipeline/`). Generating flat mirror files directly at the root of `reports/` is strictly prohibited.
+- **Root `reports/` Directory Invariant:** Must contain ONLY `index.html`, `.gitkeep`, and account directories (`reports/{slug}/`, `reports/my-company/`, `reports/radar/`). Generating flat mirror files directly at the root of `reports/` is strictly prohibited.
 
 | Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
 |---|---|---|---|
-| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | Prospect | `report-template.html` |
-| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | Prospect | `outreach-template.html` |
-| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | Prospect | `outreach-template.html` |
-| `sales-prep` | `reports/{slug}/MEETING-PREP` | Prospect | `meeting-prep-template.html` |
-| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | Prospect | `proposal-template.html` |
-| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | Prospect | `report-template.html` |
-| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | Prospect | `report-template.html` |
-| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | Prospect | `report-template.html` |
-| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | Prospect | `report-template.html` |
-| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | Prospect | `battle-card-template.html` |
-| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | System | `context-template.html` |
-| `sales-setup` | `reports/my-company/company-dna` | System | `context-template.html` |
-| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `radar-template.html` |
-| `sales-report` | `reports/pipeline/PIPELINE-SUMMARY` | System | `pipeline-summary-template.html` |
+| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
+| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | Prospect | `.agents/skills/sales-outreach/references/outreach-template.html` |
+| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | Prospect | `.agents/skills/sales-outreach/references/outreach-template.html` |
+| `sales-prep` | `reports/{slug}/MEETING-PREP` | Prospect | `.agents/skills/sales-prep/references/meeting-prep-template.html` |
+| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | Prospect | `.agents/skills/sales-proposal/references/proposal-template.html` |
+| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
+| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
+| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
+| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
+| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | Prospect | `.agents/skills/sales-competitors/references/battle-card-template.html` |
+| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | System | `.agents/context/templates/context-template.html` |
+| `sales-setup` | `reports/my-company/company-dna` | System | `.agents/context/templates/context-template.html` |
+| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `.agents/skills/sales-radar/references/radar-template.html` |
+| `sales-report` | `reports/my-company/pipeline` | System | `.agents/context/templates/pipeline-summary-template.html` |
 
 ## Machine Metadata Standard (YAML Frontmatter)
 

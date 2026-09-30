@@ -6,11 +6,12 @@
   <title>{{PAGE_TITLE}} — Company DNA & Target ICP</title>
   <style>
     :root {
-      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       --bg: #f8fafc;
       --surface: #ffffff;
       --surface-subtle: #f1f5f9;
+      --surface-2: #f1f5f9;
       --text: #0f172a;
       --text-muted: #64748b;
       --text-dim: #94a3b8;
@@ -33,6 +34,37 @@
       --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
       --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --surface-subtle: #334155;
+        --surface-2: #334155;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-dim: #64748b;
+        --border: #334155;
+        --border-subtle: #1e293b;
+        --primary: #60a5fa;
+        --primary-light: rgba(96, 165, 250, 0.15);
+        --primary-border: rgba(96, 165, 250, 0.3);
+        --accent: #38bdf8;
+        --accent-light: rgba(56, 189, 248, 0.15);
+        --success: #34d399;
+        --success-bg: rgba(16, 185, 129, 0.18);
+        --success-border: rgba(52, 211, 153, 0.3);
+        --warning: #fbbf24;
+        --warning-bg: rgba(245, 158, 11, 0.18);
+        --warning-border: rgba(251, 191, 36, 0.3);
+        --danger: #f87171;
+        --danger-bg: rgba(239, 68, 68, 0.18);
+        --danger-border: rgba(248, 113, 113, 0.3);
+        --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.25);
+      }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-sans);
@@ -42,7 +74,7 @@
       padding: 2.5rem 1.5rem;
       -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 1140px; margin: 0 auto; }
+    .container { max-width: 900px; margin: 0 auto; }
 
     /* Header */
     .header {
@@ -54,10 +86,11 @@
       box-shadow: var(--card-shadow);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
+
     .header-info h1 {
       font-size: 1.75rem;
       font-weight: 800;
@@ -103,9 +136,20 @@
       border: 1px solid var(--success-border);
     }
     .badge-neutral {
-      background: #f1f5f9;
+      background: var(--surface-subtle);
       color: var(--text-muted);
       border: 1px solid var(--border);
+    }
+    .badge-na {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px dashed var(--border);
     }
 
     /* Navigation buttons */
@@ -192,7 +236,7 @@
       gap: 0.5rem;
     }
     .highlight-box {
-      background: #f8fafc;
+      background: var(--surface-subtle);
       border-left: 3px solid var(--primary);
       border-radius: 0 8px 8px 0;
       padding: 1rem 1.25rem;
@@ -215,7 +259,7 @@
       font-size: 0.875rem;
     }
     th {
-      background: #f8fafc;
+      background: var(--surface-subtle);
       color: var(--text-muted);
       font-weight: 600;
       padding: 0.75rem 1rem;
@@ -230,7 +274,7 @@
       color: var(--text);
     }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #f8fafc; }
+    tr:hover td { background: var(--surface-subtle); }
 
     /* Lists */
     .pill-list {
@@ -240,14 +284,14 @@
       gap: 0.75rem;
     }
     .pill-item {
-      background: #f8fafc;
+      background: var(--surface-subtle);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
       padding: 0.75rem 1rem;
       font-size: 0.875rem;
     }
     .pill-item strong {
-      color: #1e40af;
+      color: var(--primary);
       display: block;
       margin-bottom: 0.2rem;
     }
@@ -261,7 +305,7 @@
       background: var(--success-bg);
     }
     .trigger-item strong {
-      color: #065f46;
+      color: var(--success);
     }
 
     /* Persona cards */
@@ -271,7 +315,7 @@
       gap: 0.85rem;
     }
     .persona-card {
-      background: #f8fafc;
+      background: var(--surface-subtle);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.85rem 1rem;
@@ -298,7 +342,7 @@
 
     /* Print */
     @media print {
-      body { background: #fff; padding: 0; }
+      body { background: #fff; padding: 0; color: #000; }
       .header, .card { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
       .nav-actions, .btn-back { display: none !important; }
     }
@@ -319,8 +363,11 @@
         </div>
       </div>
       <nav class="nav-actions">
+        <a href="../../.agents/context/product-context.md" class="btn-back" style="font-family: monospace; font-size: 0.8em; opacity: 0.75;">📄 product-context.md</a>
+        <a href="../../.agents/context/customer-context.md" class="btn-back" style="font-family: monospace; font-size: 0.8em; opacity: 0.75;">📄 customer-context.md</a>
         <a href="../index.html" class="btn-back">← Back to Portal</a>
       </nav>
+
     </header>
 
     <main class="dna-grid">
@@ -395,7 +442,7 @@
         </div>
 
         <div class="card">
-          <h3 class="card-title" style="color: #059669;">🚀 High-Leverage Buying Triggers</h3>
+          <h3 class="card-title" style="color: var(--success);">🚀 High-Leverage Buying Triggers</h3>
           <ul class="pill-list">
             {{TRIGGERS_LIST_HTML}}
           </ul>

@@ -69,7 +69,7 @@ Invoked via `research <url>`. Apply the **Contextual Resolution Gateway** first.
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously within `reports/{slug}/`:
-1. **Web HTML (Humans):** `reports/{slug}/COMPANY-RESEARCH.html` using `view_file(".agents/rules/references/report-template.html")`.
+1. **Web HTML (Humans):** `reports/{slug}/COMPANY-RESEARCH.html` using `view_file(".agents/skills/sales-prospect/references/report-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/COMPANY-RESEARCH.md` using `view_file(".agents/skills/sales-research/references/output-template.md")`.
 
 Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

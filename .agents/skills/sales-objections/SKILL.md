@@ -63,7 +63,7 @@ Invoked via `objections [prospect]* <topic>`. Apply the **Contextual Resolution 
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously within `reports/{slug}/`:
-1. **Web HTML (Humans):** `reports/{slug}/OBJECTION-PLAYBOOK.html` using `view_file(".agents/rules/references/battle-card-template.html")`.
+1. **Web HTML (Humans):** `reports/{slug}/OBJECTION-PLAYBOOK.html` using `view_file(".agents/skills/sales-competitors/references/battle-card-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/OBJECTION-PLAYBOOK.md` using `view_file(".agents/skills/sales-objections/references/output-template.md")`.
 
 Display the Executive Briefing Card at the start of your chat response. Under **Key Signals**, include the top-priority A-R-C script on three distinct lines:

@@ -66,7 +66,7 @@ Invoked via `proposal [prospect]*`. Apply the **Contextual Resolution Gateway** 
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously within `reports/{slug}/`:
-1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/rules/references/proposal-template.html")`.
+1. **Web HTML (Humans):** `reports/{slug}/CLIENT-PROPOSAL.html` using `view_file(".agents/skills/sales-proposal/references/proposal-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/{slug}/markdown/CLIENT-PROPOSAL.md` using `view_file(".agents/skills/sales-proposal/references/output-template.md")`.
 
 Display the Executive Briefing Card (Modern Markdown) at the start of your chat response. Conclude your response with the clickable Browser First completion block per `.agents/context/output-formatting.md`.

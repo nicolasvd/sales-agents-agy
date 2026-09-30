@@ -51,7 +51,7 @@ Invoked via `icp [segment]*`. Used to explore a new target segment or refine the
 ## Mandatory Dual Output
 
 Save both deliverables simultaneously strictly within `reports/my-company/`:
-1. **Web HTML (Humans):** `reports/my-company/ICP-FRAMEWORK.html` using `view_file(".agents/rules/references/context-template.html")`.
+1. **Web HTML (Humans):** `reports/my-company/ICP-FRAMEWORK.html` using `view_file(".agents/context/templates/context-template.html")`.
 2. **Raw Markdown (AI Memory):** `reports/my-company/markdown/ICP-FRAMEWORK.md` using `view_file(".agents/skills/sales-icp/references/icp-sections-detail.md")`.
 
 > [!CAUTION]

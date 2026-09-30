@@ -36,14 +36,14 @@ The following paths and patterns are strictly sanctuarized. Under no circumstanc
 Only files matching the following paths are eligible for upstream synchronization:
 - `.agents/agents/**` (all agent definitions and orchestrator specifications)
 - `.agents/skills/**` (all skills, instruction files, scripts, and references)
-- `.agents/rules/references/**` (HTML templates, index templates, format references)
+- `.agents/context/templates/**` (global HTML templates, design tokens, format references)
 - `.agents/rules/fact-checking.md` (verification and primary source rules)
 - `AGENTS.md` (system manifest and invariant workspace rules)
 - `.agents/skills.json` (skill registry)
 - `framework.json` (version tracking metadata)
 
 > [!NOTE]
-> When an upstream release introduces new files or subdirectories within allowed paths (e.g., a new skill under `.agents/skills/` or a new template under `.agents/rules/references/`), the update engine automatically recognizes and creates them (`🟢 Added`).
+> When an upstream release introduces new files or subdirectories within allowed paths (e.g., a new skill under `.agents/skills/` or a new template under `.agents/context/templates/`), the update engine automatically recognizes and creates them (`🟢 Added`).
 
 ---
 
@@ -124,7 +124,7 @@ Emit the final standardized Executive Briefing Card:
 | **Framework Version** | `v{new_version}` | Synced with upstream |
 
 - **UI Refresh Recommendation (Conditional):**
-  - Check whether any HTML templates under `.agents/rules/references/` (e.g., `index-template.html`, `context-template.html`, `radar-template.html`, `pipeline-summary-template.html`) were in the list of `🟢 Added` or `🟡 Modified` files during the update.
+  - Check whether any HTML templates under `.agents/context/templates/` or skill-specific `references/` (e.g., `index-template.html`, `context-template.html`, `radar-template.html`, `pipeline-summary-template.html`) were in the list of `🟢 Added` or `🟡 Modified` files during the update.
   - **If at least one template was updated:** append the following native Markdown callout directly below the Executive Briefing Card:
     > [!TIP]
     > Global UI templates were updated. Run `report` to refresh your portal, Company DNA, and pipeline views with the latest layout.

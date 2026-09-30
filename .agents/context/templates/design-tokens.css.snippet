@@ -1,0 +1,202 @@
+/* === DESIGN TOKENS & ADAPTIVE THEME — AI Sales Team v1.2 === */
+:root {
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Surfaces & Backgrounds */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-subtle: #f1f5f9;
+  --surface-2: #f1f5f9;
+
+  /* Typography Colors */
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+
+  /* Brand & Accents */
+  --primary: #2563eb;
+  --primary-light: #eff6ff;
+  --primary-border: #bfdbfe;
+  --accent: #0ea5e9;
+  --accent-light: #e0f2fe;
+
+  /* Status Badges & Alerts */
+  --success: #10b981;
+  --success-bg: #ecfdf5;
+  --success-light: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #f59e0b;
+  --warning-bg: #fffbeb;
+  --warning-light: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+  --danger-light: #fef2f2;
+  --danger-border: #fecaca;
+
+  /* Channels */
+  --email: #4338ca;
+  --email-light: #e0e7ff;
+  --linkedin: #0077b5;
+  --linkedin-light: #e0f2fe;
+
+  /* Elevation */
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Mode Support (Slate / Zinc / Indigo Palette) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-subtle: #334155;
+    --surface-2: #334155;
+
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    --border: #334155;
+    --border-subtle: #1e293b;
+
+    --primary: #60a5fa;
+    --primary-light: rgba(96, 165, 250, 0.15);
+    --primary-border: rgba(96, 165, 250, 0.3);
+    --accent: #38bdf8;
+    --accent-light: rgba(56, 189, 248, 0.15);
+
+    --success: #34d399;
+    --success-bg: rgba(16, 185, 129, 0.18);
+    --success-light: rgba(16, 185, 129, 0.18);
+    --success-border: rgba(52, 211, 153, 0.3);
+
+    --warning: #fbbf24;
+    --warning-bg: rgba(245, 158, 11, 0.18);
+    --warning-light: rgba(245, 158, 11, 0.18);
+    --warning-border: rgba(251, 191, 36, 0.3);
+
+    --danger: #f87171;
+    --danger-bg: rgba(239, 68, 68, 0.18);
+    --danger-light: rgba(239, 68, 68, 0.18);
+    --danger-border: rgba(248, 113, 113, 0.3);
+
+    --email: #a5b4fc;
+    --email-light: rgba(99, 102, 241, 0.2);
+    --linkedin: #38bdf8;
+    --linkedin-light: rgba(56, 189, 248, 0.2);
+
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.25);
+    --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Interactive Utility Components */
+.badge-na {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--surface-subtle);
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+}
+
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btn-copy:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary);
+}
+.btn-copy.copied {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+details.collapsible-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+details.collapsible-section summary {
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text);
+  user-select: none;
+  list-style: none;
+  background: var(--surface);
+  border-bottom: 1px solid transparent;
+  transition: background 0.15s;
+}
+details.collapsible-section summary::-webkit-details-marker { display: none; }
+details.collapsible-section[open] summary {
+  border-bottom-color: var(--border);
+  background: var(--surface-subtle);
+}
+details.collapsible-section .collapsible-body {
+  padding: 1rem 1.25rem;
+}
+
+<script>
+function copyText(btn, text) {
+  if (!navigator.clipboard) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      markCopied(btn);
+    } catch(e) {}
+    document.body.removeChild(ta);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    markCopied(btn);
+  }).catch(function(err) {
+    console.error('Failed to copy: ', err);
+  });
+}
+
+function markCopied(btn) {
+  var orig = btn.innerHTML;
+  btn.innerHTML = '✓ Copié';
+  btn.classList.add('copied');
+  setTimeout(function() {
+    btn.innerHTML = orig;
+    btn.classList.remove('copied');
+  }, 2000);
+}
+</script>
