@@ -161,6 +161,19 @@
     }
 
     /* Print */
+    .card-link { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.65rem; border-radius: 6px; background: var(--primary-light, #eff6ff); border: 1px solid #bfdbfe; color: var(--primary, #2563eb); font-size: 0.75rem; font-weight: 600; text-decoration: none; transition: all 0.15s; }
+    .card-link:hover { background: var(--primary, #2563eb); color: #fff; }
+    .card-link-secondary { background: var(--surface, #fff); border-color: var(--border, #e2e8f0); color: var(--text-muted, #64748b); }
+    .card-link-secondary:hover { background: var(--primary-light, #eff6ff); border-color: #bfdbfe; color: var(--primary, #2563eb); }
+    .card-link-md { background: var(--surface-subtle, #f8fafc); border-color: var(--border, #e2e8f0); color: var(--text-muted, #64748b); font-family: var(--font-mono, monospace); font-size: 0.7rem; }
+    .card-link-md:hover { background: var(--surface, #fff); color: var(--text, #0f172a); }
+    .card-link[data-optional][style*="opacity"] { display: none; } /* Hide unavailable links cleanly */
+    .card-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border, #e2e8f0); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; }
+    .card-company { font-size: 1.125rem; font-weight: 700; color: var(--text); margin: 0; }
+    .card-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .card-meta { font-size: 0.8125rem; color: var(--text-muted); margin: 0.35rem 0 0; }
+    .card-summary { font-size: 0.875rem; color: var(--text); line-height: 1.55; margin: 0.5rem 0 0; flex: 1; }
     @media print {
       body { background: #fff; padding: 0; color: #000; }
       .header, .company-card, .empty-state { box-shadow: none; border: 1px solid #cbd5e1; break-inside: avoid; }
@@ -206,6 +219,27 @@
         card.style.display = text.includes(q) ? 'flex' : 'none';
       });
     }
+
+    /* Check optional report links — hide those that return 404 */
+    async function checkReportLink(linkEl) {
+      const href = linkEl.getAttribute('href');
+      if (!href) return;
+      try {
+        const res = await fetch(href, { method: 'HEAD' });
+        if (!res.ok) {
+          linkEl.classList.add('card-link-unavailable');
+          linkEl.setAttribute('title', 'Report not yet generated');
+          linkEl.style.pointerEvents = 'none';
+          linkEl.style.opacity = '0.35';
+        }
+      } catch {
+        /* file:// protocol may throw on CORS — treat as potentially available */
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card-link[data-optional]').forEach(checkReportLink);
+    });
   </script>
 </body>
 </html>

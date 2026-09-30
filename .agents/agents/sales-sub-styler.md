@@ -124,13 +124,20 @@ Si `deliverable == "PROSPECT-ANALYSIS"` :
   <p class="card-meta">{HQ_LOCATION} · {EMPLOYEE_COUNT} · Analyzed: {DATE}</p>
   <p class="card-summary">{EXEC_SUMMARY_FIRST_LINE}</p>
   <div class="card-links">
-    <a href="{slug}/PROSPECT-ANALYSIS.html" class="card-link">📊 Prospect Analysis</a>
-    <a href="{slug}/OUTREACH-SEQUENCE.html" class="card-link card-link-secondary">📧 Outreach</a>
-    <a href="{slug}/MEETING-PREP.html" class="card-link card-link-secondary">🗓 Prep</a>
-    <a href="{slug}/COMPANY-RESEARCH.html" class="card-link card-link-secondary">🔍 Research</a>
-    <a href="{slug}/LEAD-QUALIFICATION.html" class="card-link card-link-secondary">✅ Qualify</a>
-    <a href="{slug}/COMPETITIVE-INTEL.html" class="card-link card-link-secondary">⚔️ Intel</a>
-    <a href="{slug}/DECISION-MAKERS.html" class="card-link card-link-secondary">👥 Contacts</a>
+    <!-- Primary link — always exists once the styler runs -->
+    <a href="{slug}/PROSPECT-ANALYSIS.html" class="card-link">📊 360° Audit</a>
+    <!-- Secondary links — marked data-optional so the index JS hides them if the file doesn't exist yet -->
+    <a href="{slug}/LEAD-QUALIFICATION.html" class="card-link card-link-secondary" data-optional>✅ Qualification</a>
+    <a href="{slug}/OUTREACH-SEQUENCE.html" class="card-link card-link-secondary" data-optional>📧 Outreach</a>
+    <a href="{slug}/CLIENT-PROPOSAL.html" class="card-link card-link-secondary" data-optional>💼 Client Proposal</a>
+    <a href="{slug}/OBJECTION-PLAYBOOK.html" class="card-link card-link-secondary" data-optional>🛡️ Objections</a>
+    <a href="{slug}/FOLLOWUP-SEQUENCE.html" class="card-link card-link-secondary" data-optional>🔄 Follow-Up</a>
+    <a href="{slug}/MEETING-PREP.html" class="card-link card-link-secondary" data-optional>🗓 Meeting Prep</a>
+    <a href="{slug}/COMPANY-RESEARCH.html" class="card-link card-link-secondary" data-optional>🔍 Research</a>
+    <a href="{slug}/COMPETITIVE-INTEL.html" class="card-link card-link-secondary" data-optional>⚔️ Battle Cards</a>
+    <a href="{slug}/DECISION-MAKERS.html" class="card-link card-link-secondary" data-optional>👥 Contacts</a>
+    <!-- Markdown source — always available once prospect runs -->
+    <a href="{slug}/markdown/PROSPECT-ANALYSIS.md" class="card-link card-link-md" data-optional>📄 Markdown</a>
   </div>
 </article>
 ```
