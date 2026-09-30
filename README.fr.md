@@ -4,7 +4,7 @@
 
 # AI Sales Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-100%25%20Declarative-success.svg?style=flat-square)](#-architecture--arborescence-hub--spoke)
 [![Engine](https://img.shields.io/badge/Engine-Gemini%203-8E75C4.svg?style=flat-square)](#)
@@ -40,7 +40,7 @@ Aucun terminal, aucun environnement de développement (`npm`, `pip`, `venv`) ni 
 
 ```bash
 # Cloner le dépôt et entrer dans le workspace
-git clone [https://github.com/nicolasvd/sales-agents-agy.git](https://github.com/nicolasvd/sales-agents-agy.git) mon-projet-sales
+git clone https://github.com/nicolasvd/sales-agents-agy.git mon-projet-sales
 cd mon-projet-sales
 
 # Lancer Antigravity CLI
@@ -75,7 +75,7 @@ Le framework applique une passerelle de contexte intelligente `[prospect]*` :
 | **Action** | `followup [prospect]*` | `sales-followup`| `reports/{slug}/FOLLOWUP-SEQUENCE.html` | 5 scénarios de relance à forte valeur ajoutée |
 | **Action** | `proposal [prospect]*` | `sales-proposal`| `reports/{slug}/CLIENT-PROPOSAL.html` | Offre commerciale avec chiffrage du Coût de l'Inaction |
 | **Action** | `objections [prospect]* <thème>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` | Traitement des objections selon le framework A-R-C |
-| **Pilotage**| `report` | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | Synthèse consolidée du pipeline et mise à jour du Hub |
+| **Pilotage**| `report` | `sales-report` | `reports/my-company/pipeline.html` | Synthèse consolidée du pipeline et mise à jour du Hub |
 
 ---
 
@@ -85,21 +85,26 @@ Tous les livrables respectent un partitionnement étanche : aucun rapport orphel
 
 ```text
 mon-projet-sales/
-├── AGENTS.md                          ← Registre d'instructions déclaratives
+├── AGENTS.md                          ← Registre d'instructions déclaratives & règles
 ├── .agents/
 │   ├── skills.json                    ← Définition des 15 compétences natives
 │   ├── .scratchpad/                   ← Tampon d'orchestration éphémère (ignoré par Git)
-│   └── rules/                         ← Règles de gouvernance & contraintes (< 5 Ko)
-│       ├── product-context.md         ← Référentiel de votre offre (source de vérité absolue)
-│       ├── customer-context.md        ← Critères d'éligibilité ICP et Anti-ICP
+│   ├── agents/                        ← Sous-agents spécialisés (analyste, reviewer, styler)
+│   │   └── sales-sub-styler.md        ← Sous-agent de compilation HTML asynchrone
+│   ├── context/                       ← Vérité produit commerciale & gabarits partagés
+│   │   ├── product-context.md         ← Référentiel de votre offre (sanctuary denylist)
+│   │   ├── customer-context.md        ← Critères d'éligibilité ICP et Anti-ICP
+│   │   ├── output-formatting.md       ← Spécifications Dual Output & métadonnées YAML
+│   │   └── templates/                 ← Templates HTML & tokens de design partagés
+│   └── rules/                         ← Règles de gouvernance comportementale (< 5 Ko)
 │       ├── fact-checking.md           ← Protocole de vérification des sources publiques
-│       ├── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
-│       └── output-formatting.md       ← Spécifications Dual Output & métadonnées YAML
-└── reports/
+│       └── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
+└── reports/                           ← Livrables locaux & cockpit maître (ignorés par Git)
     ├── index.html                     ← PORTAIL MAÎTRE (Vue Hub interactive)
     │
     ├── my-company/                    ← SOCLE INTERNE : Notre offre & ICP
     │   ├── company-dna.html           ← Cockpit visuel de notre proposition de valeur
+    │   ├── pipeline.html              ← Synthèse globale et consolidée du pipeline
     │   ├── ICP-FRAMEWORK.html         ← Framework de ciblage
     │   └── markdown/                  ← Spécifications IA brutes
     │
@@ -107,12 +112,8 @@ mon-projet-sales/
     │   ├── RADAR-DISCOVERY.html       ← Signaux d'achat détectés sur le secteur
     │   └── markdown/
     │
-    ├── pipeline/                      ← PILOTAGE AVAL : Reporting consolidé
-    │   ├── PIPELINE-SUMMARY.html      ← Synthèse globale du portefeuille de comptes
-    │   └── markdown/
-    │
     └── {slug-du-prospect}/             ← DOSSIERS PROSPECTS ISOLÉS (1 dossier par compte)
-        ├── PROSPECT-ANALYSIS.html     ← Rapports HTML stylisés Light SaaS
+        ├── PROSPECT-ANALYSIS.html     ← Rapports HTML stylisés Light & Dark Mode SaaS
         ├── MEETING-PREP.html          ← Prêts pour l'impression A4 (@media print)
         ├── CLIENT-PROPOSAL.html
         └── markdown/                  ← JUMEAUX IA BRUTS (Frontmatter YAML typé)
@@ -125,8 +126,8 @@ mon-projet-sales/
 ## 🎯 Double Livrable : Visualisation Humaine & Mémoire IA
 
 Chaque compétence génère simultanément deux versions synchronisées :
-1. **Livrable Web (Humain) :** Fichier HTML moderne (thème Light SaaS, cartes de scores interactives, bouton de retour au Hub `← Back to Portal`, mise en page imprimable A4).
-2. **Mémoire Machine (IA) :** Fichier Markdown doté d'un en-tête **YAML Frontmatter typé** (`prospect_score`, `bant_total`, `meddic_completeness_pct`, `key_contacts`, `trigger_events`). Les compétences suivantes (`prep`, `proposal`, `followup`) lisent directement ces données brutes, éliminant tout risque d'amnésie ou de surconsommation de tokens.
+1. **Livrable Web (Humain) :** Fichiers HTML modernes et autonomes (100 % hors-ligne, thèmes Light & Dark Mode natifs, cartes de scores interactives, boutons de copie rapide, sections dépliables, impression A4 `@media print` et bouton standardisé `← Back to Portal`).
+2. **Mémoire Machine (IA) :** Fichiers Markdown dotés d'un en-tête **YAML Frontmatter typé** (`prospect_score`, `bant_total`, `meddic_completeness_pct`, `key_contacts`, `trigger_events`). Les compétences aval (`prep`, `proposal`, `followup`) lisent directement ces données brutes, éliminant tout risque d'amnésie ou de surconsommation de tokens.
 
 ---
 

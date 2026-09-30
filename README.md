@@ -4,7 +4,7 @@
 
 # AI Sales Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-100%25%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture--folder-structure)
 [![Engine](https://img.shields.io/badge/Engine-Gemini%203-8E75C4.svg?style=flat-square)](#)
@@ -40,7 +40,7 @@ Zero technical setup, terminal commands, or runtime environments (`npm`, `pip`, 
 
 ```bash
 # Clone repository and enter workspace
-git clone [https://github.com/nicolasvd/sales-agents-agy.git](https://github.com/nicolasvd/sales-agents-agy.git) my-sales-agency
+git clone https://github.com/nicolasvd/sales-agents-agy.git my-sales-agency
 cd my-sales-agency
 
 # Launch Antigravity
@@ -75,7 +75,7 @@ The framework utilizes an intelligent context-resolution syntax `[prospect]*`:
 | **Action** | `followup [prospect]*` | `sales-followup`| `reports/{slug}/FOLLOWUP-SEQUENCE.html` | 5 high-value lifecycle follow-up cadences |
 | **Action** | `proposal [prospect]*` | `sales-proposal`| `reports/{slug}/CLIENT-PROPOSAL.html` | Value proposal & quantified Cost of Inaction (COI) |
 | **Action** | `objections [prospect]* <topic>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` | Consultative objection handling via A-R-C framework |
-| **Pipeline** | `report` | `sales-report` | `reports/pipeline/PIPELINE-SUMMARY.html` | Consolidated pipeline rollup & Master Hub refresh |
+| **Pipeline** | `report` | `sales-report` | `reports/my-company/pipeline.html` | Consolidated pipeline rollup & Master Hub refresh |
 
 ---
 
@@ -89,17 +89,22 @@ my-sales-agency/
 ├── .agents/
 │   ├── skills.json                    ← 15 native Antigravity skill definitions
 │   ├── .scratchpad/                   ← Ephemeral inter-agent state buffer (gitignored)
-│   └── rules/                         ← Governance rules & strict constraints (< 5 KB)
-│       ├── product-context.md         ← Commercial product truth (strict source of truth)
-│       ├── customer-context.md        ← Target ICP boundaries & negative filters
+│   ├── agents/                        ← Specialized subagents (analyst, reviewer, styler)
+│   │   └── sales-sub-styler.md        ← Async HTML compilation subagent
+│   ├── context/                       ← Commercial product truth & shared design templates
+│   │   ├── product-context.md         ← Commercial product truth (sanctuary denylist)
+│   │   ├── customer-context.md        ← Target ICP boundaries & negative filters
+│   │   ├── output-formatting.md       ← Dual Output standard & typed YAML specifications
+│   │   └── templates/                 ← HTML templates & shared design tokens
+│   └── rules/                         ← Behavioral governance rules (< 5 KB each)
 │       ├── fact-checking.md           ← Source validation protocol
-│       ├── scoring.md                 ← Deterministic BANT / MEDDIC scorecards
-│       └── output-formatting.md       ← Dual Output standard & typed YAML specifications
-└── reports/
+│       └── scoring.md                 ← Deterministic BANT / MEDDIC scorecards
+└── reports/                           ← Local-first deliverables & master cockpit (gitignored)
     ├── index.html                     ← MASTER COCKPIT (Interactive Hub view)
     │
     ├── my-company/                    ← INTERNAL FOUNDATION: Product truth & ICP
     │   ├── company-dna.html           ← Visual value proposition card
+    │   ├── pipeline.html              ← Consolidated commercial pipeline summary
     │   ├── ICP-FRAMEWORK.html         ← Target framework
     │   └── markdown/                  ← Machine context files
     │
@@ -107,12 +112,8 @@ my-sales-agency/
     │   ├── RADAR-DISCOVERY.html       ← Market opportunities and detected hooks
     │   └── markdown/
     │
-    ├── pipeline/                      ← PIPELINE ROLLUP: Executive portfolio status
-    │   ├── PIPELINE-SUMMARY.html      ← Pipeline health metrics & deal rollup
-    │   └── markdown/
-    │
     └── {prospect-slug}/               ← ISOLATED PROSPECT WORKSPACES (1 per account)
-        ├── PROSPECT-ANALYSIS.html     ← Polished Light SaaS HTML deliverables
+        ├── PROSPECT-ANALYSIS.html     ← Polished Light & Dark Mode SaaS HTML deliverables
         ├── MEETING-PREP.html          ← Print-ready A4 styling (@media print)
         ├── CLIENT-PROPOSAL.html
         └── markdown/                  ← RAW MACHINE TWINS (Typed YAML Frontmatter)
@@ -125,7 +126,7 @@ my-sales-agency/
 ## 🎯 Dual Output Standard: Human HTML + AI Machine Memory
 
 Every skill simultaneously produces two synchronized formats:
-1. **Visual Reports (Humans):** Modern, interactive Light SaaS HTML deliverables with dynamic scorecards, `@media print` A4 optimization, and a standardized return button (`<a href="../index.html" class="btn-back">← Back to Portal</a>`).
+1. **Visual Reports (Humans):** Modern, interactive Light & Dark Mode SaaS HTML deliverables (offline, self-contained) with dynamic scorecards, quick-copy buttons, collapsible sections, `@media print` A4 optimization, and a standardized return button (`<a href="../index.html" class="btn-back">← Back to Portal</a>`).
 2. **Machine Memory (AI):** Raw Markdown files with **typed YAML Frontmatter** (`prospect_score`, `bant_total`, `meddic_completeness_pct`, `key_contacts`, `trigger_events`). Downstream skills (`prep`, `proposal`, `followup`) ingest these raw files directly, preventing token waste and hallucinations.
 
 ---
