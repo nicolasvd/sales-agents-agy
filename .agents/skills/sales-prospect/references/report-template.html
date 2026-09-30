@@ -98,16 +98,18 @@
       box-shadow: var(--card-shadow);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      flex-shrink: 0;
     }
+
 
     .btn-back {
       display: inline-flex;
@@ -460,15 +462,18 @@
     <!-- Header -->
     <header class="header">
       <div class="header-info">
-        <h1>{{COMPANY_NAME}}</h1>
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <h1>{{COMPANY_NAME}}</h1>
+          <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
+        </div>
         <p>URL: <a href="{{URL}}" target="_blank">{{URL}}</a> | Analyzed on {{DATE}}</p>
       </div>
-      <div class="nav-actions">
-        <span class="badge {{GRADE_BADGE_CLASS}}">Grade {{GRADE}} — {{GRADE_LABEL}}</span>
+      <nav class="nav-actions">
         <a href="markdown/PROSPECT-ANALYSIS.md" class="btn-back" style="font-family: monospace; font-size: 0.8em; opacity: 0.75;">📄 Markdown</a>
         <a href="../index.html" class="btn-back">← Back to Portal</a>
-      </div>
+      </nav>
     </header>
+
 
     <!-- Score Overview -->
     <div class="score-grid">
