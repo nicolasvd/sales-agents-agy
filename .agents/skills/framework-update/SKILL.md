@@ -9,7 +9,7 @@ description: >-
 **Role:** Autonomous system maintenance and workspace synchronization engine.  
 **Mode:** Interactive Human-in-the-Loop (inspection, changelog presentation, delta review, and explicit confirmation before file writing).  
 **Mandatory Configuration:** `framework.json` (at workspace root).  
-**Strict Guardrail:** Absolute zero shell commands, zero `curl`, zero `git merge`, zero `run_command`. All actions execute declaratively via native Antigravity tools (`read_url_content`, `view_file`, `write_to_file`).
+**Strict Guardrail:** Absolute zero `curl`, zero `git merge`. All read/write operations execute declaratively via native Antigravity tools (`read_url_content`, `view_file`, `write_to_file`). `run_command` is permitted **exclusively** for file deletion (`rm`, `rmdir`) during the cleanup step in Phase 4 — no other shell commands are allowed.
 
 > [!IMPORTANT]
 > **Technical Governance:** Internal reasoning, GitHub REST API queries, changelog extraction, and terminal logs operate strictly in English.
@@ -30,7 +30,10 @@ description: >-
 The following paths and patterns are strictly sanctuarized. Under no circumstances may they be modified, overwritten, or deleted by an update:
 - `reports/**` (all generated HTML, Markdown, and custom prospect dossiers)
 - `*scratchpad/**` (all ephemeral and persisted analysis scratchpads)
-- `.agents/context/**` (Company DNA, target ICP, scoring rubrics, and passive context)
+- `.agents/context/**` **excluding** `.agents/context/templates/**` (Company DNA, target ICP, scoring rubrics, and passive context — the templates subdirectory is updatable per the Allowlist below)
+
+> [!IMPORTANT]
+> **Precedence rule:** The Updatable Allowlist takes precedence over the Sanctuary Denylist for the `.agents/context/templates/**` path. Template files under that subdirectory are eligible for update and deletion by the engine; all other files under `.agents/context/` remain permanently sanctuarized.
 
 ### 2. Updatable Allowlist
 Only files matching the following paths are eligible for upstream synchronization:
@@ -67,13 +70,24 @@ Only files matching the following paths are eligible for upstream synchronizatio
 ### Phase 2: Remote Tree & Delta Evaluation (Rate-Limiting Optimization)
 1. Fetch the remote Git tree recursively for the target tag via `read_url_content`:
    `GET https://api.github.com/repos/{owner}/{repo}/git/trees/{tag}?recursive=1`
-2. Iterate through tree items (`tree[]` with `type: "blob"`):
+2. Build the **upstream path set**: collect all `tree[]` items with `type: "blob"` into a set of paths for cross-referencing.
+3. Iterate through the upstream path set to classify each remote file:
    - **Check Sanctuary Denylist:** If item path matches any sanctuary pattern, mark as `🛡️ Preserved (Sanctuary)` and skip any download.
    - **Check Allowlist:** If item path does NOT match the Allowlist, skip item.
    - **Evaluate Local Existence:** Check if target path exists locally via `view_file`:
      - If file does not exist locally → Mark as `🟢 Added`.
      - If file exists locally → Mark as `🟡 Modified` for update.
-3. Consolidate delta metrics (count of files added, modified, and preserved).
+4. **Deletion scan — identify `🔴 Removed` files:**
+   Walk every local path in the Updatable Allowlist to find files that exist locally but are absent from the upstream path set:
+   - **For directory-glob allowlist entries** (`.agents/agents/**`, `.agents/skills/**`, `.agents/context/templates/**`): use `find_by_name` on each directory root to list all local files recursively.
+   - **For single-file allowlist entries** (`.agents/rules/fact-checking.md`, `AGENTS.md`, `.agents/skills.json`, `framework.json`): check each individually using `view_file`; if the file exists locally, add it to the local file set.
+   For each local file found in the above scan:
+   - **Apply Precedence Rule:** `.agents/context/templates/**` is in the Allowlist (and therefore eligible for deletion); the broader `.agents/context/**` sanctuary does NOT apply to files under `templates/`.
+   - **Skip if it matches the Sanctuary Denylist** (after applying the Precedence Rule above — zero-mutation guarantee for truly sanctuarized files).
+   - **Skip if it is present in the upstream path set** (already classified in step 3 — it is Added or Modified, not Removed).
+   - Otherwise → Mark as `🔴 Removed` (file exists locally but has been deleted or moved in the upstream release).
+5. Consolidate delta metrics (count of files added, modified, removed, and preserved).
+
 
 ### Phase 3: Interactive Presentation & User Confirmation (Human-in-the-Loop)
 Present a structured update proposal in chat:
@@ -88,12 +102,13 @@ Present a structured update proposal in chat:
    |---|---|---|
    | `🟢 Added` | `.agents/agents/sales-lead.md` | Core Orchestrator |
    | `🟡 Modified` | `.agents/context/scoring.md` | Core Rubric Update |
+   | `🔴 Removed` | `.agents/rules/old-template.md` | Deleted upstream — will be removed locally |
    | `🛡️ Preserved` | `.agents/context/product-context.md` | Sanctuary (Company DNA) |
    | `🛡️ Preserved` | `.agents/context/customer-context.md` | Sanctuary (Target ICP) |
    | `🛡️ Preserved` | `reports/**` | Sanctuary (Generated Reports) |
 4. **Mandatory Overwrite Warning:**
    > [!WARNING]
-   > Any manual edits made directly to internal skills or HTML templates outside the protected context rules (`product-context.md`, `customer-context.md`) will be overwritten by upstream release defaults.
+   > Any manual edits made directly to internal skills or HTML templates outside the protected context rules (`product-context.md`, `customer-context.md`) will be overwritten by upstream release defaults. Files marked `🔴 Removed` will be **permanently deleted** from your local workspace.
 5. **Confirmation Gate:**
    - Explicitly request user approval in chat (e.g., *"Please confirm to proceed with the update: [confirm / cancel]"*).
    - **HALT execution** and wait for the user's explicit affirmation before performing Phase 4.
@@ -104,9 +119,15 @@ Upon receiving explicit user confirmation:
    - Download raw content via `read_url_content` from:
      `https://raw.githubusercontent.com/{owner}/{repo}/{tag}/{path}`
    - Write content to target file path using `write_to_file` (with `Overwrite: true`).
-2. Update `framework.json` at root:
+2. For each file marked `🔴 Removed`:
+   - **Safety re-check:** confirm the file path does NOT match the Sanctuary Denylist (applying the Precedence Rule: `.agents/context/templates/**` is NOT sanctuary) before proceeding.
+   - Derive the absolute workspace root from the path of `framework.json` read in Phase 1 (e.g., if `framework.json` is at `/Users/name/project/framework.json`, the workspace root is `/Users/name/project`).
+   - Delete the local file using `run_command`: `rm "{absolute_workspace_root}/{path}"`
+   - If the containing directory is now empty, remove it with `run_command`: `rmdir "{absolute_workspace_root}/{dir}"` (non-recursive — fail silently if non-empty).
+3. Update `framework.json` at root:
    - Set `"version"` to target release tag without leading `v`.
    - Write updated `framework.json` via `write_to_file`.
+
 
 ### Phase 5: Executive Briefing Card & Completion
 Emit the final standardized Executive Briefing Card:
@@ -120,6 +141,7 @@ Emit the final standardized Executive Briefing Card:
 | Dimension | Count | Details |
 |---|---|---|
 | **Files Updated** | **{count_modified + count_added}** | {count_modified} modified, {count_added} added |
+| **Files Removed** | **{count_removed}** | Deleted locally — no longer in upstream |
 | **Sanctuary Files Preserved** | **{count_preserved}** | Protected against overwrite |
 | **Framework Version** | `v{new_version}` | Synced with upstream |
 
