@@ -21,6 +21,9 @@ description: >-
 - `update`
 - `update framework`
 - `framework-update`
+- `update --force` (forces delta evaluation & orphan cleanup even when already at latest version)
+- `update clean` (alias for force cleanup of deprecated or orphan files)
+- `repair` (alias to re-align workspace files with upstream release and purge legacy orphans)
 
 ---
 
@@ -63,9 +66,12 @@ Only files matching the following paths are eligible for upstream synchronizatio
    `GET https://api.github.com/repos/{owner}/{repo}/releases/latest`
 3. Extract `tag_name`, release `name`, `body` (Release Notes / Changelog), and `published_at`.
 4. Normalize version tags (strip leading `v`, e.g., `v1.2.0` → `1.2.0`).
-5. **Comparison:**
-   - If local `version` matches upstream `tag_name`: Notify user that the workspace is already up to date with the latest release, display current version info, and exit gracefully without prompting.
-   - If an update is available: Proceed to Phase 2.
+5. **Comparison & Force / Repair Evaluation:**
+   - Detect invocation mode: check if the user triggered a forced re-alignment or repair (`update --force`, `update clean`, `repair`).
+   - **When local `version` matches upstream `tag_name`:**
+     - If a force/repair mode was requested: inform the user that the workspace version matches the latest release (`v{version}`), but proceed to Phase 2 to re-evaluate the tree, verify file integrity, and purge orphan or deprecated files.
+     - Otherwise: notify user that the workspace is already up to date with the latest release (`v{version}`), display current version info, and exit gracefully without prompting.
+   - **When an update is available (`local_version != upstream_tag`):** Proceed to Phase 2.
 
 ### Phase 2: Remote Tree & Delta Evaluation (Rate-Limiting Optimization)
 1. Fetch the remote Git tree recursively for the target tag via `read_url_content`:
@@ -78,14 +84,16 @@ Only files matching the following paths are eligible for upstream synchronizatio
      - If file does not exist locally → Mark as `🟢 Added`.
      - If file exists locally → Mark as `🟡 Modified` for update.
 4. **Deletion scan — identify `🔴 Removed` files:**
-   Walk every local path in the Updatable Allowlist to find files that exist locally but are absent from the upstream path set:
+   Walk every local path in the Updatable Allowlist and legacy framework directories to find files that exist locally but are absent from the upstream release:
    - **For directory-glob allowlist entries** (`.agents/agents/**`, `.agents/skills/**`, `.agents/context/templates/**`): use `find_by_name` on each directory root to list all local files recursively.
    - **For single-file allowlist entries** (`.agents/rules/fact-checking.md`, `AGENTS.md`, `.agents/skills.json`, `framework.json`): check each individually using `view_file`; if the file exists locally, add it to the local file set.
-   For each local file found in the above scan:
+   - **Legacy rule cleanup scan (`.agents/rules/**`):** to eliminate blind spots from historical framework versions (where templates and context resided under `rules/`), perform a recursive `find_by_name` on `.agents/rules/`. Any local file found here (e.g., `.agents/rules/references/**`, `.agents/rules/scoring.md`, `.agents/rules/output-formatting.md`) is evaluated for removal.
+   For each local file found in the above scans:
+   - **Retain valid upstream files:** If the file is `.agents/rules/fact-checking.md` and it is present in the upstream path set, keep it (do NOT mark as removed).
    - **Apply Precedence Rule:** `.agents/context/templates/**` is in the Allowlist (and therefore eligible for deletion); the broader `.agents/context/**` sanctuary does NOT apply to files under `templates/`.
    - **Skip if it matches the Sanctuary Denylist** (after applying the Precedence Rule above — zero-mutation guarantee for truly sanctuarized files).
    - **Skip if it is present in the upstream path set** (already classified in step 3 — it is Added or Modified, not Removed).
-   - Otherwise → Mark as `🔴 Removed` (file exists locally but has been deleted or moved in the upstream release).
+   - Otherwise → Mark as `🔴 Removed` (file exists locally but has been deleted, moved, or deprecated in the upstream release).
 5. Consolidate delta metrics (count of files added, modified, removed, and preserved).
 
 

@@ -4,7 +4,7 @@
 
 # AI Sales Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.2.1-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-100%25%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture--folder-structure)
 [![Engine](https://img.shields.io/badge/Engine-Gemini%203-8E75C4.svg?style=flat-square)](#)
