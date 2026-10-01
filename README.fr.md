@@ -95,10 +95,10 @@ mon-projet-sales/
 │   │   ├── product-context.md         ← Référentiel de votre offre (sanctuary denylist)
 │   │   ├── customer-context.md        ← Critères d'éligibilité ICP et Anti-ICP
 │   │   ├── output-formatting.md       ← Spécifications Dual Output & métadonnées YAML
+│   │   ├── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
 │   │   └── templates/                 ← Templates HTML & tokens de design partagés
 │   └── rules/                         ← Règles de gouvernance comportementale (< 5 Ko)
-│       ├── fact-checking.md           ← Protocole de vérification des sources publiques
-│       └── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
+│       └── fact-checking.md           ← Protocole de vérification des sources publiques
 └── reports/                           ← Livrables locaux & cockpit maître (ignorés par Git)
     ├── index.html                     ← PORTAIL MAÎTRE (Vue Hub interactive)
     │

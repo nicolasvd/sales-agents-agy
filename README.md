@@ -95,10 +95,10 @@ my-sales-agency/
 │   │   ├── product-context.md         ← Commercial product truth (sanctuary denylist)
 │   │   ├── customer-context.md        ← Target ICP boundaries & negative filters
 │   │   ├── output-formatting.md       ← Dual Output standard & typed YAML specifications
+│   │   ├── scoring.md                 ← Deterministic BANT / MEDDIC scorecards
 │   │   └── templates/                 ← HTML templates & shared design tokens
 │   └── rules/                         ← Behavioral governance rules (< 5 KB each)
-│       ├── fact-checking.md           ← Source validation protocol
-│       └── scoring.md                 ← Deterministic BANT / MEDDIC scorecards
+│       └── fact-checking.md           ← Source validation protocol
 └── reports/                           ← Local-first deliverables & master cockpit (gitignored)
     ├── index.html                     ← MASTER COCKPIT (Interactive Hub view)
     │

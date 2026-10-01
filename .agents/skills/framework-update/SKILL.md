@@ -33,16 +33,20 @@ description: >-
 The following paths and patterns are strictly sanctuarized. Under no circumstances may they be modified, overwritten, or deleted by an update:
 - `reports/**` (all generated HTML, Markdown, and custom prospect dossiers)
 - `*scratchpad/**` (all ephemeral and persisted analysis scratchpads)
-- `.agents/context/**` **excluding** `.agents/context/templates/**` (Company DNA, target ICP, scoring rubrics, and passive context — the templates subdirectory is updatable per the Allowlist below)
+- `.agents/context/product-context.md` (Company DNA & offering rules)
+- `.agents/context/customer-context.md` (Target ICP & persona definitions)
+- Legacy user context files: `.agents/rules/product-context.md` and `.agents/rules/customer-context.md` (if present locally, preserved against deletion to protect legacy configurations)
 
 > [!IMPORTANT]
-> **Precedence rule:** The Updatable Allowlist takes precedence over the Sanctuary Denylist for the `.agents/context/templates/**` path. Template files under that subdirectory are eligible for update and deletion by the engine; all other files under `.agents/context/` remain permanently sanctuarized.
+> **Precedence rule:** The Updatable Allowlist takes precedence over any broad directory patterns. Framework files under `.agents/context/` (`templates/**`, `scoring.md`, `output-formatting.md`) are eligible for update and deletion by the engine; only user intelligence files (`product-context.md`, `customer-context.md`) and workspace deliverables (`reports/**`, `*scratchpad/**`) remain permanently sanctuarized.
 
 ### 2. Updatable Allowlist
 Only files matching the following paths are eligible for upstream synchronization:
 - `.agents/agents/**` (all agent definitions and orchestrator specifications)
 - `.agents/skills/**` (all skills, instruction files, scripts, and references)
 - `.agents/context/templates/**` (global HTML templates, design tokens, format references)
+- `.agents/context/scoring.md` (deterministic scoring rubrics)
+- `.agents/context/output-formatting.md` (deliverable structure and styling conventions)
 - `.agents/rules/fact-checking.md` (verification and primary source rules)
 - `AGENTS.md` (system manifest and invariant workspace rules)
 - `.agents/skills.json` (skill registry)
@@ -68,10 +72,10 @@ Only files matching the following paths are eligible for upstream synchronizatio
 4. Normalize version tags (strip leading `v`, e.g., `v1.2.0` → `1.2.0`).
 5. **Comparison & Force / Repair Evaluation:**
    - Detect invocation mode: check if the user triggered a forced re-alignment or repair (`update --force`, `update clean`, `repair`).
-   - **When local `version` matches upstream `tag_name`:**
-     - If a force/repair mode was requested: inform the user that the workspace version matches the latest release (`v{version}`), but proceed to Phase 2 to re-evaluate the tree, verify file integrity, and purge orphan or deprecated files.
-     - Otherwise: notify user that the workspace is already up to date with the latest release (`v{version}`), display current version info, and exit gracefully without prompting.
-   - **When an update is available (`local_version != upstream_tag`):** Proceed to Phase 2.
+   - **When local `version` is up to date or ahead (`local_version >= upstream_tag`):**
+     - If a force/repair mode was requested: inform the user of current version status (`v{local_version}` vs upstream `v{upstream_tag}`), but proceed to Phase 2 to re-evaluate the tree, verify file integrity, and purge orphan or deprecated files.
+     - Otherwise: notify user that the workspace is already up to date with the latest release (`v{local_version}`), display current version info, and exit gracefully without prompting.
+   - **When an update is available (`upstream_tag > local_version`):** Proceed to Phase 2.
 
 ### Phase 2: Remote Tree & Delta Evaluation (Rate-Limiting Optimization)
 1. Fetch the remote Git tree recursively for the target tag via `read_url_content`:
@@ -85,12 +89,13 @@ Only files matching the following paths are eligible for upstream synchronizatio
      - If file exists locally → Mark as `🟡 Modified` for update.
 4. **Deletion scan — identify `🔴 Removed` files:**
    Walk every local path in the Updatable Allowlist and legacy framework directories to find files that exist locally but are absent from the upstream release:
-   - **For directory-glob allowlist entries** (`.agents/agents/**`, `.agents/skills/**`, `.agents/context/templates/**`): use `find_by_name` on each directory root to list all local files recursively.
-   - **For single-file allowlist entries** (`.agents/rules/fact-checking.md`, `AGENTS.md`, `.agents/skills.json`, `framework.json`): check each individually using `view_file`; if the file exists locally, add it to the local file set.
-   - **Legacy rule cleanup scan (`.agents/rules/**`):** to eliminate blind spots from historical framework versions (where templates and context resided under `rules/`), perform a recursive `find_by_name` on `.agents/rules/`. Any local file found here (e.g., `.agents/rules/references/**`, `.agents/rules/scoring.md`, `.agents/rules/output-formatting.md`) is evaluated for removal.
+   - **For directory-glob allowlist entries** (`.agents/agents/**`, `.agents/skills/**`, `.agents/context/templates/**`): use `find_by_name` on each directory root to list all local files recursively (if the directory exists).
+   - **For single-file allowlist entries** (`.agents/rules/fact-checking.md`, `.agents/context/scoring.md`, `.agents/context/output-formatting.md`, `AGENTS.md`, `.agents/skills.json`, `framework.json`): check each individually using `view_file`; if the file exists locally, add it to the local file set.
+   - **Legacy rule cleanup scan (`.agents/rules/**`):** to eliminate blind spots from historical framework versions (where templates and context resided under `rules/`), perform a recursive `find_by_name` on `.agents/rules/` (if the directory exists). Any local file found here (e.g., `.agents/rules/references/**`, `.agents/rules/scoring.md`, `.agents/rules/output-formatting.md`) is evaluated for removal.
    For each local file found in the above scans:
-   - **Retain valid upstream files:** If the file is `.agents/rules/fact-checking.md` and it is present in the upstream path set, keep it (do NOT mark as removed).
-   - **Apply Precedence Rule:** `.agents/context/templates/**` is in the Allowlist (and therefore eligible for deletion); the broader `.agents/context/**` sanctuary does NOT apply to files under `templates/`.
+   - **Retain valid upstream files:** If the file is present in the upstream path set (e.g., `.agents/rules/fact-checking.md`), keep it (do NOT mark as removed).
+   - **Preserve legacy sanctuary files:** If the file matches legacy sanctuary paths (`.agents/rules/product-context.md`, `.agents/rules/customer-context.md`), do NOT mark as removed to protect user data.
+   - **Apply Precedence Rule:** Framework files in the Allowlist (`.agents/context/templates/**`, `.agents/context/scoring.md`, `.agents/context/output-formatting.md`) are eligible for deletion if absent upstream; broad context patterns do not protect them.
    - **Skip if it matches the Sanctuary Denylist** (after applying the Precedence Rule above — zero-mutation guarantee for truly sanctuarized files).
    - **Skip if it is present in the upstream path set** (already classified in step 3 — it is Added or Modified, not Removed).
    - Otherwise → Mark as `🔴 Removed` (file exists locally but has been deleted, moved, or deprecated in the upstream release).
@@ -128,7 +133,7 @@ Upon receiving explicit user confirmation:
      `https://raw.githubusercontent.com/{owner}/{repo}/{tag}/{path}`
    - Write content to target file path using `write_to_file` (with `Overwrite: true`).
 2. For each file marked `🔴 Removed`:
-   - **Safety re-check:** confirm the file path does NOT match the Sanctuary Denylist (applying the Precedence Rule: `.agents/context/templates/**` is NOT sanctuary) before proceeding.
+   - **Safety re-check:** confirm the file path does NOT match the Sanctuary Denylist (applying the Precedence Rule: Allowlist framework files under `.agents/context/` such as `templates/**`, `scoring.md`, `output-formatting.md` are updatable/removable) and is not a legacy sanctuary file (`.agents/rules/product-context.md`, `.agents/rules/customer-context.md`) before proceeding.
    - Derive the absolute workspace root from the path of `framework.json` read in Phase 1 (e.g., if `framework.json` is at `/Users/name/project/framework.json`, the workspace root is `/Users/name/project`).
    - Delete the local file using `run_command`: `rm "{absolute_workspace_root}/{path}"`
    - If the containing directory is now empty, remove it with `run_command`: `rmdir "{absolute_workspace_root}/{dir}"` (non-recursive — fail silently if non-empty).
