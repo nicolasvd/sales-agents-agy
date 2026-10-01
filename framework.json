@@ -1,6 +1,6 @@
 {
   "name": "sales-agents-agy",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "repository": {
     "owner": "nicolasvd",
     "name": "sales-agents-agy",
@@ -11,7 +11,7 @@
   "sanctuary": [
     "reports/**",
     ".agents/.scratchpad/**",
-    ".agents/rules/product-context.md",
-    ".agents/rules/customer-context.md"
+    ".agents/context/product-context.md",
+    ".agents/context/customer-context.md"
   ]
 }

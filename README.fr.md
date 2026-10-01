@@ -4,7 +4,7 @@
 
 # AI Sales Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.2.1-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-100%25%20Declarative-success.svg?style=flat-square)](#-architecture--arborescence-hub--spoke)
 [![Engine](https://img.shields.io/badge/Engine-Gemini%203-8E75C4.svg?style=flat-square)](#)
@@ -95,10 +95,10 @@ mon-projet-sales/
 │   │   ├── product-context.md         ← Référentiel de votre offre (sanctuary denylist)
 │   │   ├── customer-context.md        ← Critères d'éligibilité ICP et Anti-ICP
 │   │   ├── output-formatting.md       ← Spécifications Dual Output & métadonnées YAML
+│   │   ├── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
 │   │   └── templates/                 ← Templates HTML & tokens de design partagés
 │   └── rules/                         ← Règles de gouvernance comportementale (< 5 Ko)
-│       ├── fact-checking.md           ← Protocole de vérification des sources publiques
-│       └── scoring.md                 ← Barèmes arithmétiques déterministes BANT / MEDDIC
+│       └── fact-checking.md           ← Protocole de vérification des sources publiques
 └── reports/                           ← Livrables locaux & cockpit maître (ignorés par Git)
     ├── index.html                     ← PORTAIL MAÎTRE (Vue Hub interactive)
     │
